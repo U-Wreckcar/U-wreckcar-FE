@@ -1,0 +1,59 @@
+.header_container {
+  /* position: absolute; */
+  height: 60px;
+
+  display: flex;
+  justify-content: space-between;
+
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+}
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.render_nav {
+  background-color: #eee;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+.render_nav_left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.render_nav_left_img {
+  margin-right: 50px;
+}
+.render_nav_left_noti {
+  margin-right: 50px;
+}
+.render_nav_left_guide {
+  margin-right: 50px;
+}
+.user_box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.user_img {
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  background-color: #ddd;
+  margin-right: 15px;
+}
+
+.bold_text {
+  font-weight: var(--weight-bold);
+}
+
+.login_box {
+  margin-right: 20px;
+}

@@ -1,7 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-/**
- * Util
- */
 import { useFieldArray, useForm } from 'react-hook-form';
 
 import { nanoid } from 'nanoid';
@@ -12,6 +9,7 @@ import styles from './CreateUTM.module.css';
 import plus from 'assets/plus.png';
 import minus from 'assets/minus.png';
 import Image from 'next/image';
+import { CreateCategory } from './CreateCategory';
 
 type UTMsType = {
   utms: {
@@ -88,14 +86,16 @@ export const CreateUTM = () => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.create_container}>
-          {fields.map((field, index) => {
-            return (
-              <div key={field.id}>
-                <section key={field.id}>
-                  <div className={styles.item_box}>
-                    <div className={styles.number}>{index + 1}</div>
-                    <div className={styles.scroll_input}>
+        <div className={styles.scroll_input}>
+          <CreateCategory />
+          <div className={styles.create_container}>
+            {fields.map((field, index) => {
+              return (
+                <div key={field.id}>
+                  <section key={field.id}>
+                    <div className={styles.item_box}>
+                      <div className={styles.number}>{index + 1}</div>
+
                       <input
                         // placeholder="utm_url"
                         onInput={requeirFn}
@@ -203,11 +203,11 @@ export const CreateUTM = () => {
                         />
                       </button>
                     </div>
-                  </div>
-                </section>
-              </div>
-            );
-          })}
+                  </section>
+                </div>
+              );
+            })}
+          </div>
         </div>
         <div className={styles.create_button_box}>
           <button
