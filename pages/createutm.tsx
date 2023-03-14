@@ -1,6 +1,5 @@
 import React from 'react';
 import { CreateUTM } from 'components/createPage/CreateUTM';
-import { CreateCategory } from 'components/createPage/CreateCategory';
 import { CreateCopyBox } from 'components/createPage/CreateCopyBox';
 import styles from './createutm.module.css';
 export default function CreateUTMPage() {
@@ -10,7 +9,6 @@ export default function CreateUTMPage() {
       <span className="category_text">
         UTM은 최대 5개까지 생성할 수 있습니다.
       </span>
-      <CreateCategory />
       <CreateUTM />
       <CreateCopyBox />
     </div>
