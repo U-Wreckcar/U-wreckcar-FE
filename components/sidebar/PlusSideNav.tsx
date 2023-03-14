@@ -6,11 +6,12 @@ import { AddUtmModal } from './AddUtmModal';
 /**
  * Image
  */
-import myutm from 'assets/myutm.png';
-import addutm from 'assets/adsdutm.png';
-import createutm from 'assets/createutm.png';
-import slim from 'assets/slim.png';
-import help from 'assets/help.png';
+import logo from '../../assets/addutm.png';
+import myutm from '../../assets/myutm.png';
+import addutm from '../../assets/addutm.png';
+import createutm from '../../assets/createutm.png';
+import slim from '../../assets/slim.png';
+import help from '../../assets/help.png';
 import noti from 'assets/noti.png';
 import guide from 'assets/guide.png';
 import Image from 'next/image';
@@ -41,13 +42,15 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
   return (
     <div className={styles.plus_container}>
       <div>
-        <div>
-          <Image src="logo" alt="Logo" />
+        <div className={styles.logo_container}>
+          <Image src={logo} alt="Logo" width={120} height={24} />
           <button
             className={styles.slim_button_style}
             onClick={() => setSide(false)}
           >
             <Image
+              width={24}
+              height={24}
               className={styles.slim_button}
               src={slim}
               alt="Slim Button"
@@ -92,7 +95,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
           </Link> */}
           {/* <Link to="/userinfo">유저정보</Link> */}
           <div className={styles.utm_category_item}>
-            <Image src={addutm} alt="Add_UTM" />
+            <Image width={24} height={24} src={addutm} alt="Add_UTM" />
             <span className="category_text" onClick={() => setModal(!modal)}>
               기존 UTM 추가하기
             </span>
@@ -110,6 +113,8 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
         <div className={styles.category_bottom_box}>
           <div className={styles.utm_category_item}>
             <Image
+              width={24}
+              height={24}
               src={noti}
               alt="Noti Img"
               onError={() => console.log('Image loading failed')}
@@ -118,6 +123,8 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
           </div>
           <div className={styles.utm_category_item}>
             <Image
+              width={24}
+              height={24}
               src={guide}
               alt="Guide Img"
               onError={() => console.log('Image loading failed')}
@@ -126,6 +133,8 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
           </div>
           <div className={styles.utm_category_item}>
             <Image
+              width={24}
+              height={24}
               src={help}
               alt="Help Img"
               onError={() => console.log('Image loading failed')}

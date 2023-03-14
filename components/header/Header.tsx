@@ -9,9 +9,9 @@ export const Header = () => {
         <Image
           src={noti}
           alt="Noti_img"
-          onError={() => {
-            console.log('img load fail');
-          }}
+          // onError={() => {
+          //   console.log('img load fail');
+          // }}
         />
         <span className="noti_text">
           오늘 하루도 유렉카와 함께 효율적인 업무를 진행하세요

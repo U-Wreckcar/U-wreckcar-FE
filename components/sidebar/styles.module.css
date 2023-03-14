@@ -1,9 +1,15 @@
-img {
+/* img {
   width: 24px;
   height: 24px;
 
   /* margin-right: 10px;
   margin-left: 5px; */
+/* } */ 
+
+.logo_container{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 .titleBox {
   margin: 100px 0 20px 10px;
@@ -134,7 +140,10 @@ img {
   margin-top: 15px;
 }
 .slim_button_style {
-  border: none;
+  /* border: none; */
+  width: 26px;
+  height: 26px;
+  background-color: transparent;
 }
 .menu_button_style {
   border: none;

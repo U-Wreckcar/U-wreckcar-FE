@@ -44,6 +44,8 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
           onClick={() => setSide(true)}
         >
           <Image
+            width={24}
+            height={24}
             className={styles.menu_button}
             src={menu}
             alt="Menu"
@@ -86,6 +88,8 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
         <div className={styles.utm_category_item}>
           <div onClick={() => setModal(!modal)}>
             <Image
+              width={24}
+              height={24}
               src={addutm}
               alt="addutm"
               onError={() => console.log('Image loading failed')}
@@ -102,6 +106,8 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
       <div className={styles.category_bottom_box}>
         <div className={styles.utm_category_item}>
           <Image
+            width={24}
+            height={24}
             src={noti}
             alt="Noti Img"
             onError={() => console.log('Image loading failed')}
@@ -109,6 +115,8 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
         </div>
         <div className={styles.utm_category_item}>
           <Image
+            width={24}
+            height={24}
             src={guide}
             alt="Guide Img"
             onError={() => console.log('Image loading failed')}
@@ -116,6 +124,8 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
         </div>
         <div className={styles.utm_category_item}>
           <Image
+            width={24}
+            height={24}
             src={help}
             alt="Help Img"
             onError={() => console.log('Image loading failed')}
