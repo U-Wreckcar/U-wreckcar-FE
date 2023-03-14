@@ -1,7 +1,7 @@
 import React from 'react';
-import { CreateUTM } from '@/components/CreateUTM';
-import { CreateCategory } from 'components/CreateCategory';
-import { CreateCopyBox } from 'components/CreateCopyBox';
+import { CreateUTM } from 'components/createPage/CreateUTM';
+import { CreateCategory } from 'components/createPage/CreateCategory';
+import { CreateCopyBox } from 'components/createPage/CreateCopyBox';
 import styles from './createutm.module.css';
 export default function CreateUTMPage() {
   return (
