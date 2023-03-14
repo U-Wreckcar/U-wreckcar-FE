@@ -175,10 +175,11 @@ export const CreateUTM = () => {
                         }, ${styles.input_style}`}
                       />
                       <textarea
-                        className={styles.active}
+                        className={`${styles.active}`}
                         {...register(`utms.${index}.utm_memo` as const, {
                           maxLength: 80,
                         })}
+                        spellCheck={false}
                       />
                     </div>
                     <div className={styles.minus_button}>

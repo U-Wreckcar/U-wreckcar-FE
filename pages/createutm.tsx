@@ -1,12 +1,12 @@
 import React from 'react';
 import { CreateUTM } from 'components/createPage/CreateUTM';
-import { CreateCategory } from 'components/createPage/CreateCategory';
 import { CreateCopyBox } from 'components/createPage/CreateCopyBox';
 import styles from './createutm.module.css';
 import Layout from '../app/dashboard/layout';
 
 export default function CreateUTMPage() {
   return (
+
     <Layout>
       <div className={styles.create_container}>
         <h1>새 UTM 생성하기</h1>
@@ -18,5 +18,6 @@ export default function CreateUTMPage() {
         <CreateCopyBox />
       </div>
     </Layout>
+
   );
 }
