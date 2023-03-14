@@ -1,0 +1,164 @@
+/*
+* Create UTM
+*/
+
+.item_box {
+  display: flex;
+
+  margin-bottom: 8px;
+
+  min-width: 760px;
+  height: 60px;
+
+  background-color: var(--color-white-100);
+
+  border-radius: 4px;
+}
+.scroll_input {
+  width: 100%;
+  min-width: 760px;
+
+  display: flex;
+  justify-content: center;
+}
+.number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 58px;
+}
+.input_style {
+  height: 40px;
+  width: 100%;
+  min-width: 178px;
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+  margin-right: 8px;
+  transform: translateY(8px);
+}
+.input_style:focus {
+  border: none;
+  outline: none;
+  border: 1px solid #484bff;
+}
+.active {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  text-justify: center;
+  text-align: left;
+  border: 1px solid #e1e1e1;
+  height: 40px;
+  min-width: 178px;
+
+  margin: 0 4px;
+  overflow: hidden;
+  border-radius: 4px;
+  font-size: var(--font-body);
+  resize: none;
+  transform: translateY(7px);
+}
+
+.active:focus {
+  display: inline;
+
+  z-index: 10;
+  border: 1px solid #484bff;
+
+  height: 150px;
+  outline: none;
+  overflow-y: scroll;
+}
+
+/*
+  * Create Button Box
+  */
+
+.create_button_box {
+  display: flex;
+  justify-content: center;
+
+  margin: 24px 0 28px 0;
+}
+.add_list_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 38px;
+  height: 38px;
+
+  background-color: #484bff;
+
+  border: none;
+  border-radius: 4px;
+
+  margin-right: 8px;
+}
+.plus_button_img {
+  width: 24px;
+  height: 24px;
+  margin: 2px 7px;
+}
+
+.create_button {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  width: 81px;
+  height: 38px;
+
+  background-color: #484bff;
+
+  border: none;
+  border-radius: 4px;
+
+  color: white;
+}
+.minus_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  transform: translate(-15px, 10px);
+}
+.minus_img {
+  width: 24px;
+  height: 24px;
+}
+
+.minus_button_style {
+  background-color: transparent;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: none;
+
+  cursor: pointer;
+}
+@media (max-width: 1500px) {
+  .minus_button {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    position: absolute;
+    border-radius: 4px;
+    top: 100;
+    right: 1rem;
+
+    width: 40px;
+    height: 40px;
+    padding: 0;
+
+    box-shadow: 3px 3px 13px 1px rgba(0, 0, 0, 0.4);
+    background-color: #ffffff;
+  }
+  .scroll_input {
+    overflow-x: scroll;
+  }
+}
