@@ -47,8 +47,7 @@
   display: flex;
   justify-items: center;
   align-items: center;
-  text-justify: center;
-  text-align: left;
+
   border: 1px solid #e1e1e1;
   height: 40px;
   min-width: 178px;
@@ -57,8 +56,18 @@
   overflow: hidden;
   border-radius: 4px;
   font-size: var(--font-body);
+  font-weight: 400;
   resize: none;
   transform: translateY(7px);
+  text-justify: auto;
+  line-height: 37px;
+}
+.areast {
+  display: inline-block;
+  vertical-align: middle;
+
+  /* top: 50%;
+  transform: translateY(-50%); */
 }
 
 .active:focus {
@@ -70,6 +79,8 @@
   height: 150px;
   outline: none;
   overflow-y: scroll;
+
+  line-height: 1;
 }
 
 /*
