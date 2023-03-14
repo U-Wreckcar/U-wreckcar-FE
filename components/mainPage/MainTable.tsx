@@ -35,9 +35,10 @@ import {
   rankItem,
   compareItems,
 } from '@tanstack/match-sorter-utils';
-import styles from './styles.module.css';
+import styles from './main.module.css';
 import instance from 'util/async/axiosConfig';
-
+// import { Modal } from 'shared/modal/Modal';
+// import { OutputModal } from './OutputModal';
 declare module '@tanstack/table-core' {
   interface FilterFns {
     fuzzy: FilterFn<unknown>;
@@ -90,9 +91,12 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const input_ref = useRef<HTMLInputElement>(null);
   const textarea_ref = useRef<HTMLTextAreaElement>(null);
   const [value, setValue] = useState('');
+  const [outputLength, setOutputLength] = useState(0);
+
   useEffect(() => {
     if (defaultData.length === 0) {
-      setData(getUTMRes.data);
+      console.log(getUTMRes);
+      // setData(getUTMRes.data);
     }
   }, [getUTMRes]);
 
@@ -275,8 +279,10 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     if (id.length === 0) {
       alert('추출할 데이터를 선택해주세요');
     }
+    setOutputLength(id.length);
     console.log(id);
   };
+
   return (
     <div>
       <div className={styles.container}>
@@ -287,6 +293,18 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
           <button className={styles.button} onClick={onClickPopBtn}>
             추출하기
           </button>
+          {/* <Modal
+            x={800}
+            y={380}
+            buttonName={'추출하기'}
+            confirmButtonName={'추출하기'}
+            modalTitle={'UTM 추출하기'}
+            context={`${outputLength}개의 UTM이 선택되었습니다.`}
+            contextSeconde={'UTM 데이터를 내보낼 툴을 선택해주세요'}
+            confirmButtonHanlder={onClickPopBtn}
+            childComponent={<OutputModal />}
+          /> */}
+
           <button className={styles.button} onClick={onClickDelBtn}>
             삭제하기
           </button>
@@ -308,8 +326,9 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                 {headerGroup.headers.map((header) => {
                   return (
                     <th
+                      key={header.id}
                       {...{
-                        key: header.id,
+                        // key: header.id,
                         colSpan: header.colSpan,
                         style: {
                           width: header.getSize(),
@@ -375,8 +394,8 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                   {row.getVisibleCells().map((cell) => {
                     return (
                       <td
+                        key={cell.id}
                         {...{
-                          key: cell.id,
                           style: {
                             width: cell.column.getSize(),
                           },

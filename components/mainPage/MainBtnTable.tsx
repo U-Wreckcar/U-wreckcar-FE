@@ -37,7 +37,7 @@ import {
   rankItem,
   compareItems,
 } from '@tanstack/match-sorter-utils';
-import styles from './styles.module.css';
+import styles from './main.module.css';
 
 export type MainTableProps = {
   setSummary: Dispatch<SetStateAction<boolean>>;
@@ -95,7 +95,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const textarea_ref = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    setData(getUTMRes.data);
+    // setData(getUTMRes.data);
   }, [getUTMRes]);
 
   const columns = useMemo<ColumnDef<MainTableType>[]>(
@@ -264,8 +264,9 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                 {headerGroup.headers.map((header) => {
                   return (
                     <th
+                      key={header.id}
                       {...{
-                        key: header.id,
+                        // key: header.id,
                         colSpan: header.colSpan,
                         style: {
                           width: header.getSize(),
@@ -331,9 +332,9 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                   {row.getVisibleCells().map((cell) => {
                     return (
                       <td
+                        key={cell.id}
                         className={styles.td}
                         {...{
-                          key: cell.id,
                           style: {
                             width: cell.column.getSize(),
                           },
