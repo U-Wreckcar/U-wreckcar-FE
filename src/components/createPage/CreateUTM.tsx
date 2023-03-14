@@ -71,7 +71,6 @@ export const CreateUTM = () => {
       });
     }
   };
-  // const isFocuse = memoFocuse.isFocuse;
   const memoHandler = (e: any) => {
     const textareaValue = e.target?.value;
     console.log(e.target);

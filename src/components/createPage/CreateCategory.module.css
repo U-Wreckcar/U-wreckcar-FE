@@ -13,8 +13,8 @@
 .category_item_box {
 }
 .category_item {
-  width: 178px;
-  /* margin-right: 8px; */
+  width: 200px;
+  margin-right: 8px;
 }
 .create_img_box {
   display: flex;
