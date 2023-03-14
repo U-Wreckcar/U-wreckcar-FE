@@ -1,5 +1,5 @@
 import React from 'react';
-import { CopyButton } from 'shared/CopyButton';
+import { CopyButton } from 'shared/button/CopyButton';
 import styles from './CreateCopyBox.module.css';
 import b_link from 'assets/b_link.png';
 import Image from 'next/image';

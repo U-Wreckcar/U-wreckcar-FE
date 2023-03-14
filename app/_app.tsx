@@ -1,6 +1,17 @@
 import React from 'react';
-import CreateUTMPage from '@/pages/createutm';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import type { AppProps } from 'next/app';
 
-export const _app = () => {
-  return <div></div>;
-};
+const queryClient = new QueryClient();
+
+export default function APP({ Component, pageProps }: AppProps) {
+  return (
+    <>
+      <QueryClientProvider client={queryClient}>
+        <Component {...pageProps} />
+        <ReactQueryDevtools initialIsOpen={true} />
+      </QueryClientProvider>
+    </>
+  );
+}
