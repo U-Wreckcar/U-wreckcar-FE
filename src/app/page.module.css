@@ -1,0 +1,40 @@
+.section_one {
+  background-image: url('../../src/assets/sectionone.png');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 1000px;
+}
+.section_two {
+  height: 1775px;
+}
+.section_three {
+  background-color: #f5f9fc;
+  height: 1080px;
+}
+.section_four {
+  background-color: #484bff;
+  height: 1080px;
+}
+.section_five {
+  background-color: #fafafa;
+  height: 1080px;
+}
+.section_six {
+  height: 850px;
+  background-color: #0a0d54;
+}
+.section_seven {
+  background: #484bff;
+  background: #484bff;
+  background-color: linear-gradient(
+    152.18deg,
+    #484bff 12.01%,
+    rgba(255, 255, 255, 0.1) 80.66%
+  );
+  height: 440px;
+}
+.section_eight {
+  background-color: #d9d9d9;
+  height: 220px;
+}
