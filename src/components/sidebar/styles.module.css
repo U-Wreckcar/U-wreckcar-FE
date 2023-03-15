@@ -9,7 +9,7 @@
 .logo_container{
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 .titleBox {
   margin: 100px 0 20px 10px;
@@ -47,7 +47,7 @@
 }
 .titleBox {
   position: relative;
-  top: -50px;
+  top: -80px;
   width: 200px;
   height: 100px;
   /* background-color: #ffffff; */
@@ -132,18 +132,20 @@
 }
 .menu_button {
   margin-top: 15px;
+  margin-left: 15px;
   border: none;
 }
 .slim_button {
-  border: none;
-  margin-left: 152px;
-  margin-top: 15px;
+  /* border: none; */
+  /* margin-left: 152px; */
+  margin-top: 25px;
+  cursor: pointer;
 }
 .slim_button_style {
   /* border: none; */
   width: 26px;
   height: 26px;
-  background-color: transparent;
+  /* background-color: transparent; */
 }
 .menu_button_style {
   border: none;
@@ -208,4 +210,8 @@
 
   /* white */
   color: #ffffff;
+}
+
+.icon {
+  margin-right: 12px;
 }

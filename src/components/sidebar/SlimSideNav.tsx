@@ -17,10 +17,10 @@ import noti from 'assets/noti.png';
 import guide from 'assets/guide.png';
 import Image from 'next/image';
 import Link from 'next/link';
-
+import { usePathname } from 'next/navigation';
 export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
   const [modal, setModal] = useState(false);
-
+  const pathName = usePathname();
   const customStyles = {
     content: {
       top: '50%',
@@ -40,51 +40,51 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
   return (
     <div className={styles.slim_container}>
       <div>
-        <button
-          className={styles.menu_button_style}
+        <Image
           onClick={() => setSide(true)}
-        >
-          <Image
-            width={24}
-            height={24}
-            className={styles.menu_button}
-            src={menu}
-            alt="Menu"
-            onError={() => console.log('Image loading failed')}
-          />
-        </button>
+          width={24}
+          height={24}
+          className={styles.menu_button}
+          src={menu}
+          alt="Menu"
+          onError={() => console.log('Image loading failed')}
+        />
       </div>
       <div className={styles.slim_category_box}>
-        {/* <div
+        <div
           className={` ${
             pathName === '/main'
               ? styles.slim_active
               : styles.slim_utm_category_item
           } `}
         >
-          <Link to="/main">
+          <Link href="/main">
             <Image
+              width={24}
+              height={24}
               src={myutm}
               alt="My-UTM"
               onError={() => console.log('Image loading failed')}
             />
           </Link>
-        </div> */}
-        {/* <div
+        </div>
+        <div
           className={` ${
             pathName === '/createutm'
               ? styles.slim_active
               : styles.slim_utm_category_item
           } `}
         >
-          <Link to="/createutm">
-            <img
+          <Link href="/createutm">
+            <Image
+              width={24}
+              height={24}
               src={createutm}
               alt="Menu"
               onError={() => console.log('Image loading failed')}
             />
           </Link>
-        </div> */}
+        </div>
         {/* <Link to="/userinfo">유저정보</Link> */}
         <div className={styles.utm_category_item}>
           <div onClick={() => setModal(!modal)}>

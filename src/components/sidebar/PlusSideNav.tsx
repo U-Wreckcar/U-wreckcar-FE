@@ -8,7 +8,7 @@ import { AddUtmModal } from './AddUtmModal';
 /**
  * Image
  */
-import logo from '../../assets/addutm.png';
+import logo from '../../assets/logo.png';
 import myutm from '../../assets/myutm.png';
 import addutm from '../../assets/addutm.png';
 import createutm from '../../assets/createutm.png';
@@ -17,6 +17,8 @@ import help from '../../assets/help.png';
 import noti from 'assets/noti.png';
 import guide from 'assets/guide.png';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export type setSideProps = {
   setSide: Dispatch<SetStateAction<boolean>>;
@@ -25,6 +27,8 @@ export type setSideProps = {
 
 export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
   const [modal, setModal] = useState(false);
+  const pathName = usePathname();
+
   const customStyles = {
     content: {
       top: '50%',
@@ -45,44 +49,44 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
     <div className={styles.plus_container}>
       <div>
         <div className={styles.logo_container}>
-          <Image src={logo} alt="Logo" width={120} height={24} />
-          <button
-            className={styles.slim_button_style}
+          <Image src={logo} alt="Logo" width={150} height={80} />
+
+          <Image
             onClick={() => setSide(false)}
-          >
-            <Image
-              width={24}
-              height={24}
-              className={styles.slim_button}
-              src={slim}
-              alt="Slim Button"
-              onError={() => console.log('Image loading failed')}
-            />
-          </button>
+            width={30}
+            height={30}
+            className={styles.slim_button}
+            src={slim}
+            alt="Slim Button"
+            // onError={() => console.log('Image loading failed')}
+          />
         </div>
         <div className={styles.titleBox}>
           <h3>MY UTM</h3>
         </div>
 
         <div className={styles.category_box}>
-          {/* <Link className={styles.linklink} to="/main">
+          <Link className={styles.linklink} href="/main">
             <div
               className={` ${
                 pathName === '/main' ? styles.active : styles.utm_category_item
               } `}
             >
-              <img
+              <Image
+                className={styles.icon}
+                width={30}
+                height={30}
                 src={myutm}
                 alt="My-UTM"
                 onError={() => console.log('Image loading failed')}
               />
               <span className="category_text">UTM 관리하기</span>
             </div>
-          </Link> */}
-          {/* <Link
+          </Link>
+          <Link
             className={styles.linklink}
             // style={{ textDecoration: 'none', color: 'd1d1d1' }}
-            to="/createutm"
+            href="/createutm"
           >
             <div
               className={`${
@@ -91,13 +95,25 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
                   : styles.utm_category_item
               }`}
             >
-              <img src={createutm} alt="Create-UTM" />
+              <Image
+                className={styles.icon}
+                width={30}
+                height={30}
+                src={createutm}
+                alt="Create-UTM"
+              />
               <span className="category_text">새 UTM 생성하기</span>
             </div>
-          </Link> */}
+          </Link>
           {/* <Link to="/userinfo">유저정보</Link> */}
           <div className={styles.utm_category_item}>
-            <Image width={24} height={24} src={addutm} alt="Add_UTM" />
+            <Image
+              className={styles.icon}
+              width={24}
+              height={24}
+              src={addutm}
+              alt="Add_UTM"
+            />
             <span className="category_text" onClick={() => setModal(!modal)}>
               기존 UTM 추가하기
             </span>
@@ -115,6 +131,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
         <div className={styles.category_bottom_box}>
           <div className={styles.utm_category_item}>
             <Image
+              className={styles.icon}
               width={24}
               height={24}
               src={noti}
@@ -125,6 +142,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
           </div>
           <div className={styles.utm_category_item}>
             <Image
+              className={styles.icon}
               width={24}
               height={24}
               src={guide}
@@ -135,6 +153,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
           </div>
           <div className={styles.utm_category_item}>
             <Image
+              className={styles.icon}
               width={24}
               height={24}
               src={help}

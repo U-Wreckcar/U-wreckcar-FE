@@ -38,6 +38,7 @@ import {
   compareItems,
 } from '@tanstack/match-sorter-utils';
 import styles from './main.module.css';
+import { defaultDataList } from './TableData';
 
 export type MainTableProps = {
   setSummary: Dispatch<SetStateAction<boolean>>;
@@ -81,10 +82,10 @@ const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
 
 export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [rowSelection, setRowSelection] = useState({});
-  const [data, setData] = useState<Array<MainTableType>>([]);
+  const [data, setData] = useState<Array<MainTableType>>([...defaultDataList]);
   const [show, setShow] = useState(false);
   const [target, setTarget] = useState('');
-  const getUTMRes = useGetUtm(getUTMs);
+  //const getUTMRes = useGetUtm(getUTMs);
   const [columnResizeMode, setColumnResizeMode] =
     useState<ColumnResizeMode>('onChange');
   const [removeModal, setRemoveModal] = useState(false);
@@ -94,9 +95,9 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const input_ref = useRef<HTMLInputElement>(null);
   const textarea_ref = useRef<HTMLTextAreaElement>(null);
 
-  useEffect(() => {
-    // setData(getUTMRes.data);
-  }, [getUTMRes]);
+  // useEffect(() => {
+  //   setData(getUTMRes.data);
+  // }, [getUTMRes]);
 
   const columns = useMemo<ColumnDef<MainTableType>[]>(
     () => [
@@ -130,7 +131,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_url',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        maxSize: 130,
+        minSize: 130,
       },
       {
         header: '소스',
@@ -138,7 +139,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_source',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        maxSize: 80,
+        minSize: 80,
       },
       {
         header: '미디움',
@@ -146,7 +147,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_medium',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        maxSize: 80,
+        minSize: 80,
       },
       {
         header: '캠페인 이름',
@@ -154,7 +155,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_campaign_name',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        maxSize: 230,
+        minSize: 230,
       },
       {
         header: '메모',
@@ -162,7 +163,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_memo',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        maxSize: 130,
+        minSize: 130,
       },
       {
         header: 'UTM',
@@ -170,7 +171,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'full_url',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        maxSize: 130,
+        minSize: 130,
       },
       {
         header: 'Shorten URL',
@@ -178,7 +179,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'shorten_url',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        maxSize: 80,
+        minSize: 80,
       },
     ],
     []
@@ -237,180 +238,197 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
     <>
       <div className={styles.container}>
         <div className={styles.btn_box}>
-          <button className={styles.data_btn} onClick={() => setSummary(true)}>
-            데이터 상세보기
-          </button>
-          <button className={styles.button} onClick={onClickPopBtn}>
-            추출하기
-          </button>
-          <button className={styles.button} onClick={onClickDelBtn}>
-            삭제하기
-          </button>
+          <div>
+            <h1>내 UTM</h1>
+            <h4>{data.length}개의 UTM이 쌓여 있어요!</h4>
+          </div>
+          <div>
+            <button
+              className={styles.data_btn}
+              onClick={() => setSummary(true)}
+            >
+              데이터 상세보기
+            </button>
+            <button className={styles.button} onClick={onClickPopBtn}>
+              추출하기
+            </button>
+            <button className={styles.button} onClick={onClickDelBtn}>
+              삭제하기
+            </button>
+          </div>
         </div>
-        <div className="h-2" />
-        <div className="h-4" />
-        <div className="overflow-x-auto"></div>
-        <table
-          className={styles.table}
-          {...{
-            style: {
-              maxWidth: table.getCenterTotalSize(),
-            },
-          }}
-        >
-          <thead className={styles.th}>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <th
-                      key={header.id}
-                      {...{
-                        // key: header.id,
-                        colSpan: header.colSpan,
-                        style: {
-                          width: header.getSize(),
-                        },
-                      }}
-                    >
-                      {header.isPlaceholder ? null : (
-                        <>
-                          <div
-                            {...{
-                              className: header.column.getCanSort()
-                                ? 'cursor-pointer select-none'
-                                : '',
-                              onClick: header.column.getToggleSortingHandler(),
-                            }}
-                          >
-                            {flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
-                            {{
-                              asc: ' 🔼',
-                              desc: ' 🔽',
-                            }[header.column.getIsSorted() as string] ?? null}
-                          </div>
-                          {header.column.getCanFilter() ? (
-                            <div>
-                              <Filter column={header.column} table={table} />
-                            </div>
-                          ) : null}
-                        </>
-                      )}
-
-                      <div
-                        {...{
-                          onMouseDown: header.getResizeHandler(),
-                          onTouchStart: header.getResizeHandler(),
-                          className: `resizer ${
-                            header.column.getIsResizing() ? 'isResizing' : ''
-                          }`,
-                          style: {
-                            transform:
-                              columnResizeMode === 'onEnd' &&
-                              header.column.getIsResizing()
-                                ? `translateX(${
-                                    table.getState().columnSizingInfo
-                                      .deltaOffset
-                                  }px)`
-                                : '',
-                          },
-                        }}
-                      />
-                    </th>
-                  );
-                })}
-              </tr>
-            ))}
-          </thead>
-          <tbody>
-            {table.getRowModel().rows.map((row) => {
-              return (
-                <tr key={row.id}>
-                  {row.getVisibleCells().map((cell) => {
+        <div className={styles.table_scroll}>
+          <div className="h-2" />
+          <div className="h-4" />
+          <div className="overflow-x-auto"></div>
+          <table
+            className={styles.table}
+            {...{
+              style: {
+                maxWidth: table.getCenterTotalSize(),
+              },
+            }}
+          >
+            <thead className={styles.th}>
+              {table.getHeaderGroups().map((headerGroup) => (
+                <tr key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => {
                     return (
-                      <td
-                        key={cell.id}
-                        className={styles.td}
+                      <th
+                        key={header.id}
                         {...{
+                          // key: header.id,
+                          colSpan: header.colSpan,
                           style: {
-                            width: cell.column.getSize(),
+                            width: header.getSize(),
                           },
                         }}
                       >
-                        {cell.column.id === 'full_url' && (
-                          <CopyButton
-                            style={styles.copy_button}
-                            text={`${cell.getValue()}`}
-                          ></CopyButton>
-                        )}
-                        {cell.column.id === 'shorten_url' && (
-                          <CopyButton
-                            style={styles.copy_button}
-                            text={`${cell.getValue()}`}
-                          ></CopyButton>
-                        )}
-                        {cell.column.id === 'utm_url' && (
-                          <Tooltip title={`${cell.getValue()}`}>
-                            <button
-                              className={styles.url_button}
-                              onClick={() => moveUrl(`${cell.getValue()}`)}
+                        {header.isPlaceholder ? null : (
+                          <>
+                            <div
+                              {...{
+                                className: header.column.getCanSort()
+                                  ? 'cursor-pointer select-none'
+                                  : '',
+                                onClick:
+                                  header.column.getToggleSortingHandler(),
+                              }}
                             >
-                              url 연결
-                            </button>
-                          </Tooltip>
+                              {flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )}
+                              {{
+                                asc: ' 🔼',
+                                desc: ' 🔽',
+                              }[header.column.getIsSorted() as string] ?? null}
+                            </div>
+                            <th>
+                              {header.column.getCanFilter() ? (
+                                <div className={styles.filter_box}>
+                                  <Filter
+                                    column={header.column}
+                                    table={table}
+                                  />
+                                </div>
+                              ) : null}
+                            </th>
+                          </>
                         )}
-                        {cell.column.id === 'utm_memo' && !show && (
-                          <input
-                            id={cell.id}
-                            ref={input_ref}
-                            style={{ border: 'none' }}
-                            defaultValue={`${cell.getValue()}`}
-                            onFocus={(e) => {
-                              setTarget(e.target.id);
-                              setShow(true);
-                            }}
-                          />
-                        )}
-                        {cell.column.id === 'utm_memo' &&
-                          show &&
-                          target === cell.id && (
-                            <>
-                              <textarea
-                                ref={textarea_ref}
-                                defaultValue={`${cell.getValue()}`}
-                                onBlur={() => setShow(false)}
-                              />
-                              <button className={styles.copy_button}>
-                                수정하기
-                              </button>
-                            </>
-                          )}
-                        {cell.column.id === 'utm_memo' &&
-                          show &&
-                          target !== cell.id &&
-                          flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )}
-                        {cell.column.id !== 'utm_memo' &&
-                          cell.column.id !== 'utm_url' &&
-                          cell.column.id !== 'full_url' &&
-                          cell.column.id !== 'shorten_url' &&
-                          flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )}
-                      </td>
+
+                        <div
+                          {...{
+                            onMouseDown: header.getResizeHandler(),
+                            onTouchStart: header.getResizeHandler(),
+                            className: `resizer ${
+                              header.column.getIsResizing() ? 'isResizing' : ''
+                            }`,
+                            style: {
+                              transform:
+                                columnResizeMode === 'onEnd' &&
+                                header.column.getIsResizing()
+                                  ? `translateX(${
+                                      table.getState().columnSizingInfo
+                                        .deltaOffset
+                                    }px)`
+                                  : '',
+                            },
+                          }}
+                        />
+                      </th>
                     );
                   })}
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
+              ))}
+            </thead>
+            <tbody>
+              {table.getRowModel().rows.map((row) => {
+                return (
+                  <tr key={row.id}>
+                    {row.getVisibleCells().map((cell) => {
+                      return (
+                        <td
+                          key={cell.id}
+                          className={styles.td}
+                          {...{
+                            style: {
+                              width: cell.column.getSize(),
+                            },
+                          }}
+                        >
+                          {cell.column.id === 'full_url' && (
+                            <CopyButton
+                              style={styles.copy_button}
+                              text={`${cell.getValue()}`}
+                            ></CopyButton>
+                          )}
+                          {cell.column.id === 'shorten_url' && (
+                            <CopyButton
+                              style={styles.copy_button}
+                              text={`${cell.getValue()}`}
+                            ></CopyButton>
+                          )}
+                          {cell.column.id === 'utm_url' && (
+                            <Tooltip title={`${cell.getValue()}`}>
+                              <button
+                                className={styles.url_button}
+                                onClick={() => moveUrl(`${cell.getValue()}`)}
+                              >
+                                url 연결
+                              </button>
+                            </Tooltip>
+                          )}
+                          {cell.column.id === 'utm_memo' && !show && (
+                            <input
+                              id={cell.id}
+                              ref={input_ref}
+                              style={{ border: 'none' }}
+                              defaultValue={`${cell.getValue()}`}
+                              onFocus={(e) => {
+                                setTarget(e.target.id);
+                                setShow(true);
+                              }}
+                            />
+                          )}
+                          {cell.column.id === 'utm_memo' &&
+                            show &&
+                            target === cell.id && (
+                              <>
+                                <textarea
+                                  ref={textarea_ref}
+                                  defaultValue={`${cell.getValue()}`}
+                                  onBlur={() => setShow(false)}
+                                />
+                                <button className={styles.copy_button}>
+                                  수정하기
+                                </button>
+                              </>
+                            )}
+                          {cell.column.id === 'utm_memo' &&
+                            show &&
+                            target !== cell.id &&
+                            flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}
+                          {cell.column.id !== 'utm_memo' &&
+                            cell.column.id !== 'utm_url' &&
+                            cell.column.id !== 'full_url' &&
+                            cell.column.id !== 'shorten_url' &&
+                            flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );
@@ -481,11 +499,11 @@ function Filter({
         ))}
       </datalist>
       <DebouncedInput
+        className={styles.search_input}
         type="text"
         value={(columnFilterValue ?? '') as string}
         onChange={(value) => column.setFilterValue(value)}
         placeholder={`Search... (${column.getFacetedUniqueValues().size})`}
-        className="w-36 border shadow rounded"
         list={column.id + 'list'}
       />
       <div className="h-1" />
