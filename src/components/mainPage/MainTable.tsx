@@ -37,8 +37,8 @@ import {
 } from '@tanstack/match-sorter-utils';
 import styles from './main.module.css';
 import instance from 'util/async/axiosConfig';
-// import { Modal } from 'shared/modal/Modal';
-// import { OutputModal } from './OutputModal';
+import { Modal } from 'shared/modal/Modal';
+import { OutputModal } from './OutputModal';
 declare module '@tanstack/table-core' {
   interface FilterFns {
     fuzzy: FilterFn<unknown>;
@@ -81,6 +81,8 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [data, setData] = useState<Array<MainTableType>>([...defaultDataList]);
   const [target, setTarget] = useState('');
   const [show, setShow] = useState(false);
+  const [output, setOutput] = useState(false);
+
   //const getUTMRes = useGetUtm(getUTMs);
   const [columnResizeMode, setColumnResizeMode] =
     useState<ColumnResizeMode>('onChange');
@@ -138,7 +140,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'created_at',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        maxSize: 80,
+        minSize: 80,
       },
       {
         header: 'URL',
@@ -146,7 +148,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_url',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        maxSize: 130,
+        minSize: 130,
       },
       {
         header: '캠페인 ID',
@@ -154,7 +156,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_campaign_id',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        maxSize: 130,
+        minSize: 130,
       },
       {
         header: '소스',
@@ -162,7 +164,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_source',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        maxSize: 80,
+        minSize: 80,
       },
       {
         header: '미디움',
@@ -170,7 +172,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_medium',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        maxSize: 80,
+        minSize: 80,
       },
       {
         header: '캠페인 이름',
@@ -178,7 +180,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_campaign_name',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        maxSize: 230,
+        minSize: 130,
       },
       {
         header: '캠페인 텀',
@@ -186,7 +188,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_term',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        maxSize: 80,
+        minSize: 80,
       },
       {
         header: '캠페인 콘텐츠',
@@ -194,7 +196,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_content',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        maxSize: 130,
+        minSize: 160,
       },
       {
         header: '메모',
@@ -202,7 +204,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_memo',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        maxSize: 130,
+        minSize: 130,
       },
       {
         header: 'UTM',
@@ -210,7 +212,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'full_url',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        maxSize: 130,
+        minSize: 130,
       },
       {
         header: 'Shorten URL',
@@ -218,7 +220,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'shorten_url',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        maxSize: 80,
+        minSize: 80,
       },
     ],
     []
@@ -303,16 +305,16 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
             </button>
 
             {/* <Modal
-            x={800}
-            y={380}
-            buttonName={'추출하기'}
-            confirmButtonName={'추출하기'}
-            modalTitle={'UTM 추출하기'}
-            context={`${outputLength}개의 UTM이 선택되었습니다.`}
-            contextSeconde={'UTM 데이터를 내보낼 툴을 선택해주세요'}
-            confirmButtonHanlder={onClickPopBtn}
-            childComponent={<OutputModal />}
-          /> */}
+              x={800}
+              y={380}
+              buttonName={'추출하기'}
+              confirmButtonName={'추출하기'}
+              modalTitle={'UTM 추출하기'}
+              context={`${outputLength}개의 UTM이 선택되었습니다.`}
+              contextSeconde={'UTM 데이터를 내보낼 툴을 선택해주세요'}
+              confirmButtonHanlder={onClickPopBtn}
+              childComponent={<OutputModal />}
+            /> */}
 
             <button className={styles.button} onClick={onClickDelBtn}>
               삭제하기
@@ -320,146 +322,156 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
             {/* <button className={styles.button}>필터</button> */}
           </div>
         </div>
-        <div className="h-2" />
-        <div className="h-4" />
-        <div className="overflow-x-auto"></div>
-        <table
-          {...{
-            style: {
-              width: table.getCenterTotalSize(),
-            },
-          }}
-        >
-          <thead>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <th
-                      key={header.id}
-                      {...{
-                        // key: header.id,
-                        colSpan: header.colSpan,
-                        style: {
-                          width: header.getSize(),
-                        },
-                      }}
-                    >
-                      {header.isPlaceholder ? null : (
-                        <>
-                          <div
-                            {...{
-                              className: header.column.getCanSort()
-                                ? 'cursor-pointer select-none'
-                                : '',
-                              onClick: header.column.getToggleSortingHandler(),
-                            }}
-                          >
-                            {flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
-                            {{
-                              asc: ' 🔼',
-                              desc: ' 🔽',
-                            }[header.column.getIsSorted() as string] ?? null}
-                          </div>
-                          {header.column.getCanFilter() ? (
-                            <div>
-                              <Filter column={header.column} table={table} />
-                            </div>
-                          ) : null}
-                        </>
-                      )}
-
-                      <div
-                        {...{
-                          onMouseDown: header.getResizeHandler(),
-                          onTouchStart: header.getResizeHandler(),
-                          className: `resizer ${
-                            header.column.getIsResizing() ? 'isResizing' : ''
-                          }`,
-                          style: {
-                            transform:
-                              columnResizeMode === 'onEnd' &&
-                              header.column.getIsResizing()
-                                ? `translateX(${
-                                    table.getState().columnSizingInfo
-                                      .deltaOffset
-                                  }px)`
-                                : '',
-                          },
-                        }}
-                      />
-                    </th>
-                  );
-                })}
-              </tr>
-            ))}
-          </thead>
-          <tbody>
-            {table.getRowModel().rows.map((row) => {
-              return (
-                <tr key={row.id}>
-                  {row.getVisibleCells().map((cell) => {
+        <div className={styles.table_scroll}>
+          <div className="h-2" />
+          <div className="h-4" />
+          <div className="overflow-x-auto"></div>
+          <table
+            className={styles.table}
+            {...{
+              style: {
+                width: table.getCenterTotalSize(),
+              },
+            }}
+          >
+            <thead>
+              {table.getHeaderGroups().map((headerGroup) => (
+                <tr key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => {
                     return (
-                      <td
-                        key={cell.id}
+                      <th
+                        key={header.id}
                         {...{
+                          // key: header.id,
+                          colSpan: header.colSpan,
                           style: {
-                            width: cell.column.getSize(),
+                            width: header.getSize(),
                           },
                         }}
                       >
-                        {cell.column.id === 'utm_memo' && !show && (
-                          <input
-                            id={cell.id}
-                            ref={input_ref}
-                            style={{ border: 'none' }}
-                            defaultValue={`${cell.getValue()}`}
-                            onFocus={(e) => {
-                              setTarget(e.target.id);
-                              setShow(true);
-                            }}
-                          />
+                        {header.isPlaceholder ? null : (
+                          <>
+                            <div
+                              {...{
+                                className: header.column.getCanSort()
+                                  ? 'cursor-pointer select-none'
+                                  : '',
+                                onClick:
+                                  header.column.getToggleSortingHandler(),
+                              }}
+                            >
+                              {flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )}
+                              {{
+                                asc: ' 🔼',
+                                desc: ' 🔽',
+                              }[header.column.getIsSorted() as string] ?? null}
+                            </div>
+
+                            <th>
+                              {header.column.getCanFilter() ? (
+                                <div className={styles.filter_box}>
+                                  <Filter
+                                    column={header.column}
+                                    table={table}
+                                  />
+                                </div>
+                              ) : null}
+                            </th>
+                          </>
                         )}
-                        {cell.column.id === 'utm_memo' &&
-                          show &&
-                          target === cell.id && (
-                            <>
-                              <textarea
-                                ref={textarea_ref}
-                                defaultValue={`${cell.getValue()}`}
-                                onChange={(e) => setValue(e.target.value)}
-                              />
-                              <button
-                                onClick={() => onClickEditButton()}
-                                className={styles.copy_button}
-                              >
-                                수정하기
-                              </button>
-                            </>
-                          )}
-                        {cell.column.id === 'utm_memo' &&
-                          show &&
-                          target !== cell.id &&
-                          flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )}
-                        {cell.column.id !== 'utm_memo' &&
-                          flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )}
-                      </td>
+
+                        <div
+                          {...{
+                            onMouseDown: header.getResizeHandler(),
+                            onTouchStart: header.getResizeHandler(),
+                            className: `resizer ${
+                              header.column.getIsResizing() ? 'isResizing' : ''
+                            }`,
+                            style: {
+                              transform:
+                                columnResizeMode === 'onEnd' &&
+                                header.column.getIsResizing()
+                                  ? `translateX(${
+                                      table.getState().columnSizingInfo
+                                        .deltaOffset
+                                    }px)`
+                                  : '',
+                            },
+                          }}
+                        />
+                      </th>
                     );
                   })}
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
+              ))}
+            </thead>
+            <tbody>
+              {table.getRowModel().rows.map((row) => {
+                return (
+                  <tr key={row.id}>
+                    {row.getVisibleCells().map((cell) => {
+                      return (
+                        <td
+                          key={cell.id}
+                          {...{
+                            style: {
+                              width: cell.column.getSize(),
+                            },
+                          }}
+                        >
+                          {cell.column.id === 'utm_memo' && !show && (
+                            <input
+                              id={cell.id}
+                              ref={input_ref}
+                              style={{ border: 'none' }}
+                              defaultValue={`${cell.getValue()}`}
+                              onFocus={(e) => {
+                                setTarget(e.target.id);
+                                setShow(true);
+                              }}
+                            />
+                          )}
+                          {cell.column.id === 'utm_memo' &&
+                            show &&
+                            target === cell.id && (
+                              <>
+                                <textarea
+                                  ref={textarea_ref}
+                                  defaultValue={`${cell.getValue()}`}
+                                  onChange={(e) => setValue(e.target.value)}
+                                />
+                                <button
+                                  onClick={() => onClickEditButton()}
+                                  className={styles.copy_button}
+                                >
+                                  수정하기
+                                </button>
+                              </>
+                            )}
+                          {cell.column.id === 'utm_memo' &&
+                            show &&
+                            target !== cell.id &&
+                            flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}
+                          {cell.column.id !== 'utm_memo' &&
+                            flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
@@ -482,6 +494,7 @@ function Filter({
 
   let data: Array<MainTableType> = [];
   instance('/utms').then((result) => (data = result.data));
+
   function getDatesStartToLast(startDate: any, lastDate: any) {
     const regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
     if (!(regex.test(startDate) && regex.test(lastDate)))

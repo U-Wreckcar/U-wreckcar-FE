@@ -14,10 +14,6 @@ export default function Header() {
       setPath(false);
     }
   }, [pathName, path]);
-  // if (path === '/main' || path === '/createutm') {
-  //   return <BaseHeader />;
-  // } else {
-  //   return <RenderHeader />;
-  // }
+
   return <>{path ? <BaseHeader /> : <RenderHeader />}</>;
 }
