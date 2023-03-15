@@ -6,7 +6,7 @@ import React, {
   useRef,
   useImperativeHandle,
 } from 'react';
-import { MainTableType } from './TableData';
+import { defaultDataList, MainTableType } from './TableData';
 import { useGetUtm } from 'util/hooks/useAsync';
 import { getUTMs } from 'util/async/api';
 import { MainTableProps } from './MainBtnTable';
@@ -78,10 +78,10 @@ const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
 let defaultData: Array<MainTableType> = [];
 export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [rowSelection, setRowSelection] = useState({});
-  const [data, setData] = useState<Array<MainTableType>>([]);
+  const [data, setData] = useState<Array<MainTableType>>([...defaultDataList]);
   const [target, setTarget] = useState('');
   const [show, setShow] = useState(false);
-  const getUTMRes = useGetUtm(getUTMs);
+  //const getUTMRes = useGetUtm(getUTMs);
   const [columnResizeMode, setColumnResizeMode] =
     useState<ColumnResizeMode>('onChange');
   const [removeModal, setRemoveModal] = useState(false);
@@ -93,18 +93,18 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [value, setValue] = useState('');
   const [outputLength, setOutputLength] = useState(0);
 
-  useEffect(() => {
-    if (defaultData.length === 0) {
-      console.log(getUTMRes);
-      // setData(getUTMRes.data);
-    }
-  }, [getUTMRes]);
+  // useEffect(() => {
+  //   if (defaultData.length === 0) {
+  //     console.log(getUTMRes);
+  //     // setData(getUTMRes.data);
+  //   }
+  // }, [getUTMRes]);
 
-  useEffect(() => {
-    if (defaultData.length !== 0) {
-      setData(defaultData);
-    }
-  }, [defaultData]);
+  // useEffect(() => {
+  //   if (defaultData.length !== 0) {
+  //     setData(defaultData);
+  //   }
+  // }, [defaultData]);
 
   const columns = useMemo<ColumnDef<MainTableType>[]>(
     () => [
@@ -194,7 +194,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_content',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        maxSize: 90,
+        maxSize: 130,
       },
       {
         header: '메모',
@@ -287,13 +287,22 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     <div>
       <div className={styles.container}>
         <div className={styles.btn_box}>
-          <button className={styles.data_btn} onClick={() => setSummary(false)}>
-            데이터 요약보기
-          </button>
-          <button className={styles.button} onClick={onClickPopBtn}>
-            추출하기
-          </button>
-          {/* <Modal
+          <div>
+            <h1>내 UTM</h1>
+            <h4>{data.length}개의 UTM이 쌓여 있어요!</h4>
+          </div>
+          <div>
+            <button
+              className={styles.data_btn}
+              onClick={() => setSummary(false)}
+            >
+              데이터 요약보기
+            </button>
+            <button className={styles.button} onClick={onClickPopBtn}>
+              추출하기
+            </button>
+
+            {/* <Modal
             x={800}
             y={380}
             buttonName={'추출하기'}
@@ -305,10 +314,11 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
             childComponent={<OutputModal />}
           /> */}
 
-          <button className={styles.button} onClick={onClickDelBtn}>
-            삭제하기
-          </button>
-          <button className={styles.button}>필터</button>
+            <button className={styles.button} onClick={onClickDelBtn}>
+              삭제하기
+            </button>
+            {/* <button className={styles.button}>필터</button> */}
+          </div>
         </div>
         <div className="h-2" />
         <div className="h-4" />

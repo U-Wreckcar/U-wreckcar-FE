@@ -38,6 +38,7 @@ import {
   compareItems,
 } from '@tanstack/match-sorter-utils';
 import styles from './main.module.css';
+import { defaultDataList } from './TableData';
 
 export type MainTableProps = {
   setSummary: Dispatch<SetStateAction<boolean>>;
@@ -81,10 +82,10 @@ const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
 
 export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [rowSelection, setRowSelection] = useState({});
-  const [data, setData] = useState<Array<MainTableType>>([]);
+  const [data, setData] = useState<Array<MainTableType>>([...defaultDataList]);
   const [show, setShow] = useState(false);
   const [target, setTarget] = useState('');
-  const getUTMRes = useGetUtm(getUTMs);
+  //const getUTMRes = useGetUtm(getUTMs);
   const [columnResizeMode, setColumnResizeMode] =
     useState<ColumnResizeMode>('onChange');
   const [removeModal, setRemoveModal] = useState(false);
@@ -94,9 +95,9 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const input_ref = useRef<HTMLInputElement>(null);
   const textarea_ref = useRef<HTMLTextAreaElement>(null);
 
-  useEffect(() => {
-    // setData(getUTMRes.data);
-  }, [getUTMRes]);
+  // useEffect(() => {
+  //   setData(getUTMRes.data);
+  // }, [getUTMRes]);
 
   const columns = useMemo<ColumnDef<MainTableType>[]>(
     () => [
@@ -237,15 +238,24 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
     <>
       <div className={styles.container}>
         <div className={styles.btn_box}>
-          <button className={styles.data_btn} onClick={() => setSummary(true)}>
-            데이터 상세보기
-          </button>
-          <button className={styles.button} onClick={onClickPopBtn}>
-            추출하기
-          </button>
-          <button className={styles.button} onClick={onClickDelBtn}>
-            삭제하기
-          </button>
+          <div>
+            <h1>내 UTM</h1>
+            <h4>{data.length}개의 UTM이 쌓여 있어요!</h4>
+          </div>
+          <div>
+            <button
+              className={styles.data_btn}
+              onClick={() => setSummary(true)}
+            >
+              데이터 상세보기
+            </button>
+            <button className={styles.button} onClick={onClickPopBtn}>
+              추출하기
+            </button>
+            <button className={styles.button} onClick={onClickDelBtn}>
+              삭제하기
+            </button>
+          </div>
         </div>
         <div className="h-2" />
         <div className="h-4" />

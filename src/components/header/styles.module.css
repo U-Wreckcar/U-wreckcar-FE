@@ -1,6 +1,7 @@
 .header_container {
+  /* position: absolute;
   height: 80px;
-
+  width: 100vw; */
   display: flex;
   justify-content: space-between;
 

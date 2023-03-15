@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useState } from 'react';
 import { PlusSideNav } from './PlusSideNav';
 import { SlimSideNav } from './SlimSideNav';
