@@ -3,8 +3,8 @@ import React from 'react';
 import ReactModal from 'react-modal';
 import styles from './styles.module.css';
 
-type ModalType = {
-  isOpen: any;
+export type ModalType = {
+  isOpen: boolean;
   onRequestClose: any;
   style: any;
 };
