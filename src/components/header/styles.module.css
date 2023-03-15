@@ -1,7 +1,5 @@
 .header_container {
-  /* position: absolute;
   height: 80px;
-  width: 100vw; */
   display: flex;
   justify-content: space-between;
 
@@ -14,7 +12,7 @@
   align-items: center;
 }
 .render_nav {
-  background-color: #eee;
+  background-color: var(--color-blue-900);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -23,6 +21,7 @@
 
   min-width: 400px;
   height: 80px;
+  color: #ffffff;
 }
 
 .render_nav_left {
@@ -49,7 +48,6 @@
   width: 33px;
   height: 33px;
   border-radius: 50%;
-  background-color: #ddd;
   margin-right: 15px;
 }
 
