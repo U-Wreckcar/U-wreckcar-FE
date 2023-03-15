@@ -1,9 +1,8 @@
 import './globals.css';
-import { RenderHeader } from '@/components/header/RenderHeader';
 import styles from './layout.module.css';
-
-import { useRouter } from 'next/router';
 import type { Metadata } from 'next';
+import { SideNav } from '@/components/sidebar/SideNav';
+import Header from '@/components/header/Header';
 export const metadata: Metadata = {
   title: '유렉카',
   description: 'UTM을 쉽고 빠르게 생성할 수 있습니다.',
@@ -22,7 +21,8 @@ export default function RootLayout({
     <html lang="kr">
       <body>
         <div>
-          <RenderHeader />
+          <SideNav />
+          <Header />
           {children}
         </div>
       </body>
