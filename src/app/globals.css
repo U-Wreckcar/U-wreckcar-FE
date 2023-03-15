@@ -7,6 +7,8 @@
   --color-gray: #a5a5a5;
   --color-darkgray: #242424;
   --color-black: #000000;
+  --color-background-blue-50: #e2f3ff;
+  --color-blue-500: #484bff;
 
   /* Font */
   --font-title-headline28: 28px;
@@ -31,7 +33,7 @@ body {
   width: 100vw;
   height: 100vh;
   margin: 0;
-  background-color: #3578a5;
+
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI',
     'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
