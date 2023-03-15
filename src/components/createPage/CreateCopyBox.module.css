@@ -29,7 +29,7 @@
 }
 .copy_title {
   background-color: var(--color-white-100);
-
+  min-width: 760px;
   border-radius: 4px;
 }
 .list_box {
@@ -66,6 +66,7 @@
   text-align: center;
   width: 100%;
   padding: 0 5px;
+  overflow: hidden;
 }
 .text_full {
   transform: translateX(4%);
@@ -80,6 +81,7 @@
 
   width: 100%;
   padding: 0 5px;
+  overflow: hidden;
 }
 .link_img {
   width: 20px;
@@ -91,9 +93,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* text-align: center; */
   width: 58px;
+
   height: 60px;
+  /* padding: 0px 25px; */
+  margin: 0;
 }
 .link_img_box {
   display: flex;

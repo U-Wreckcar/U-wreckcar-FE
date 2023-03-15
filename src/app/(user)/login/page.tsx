@@ -1,4 +1,5 @@
-import LoginBox from 'components/login/LoginBox';
+'use client';
+import LoginBox from '@/components/loginPage/LoginBox';
 import styles from './login.module.css';
 
 const LoginPage = () => {

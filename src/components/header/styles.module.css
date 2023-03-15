@@ -1,6 +1,5 @@
 .header_container {
-  /* position: absolute; */
-  height: 60px;
+  height: 80px;
 
   display: flex;
   justify-content: space-between;
@@ -18,8 +17,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
   align-items: center;
+  padding: 0 240px;
+
+  min-width: 400px;
+  height: 80px;
 }
 
 .render_nav_left {

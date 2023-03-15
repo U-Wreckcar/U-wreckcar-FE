@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 
@@ -180,28 +181,28 @@ export const CreateUTM = () => {
                         })}
                         spellCheck={false}
                       />
-                    </div>
-                    <div className={styles.minus_button}>
-                      <button
-                        className={styles.minus_button_style}
-                        type="button"
-                        onClick={() => {
-                          if (index >= 1) {
-                            remove(index);
-                          }
-                        }}
-                      >
-                        <Image
-                          className={styles.minus_img}
-                          src={minus}
-                          alt="리스트 삭제"
-                          onError={() => {
-                            console.log(
-                              '리스트 빼기 이미지를 불러올 수 없습니다.'
-                            );
+                      <div className={styles.minus_button}>
+                        <button
+                          className={styles.minus_button_style}
+                          type="button"
+                          onClick={() => {
+                            if (index >= 1) {
+                              remove(index);
+                            }
                           }}
-                        />
-                      </button>
+                        >
+                          <Image
+                            className={styles.minus_img}
+                            src={minus}
+                            alt="리스트 삭제"
+                            onError={() => {
+                              console.log(
+                                '리스트 빼기 이미지를 불러올 수 없습니다.'
+                              );
+                            }}
+                          />
+                        </button>
+                      </div>
                     </div>
                   </section>
                 </div>

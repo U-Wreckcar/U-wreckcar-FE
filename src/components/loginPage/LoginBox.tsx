@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from './LoginBox.module.css';
 
 const LoginBox = () => {
@@ -22,19 +23,19 @@ const LoginBox = () => {
       </div>
       <div>
         <div>
-          <img />
+          {/* <Image src={''} alt={''} /> */}
           <button className={styles.kakao_btn} onClick={onClickKakaoBtn}>
             카카오로 1초만에 시작하기
           </button>
         </div>
         <div>
-          <img />
+          {/* <Image src={''} alt={''} /> */}
           <button className={styles.naver_btn} onClick={onClickNaverBtn}>
             네이버로 1초만에 시작하기
           </button>
         </div>
         <div>
-          <img />
+          {/* <Image src={''} alt={''} /> */}
           <button className={styles.google_btn} onClick={onClickGoogleBtn}>
             구글로 1초만에 시작하기
           </button>
