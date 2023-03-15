@@ -3,13 +3,15 @@ import styles from './styles.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import renderlogo from 'assets/renderlogo.png';
+import whitelogo from 'assets/whitelogo.png';
 export const RenderHeader = () => {
   return (
     <nav className={styles.render_nav}>
       <div className={styles.render_nav_left}>
         <div className={styles.render_nav_left_img}>
-          <Image src={renderlogo} alt="LOGO" width={108.15} height={40} />
+          <Link href={'/'}>
+            <Image src={whitelogo} alt="LOGO" width={108.15} height={40} />
+          </Link>
         </div>
         <div className={styles.render_nav_left_noti}>공지사항</div>
         <div className={styles.render_nav_left_guide}>가이드</div>
