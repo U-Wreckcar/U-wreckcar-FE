@@ -37,8 +37,8 @@ import {
 } from '@tanstack/match-sorter-utils';
 import styles from './main.module.css';
 import instance from 'util/async/axiosConfig';
-import { Modal } from 'shared/modal/Modal';
 import { OutputModal } from './OutputModal';
+import { DeleteModal } from './DeleteModal';
 declare module '@tanstack/table-core' {
   interface FilterFns {
     fuzzy: FilterFn<unknown>;
@@ -82,6 +82,9 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [target, setTarget] = useState('');
   const [show, setShow] = useState(false);
   const [output, setOutput] = useState(false);
+  const [outputLength, setOutputLength] = useState<Array<MainTableType>>([]);
+  const [del, setDel] = useState(false);
+  const [delLength, setDelLength] = useState<Array<MainTableType>>([]);
 
   //const getUTMRes = useGetUtm(getUTMs);
   const [columnResizeMode, setColumnResizeMode] =
@@ -93,7 +96,6 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const input_ref = useRef<HTMLInputElement>(null);
   const textarea_ref = useRef<HTMLTextAreaElement>(null);
   const [value, setValue] = useState('');
-  const [outputLength, setOutputLength] = useState(0);
 
   // useEffect(() => {
   //   if (defaultData.length === 0) {
@@ -107,7 +109,16 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   //     setData(defaultData);
   //   }
   // }, [defaultData]);
-
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
   const columns = useMemo<ColumnDef<MainTableType>[]>(
     () => [
       {
@@ -272,17 +283,20 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     if (id.length === 0) {
       alert('삭제할 데이터를 선택해주세요');
     } else {
+      setDel(true);
+      setDelLength(id);
     }
-    console.log(id);
   };
   const onClickPopBtn = () => {
     let id: Array<MainTableType> = [];
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original));
     if (id.length === 0) {
       alert('추출할 데이터를 선택해주세요');
+    } else {
+      console.log(id);
+      setOutput(true);
+      setOutputLength(id);
     }
-    setOutputLength(id.length);
-    console.log(id);
   };
 
   return (
@@ -303,22 +317,21 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
             <button className={styles.button} onClick={onClickPopBtn}>
               추출하기
             </button>
-
-            {/* <Modal
-              x={800}
-              y={380}
-              buttonName={'추출하기'}
-              confirmButtonName={'추출하기'}
-              modalTitle={'UTM 추출하기'}
-              context={`${outputLength}개의 UTM이 선택되었습니다.`}
-              contextSeconde={'UTM 데이터를 내보낼 툴을 선택해주세요'}
-              confirmButtonHanlder={onClickPopBtn}
-              childComponent={<OutputModal />}
-            /> */}
-
+            <OutputModal
+              isOpen={output}
+              onRequestClose={() => setOutput(false)}
+              style={customStyles}
+              data={outputLength}
+            />
             <button className={styles.button} onClick={onClickDelBtn}>
               삭제하기
             </button>
+            <DeleteModal
+              isOpen={del}
+              onRequestClose={() => setDel(false)}
+              style={customStyles}
+              data={delLength}
+            />
             {/* <button className={styles.button}>필터</button> */}
           </div>
         </div>

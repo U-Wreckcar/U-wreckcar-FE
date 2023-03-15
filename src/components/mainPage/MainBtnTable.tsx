@@ -39,6 +39,8 @@ import {
 } from '@tanstack/match-sorter-utils';
 import styles from './main.module.css';
 import { defaultDataList } from './TableData';
+import { OutputModal } from './OutputModal';
+import { DeleteModal } from './DeleteModal';
 
 export type MainTableProps = {
   setSummary: Dispatch<SetStateAction<boolean>>;
@@ -94,11 +96,23 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   );
   const input_ref = useRef<HTMLInputElement>(null);
   const textarea_ref = useRef<HTMLTextAreaElement>(null);
-
+  const [output, setOutput] = useState(false);
+  const [outputLength, setOutputLength] = useState<Array<MainTableType>>([]);
+  const [del, setDel] = useState(false);
+  const [delLength, setDelLength] = useState<Array<MainTableType>>([]);
   // useEffect(() => {
   //   setData(getUTMRes.data);
   // }, [getUTMRes]);
-
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
   const columns = useMemo<ColumnDef<MainTableType>[]>(
     () => [
       {
@@ -223,16 +237,30 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const moveUrl = (url: string) => {
     window.open(url, '_blank');
   };
-
+  const onClickEditButton = () => {
+    console.log(textarea_ref?.current?.value);
+    setShow(false);
+  };
   const onClickDelBtn = () => {
     let id: Array<MainTableType> = [];
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original));
-    console.log(id);
+    if (id.length === 0) {
+      alert('삭제할 데이터를 선택해주세요');
+    } else {
+      setDel(true);
+      setDelLength(id);
+    }
   };
   const onClickPopBtn = () => {
     let id: Array<MainTableType> = [];
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original));
-    console.log(id);
+    if (id.length === 0) {
+      alert('추출할 데이터를 선택해주세요');
+    } else {
+      console.log(id);
+      setOutput(true);
+      setOutputLength(id);
+    }
   };
   return (
     <>
@@ -252,9 +280,21 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
             <button className={styles.button} onClick={onClickPopBtn}>
               추출하기
             </button>
+            <OutputModal
+              isOpen={output}
+              onRequestClose={() => setOutput(false)}
+              style={customStyles}
+              data={outputLength}
+            />
             <button className={styles.button} onClick={onClickDelBtn}>
               삭제하기
             </button>
+            <DeleteModal
+              isOpen={del}
+              onRequestClose={() => setDel(false)}
+              style={customStyles}
+              data={delLength}
+            />
           </div>
         </div>
         <div className={styles.table_scroll}>
@@ -400,7 +440,10 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                   defaultValue={`${cell.getValue()}`}
                                   onBlur={() => setShow(false)}
                                 />
-                                <button className={styles.copy_button}>
+                                <button
+                                  onClick={() => onClickEditButton()}
+                                  className={styles.copy_button}
+                                >
                                   수정하기
                                 </button>
                               </>
