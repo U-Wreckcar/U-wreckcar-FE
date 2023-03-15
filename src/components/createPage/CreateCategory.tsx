@@ -32,7 +32,9 @@ export const CreateCategory = () => {
       {category.map((i, idx) => {
         return (
           <div key={idx}>
-            <h3 className={styles.category_item}>{i}</h3>
+            <div className={styles.category_item}>
+              <h3 className={styles.category_text}>{i}</h3>
+            </div>
           </div>
         );
       })}

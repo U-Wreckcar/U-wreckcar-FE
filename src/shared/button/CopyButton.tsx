@@ -1,3 +1,4 @@
+'use client';
 import { Alert } from '@mui/material';
 import React, { useState } from 'react';
 import styles from './copybutton.module.css';

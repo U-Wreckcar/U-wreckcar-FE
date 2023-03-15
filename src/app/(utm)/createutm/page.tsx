@@ -1,6 +1,7 @@
+'use client';
 import React from 'react';
-import { CreateUTM } from '@/components/createPage/CreateUTM';
-import { CreateCopyBox } from '@/components/createPage/CreateCopyBox';
+import { CreateUTM } from 'components/createPage/CreateUTM';
+import { CreateCopyBox } from 'components/createPage/CreateCopyBox';
 import styles from './createutm.module.css';
 
 export default function CreateUTMPage() {

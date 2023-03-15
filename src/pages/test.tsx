@@ -1,0 +1,10 @@
+import Header from '@/components/header/Header';
+import React from 'react';
+
+export default function test() {
+  return (
+    <div>
+      <Header />
+    </div>
+  );
+}

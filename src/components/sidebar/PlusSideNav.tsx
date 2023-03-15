@@ -1,4 +1,6 @@
+'use client';
 import React, { Dispatch, SetStateAction, useState } from 'react';
+
 import styles from './styles.module.css';
 import Modal from 'react-modal';
 import { AddUtmModal } from './AddUtmModal';

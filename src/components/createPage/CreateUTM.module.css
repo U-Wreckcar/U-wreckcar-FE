@@ -6,7 +6,7 @@
   display: flex;
 
   margin-bottom: 8px;
-
+  width: 102.5rem;
   min-width: 760px;
   height: 60px;
 
@@ -15,12 +15,11 @@
   border-radius: 4px;
 }
 .scroll_input {
-  width: 100%;
-  min-width: 760px;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  min-width: 760px;
 }
 .number {
   display: flex;
@@ -28,6 +27,7 @@
   align-items: center;
   width: 60px;
   height: 58px;
+  padding: 0px 25px;
 }
 .input_style {
   height: 40px;
@@ -73,7 +73,7 @@
 .active:focus {
   display: inline;
 
-  z-index: 10;
+  z-index: 100;
   border: 1px solid #484bff;
 
   height: 150px;
@@ -133,9 +133,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
+  width: 50px;
   height: 40px;
-  transform: translate(-15px, 10px);
+  margin: auto;
+  /* transform: translate(-15px, 10px); */
+  margin-right: 8px;
 }
 .minus_img {
   width: 24px;
@@ -167,10 +169,24 @@
     height: 40px;
     padding: 0;
 
+    transform: translate(-15px, 10px);
     box-shadow: 3px 3px 13px 1px rgba(0, 0, 0, 0.4);
     background-color: #ffffff;
   }
   .scroll_input {
     overflow-x: scroll;
+    min-width: 760px;
+  }
+  .active:focus {
+    /* display: inline; */
+
+    z-index: 100;
+    border: 1px solid #484bff;
+
+    height: 150px;
+    outline: none;
+    overflow-y: scroll;
+
+    line-height: 1;
   }
 }
