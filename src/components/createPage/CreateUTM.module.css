@@ -1,15 +1,14 @@
 /*
 * Create UTM
 */
-
+.create_container {
+}
 .item_box {
   display: flex;
-
   margin-bottom: 8px;
-  width: 102.5rem;
-  min-width: 760px;
+  /* width: 100%;
+  min-width: 760px; */
   height: 60px;
-
   background-color: var(--color-white-100);
 
   border-radius: 4px;
@@ -155,7 +154,7 @@
 
   cursor: pointer;
 }
-@media (max-width: 1500px) {
+@media (max-width: 1200px) {
   .minus_button {
     display: flex;
     justify-content: center;
@@ -178,8 +177,6 @@
     min-width: 760px;
   }
   .active:focus {
-    /* display: inline; */
-
     z-index: 100;
     border: 1px solid #484bff;
 
