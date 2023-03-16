@@ -19,13 +19,17 @@ export const AddUtmModal: React.FC<ModalType> = ({
       <div className={styles.add_modal}>
         <div>
           <h1>기존 UTM 추가</h1>
+          <div className={styles.border_line}></div>
           <span>*기존의 UTM을 입력하면 파라미터 값이 분류됩니다</span>
         </div>
-        <div>
-          <input
-            className={styles.modal_input}
-            placeholder="*기존에 생성한 UTM 입력"
-          ></input>
+        <div className={styles.modal_footer_box}>
+          <div className={styles.modal_input_box}>
+            <p>UTM</p>
+            <input
+              className={styles.modal_input}
+              placeholder="UTM을 입력하세요."
+            ></input>
+          </div>
           <div className={styles.modal_footer}>
             <p>생성 날짜</p>
             <input className={styles.modal_input_date} type="date"></input>

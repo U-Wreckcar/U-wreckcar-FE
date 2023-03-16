@@ -150,6 +150,26 @@
   justify-content: center;
 }
 
+.modal_input_box{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.modal_input_box p {
+margin-top: 30px;
+margin-right: 10px;
+}
+.modal_footer_box input{
+  padding: 5px;
+  margin-left: 20px;
+}
+
+.modal_footer_box p {
+  color: #222;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 700;
+}
 .modal_input {
   width: 650px;
   height: 44px;
@@ -157,7 +177,9 @@
   border-radius: 4px;
   margin-top: 40px;
   margin-bottom: 20px;
+  margin-left: 20px;
 }
+
 
 .modal_input_date {
   width: 142px;
@@ -186,7 +208,6 @@
 .add_button {
   width: 81px;
   height: 38px;
-
   background: #484bff;
   border: none;
   border-radius: 4px;
@@ -196,11 +217,17 @@
   font-size: 14px;
   line-height: 22px;
   letter-spacing: -0.006em;
-
-  /* white */
   color: #ffffff;
+  margin-bottom: 20px;
 }
 
 .icon {
   margin-right: 12px;
+}
+
+.border_line{
+  height: 40px;
+  border-top: 1px solid #ddd;
+  width: 800px;
+  margin-bottom: 0px;
 }
