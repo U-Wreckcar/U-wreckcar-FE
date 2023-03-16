@@ -4,4 +4,5 @@
   align-items: center;
   justify-content: center;
   background-color: #0A0D54 ;
+  overflow-y: hidden;
 }

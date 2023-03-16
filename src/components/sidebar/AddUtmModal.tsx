@@ -34,7 +34,7 @@ export const AddUtmModal: React.FC<ModalType> = ({
 
   return (
     <ReactModal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
-      <form className={styles.add_modal} onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.add_modal}>
         <div>
           <h1>기존 UTM 추가</h1>
           <div className={styles.border_line}></div>

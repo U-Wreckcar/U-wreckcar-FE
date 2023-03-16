@@ -57,4 +57,34 @@
 
 .login_box {
   margin-right: 20px;
+  cursor: pointer;
+}
+
+.header_container dialog{
+  width: 180px;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  flex-direction: column;
+  text-align: left;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  top: 50px;
+  left: 80%;
+  padding: 0;
+}
+
+.header_container dialog div {
+  width: 160px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+  color: #222;
+}
+
+.links{
+  text-decoration: none;
 }

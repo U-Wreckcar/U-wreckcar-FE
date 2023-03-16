@@ -546,7 +546,7 @@ function Filter({
         type="text"
         value={(columnFilterValue ?? '') as string}
         onChange={(value) => column.setFilterValue(value)}
-        placeholder={`Search... (${column.getFacetedUniqueValues().size})`}
+        placeholder={`검색 (${column.getFacetedUniqueValues().size})`}
         list={column.id + 'list'}
       />
       <div className="h-1" />
