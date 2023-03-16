@@ -272,11 +272,14 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     }
   }, [table.getState().columnFilters[0]?.id]);
 
+  //수정하기
   const onClickEditButton = () => {
+    console.log(textarea_ref?.current?.id);
     console.log(textarea_ref?.current?.value);
     setShow(false);
   };
 
+  //삭제하기
   const onClickDelBtn = () => {
     let id: Array<MainTableType> = [];
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original));
@@ -287,6 +290,8 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
       setDelLength(id);
     }
   };
+
+  //추출하기
   const onClickPopBtn = () => {
     let id: Array<MainTableType> = [];
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original));
@@ -452,6 +457,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             target === cell.id && (
                               <>
                                 <textarea
+                                  id={cell.id}
                                   ref={textarea_ref}
                                   defaultValue={`${cell.getValue()}`}
                                   onChange={(e) => setValue(e.target.value)}
@@ -538,8 +544,9 @@ function Filter({
       {column.id === 'created_at' && (
         <>
           <input
+            type="text"
             className={styles.search_input}
-            placeholder="기간 선택하기"
+            placeholder="기간 선택"
             onFocus={() => setIsOpen(true)}
           ></input>
           <dialog
@@ -583,7 +590,7 @@ function Filter({
             type="text"
             value={(columnFilterValue ?? '') as string}
             onChange={(value) => column.setFilterValue(value)}
-            placeholder={`Search... (${column.getFacetedUniqueValues().size})`}
+            placeholder={`검색 (${column.getFacetedUniqueValues().size})`}
           />
           <div className="h-1" />
         </>

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './styles.module.css';
 import b_noti from 'assets/b_noti.png';
 import Image from 'next/image';
 import Link from 'next/link';
 export const BaseHeader = () => {
+  const [modal, setModal] = useState(false);
+  console.log(modal);
   return (
     <section className={styles.header_container}>
       <div className={styles.title}>
@@ -20,10 +22,22 @@ export const BaseHeader = () => {
       </div>
       <div className={styles.user_box}>
         <div className={styles.user_img}></div>
-        <p className={styles.login_box}>
+        <p
+          onClick={() => {
+            setModal(!modal);
+          }}
+          className={styles.login_box}
+        >
           <span className={styles.bold_text}>유렉카</span>님
         </p>
       </div>
+      <dialog {...(modal ? { open: true } : {})}>
+        <Link className={styles.links} href={'/userinfo'}>
+          <div>개인정보 관리</div>
+        </Link>
+        <div>로그아웃</div>
+      </dialog>
     </section>
+
   );
 };
