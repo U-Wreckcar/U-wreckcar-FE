@@ -4,7 +4,6 @@ import Image from 'next/image';
 import check from 'assets/icons.png';
 
 type CopyButtonProps = {
-  // style?: string;
   text: string;
 };
 
@@ -15,7 +14,6 @@ export const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text).then(() => {
         setAlert(true);
-        //alert('클립보드에 복사되었습니다.');
       });
     }
   };

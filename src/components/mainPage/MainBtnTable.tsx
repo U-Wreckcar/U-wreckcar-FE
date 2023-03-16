@@ -399,13 +399,11 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                         >
                           {cell.column.id === 'full_url' && (
                             <CopyButton
-                              style={styles.copy_button}
                               text={`${cell.getValue()}`}
                             ></CopyButton>
                           )}
                           {cell.column.id === 'shorten_url' && (
                             <CopyButton
-                              style={styles.copy_button}
                               text={`${cell.getValue()}`}
                             ></CopyButton>
                           )}
