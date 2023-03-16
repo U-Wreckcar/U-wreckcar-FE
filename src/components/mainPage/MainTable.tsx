@@ -39,6 +39,7 @@ import styles from './main.module.css';
 import instance from 'util/async/axiosConfig';
 import { OutputModal } from './OutputModal';
 import { DeleteModal } from './DeleteModal';
+import axios from 'axios';
 declare module '@tanstack/table-core' {
   interface FilterFns {
     fuzzy: FilterFn<unknown>;
