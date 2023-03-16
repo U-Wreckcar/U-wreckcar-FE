@@ -1,7 +1,9 @@
 'use client';
 import { Alert } from '@mui/material';
 import React, { useState } from 'react';
-import styles from './copybutton.module.css';
+import styles from './copyButton.module.css';
+import Image from 'next/image';
+import check from 'assets/icons.png';
 
 type CopyButtonProps = {
   style?: string;
@@ -29,7 +31,7 @@ export const CopyButton: React.FC<CopyButtonProps> = ({ style, text }) => {
           }}
         >
           <div className={styles.alert_left}>
-            <div className={styles.alert_icon}>⌵</div>
+            <Image src={check} width={25} height={25} alt="check" />
             <div className={styles.alert_text}>
               <h5>성공</h5> <p>UTM이 복사되었습니다!</p>
             </div>

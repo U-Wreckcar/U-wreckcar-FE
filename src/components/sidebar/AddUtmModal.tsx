@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import styles from './styles.module.css';
+import { useForm } from 'react-hook-form';
 
 export type ModalType = {
   isOpen: boolean;
@@ -9,14 +10,31 @@ export type ModalType = {
   style: any;
 };
 
+type AddUTMType = {
+  utm_url: string;
+  created_at: string;
+  memo: string;
+};
+
 export const AddUtmModal: React.FC<ModalType> = ({
   isOpen,
   onRequestClose,
   style,
 }) => {
+  const {
+    register,
+    formState: { errors, isDirty, isSubmitting },
+    handleSubmit,
+    getValues,
+  } = useForm({ criteriaMode: 'all', mode: 'onChange' });
+
+  const onSubmit = (data: AddUTMType) => {
+    console.log(data);
+  };
+
   return (
     <ReactModal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
-      <div className={styles.add_modal}>
+      <form className={styles.add_modal} onSubmit={handleSubmit(onSubmit)}>
         <div>
           <h1>기존 UTM 추가</h1>
           <div className={styles.border_line}></div>
@@ -28,22 +46,39 @@ export const AddUtmModal: React.FC<ModalType> = ({
             <input
               className={styles.modal_input}
               placeholder="UTM을 입력하세요."
+              {...register('utm_url', {
+                required: true,
+              })}
             ></input>
           </div>
           <div className={styles.modal_footer}>
             <p>생성 날짜</p>
-            <input className={styles.modal_input_date} type="date"></input>
+            <input
+              className={styles.modal_input_date}
+              type="date"
+              {...register('created_at', {
+                required: true,
+              })}
+            ></input>
             <p>메모</p>
             <input
               className={styles.modal_input_memo}
               placeholder="메모를 입력하세요."
+              {...register('memo', {
+                required: true,
+              })}
             />
           </div>
-          <button className={styles.add_button} onClick={onRequestClose}>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className={styles.add_button}
+            //onClick={onRequestClose}
+          >
             추가하기
           </button>
         </div>
-      </div>
+      </form>
     </ReactModal>
   );
 };
