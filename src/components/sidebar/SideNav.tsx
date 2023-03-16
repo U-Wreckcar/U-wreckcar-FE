@@ -11,7 +11,7 @@ export const SideNav = () => {
   const path = usePathname();
   console.log(path);
   useEffect(() => {
-    if (path === '/main' || path === '/createutm') {
+    if (path === '/main' || path === '/createutm' || path === '/userinfo') {
       setSide(true);
     } else {
       setSide(false);
