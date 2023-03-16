@@ -1,4 +1,3 @@
-'use client';
 import { Alert } from '@mui/material';
 import React, { useState } from 'react';
 import styles from './copyButton.module.css';
@@ -6,7 +5,6 @@ import Image from 'next/image';
 import check from 'assets/icons.png';
 
 type CopyButtonProps = {
-  // style?: string;
   text: string;
 };
 
