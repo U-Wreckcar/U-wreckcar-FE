@@ -46,32 +46,32 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
     setModal(false);
   };
   return (
-    <div className={styles.plus_container}>
-      <div className={styles.logo_container}>
-        <Link href={'/'}>
-          <Image
-            className={styles.white_logo}
-            src={whitelogo}
-            alt="Logo"
-            width={81.11}
-            height={30}
-          />
-        </Link>
-        <Image
-          onClick={() => setSide(false)}
-          width={30}
-          height={30}
-          className={styles.slim_button}
-          src={slim}
-          alt="Slim Button"
-          onError={() => console.log('Image loading failed')}
-        />
-      </div>
-      <div className={styles.titleBox}>
-        <h3>MY UTM</h3>
-      </div>
-
+    <section className={styles.plus_container}>
       <div className={styles.category_box}>
+        <div className={styles.logo_container}>
+          <Link href={'/'}>
+            <Image
+              className={styles.white_logo}
+              src={whitelogo}
+              alt="Logo"
+              width={81.11}
+              height={30}
+            />
+          </Link>
+          <Image
+            onClick={() => setSide(false)}
+            width={30}
+            height={30}
+            className={styles.slim_button}
+            src={slim}
+            alt="Slim Button"
+            onError={() => console.log('Image loading failed')}
+          />
+        </div>
+        <div className={styles.titleBox}>
+          <h3>MY UTM</h3>
+        </div>
+
         <Link className={styles.linklink} href="/main">
           <div
             className={` ${
@@ -164,6 +164,6 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };

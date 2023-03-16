@@ -5,11 +5,20 @@
 
   align-items: center;
   background-color: rgb(255, 255, 255);
+  padding: 0 24px;
+}
+.header_container span {
+  font-size: 14px;
+  font-weight: 400;
 }
 .title {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.title img {
+  width: 18px;
+  margin-right: 6px;
 }
 .render_nav {
   background-color: var(--color-blue-900);
