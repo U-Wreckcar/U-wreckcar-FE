@@ -6,11 +6,11 @@ import Image from 'next/image';
 import check from 'assets/icons.png';
 
 type CopyButtonProps = {
-  style?: string;
+  // style?: string;
   text: string;
 };
 
-export const CopyButton: React.FC<CopyButtonProps> = ({ style, text }) => {
+export const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
   const [alert, setAlert] = useState(false);
 
   const onClickCopyBtn = () => {
