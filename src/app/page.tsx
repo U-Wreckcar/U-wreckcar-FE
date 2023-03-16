@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './page.module.css';
 import sectionseven from 'assets/sectionseven.png';
 import Image from 'next/image';
@@ -7,19 +7,43 @@ import Image from 'next/image';
 import section_two_left from 'assets/section_two_left.png';
 import section_two_right from 'assets/section_two_right.png';
 import section_one_two from 'assets/section_one_two.png';
+import six_one from 'assets/six_one.png';
+import six_two from 'assets/six_two.png';
+import six_three from 'assets/six_three.png';
+import seven_img from 'assets/seven_img.png';
 import create from 'assets/gif/create.gif';
+import f_search from 'assets/gif/f_search.gif';
+import out from 'assets/gif/out.gif';
+import r_kakao from 'assets/r_kakao.png';
+import r_naver from 'assets/r_naver.png';
+import r_google from 'assets/r_google.png';
+import copyright from 'assets/copyright.png';
+import Link from 'next/link';
 export default function Home() {
+  const texts = ['복잡한', '귀찮은', '어려운'];
+  const [text, setText] = useState(texts);
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalText = setInterval(() => {
+      setIndex((idx) => (idx + 1) % texts.length);
+    }, 500);
+
+    return () => clearInterval(intervalText);
+  }, []);
   return (
     <div>
       <div className={styles.container}>
         <section className={styles.section_one}>
           <article>
             <div>
-              <h1>복잡한 UTM 관리 </h1>
+              <h1>{text[index]} UTM 관리 </h1>
               <h1>유렉카로 해결하세요! </h1>
-              <p>UTM 카테고라이징 서비스 전문 기업 유-렉카를 만나보세요!</p>
+              <p>UTM 업무 1시간? 유렉카에서는 3분이면 OK</p>
             </div>
-            <button>무료로 시작하기</button>
+            <Link href={'/login'}>
+              <button>무료로 시작하기</button>
+            </Link>
           </article>
         </section>
         <section className={styles.section_one_two}>
@@ -30,9 +54,9 @@ export default function Home() {
         <section className={styles.section_two}>
           <article>
             <div>
-              <p>유렉카 하나로 모든 관리를!</p>
-              <h2>여기저기 널려 있는 UTM을</h2>
-              <h1>한 군데에서 관리하고 싶지 않으신가요?</h1>
+              <p>1분 1초가 아쉬운 마케터 주목!</p>
+              <h2>UTM 업무에 아직도 많은 시간을 낭비하고 있나요?</h2>
+              <h1>유렉카가 여러분의 업무 시간들 줄여드릴게요!</h1>
             </div>
           </article>
           <article>
@@ -46,17 +70,16 @@ export default function Home() {
         </section>
         <section className={styles.section_three}>
           <article>
-            <p>간단하고 빠른 UTM 생성</p>
-            <h2>복잡한 UTM을 생성 후</h2>
-            <h1>관리까지 해보세요!</h1>
-            <pre>
-              이부분은 본문이래요이부분은 본문이래요이부분은
+            <p>이미 만들어 둔 UTM을 1초만에 추가</p>
+            <h2>다른 곳에서 생성했던 UTM들도</h2>
+            <h1>유렉카에서 관리해보세요!</h1>
+            <p className={styles.three_context}>
+              기존에 가지고 있던 UTM을 입력하면 파라미터 별로 자동 분류됩니다.
               <br />
-              본문이래요이부분은 본문이래요이부분은 본문이래요이부분은
+              생성된 날짜와 간단한 메모를 추가로 기록하여
               <br />
-              본문이래요이부분은 본문이래요이부분은 본문이래요이부분은
-              본문이래요이부분은 본문이래요
-            </pre>
+              예전 데이터까지 유렉카에서 관리 해보세요.
+            </p>
           </article>
           <article>
             <Image src={create} alt="Gif" />
@@ -64,47 +87,134 @@ export default function Home() {
         </section>
         <section className={styles.section_four}>
           <article>
-            <Image src={create} alt="Gif" />
+            <Image src={f_search} alt="Gif" />
           </article>
           <article>
-            <p>내가 원하는 UTM만</p>
-            <h2>복잡한 UTM을 생성 후</h2>
-            <h1>관리까지 해보세요!</h1>
-            <pre>
-              이부분은 본문이래요이부분은 본문이래요이부분은
+            <p className={styles.sub_title}>필요한 UTM만 바로바로 필터링</p>
+            <h1>내가 원하는 UTM들만</h1>
+            <h2>쏙쏙 뽑아보세요!</h2>
+            <p className={styles.context}>
+              생성 날짜, 파라미터값은 물론 메모까지!
               <br />
-              본문이래요이부분은 본문이래요이부분은 본문이래요이부분은
+              원하는 요소 입력과 동시에 필터링된 데이터가 보여집니다.
               <br />
-              본문이래요이부분은 본문이래요이부분은 본문이래요이부분은
-              본문이래요이부분은 본문이래요
-            </pre>
+              검색한 UTM 결과를 다양하게 활용해보세요.
+            </p>
           </article>
         </section>
         <section className={styles.section_five}>
           <article>
-            <p>간단하고 빠른 UTM 생성</p>
-            <h2>복잡한 UTM을 생성 후</h2>
-            <h1>관리까지 해보세요!</h1>
-            <pre>
-              이부분은 본문이래요이부분은 본문이래요이부분은
+            <p className={styles.sub_title}>즉시 팀원에게 공유할 준비 완료</p>
+            <h1>
+              선택한 UTM만 추출하여
               <br />
-              본문이래요이부분은 본문이래요이부분은 본문이래요이부분은
+              <span>저장해보세요</span>
+            </h1>
+
+            <p className={styles.context}>
+              필요한 UTM만 선택하여 내보내기!
               <br />
-              본문이래요이부분은 본문이래요이부분은 본문이래요이부분은
-              본문이래요이부분은 본문이래요
-            </pre>
+              선택된 데이터들을 저장하여 바로 팀원과 공유해보세요.
+            </p>
           </article>
           <article>
-            <Image src={create} alt="Gif" />
+            <Image src={out} alt="Gif" />
           </article>
         </section>
         <section className={styles.section_six}>
-          <article></article>
+          <article>
+            <div className={styles.six_card_item}>
+              <Image src={six_one} alt="IMG" />
+              <h2>
+                여러개의 UTM을
+                <br />
+                <span>한 번에 만들어보세요</span>
+              </h2>
+
+              <p>추가하기 버튼 클릭 한 번으로 간편하게 UTM동시 생성</p>
+            </div>
+            <div>
+              <Image src={six_two} alt="IMG" />
+              <h2>
+                자주 쓰는 파라미터를
+                <br />
+                <span>따로 관리해보세요</span>
+              </h2>
+              <p>북마크 기능을 활용하여 간편하고 빠르게 UTM 생성!</p>
+            </div>
+            <div>
+              <Image src={six_three} alt="IMG" />
+              <h2>
+                Shorten UTM기능으로
+                <br />
+                <span>긴 UTM 코드들을 간결하게</span>
+              </h2>
+              <p>UTM 코드를 심은 URL을 짧고 간편하게 공유해보세요!</p>
+            </div>
+          </article>
+          <button>더 많은 기능 보러가기</button>
         </section>
         <section className={styles.section_seven}>
-          <article>sdf</article>
+          <article>
+            <h1>지금 바로 작해보세요!</h1>
+            <Image src={seven_img} alt="Img" />
+            <Link href={'/login'}>
+              <button>유렉카 시작하기</button>
+            </Link>
+          </article>
         </section>
         <section className={styles.section_eight}>
+          <article>
+            <div className={styles.e_cards}>
+              <h4>CONTACT</h4>
+              <p>Uwreckcar@gmail.com</p>
+            </div>
+            <div className={styles.e_cards}>
+              <h4>SOCIAL MEDIA</h4>
+              <div className={styles.button_box}>
+                <Image
+                  src={r_naver}
+                  alt="img"
+                  width={24}
+                  height={24}
+                  onClick={() => {
+                    alert('준비중입니다 😃');
+                  }}
+                />
+
+                <Image
+                  src={r_google}
+                  alt="img"
+                  width={24}
+                  height={24}
+                  onClick={() => {
+                    alert('준비중입니다 😃');
+                  }}
+                />
+
+                <Image
+                  src={r_kakao}
+                  alt="img"
+                  width={24}
+                  height={24}
+                  onClick={() => {
+                    alert('준비중입니다 😃');
+                  }}
+                />
+              </div>
+            </div>
+            <div className={styles.e_cards}>
+              <h4>ABOUT U-wreckacr</h4>
+              <p>
+                UTM 카테고라이징 서비스
+                <br />
+                유렉카를 만나보세요.
+              </p>
+            </div>
+          </article>
+          <div className={styles.e_line}>
+            <Image src={copyright} alt="copyright" width={168} height={15} />
+          </div>
           <article></article>
         </section>
       </div>
