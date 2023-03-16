@@ -11,6 +11,7 @@ import plus from 'assets/plus.png';
 import minus from 'assets/minus.png';
 import Image from 'next/image';
 import { CreateCategory } from './CreateCategory';
+import axios from 'axios';
 
 type UTMsType = {
   utms: {
@@ -79,9 +80,12 @@ export const CreateUTM = () => {
   };
 
   const onSubmit = (data: UTMsType) => {
-    console.log(data);
+    const dataJson = JSON.stringify(data);
+    axios.post('http://14.34.139.253:8000/api/utms', dataJson).then((i) => {
+      console.log(i);
+    });
   };
-
+  // JSON.stringify.(data)
   useEffect(() => {}, [memoText]);
   return (
     <div>
