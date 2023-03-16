@@ -27,7 +27,7 @@ export default function Home() {
   useEffect(() => {
     const intervalText = setInterval(() => {
       setIndex((idx) => (idx + 1) % texts.length);
-    }, 500);
+    }, 850);
 
     return () => clearInterval(intervalText);
   }, []);

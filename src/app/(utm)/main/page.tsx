@@ -1,5 +1,4 @@
 'use client';
-import { SideNav } from '@/components/sidebar/SideNav';
 import { MainBtnTable } from 'components/mainPage/MainBtnTable';
 import { MainTable } from 'components/mainPage/MainTable';
 import { useState } from 'react';
