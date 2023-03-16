@@ -500,3 +500,23 @@ export const defaultDataList:Array<MainTableType> = [
     "shorten_url": "https://cococo.com"
   }
 ]
+
+//get, api/utms
+// export async function getUtmList():MainTableType[]{
+//   return 
+// } 
+
+//delete, api/utms/delete/id
+export function removeUtm (){}
+
+//patch, api/utm/memo, id, memo
+export function patchUtmMemo(){}
+
+//post, api/utm/add
+export function addUtm(){}
+
+//post, api/utms/excell
+export function outputUtm(){}
+
+//post, api/utms
+export function createUtm(){}

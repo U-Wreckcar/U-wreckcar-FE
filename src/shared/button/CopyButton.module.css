@@ -28,13 +28,15 @@
   align-items: center;
   justify-content: space-between;
   padding-left: 20px;
+  z-index: 999;
 }
 .alert_left {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.alert_icon {
-  width: 25px;
-  height: 25px;
+.alert_left img {
+  margin-right: 20px;
 }
 
 .alert > button {
@@ -48,20 +50,21 @@
   justify-content: left;
 }
 
-/* .alert_text > h5,
-p {
-  margin: 0;
-} */
-/* .button{
+.alert_text > h5, .alert_text p {
+  margin: 2px;
+
+}
+.alert button{
     width: 68px;
     height: 28px;
     padding: 5px 12px;
     gap: 10px;
-    border: 1px solid #E1E1E1;
+    /* border: 1px solid #E1E1E1; */
     border-radius: 4px;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 18px;
     letter-spacing: -0.006em;
     color: #222222;
-  } */
+    background-color: transparent;
+  }
