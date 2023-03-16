@@ -5,12 +5,14 @@
   width: 100%;
 }
 .plus_container {
-  width: 270px;
-  height: 100%;
-  background-color: #484bff;
-  float: left;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  float: left;
+  width: 270px;
+  height: 100vh;
+  background-color: #484bff;
+
   padding-left: 12px;
 
   color: rgb(255, 255, 255);
@@ -67,7 +69,7 @@
   margin: 15px;
 }
 .bottom_box {
-  margin-top: 550px;
+  /* margin-top: 550px; */
 }
 /*
 * Slim Side Bar
