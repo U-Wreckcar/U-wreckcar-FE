@@ -8,7 +8,11 @@ export default function Header() {
   const [path, setPath] = useState(false);
   const pathName = usePathname();
   useEffect(() => {
-    if (pathName === '/main' || pathName === '/createutm') {
+    if (
+      pathName === '/main' ||
+      pathName === '/createutm' ||
+      pathName === '/userinfo'
+    ) {
       setPath(true);
     } else {
       setPath(false);
