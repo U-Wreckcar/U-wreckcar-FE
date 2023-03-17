@@ -410,6 +410,7 @@
   height: 58px;
   border-top: 1px solid #efefef;
 }
+
 @media (max-width: 500px) {
   .section_one {
     display: none;
