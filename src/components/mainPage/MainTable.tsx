@@ -565,39 +565,38 @@ function Filter({
     <>
       {column.id === 'created_at' && (
         <>
+          {isOpen && (
+            <div className={styles.dialog}>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <DebouncedInput
+                  type="date"
+                  value={(columnFilterValue ?? '') as string}
+                  onChange={(value) => {
+                    setStartDate(value);
+                  }}
+                  list={column.id + 'list'}
+                />
+                <DebouncedInput
+                  type="date"
+                  value={(columnFilterValue ?? '') as string}
+                  onChange={(value) => getDatesStartToLast(startDate, value)}
+                  list={column.id + 'list'}
+                />
+                <button
+                  className={styles.dialog_button}
+                  onClick={() => setIsOpen(false)}
+                >
+                  X
+                </button>
+              </div>
+            </div>
+          )}
           <input
             type="text"
             className={styles.search_input}
             placeholder="기간 선택"
             onFocus={() => setIsOpen(true)}
           ></input>
-          <dialog
-            className={styles.dialog}
-            {...(isOpen && true ? { open: true } : {})}
-          >
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <DebouncedInput
-                type="date"
-                value={(columnFilterValue ?? '') as string}
-                onChange={(value) => {
-                  setStartDate(value);
-                }}
-                list={column.id + 'list'}
-              />
-              <DebouncedInput
-                type="date"
-                value={(columnFilterValue ?? '') as string}
-                onChange={(value) => getDatesStartToLast(startDate, value)}
-                list={column.id + 'list'}
-              />
-              <button
-                className={styles.dialog_button}
-                onClick={() => setIsOpen(false)}
-              >
-                X
-              </button>
-            </div>
-          </dialog>
         </>
       )}
       {column.id !== 'created_at' && (

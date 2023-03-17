@@ -1,7 +1,8 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import check from 'assets/icons.png';
+import styles from './copy.module.css';
 
 type CopyButtonProps = {
   text: string;
@@ -11,6 +12,14 @@ type CopyButtonProps = {
 
 export const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
   const [alert, setAlert] = useState(false);
+
+  useEffect(() => {
+    if (alert) {
+      setTimeout(() => {
+        setAlert(false);
+      }, 1500);
+    }
+  }, [alert]);
 
   const onClickCopyBtn = () => {
     if (navigator.clipboard) {
@@ -23,20 +32,23 @@ export const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
     <>
       {alert && (
         <div
+          className={styles.alert}
           onClick={() => {
             setAlert(false);
           }}
         >
-          <div>
+          <div className={styles.alert_left}>
             <Image src={check} width={25} height={25} alt="check" />
-            <div>
+            <div className={styles.alert_text}>
               <h5>성공</h5> <p>UTM이 복사되었습니다!</p>
             </div>
           </div>
           <button>X</button>
         </div>
       )}
-      <button onClick={onClickCopyBtn}>복사하기</button>
+      <button className={styles.copy_button} onClick={onClickCopyBtn}>
+        복사하기
+      </button>
     </>
   );
 };
