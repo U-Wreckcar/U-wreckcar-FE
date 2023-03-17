@@ -332,6 +332,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
             style={customStyles}
             value={inputValue}
             table={table}
+            index={target}
           />
         </div>
         <div className={styles.table_scroll}>
