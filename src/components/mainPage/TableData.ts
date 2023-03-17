@@ -25,7 +25,7 @@ export const defaultDataList:Array<MainTableType> = [
     "utm_campaign_name": "2020_performance.com",
     "utm_term": "imgae1",
     "utm_content": "1234325",
-    "utm_memo": "utm 필요alj하다",
+    "utm_memo": "utm 필요alj하다2222222222222222222een2ne2ne2mnem2neen2mne2ne2n,2men,2men,2men2,emn,2men2ne",
     "full_url": "https://shop.com.ke",
     "shorten_url": "https://cococo.com"
   },
