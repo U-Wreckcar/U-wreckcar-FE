@@ -382,7 +382,14 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               )}
                             </div>
                             {filter && (
-                              <th className={styles.filter_box}>
+                              <th
+                                className={styles.filter_box}
+                                {...{
+                                  style: {
+                                    width: '630px',
+                                  },
+                                }}
+                              >
                                 {header.column.getCanFilter() ? (
                                   <div>
                                     <Filter
@@ -396,7 +403,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           </>
                         )}
 
-                        <div
+                        {/* <div
                           {...{
                             onMouseDown: header.getResizeHandler(),
                             onTouchStart: header.getResizeHandler(),
@@ -414,7 +421,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                   : '',
                             },
                           }}
-                        />
+                        /> */}
                       </th>
                     );
                   })}

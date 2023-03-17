@@ -9,6 +9,7 @@ type EditModalType = {
   style: any;
   value: string;
   table: any;
+  index: string;
 };
 export const EditModal: React.FC<EditModalType> = ({
   isOpen,
@@ -16,15 +17,17 @@ export const EditModal: React.FC<EditModalType> = ({
   style,
   value,
   table,
+  index,
 }) => {
   const textarea_ref = useRef<HTMLTextAreaElement>(null);
   //수정하기
   const onClickEditButton = () => {
-    const index = textarea_ref?.current?.id.split('_')[0];
+    const id = index.split('_')[0];
     const filter = table
       .getGroupedRowModel()
-      .flatRows.filter((row: any) => row.id === index)[0].original;
-    console.log(filter.id);
+      .flatRows.filter((row: any) => row.index.toString() === id)[0].original;
+
+    console.log(filter);
     console.log(textarea_ref?.current?.value);
   };
 
@@ -43,7 +46,11 @@ export const EditModal: React.FC<EditModalType> = ({
         </div>
         <div className={styles.contents}>
           <div className={styles.col_box}>
-            <textarea defaultValue={value} className={styles.main_area} />
+            <textarea
+              ref={textarea_ref}
+              defaultValue={value}
+              className={styles.main_area}
+            />
           </div>
         </div>
         <div className={styles.bottom}>

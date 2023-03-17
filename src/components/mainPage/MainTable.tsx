@@ -360,6 +360,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
             style={customStyles}
             value={inputValue}
             table={table}
+            index={target}
           />
         </div>
         <div className={styles.table_scroll}>
@@ -409,7 +410,13 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               )}
                             </div>
                             {filter && (
-                              <th>
+                              <th
+                                {...{
+                                  style: {
+                                    width: '280px',
+                                  },
+                                }}
+                              >
                                 {header.column.getCanFilter() ? (
                                   <div className={styles.filter_box}>
                                     <Filter
@@ -423,7 +430,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           </>
                         )}
 
-                        <div
+                        {/* <div
                           {...{
                             onMouseDown: header.getResizeHandler(),
                             onTouchStart: header.getResizeHandler(),
@@ -441,7 +448,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                   : '',
                             },
                           }}
-                        />
+                        /> */}
                       </th>
                     );
                   })}
@@ -468,7 +475,9 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           {cell.column.id === 'utm_memo' && (
                             <Tooltip title={'메모 수정하기'}>
                               <div
+                                id={cell.id}
                                 onClick={(e) => {
+                                  setTarget(e.target?.id);
                                   setShow(true);
                                   setInputValue(`${cell.getValue()}`);
                                 }}
