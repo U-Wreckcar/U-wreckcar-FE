@@ -316,6 +316,10 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
       setOutputLength(id);
     }
   };
+  const onCookie = async () => {
+    const res = await Axios.get('https://uwreckcar-api.site/api/utms');
+    console.log('쿠키', res);
+  };
 
   return (
     <div>
@@ -326,6 +330,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
             <h4>{data.length}개의 UTM이 쌓여 있어요!</h4>
           </div>
           <div className={styles.buttons_box}>
+            <button onClick={onCookie}>연석님 🍪</button>
             <button
               className={styles.data_btn}
               onClick={() => setSummary(false)}
