@@ -43,7 +43,7 @@ import { DeleteModal } from './DeleteModal';
 import axios from 'axios';
 import { AddUtmModal } from '../sidebar/AddUtmModal';
 import Image from 'next/image';
-
+import Axios from 'util/axiosConfig';
 import plusImg from 'assets/plus.png';
 import filterImg from 'assets/filter.png';
 import { EditModal } from './MainMemoModal';
@@ -118,6 +118,16 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   //     setData(defaultData);
   //   }
   // }, [defaultData]);
+
+  // console.log(window.location.search);
+  useEffect(() => {
+    if (window.location.search !== '') {
+      const res = async () => {
+        await Axios.get('/api/user/profile');
+        console.log(res);
+      };
+    }
+  }, [window.location.search]);
 
   const customStyles = {
     content: {
