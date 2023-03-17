@@ -116,12 +116,15 @@
 
 .container tr {
   height: 50px;
+  overflow: hidden;
+  table-layout: fixed;
 }
 
 .container th,
 .container td {
   width: 30px;
   height: 50px;
+
   /* box-shadow: inset 0 0 0 1px lightgray; */
   /* padding: 1rem; */
 }
@@ -130,8 +133,12 @@
   background-color: #f5f9fc;
 }
 
-.table th {
-  padding-left: 0.5em;
+.table th div input[type='checkbox'] {
+  margin-left: 30px;
+}
+
+.btn_input_Box > input[type='checkbox']{
+  margin-left: -20px;
 }
 
 .table_title_th {
@@ -149,9 +156,6 @@
   letter-spacing: -0.006em;
 }
 
-.table_title_th > div {
-  padding: 1em 0 0 30px;
-}
 
 .filter_box {
   width: 100%;
@@ -163,6 +167,8 @@
 .container td {
   border-bottom: 1px solid lightgray;
   height: 30px;
+  overflow: hidden;
+  table-layout: fixed;
 }
 
 .resizer {
@@ -193,8 +199,9 @@
 }
 
 .container input[type='checkbox'] {
-  width: 10px;
-  height: 10px;
+  width: 18px;
+  height: 18px;
+  /* margin-left: 20px; */
 }
 
 .container input[type='date'] {
@@ -254,7 +261,7 @@
 }
 
 .input_box {
-  width: 30px;
+  width: 80px;
   height: 30px;
   display: flex;
   align-items: center;
@@ -431,4 +438,19 @@
 
 .img_box_img {
   margin: 30px 5px 10px 5px;
+}
+
+.main_area{
+  display: inline;
+  /* position: relative; */
+  top:0;
+  left:0;
+  z-index: 100000000000;
+  border: 1px solid #484bff;
+width: 250px;
+  height: 80px;
+  outline: none;
+  overflow-y: scroll;
+resize: none;
+  line-height: 1;
 }

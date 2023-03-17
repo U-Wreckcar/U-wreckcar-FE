@@ -9,6 +9,7 @@ import React, {
 import { defaultDataList, MainTableType } from './TableData';
 import { useGetUtm } from 'util/hooks/useAsync';
 import { getUTMs } from 'util/async/api';
+import Tooltip from '@mui/material/Tooltip';
 import { MainTableProps } from './MainBtnTable';
 import {
   Table,
@@ -45,6 +46,8 @@ import Image from 'next/image';
 
 import plusImg from 'assets/plus.png';
 import filterImg from 'assets/filter.png';
+import { EditModal } from './MainMemoModal';
+import { style } from '@mui/system';
 declare module '@tanstack/table-core' {
   interface FilterFns {
     fuzzy: FilterFn<unknown>;
@@ -91,7 +94,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [outputLength, setOutputLength] = useState<Array<MainTableType>>([]);
   const [del, setDel] = useState(false);
   const [delLength, setDelLength] = useState<Array<MainTableType>>([]);
-
+  const [inputValue, setInputValue] = useState('');
   //const getUTMRes = useGetUtm(getUTMs);
   const [columnResizeMode, setColumnResizeMode] =
     useState<ColumnResizeMode>('onChange');
@@ -99,8 +102,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
-  const input_ref = useRef<HTMLInputElement>(null);
-  const textarea_ref = useRef<HTMLTextAreaElement>(null);
+
   const [plus, setPlus] = useState(false);
   const [filter, setFilter] = useState(false);
 
@@ -126,6 +128,9 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
       padding: 0,
+    },
+    overlay: {
+      background: '#ffffff7f',
     },
   };
   const columns = useMemo<ColumnDef<MainTableType>[]>(
@@ -273,17 +278,6 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     debugColumns: false,
   });
 
-  //수정하기
-  const onClickEditButton = () => {
-    const index = textarea_ref?.current?.id.split('_')[0];
-    const filter = table
-      .getGroupedRowModel()
-      .flatRows.filter((row) => row.id === index)[0].original;
-    console.log(filter.id);
-    console.log(textarea_ref?.current?.value);
-    setShow(false);
-  };
-
   //삭제하기
   const onClickDelBtn = () => {
     let id: Array<MainTableType> = [];
@@ -360,6 +354,13 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
               style={customStyles}
             />
           </div>
+          <EditModal
+            isOpen={show}
+            onRequestClose={() => setShow(false)}
+            style={customStyles}
+            value={inputValue}
+            table={table}
+          />
         </div>
         <div className={styles.table_scroll}>
           <div className="h-2" />
@@ -386,7 +387,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           style: {
                             width:
                               header.column.id === 'select'
-                                ? 50
+                                ? 80
                                 : header.getSize(),
                           },
                         }}
@@ -459,48 +460,21 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             style: {
                               width:
                                 cell.column.id === 'select'
-                                  ? 50
+                                  ? 80
                                   : cell.column.getSize(),
                             },
                           }}
                         >
-                          {cell.column.id === 'utm_memo' && !show && (
-                            <input
-                              id={cell.id}
-                              ref={input_ref}
-                              style={{ border: 'none' }}
-                              defaultValue={`${cell.getValue()}`}
-                              onFocus={(e) => {
-                                setTarget(e.target.id);
-                                setShow(true);
-                              }}
-                            />
+                          {cell.column.id === 'utm_memo' && (
+                            <Tooltip title={'메모 수정하기'}>
+                              <div
+                                onClick={(e) => {
+                                  setShow(true);
+                                  setInputValue(`${cell.getValue()}`);
+                                }}
+                              >{`${cell.getValue()}`}</div>
+                            </Tooltip>
                           )}
-                          {cell.column.id === 'utm_memo' &&
-                            show &&
-                            target === cell.id && (
-                              <>
-                                <textarea
-                                  id={cell.id}
-                                  ref={textarea_ref}
-                                  defaultValue={`${cell.getValue()}`}
-                                  // onChange={(e) => setValue(e.target.value)}
-                                />
-                                <button
-                                  onClick={() => onClickEditButton()}
-                                  className={styles.copy_button}
-                                >
-                                  수정하기
-                                </button>
-                              </>
-                            )}
-                          {cell.column.id === 'utm_memo' &&
-                            show &&
-                            target !== cell.id &&
-                            flexRender(
-                              cell.column.columnDef.cell,
-                              cell.getContext()
-                            )}
                           {cell.column.id !== 'utm_memo' &&
                             flexRender(
                               cell.column.columnDef.cell,
