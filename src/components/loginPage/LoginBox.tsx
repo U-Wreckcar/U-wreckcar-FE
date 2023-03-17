@@ -2,7 +2,7 @@ import Image from 'next/image';
 import styles from './LoginBox.module.css';
 
 const LoginBox = () => {
-  const kakaoUrl = 'https://uwreckcar-api.site/auth/kakao';
+  const kakaoUrl = `${process.env.NEXT_PUBLIC_API}/auth/kakao`;
   const onClickKakaoBtn = () => {
     window.location.href = kakaoUrl;
   };
