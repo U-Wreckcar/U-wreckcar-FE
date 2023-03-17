@@ -46,6 +46,7 @@ import Image from 'next/image';
 
 import plusImg from 'assets/plus.png';
 import filterImg from 'assets/filter.png';
+import { EditModal } from './MainMemoModal';
 
 export type MainTableProps = {
   setSummary: Dispatch<SetStateAction<boolean>>;
@@ -107,7 +108,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [delLength, setDelLength] = useState<Array<MainTableType>>([]);
   const [plus, setPlus] = useState(false);
   const [filter, setFilter] = useState(false);
-
+  const [inputValue, setInputValue] = useState('');
   // useEffect(() => {
   //   setData(getUTMRes.data);
   // }, [getUTMRes]);
@@ -161,7 +162,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_source',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 80,
+        minSize: 175,
       },
       {
         header: '미디움',
@@ -169,7 +170,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_medium',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 80,
+        minSize: 175,
       },
       {
         header: '캠페인 이름',
@@ -177,7 +178,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_campaign_name',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 230,
+        minSize: 290,
       },
       {
         header: '메모',
@@ -185,7 +186,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_memo',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 130,
+        minSize: 620,
       },
       {
         header: 'UTM',
@@ -193,7 +194,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'full_url',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 130,
+        minSize: 120,
       },
       {
         header: 'Shorten URL',
@@ -201,7 +202,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'shorten_url',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 80,
+        minSize: 120,
       },
     ],
     []
@@ -325,6 +326,13 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
               style={customStyles}
             />
           </div>
+          <EditModal
+            isOpen={show}
+            onRequestClose={() => setShow(false)}
+            style={customStyles}
+            value={inputValue}
+            table={table}
+          />
         </div>
         <div className={styles.table_scroll}>
           <div className="h-2" />
@@ -349,17 +357,21 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                         {...{
                           colSpan: header.colSpan,
                           style: {
-                            width: header.getSize(),
+                            width:
+                              header.column.id === 'select'
+                                ? 80
+                                : header.getSize(),
                           },
                         }}
                       >
                         {header.isPlaceholder ? null : (
                           <>
                             <div
+                              className={styles.btn_input_Box}
                               {...{
-                                className: header.column.getCanSort()
-                                  ? 'cursor-pointer select-none'
-                                  : '',
+                                // className: header.column.getCanSort()
+                                //   ? 'cursor-pointer select-none'
+                                //   : '',
                                 onClick:
                                   header.column.getToggleSortingHandler(),
                               }}
@@ -368,13 +380,16 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 header.column.columnDef.header,
                                 header.getContext()
                               )}
-                              {{
-                                asc: ' 🔼',
-                                desc: ' 🔽',
-                              }[header.column.getIsSorted() as string] ?? null}
                             </div>
                             {filter && (
-                              <th className={styles.filter_box}>
+                              <th
+                                className={styles.filter_box}
+                                {...{
+                                  style: {
+                                    width: '630px',
+                                  },
+                                }}
+                              >
                                 {header.column.getCanFilter() ? (
                                   <div>
                                     <Filter
@@ -388,7 +403,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           </>
                         )}
 
-                        <div
+                        {/* <div
                           {...{
                             onMouseDown: header.getResizeHandler(),
                             onTouchStart: header.getResizeHandler(),
@@ -406,7 +421,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                   : '',
                             },
                           }}
-                        />
+                        /> */}
                       </th>
                     );
                   })}
@@ -424,7 +439,10 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           className={styles.td}
                           {...{
                             style: {
-                              width: cell.column.getSize(),
+                              width:
+                                cell.column.id === 'select'
+                                  ? 80
+                                  : cell.column.getSize(),
                             },
                           }}
                         >
@@ -448,42 +466,18 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               </button>
                             </Tooltip>
                           )}
-                          {cell.column.id === 'utm_memo' && !show && (
-                            <input
-                              id={cell.id}
-                              ref={input_ref}
-                              style={{ border: 'none' }}
-                              defaultValue={`${cell.getValue()}`}
-                              onFocus={(e) => {
-                                setTarget(e.target.id);
-                                setShow(true);
-                              }}
-                            />
+
+                          {cell.column.id === 'utm_memo' && (
+                            <Tooltip title={'메모 수정하기'}>
+                              <div
+                                onClick={() => {
+                                  setShow(true);
+                                  setInputValue(`${cell.getValue()}`);
+                                }}
+                              >{`${cell.getValue()}`}</div>
+                            </Tooltip>
                           )}
-                          {cell.column.id === 'utm_memo' &&
-                            show &&
-                            target === cell.id && (
-                              <>
-                                <textarea
-                                  ref={textarea_ref}
-                                  defaultValue={`${cell.getValue()}`}
-                                  onBlur={() => setShow(false)}
-                                />
-                                <button
-                                  onClick={() => onClickEditButton()}
-                                  className={styles.copy_button}
-                                >
-                                  수정하기
-                                </button>
-                              </>
-                            )}
-                          {cell.column.id === 'utm_memo' &&
-                            show &&
-                            target !== cell.id &&
-                            flexRender(
-                              cell.column.columnDef.cell,
-                              cell.getContext()
-                            )}
+
                           {cell.column.id !== 'utm_memo' &&
                             cell.column.id !== 'utm_url' &&
                             cell.column.id !== 'full_url' &&

@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
-
+import instance from '@/util/async/axiosConfig';
 import { nanoid } from 'nanoid';
 /**
  * Style, Image
@@ -12,7 +12,8 @@ import minus from 'assets/minus.png';
 import Image from 'next/image';
 import { CreateCategory } from './CreateCategory';
 import axios from 'axios';
-
+console.log(instance.get('fefefefe'));
+console.log(process.env.NEXT_PUBLIC_API);
 type UTMsType = {
   utms: {
     utm_url?: string;

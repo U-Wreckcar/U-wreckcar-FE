@@ -410,6 +410,9 @@
   height: 58px;
   border-top: 1px solid #efefef;
 }
+.e_cards {
+  color: #222222;
+}
 
 @media (max-width: 500px) {
   /* .section_one {
@@ -445,7 +448,7 @@
     display: none;
   } */
 }
-/* @media (max-width: 1000px) {
+@media (max-width: 1000px) {
   .section_one_two img {
     position: relative;
     top: -270px;
@@ -491,4 +494,4 @@
     padding: 0 240px;
     gap: 100px;
   }
-} */
+}
