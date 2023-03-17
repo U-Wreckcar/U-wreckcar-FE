@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import ReactModal from 'react-modal';
-import styles from './styles.module.css';
+import styles from './AddUtmModal.module.css';
 import { useForm } from 'react-hook-form';
 
 export type ModalType = {
@@ -35,11 +35,14 @@ export const AddUtmModal: React.FC<ModalType> = ({
   return (
     <ReactModal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
       <form className={styles.add_modal}>
-        <div>
+        <div className={styles.title_box}>
           <h1>기존 UTM 추가</h1>
-          <div className={styles.border_line}></div>
-          <span>*기존의 UTM을 입력하면 파라미터 값이 분류됩니다</span>
         </div>
+
+        <span className={styles.sub_title}>
+          *기존의 UTM을 입력하면 파라미터 값이 분류됩니다
+        </span>
+
         <div className={styles.modal_footer_box}>
           <div className={styles.modal_input_box}>
             <p>UTM</p>
@@ -52,22 +55,26 @@ export const AddUtmModal: React.FC<ModalType> = ({
             ></input>
           </div>
           <div className={styles.modal_footer}>
-            <p>생성 날짜</p>
-            <input
-              className={styles.modal_input_date}
-              type="date"
-              {...register('created_at', {
-                required: true,
-              })}
-            ></input>
-            <p>메모</p>
-            <input
-              className={styles.modal_input_memo}
-              placeholder="메모를 입력하세요."
-              {...register('memo', {
-                required: true,
-              })}
-            />
+            <label>
+              생성 날짜
+              <input
+                className={styles.modal_input_date}
+                type="date"
+                {...register('created_at', {
+                  required: true,
+                })}
+              />
+            </label>
+            <label className={styles.memo_text}>
+              메모
+              <input
+                className={styles.modal_input_memo}
+                placeholder="메모를 입력하세요."
+                {...register('memo', {
+                  required: true,
+                })}
+              />
+            </label>
           </div>
           <button
             type="submit"

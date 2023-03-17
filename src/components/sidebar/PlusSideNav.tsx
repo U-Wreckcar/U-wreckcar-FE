@@ -37,6 +37,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
+      padding: 0,
     },
   };
   const openModal = () => {
