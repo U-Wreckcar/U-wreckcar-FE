@@ -7,6 +7,8 @@ type CopyButtonProps = {
   text: string;
 };
 
+//style 속성 프롭스 no
+
 export const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
   const [alert, setAlert] = useState(false);
 

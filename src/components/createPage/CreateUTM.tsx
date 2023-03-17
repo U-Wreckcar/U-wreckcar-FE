@@ -56,7 +56,7 @@ export const CreateUTM = () => {
     control,
   });
   const requeirFn = (e: any) => {
-    e.target.value = e.target.value.replace(/[^a-z]/, '');
+    e.target.value = e.target.value.replace(/[^a-z0-9]/, '');
     e.target.value = e.target.value.replace({ maxLength: 70 }, '');
   };
   const addList = () => {
@@ -87,6 +87,7 @@ export const CreateUTM = () => {
   };
   // JSON.stringify.(data)
   useEffect(() => {}, [memoText]);
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>

@@ -4,8 +4,8 @@ import styles from './page.module.css';
 import sectionseven from 'assets/sectionseven.png';
 import Image from 'next/image';
 
-import section_two_left from 'assets/section_two_left.png';
-import section_two_right from 'assets/section_two_right.png';
+import section_two_left_ns from 'assets/section_two_left_ns.png';
+import section_two_right_ns from 'assets/section_two_right_ns.png';
 import section_one_two from 'assets/section_one_two.png';
 import six_one from 'assets/six_one.png';
 import six_two from 'assets/six_two.png';
@@ -18,6 +18,7 @@ import r_kakao from 'assets/r_kakao.png';
 import r_naver from 'assets/r_naver.png';
 import r_google from 'assets/r_google.png';
 import copyright from 'assets/copyright.png';
+import seven_button from 'assets/seven_button.png';
 import Link from 'next/link';
 export default function Home() {
   const texts = ['복잡한', '귀찮은', '어려운'];
@@ -61,10 +62,10 @@ export default function Home() {
           </article>
           <article>
             <div className={styles.section_two_img}>
-              <Image src={section_two_left} alt="Left_img" />
+              <Image src={section_two_right_ns} alt="Left_img" />
             </div>
             <div className={styles.section_two_img}>
-              <Image src={section_two_right} alt="Right_img" />
+              <Image src={section_two_left_ns} alt="Right_img" />
             </div>
           </article>
         </section>
@@ -156,10 +157,18 @@ export default function Home() {
         </section>
         <section className={styles.section_seven}>
           <article>
-            <h1>지금 바로 작해보세요!</h1>
-            <Image src={seven_img} alt="Img" />
+            <h1>지금 바로 시작해보세요!</h1>
+            <Image
+              className={styles.seven_first_img}
+              src={seven_img}
+              alt="Img"
+            />
             <Link href={'/login'}>
-              <button>유렉카 시작하기</button>
+              <Image
+                className={styles.seven_button_img}
+                src={seven_button}
+                alt="img"
+              />
             </Link>
           </article>
         </section>

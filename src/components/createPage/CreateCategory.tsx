@@ -19,21 +19,23 @@ export const CreateCategory = () => {
 
   return (
     <div className={styles.container_category}>
-      <div className={styles.category_item_box}>
-        <div className={styles.create_img_box}>
-          <Image
-            className={styles.b_createutm}
-            src={b_createutm}
-            alt="추가이미지"
-            onError={() => {
-              console.log('추가 이미지가 없습니다.');
-            }}
-          />
-        </div>
+      <div className={styles.create_img_box}>
+        <Image
+          className={styles.b_createutm}
+          src={b_createutm}
+          alt="추가이미지"
+          onError={() => {
+            console.log('추가 이미지가 없습니다.');
+          }}
+        />
+      </div>
+      <div className={styles.utm_name}>
         {category.map((i, idx) => {
           return (
             <div key={idx}>
-              <h3 className={styles.category_text}>{i}</h3>
+              <div className={styles.item}>
+                <h3 className={styles.category_text}>{i}</h3>
+              </div>
             </div>
           );
         })}

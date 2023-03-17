@@ -2,23 +2,7 @@
 * Create UTM
 */
 .create_container {
-}
-.item_box {
-  display: flex;
-  margin-bottom: 8px;
-  /* width: 100%;
-  min-width: 760px; */
-  height: 60px;
-  background-color: var(--color-white-100);
-
-  border-radius: 4px;
-}
-.scroll_input {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  min-width: 760px;
+  width: 100%;
 }
 .number {
   display: flex;
@@ -26,11 +10,25 @@
   align-items: center;
   width: 60px;
   height: 58px;
-  padding: 0px 25px;
 }
+.scroll_input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.item_box {
+  display: flex;
+  margin-bottom: 8px;
+  height: 60px;
+  background-color: var(--color-white-100);
+  min-width: 1590px;
+
+  border-radius: 4px;
+}
+
 .input_style {
   height: 40px;
-  width: 100%;
+  width: 178px;
   min-width: 178px;
   border: 1px solid #e1e1e1;
   border-radius: 4px;
@@ -46,12 +44,12 @@
   display: flex;
   justify-items: center;
   align-items: center;
+  min-width: 178px;
 
   border: 1px solid #e1e1e1;
   height: 40px;
-  min-width: 178px;
-
-  margin: 0 4px;
+  width: 178px;
+  margin-right: 10px;
   overflow: hidden;
   border-radius: 4px;
   font-size: var(--font-body);
@@ -125,7 +123,7 @@
 
   border: none;
   border-radius: 4px;
-
+  margin-right: 10px;
   color: white;
 }
 .minus_button {
@@ -134,8 +132,8 @@
   align-items: center;
   width: 50px;
   height: 40px;
-  margin: auto;
-  /* transform: translate(-15px, 10px); */
+
+  transform: translate(-10px, 10px);
   margin-right: 8px;
 }
 .minus_img {
@@ -154,7 +152,7 @@
 
   cursor: pointer;
 }
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   .minus_button {
     display: flex;
     justify-content: center;
@@ -168,13 +166,14 @@
     height: 40px;
     padding: 0;
 
-    transform: translate(-15px, 10px);
+    transform: translate(-2px, 10px);
     box-shadow: 3px 3px 13px 1px rgba(0, 0, 0, 0.4);
     background-color: #ffffff;
   }
   .scroll_input {
     overflow-x: scroll;
-    min-width: 760px;
+    width: 100%;
+    min-width: 768px;
   }
   .active:focus {
     z-index: 100;

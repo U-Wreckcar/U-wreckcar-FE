@@ -11,7 +11,8 @@
   justify-content: space-between;
   float: left;
   width: 270px;
-  height: 100vh;
+  min-height: 110vh;
+
   background-color: #484bff;
 
   padding-left: 12px;
@@ -22,7 +23,10 @@
 }
 .titleBox {
   display: flex;
-  margin: 10px 0 0 10px;
+  margin: 100px 0 0 10px;
+}
+.titleBox h3 {
+  margin-bottom: 20px;
 }
 .white_logo {
   margin-top: 16px;
@@ -46,21 +50,24 @@
   flex-direction: column;
   margin-left: 4px;
   width: 246px;
+  margin-bottom: 50px;
 }
 
 .utm_category_item:hover {
   background-color: #382ade;
   width: 255px;
   height: 38px;
-  padding: 3px;
+
+  padding-left: 3px;
   border-radius: 4px;
 }
 .active {
   display: flex;
-  padding: 3px;
+  /* padding: 3px; */
   align-items: center;
   width: 255px;
   height: 38px;
+  padding-left: 7px;
   margin-bottom: 10px;
   border-radius: 4px;
   background-color: #382ade;
@@ -109,6 +116,16 @@
   height: 38px;
   margin: auto;
   border-radius: 4px;
+}
+.slim_utm_category_item:hover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  margin: auto;
+  border-radius: 4px;
+  background-color: #382ade;
 }
 .slim_active {
   display: flex;
