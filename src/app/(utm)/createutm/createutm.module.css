@@ -1,6 +1,15 @@
 .create_container {
   display: flex;
   flex-direction: column;
-  padding: 0 24px;
-  margin-left: 25px;
+  padding: 0 12px;
+}
+.create_container h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 44px;
+}
+.create_container p {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 20px;
 }

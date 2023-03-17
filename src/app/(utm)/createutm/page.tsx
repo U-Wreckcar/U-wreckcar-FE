@@ -8,9 +8,7 @@ export default function CreateUTMPage() {
   return (
     <div className={styles.create_container}>
       <h1>새 UTM 생성하기</h1>
-      <span className="category_text">
-        UTM은 최대 5개까지 생성할 수 있습니다.
-      </span>
+      <p>UTM은 최대 5개까지 생성할 수 있습니다.</p>
       <CreateUTM />
       <CreateCopyBox />
     </div>
