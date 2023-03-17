@@ -161,7 +161,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_source',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 80,
+        minSize: 175,
       },
       {
         header: '미디움',
@@ -169,7 +169,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_medium',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 80,
+        minSize: 175,
       },
       {
         header: '캠페인 이름',
@@ -177,7 +177,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_campaign_name',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 230,
+        minSize: 290,
       },
       {
         header: '메모',
@@ -185,7 +185,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_memo',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 130,
+        minSize: 620,
       },
       {
         header: 'UTM',
@@ -193,7 +193,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'full_url',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 130,
+        minSize: 120,
       },
       {
         header: 'Shorten URL',
@@ -201,7 +201,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'shorten_url',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 80,
+        minSize: 120,
       },
     ],
     []
@@ -349,7 +349,10 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                         {...{
                           colSpan: header.colSpan,
                           style: {
-                            width: header.getSize(),
+                            width:
+                              header.column.id === 'select'
+                                ? 50
+                                : header.getSize(),
                           },
                         }}
                       >
@@ -368,10 +371,6 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 header.column.columnDef.header,
                                 header.getContext()
                               )}
-                              {{
-                                asc: ' 🔼',
-                                desc: ' 🔽',
-                              }[header.column.getIsSorted() as string] ?? null}
                             </div>
                             {filter && (
                               <th className={styles.filter_box}>
@@ -424,7 +423,10 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           className={styles.td}
                           {...{
                             style: {
-                              width: cell.column.getSize(),
+                              width:
+                                cell.column.id === 'select'
+                                  ? 50
+                                  : cell.column.getSize(),
                             },
                           }}
                         >

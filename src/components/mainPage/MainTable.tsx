@@ -168,7 +168,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_url',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 130,
+        minSize: 150,
       },
       {
         header: '캠페인 ID',
@@ -176,7 +176,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_campaign_id',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 130,
+        minSize: 150,
       },
       {
         header: '소스',
@@ -184,7 +184,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_source',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 80,
+        minSize: 110,
       },
       {
         header: '미디움',
@@ -192,7 +192,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_medium',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 80,
+        minSize: 110,
       },
       {
         header: '캠페인 이름',
@@ -200,7 +200,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_campaign_name',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 130,
+        minSize: 260,
       },
       {
         header: '캠페인 텀',
@@ -208,7 +208,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_term',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 80,
+        minSize: 110,
       },
       {
         header: '캠페인 콘텐츠',
@@ -216,7 +216,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_content',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 160,
+        minSize: 110,
       },
       {
         header: '메모',
@@ -224,7 +224,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'utm_memo',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 130,
+        minSize: 150,
       },
       {
         header: 'UTM',
@@ -232,7 +232,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'full_url',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 130,
+        minSize: 150,
       },
       {
         header: 'Shorten URL',
@@ -240,7 +240,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: 'shorten_url',
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 80,
+        minSize: 100,
       },
     ],
     []
@@ -384,7 +384,10 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           // key: header.id,
                           colSpan: header.colSpan,
                           style: {
-                            width: header.getSize(),
+                            width:
+                              header.column.id === 'select'
+                                ? 50
+                                : header.getSize(),
                           },
                         }}
                       >
@@ -403,10 +406,6 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 header.column.columnDef.header,
                                 header.getContext()
                               )}
-                              {{
-                                asc: ' 🔼',
-                                desc: ' 🔽',
-                              }[header.column.getIsSorted() as string] ?? null}
                             </div>
                             {filter && (
                               <th>
@@ -458,7 +457,10 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           key={cell.id}
                           {...{
                             style: {
-                              width: cell.column.getSize(),
+                              width:
+                                cell.column.id === 'select'
+                                  ? 50
+                                  : cell.column.getSize(),
                             },
                           }}
                         >
