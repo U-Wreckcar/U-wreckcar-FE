@@ -17,7 +17,7 @@ export const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
     if (alert) {
       setTimeout(() => {
         setAlert(false);
-      }, 1500);
+      }, 3000);
     }
   }, [alert]);
 

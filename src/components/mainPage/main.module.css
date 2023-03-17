@@ -368,6 +368,7 @@
   height: 100%;
 }
 .contents {
+  height: 220px;
   background-color: white;
   /* width: 800px; */
   display: flex;
@@ -388,6 +389,7 @@
   background-color: #484bff;
   color: #fff;
   margin-bottom: 50px;
+  border: none;
 }
 .modal_del_button {
   width: 81px;

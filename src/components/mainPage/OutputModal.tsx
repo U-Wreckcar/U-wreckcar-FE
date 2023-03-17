@@ -2,9 +2,14 @@ import Image from 'next/image';
 import ReactModal from 'react-modal';
 import styles from './main.module.css';
 
-import notion from 'assets/notion.png';
-import sheet from 'assets/sheet.png';
-import execel from 'assets/execel.png';
+import not_notion from 'assets/notion.png';
+import not_sheet from 'assets/sheet.png';
+import not_excel from 'assets/execel.png';
+
+import active_notion from 'assets/blue_notion.png';
+import active_sheet from 'assets/blue_sheet.png';
+import active_excel from 'assets/blue_excel.png';
+
 import { useEffect, useRef, useState } from 'react';
 
 type OutputModalType = {
@@ -19,17 +24,31 @@ export const OutputModal: React.FC<OutputModalType> = ({
   style,
   data,
 }) => {
-  const [click, setClick] = useState(false);
-  const execel_ref = useRef<HTMLDivElement>(null);
+  const [notion, setNotion] = useState(false);
+  const [sheet, setSheet] = useState(false);
+  const [excel, setExcel] = useState(false);
+
   const onClickPopHandler = () => {
     console.log(data);
+    let idList: number[] = [];
+    data.map((d) => idList.push(d.id));
+    console.log({ data: idList });
   };
 
   useEffect(() => {
-    if (click && execel_ref) {
-      console.log(execel_ref?.current);
+    if (notion) {
+      setExcel(false);
+      setSheet(false);
     }
-  }, [click]);
+    if (excel) {
+      setNotion(false);
+      setSheet(false);
+    }
+    if (sheet) {
+      setNotion(false);
+      setExcel(false);
+    }
+  }, [notion, excel, sheet]);
 
   return (
     <ReactModal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
@@ -56,50 +75,63 @@ export const OutputModal: React.FC<OutputModalType> = ({
             </div>
             <div className={styles.img_box}>
               <div className={styles.img_box_img}>
-                <Image
-                  width={150}
-                  height={100}
-                  alt="outputmodal"
-                  src={notion}
-                  onClick={() => alert('개발 중입니다...!')}
-                />
+                {notion ? (
+                  <Image
+                    width={150}
+                    height={100}
+                    alt="outputmodal"
+                    src={active_notion}
+                    onClick={() => setNotion(!notion)}
+                  />
+                ) : (
+                  <Image
+                    width={150}
+                    height={100}
+                    alt="outputmodal"
+                    src={not_notion}
+                    onClick={() => setNotion(!notion)}
+                  />
+                )}
               </div>
               <div className={styles.img_box_img}>
-                <Image
-                  width={150}
-                  height={100}
-                  alt="outputmodal"
-                  src={sheet}
-                  onClick={() => alert('개발 중입니다...!')}
-                />
+                {sheet ? (
+                  <Image
+                    width={150}
+                    height={100}
+                    alt="outputmodal"
+                    src={active_sheet}
+                    onClick={() => setSheet(!sheet)}
+                  />
+                ) : (
+                  <Image
+                    width={150}
+                    height={100}
+                    alt="outputmodal"
+                    src={not_sheet}
+                    onClick={() => setSheet(!sheet)}
+                  />
+                )}
               </div>
-              {click ? (
-                <div
-                  onClick={() => setClick(!click)}
-                  ref={execel_ref}
-                  className={styles.img_box_img_blue}
-                >
+              <div
+                onClick={() => setExcel(true)}
+                className={styles.img_box_img}
+              >
+                {excel ? (
                   <Image
                     width={150}
                     height={100}
                     alt="outputmodal"
-                    src={execel}
+                    src={active_excel}
                   />
-                </div>
-              ) : (
-                <div
-                  onClick={() => setClick(!click)}
-                  ref={execel_ref}
-                  className={styles.img_box_img}
-                >
+                ) : (
                   <Image
                     width={150}
                     height={100}
                     alt="outputmodal"
-                    src={execel}
+                    src={not_excel}
                   />
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
         </div>
