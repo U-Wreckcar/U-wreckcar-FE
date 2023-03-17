@@ -312,7 +312,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     <div>
       <div className={styles.container}>
         <div className={styles.btn_box}>
-          <div>
+          <div className={styles.title_box_d}>
             <h1>내 UTM</h1>
             <h4>{data.length}개의 UTM이 쌓여 있어요!</h4>
           </div>
