@@ -4,15 +4,21 @@
   margin-bottom: 8px;
 
   height: 60px;
-  width: 102.5rem;
+  width: 100%;
   min-width: 760px;
-
   background-color: var(--color-white-100);
+
   border-radius: 4px;
 }
+.category_item_box {
+  display: flex;
 
+  background-color: var(--color-white-100);
+}
 .category_item {
   /* overflow: hidden; */
+
+  align-items: center;
   width: 12rem;
   min-width: 200px;
 }

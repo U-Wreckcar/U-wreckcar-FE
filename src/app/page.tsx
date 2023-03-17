@@ -27,7 +27,7 @@ export default function Home() {
   useEffect(() => {
     const intervalText = setInterval(() => {
       setIndex((idx) => (idx + 1) % texts.length);
-    }, 500);
+    }, 850);
 
     return () => clearInterval(intervalText);
   }, []);
@@ -191,16 +191,9 @@ export default function Home() {
                     alert('준비중입니다 😃');
                   }}
                 />
-
-                <Image
-                  src={r_kakao}
-                  alt="img"
-                  width={24}
-                  height={24}
-                  onClick={() => {
-                    alert('준비중입니다 😃');
-                  }}
-                />
+                <a href="  https://open.kakao.com/o/sbK3Rfaf">
+                  <Image src={r_kakao} alt="img" width={24} height={24} />
+                </a>
               </div>
             </div>
             <div className={styles.e_cards}>

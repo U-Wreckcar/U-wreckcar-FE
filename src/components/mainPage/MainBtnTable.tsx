@@ -41,6 +41,11 @@ import styles from './main.module.css';
 import { defaultDataList } from './TableData';
 import { OutputModal } from './OutputModal';
 import { DeleteModal } from './DeleteModal';
+import { AddUtmModal } from '../sidebar/AddUtmModal';
+import Image from 'next/image';
+
+import plusImg from 'assets/plus.png';
+import filterImg from 'assets/filter.png';
 
 export type MainTableProps = {
   setSummary: Dispatch<SetStateAction<boolean>>;
@@ -100,6 +105,9 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [outputLength, setOutputLength] = useState<Array<MainTableType>>([]);
   const [del, setDel] = useState(false);
   const [delLength, setDelLength] = useState<Array<MainTableType>>([]);
+  const [plus, setPlus] = useState(false);
+  const [filter, setFilter] = useState(false);
+
   // useEffect(() => {
   //   setData(getUTMRes.data);
   // }, [getUTMRes]);
@@ -226,21 +234,23 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
     debugColumns: false,
   });
 
-  useEffect(() => {
-    if (table.getState().columnFilters[0]?.id === 'fullName') {
-      if (table.getState().sorting[0]?.id !== 'fullName') {
-        table.setSorting([{ id: 'fullName', desc: false }]);
-      }
-    }
-  }, [table.getState().columnFilters[0]?.id]);
-
+  //url 이동하기
   const moveUrl = (url: string) => {
     window.open(url, '_blank');
   };
+
+  //수정하기
   const onClickEditButton = () => {
+    const index = textarea_ref?.current?.id.split('_')[0];
+    const filter = table
+      .getGroupedRowModel()
+      .flatRows.filter((row) => row.id === index)[0].original;
+    console.log(filter.id);
     console.log(textarea_ref?.current?.value);
     setShow(false);
   };
+
+  //삭제하기
   const onClickDelBtn = () => {
     let id: Array<MainTableType> = [];
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original));
@@ -251,6 +261,8 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
       setDelLength(id);
     }
   };
+
+  //추출하기
   const onClickPopBtn = () => {
     let id: Array<MainTableType> = [];
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original));
@@ -270,7 +282,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
             <h1>내 UTM</h1>
             <h4>{data.length}개의 UTM이 쌓여 있어요!</h4>
           </div>
-          <div>
+          <div className={styles.buttons_box}>
             <button
               className={styles.data_btn}
               onClick={() => setSummary(true)}
@@ -295,6 +307,23 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
               style={customStyles}
               data={delLength}
             />
+            <button
+              className={styles.plus_button}
+              onClick={() => setFilter(!filter)}
+            >
+              <Image src={filterImg} alt="filter" width={24} height={24} />
+            </button>
+            <button
+              className={styles.plus_button}
+              onClick={() => setPlus(true)}
+            >
+              <Image src={plusImg} alt="plus" width={24} height={24} />
+            </button>
+            <AddUtmModal
+              isOpen={plus}
+              onRequestClose={() => setPlus(false)}
+              style={customStyles}
+            />
           </div>
         </div>
         <div className={styles.table_scroll}>
@@ -317,7 +346,6 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                       <th
                         key={header.id}
                         {...{
-                          // key: header.id,
                           colSpan: header.colSpan,
                           style: {
                             width: header.getSize(),
@@ -344,16 +372,18 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 desc: ' 🔽',
                               }[header.column.getIsSorted() as string] ?? null}
                             </div>
-                            <th>
-                              {header.column.getCanFilter() ? (
-                                <div className={styles.filter_box}>
-                                  <Filter
-                                    column={header.column}
-                                    table={table}
-                                  />
-                                </div>
-                              ) : null}
-                            </th>
+                            {filter && (
+                              <th>
+                                {header.column.getCanFilter() ? (
+                                  <div className={styles.filter_box}>
+                                    <Filter
+                                      column={header.column}
+                                      table={table}
+                                    />
+                                  </div>
+                                ) : null}
+                              </th>
+                            )}
                           </>
                         )}
 
@@ -399,13 +429,11 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                         >
                           {cell.column.id === 'full_url' && (
                             <CopyButton
-                              style={styles.copy_button}
                               text={`${cell.getValue()}`}
                             ></CopyButton>
                           )}
                           {cell.column.id === 'shorten_url' && (
                             <CopyButton
-                              style={styles.copy_button}
                               text={`${cell.getValue()}`}
                             ></CopyButton>
                           )}
@@ -546,7 +574,7 @@ function Filter({
         type="text"
         value={(columnFilterValue ?? '') as string}
         onChange={(value) => column.setFilterValue(value)}
-        placeholder={`Search... (${column.getFacetedUniqueValues().size})`}
+        placeholder={`검색 (${column.getFacetedUniqueValues().size})`}
         list={column.id + 'list'}
       />
       <div className="h-1" />
