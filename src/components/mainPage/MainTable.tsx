@@ -1,3 +1,4 @@
+'use client';
 import React, {
   HTMLProps,
   useMemo,
@@ -48,6 +49,7 @@ import plusImg from 'assets/plus.png';
 import filterImg from 'assets/filter.png';
 import { EditModal } from './MainMemoModal';
 import { style } from '@mui/system';
+import { usePathname, useSearchParams } from 'next/navigation';
 declare module '@tanstack/table-core' {
   interface FilterFns {
     fuzzy: FilterFn<unknown>;
@@ -118,16 +120,17 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   //     setData(defaultData);
   //   }
   // }, [defaultData]);
-
-  // console.log(window.location.search);
+  const path = useSearchParams();
+  const search = path.get('result');
+  console.log(search);
   useEffect(() => {
-    if (window.location.search !== '') {
+    if (search === 'true') {
       const res = async () => {
         await Axios.get('/api/user/profile');
         console.log(res);
       };
     }
-  }, [window.location.search]);
+  }, [search]);
 
   const customStyles = {
     content: {
