@@ -114,14 +114,14 @@
   text-decoration: none;
 }
 
-@media screen and (max-width:510px) {
-  .header_container{
+@media screen and (max-width: 510px) {
+  .header_container {
     display: none;
   }
-  .render_nav{
+  .render_nav {
     padding: 10px;
   }
-  .render_nav_left_noti{
+  .render_nav_left_noti {
     margin: 5px;
   }
 }
