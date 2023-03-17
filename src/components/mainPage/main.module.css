@@ -1,5 +1,4 @@
 .container {
-
     display: flex;
     flex-wrap: wrap;
     min-width: 768px;
@@ -271,8 +270,11 @@
   background-color: transparent;
 }
 .dialog {
+  background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 4px;
+  position:absolute;
+  z-index: 100;
 }
 
 .search_input {
