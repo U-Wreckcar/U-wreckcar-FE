@@ -87,7 +87,7 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               />
             </Link>
           </div>
-          <div className={styles.slim_utm_category_item}>
+          <div className={styles.addbtnstyle}>
             <div onClick={() => setModal(!modal)}>
               <Image
                 width={24}

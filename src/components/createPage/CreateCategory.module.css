@@ -14,7 +14,7 @@
   display: flex;
   width: 1490px;
 
-  transform: translateX(1%);
+  transform: translateX(-0.5%);
 }
 .item {
   width: 188px;
@@ -29,9 +29,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 60px;
-  height: 58px;
-  /* padding: 20px; */
+  width: 59px;
+  height: 40px;
 }
 .b_createutm {
   width: 20px;

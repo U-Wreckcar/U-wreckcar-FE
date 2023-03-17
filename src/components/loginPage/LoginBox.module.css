@@ -59,6 +59,11 @@
   line-height: 24px;
   letter-spacing: -0.006em;
 }
+.container img {
+  position: relative;
+  top: 10px;
+  left: 40px;
+}
 @media screen and (max-width: 520px) {
   .container {
     height: 1000px;

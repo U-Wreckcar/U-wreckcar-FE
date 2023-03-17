@@ -175,43 +175,20 @@ export default function Home() {
         <section className={styles.section_eight}>
           <article>
             <div className={styles.e_cards}>
-              <h4>CONTACT</h4>
+              <h4>Contact Us</h4>
               <p>Uwreckcar@gmail.com</p>
+              <p>카카오톡 문의하기</p>
             </div>
             <div className={styles.e_cards}>
-              <h4>SOCIAL MEDIA</h4>
-              <div className={styles.button_box}>
-                <Image
-                  src={r_naver}
-                  alt="img"
-                  width={24}
-                  height={24}
-                  onClick={() => {
-                    alert('준비중입니다 😃');
-                  }}
-                />
-
-                <Image
-                  src={r_google}
-                  alt="img"
-                  width={24}
-                  height={24}
-                  onClick={() => {
-                    alert('준비중입니다 😃');
-                  }}
-                />
-                <a href="  https://open.kakao.com/o/sbK3Rfaf">
-                  <Image src={r_kakao} alt="img" width={24} height={24} />
-                </a>
-              </div>
+              <h4>About 유렉카</h4>
+              <p>공지사항 </p>
+              <p>이용 가이드</p>
+              <div className={styles.button_box}></div>
             </div>
             <div className={styles.e_cards}>
-              <h4>ABOUT U-wreckacr</h4>
-              <p>
-                UTM 카테고라이징 서비스
-                <br />
-                유렉카를 만나보세요.
-              </p>
+              <h4>Privacy & Terms</h4>
+              <p>개인정보처리방침 </p>
+              <p>이용약관</p>
             </div>
           </article>
           <div className={styles.e_line}>
