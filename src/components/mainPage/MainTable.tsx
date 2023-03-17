@@ -122,13 +122,14 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   // }, [defaultData]);
   const path = useSearchParams();
   const search = path.get('result');
-  console.log(search);
+
   useEffect(() => {
     if (search === 'true') {
-      const res = async () => {
-        await Axios.get('/api/user/profile');
+      console.log(search);
+      console.log();
+      Axios.get('/api/user/profile').then((res) => {
         console.log(res);
-      };
+      });
     }
   }, [search]);
 
