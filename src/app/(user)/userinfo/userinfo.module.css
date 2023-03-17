@@ -1,7 +1,7 @@
 .user_container {
-  position: relative;
-  left: 200px;
-  padding: 65px 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile_img_box img {
