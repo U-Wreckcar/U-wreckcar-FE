@@ -1,25 +1,14 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import check from 'assets/icons.png';
-import styles from './copy.module.css';
-
-type CopyButtonProps = {
+import styles from './createCopyButton.module.css';
+type PropsType = {
   text: string;
 };
 
-//style 속성 프롭스 no
-
-export const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
+export const CreateCopyButton: React.FC<PropsType> = ({ text }) => {
   const [alert, setAlert] = useState(false);
-
-  useEffect(() => {
-    if (alert) {
-      setTimeout(() => {
-        setAlert(false);
-      }, 1500);
-    }
-  }, [alert]);
 
   const onClickCopyBtn = () => {
     if (navigator.clipboard) {
@@ -28,6 +17,9 @@ export const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
       });
     }
   };
+  setTimeout(() => {
+    setAlert(false);
+  }, 3000);
   return (
     <>
       {alert && (
@@ -38,7 +30,13 @@ export const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
           }}
         >
           <div className={styles.alert_left}>
-            <Image src={check} width={25} height={25} alt="check" />
+            <Image
+              className={styles.alert_icon}
+              src={check}
+              width={25}
+              height={25}
+              alt="check"
+            />
             <div className={styles.alert_text}>
               <h5>성공</h5> <p>UTM이 복사되었습니다!</p>
             </div>

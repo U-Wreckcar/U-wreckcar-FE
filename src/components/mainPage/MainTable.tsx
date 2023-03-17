@@ -125,6 +125,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
+      padding: 0,
     },
   };
   const columns = useMemo<ColumnDef<MainTableType>[]>(
@@ -312,7 +313,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     <div>
       <div className={styles.container}>
         <div className={styles.btn_box}>
-          <div>
+          <div className={styles.title_box_d}>
             <h1>내 UTM</h1>
             <h4>{data.length}개의 UTM이 쌓여 있어요!</h4>
           </div>
@@ -564,39 +565,38 @@ function Filter({
     <>
       {column.id === 'created_at' && (
         <>
+          {isOpen && (
+            <div className={styles.dialog}>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <DebouncedInput
+                  type="date"
+                  value={(columnFilterValue ?? '') as string}
+                  onChange={(value) => {
+                    setStartDate(value);
+                  }}
+                  list={column.id + 'list'}
+                />
+                <DebouncedInput
+                  type="date"
+                  value={(columnFilterValue ?? '') as string}
+                  onChange={(value) => getDatesStartToLast(startDate, value)}
+                  list={column.id + 'list'}
+                />
+                <button
+                  className={styles.dialog_button}
+                  onClick={() => setIsOpen(false)}
+                >
+                  X
+                </button>
+              </div>
+            </div>
+          )}
           <input
             type="text"
             className={styles.search_input}
             placeholder="기간 선택"
             onFocus={() => setIsOpen(true)}
           ></input>
-          <dialog
-            className={styles.dialog}
-            {...(isOpen && true ? { open: true } : {})}
-          >
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <DebouncedInput
-                type="date"
-                value={(columnFilterValue ?? '') as string}
-                onChange={(value) => {
-                  setStartDate(value);
-                }}
-                list={column.id + 'list'}
-              />
-              <DebouncedInput
-                type="date"
-                value={(columnFilterValue ?? '') as string}
-                onChange={(value) => getDatesStartToLast(startDate, value)}
-                list={column.id + 'list'}
-              />
-              <button
-                className={styles.dialog_button}
-                onClick={() => setIsOpen(false)}
-              >
-                X
-              </button>
-            </div>
-          </dialog>
         </>
       )}
       {column.id !== 'created_at' && (

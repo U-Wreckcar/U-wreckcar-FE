@@ -1,8 +1,9 @@
 .login_container {
-  height: 1000px;
+  min-height: 0;
+  height: calc(100vh - 80px);
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #0A0D54 ;
-  overflow-y: hidden;
+  background-color: #0a0d54;
+  overflow: hidden;
 }

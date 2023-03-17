@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import ReactModal from 'react-modal';
 import styles from './main.module.css';
-
+import b_close from 'assets/b_close.png';
 type OutputModalType = {
   isOpen: boolean;
   onRequestClose: any;
@@ -30,17 +30,15 @@ export const DeleteModal: React.FC<OutputModalType> = ({
           </div>
           <div className={styles.cancleBtn_box}>
             <button className={styles.cancleBtn} onClick={onRequestClose}>
-              X
+              <Image src={b_close} alt="close_img" width={24} height={24} />
             </button>
           </div>
         </div>
         <div className={styles.contents}>
           <div className={styles.col_box}>
-            <div>
-              <h5>{data.length}개의 UTM이 선택되었습니다.</h5>
-              <h5>삭제된 UTM은 복구할 수 없습니다.</h5>
-              <h5>정말 삭제하시겠습니까?</h5>
-            </div>
+            <p>{data.length}개의 UTM이 선택되었습니다.</p>
+            <p>삭제된 UTM은 복구할 수 없습니다.</p>
+            <p>정말 삭제하시겠습니까?</p>
           </div>
         </div>
         <div className={styles.bottom}>

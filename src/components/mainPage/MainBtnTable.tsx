@@ -345,6 +345,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                     return (
                       <th
                         key={header.id}
+                        className={styles.table_title_th}
                         {...{
                           colSpan: header.colSpan,
                           style: {
@@ -373,9 +374,9 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               }[header.column.getIsSorted() as string] ?? null}
                             </div>
                             {filter && (
-                              <th>
+                              <th className={styles.filter_box}>
                                 {header.column.getCanFilter() ? (
-                                  <div className={styles.filter_box}>
+                                  <div>
                                     <Filter
                                       column={header.column}
                                       table={table}

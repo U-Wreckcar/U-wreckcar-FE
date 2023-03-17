@@ -3,6 +3,7 @@ import { CopyButton } from 'shared/button/CopyButton';
 import styles from './CreateCopyBox.module.css';
 import b_link from 'assets/b_link.png';
 import Image from 'next/image';
+import { CreateCopyButton } from './CreateCopyButton';
 export const CreateCopyBox = () => {
   const arr = [
     {
@@ -48,7 +49,7 @@ export const CreateCopyBox = () => {
                   <div className={styles.full_utm}>
                     <div className={styles.text_full}>{i.full}</div>
                   </div>
-                  <CopyButton text={i.full} />
+                  <CreateCopyButton text={i.full} />
                 </div>
               </div>
               <div className={styles.short_box}>
@@ -56,7 +57,7 @@ export const CreateCopyBox = () => {
                   <div className={styles.short_utm}>
                     <div className={styles.text_full}>{i.short}</div>
                   </div>
-                  <CopyButton text={i.short} />
+                  <CreateCopyButton text={i.short} />
                 </div>
               </div>
             </div>
