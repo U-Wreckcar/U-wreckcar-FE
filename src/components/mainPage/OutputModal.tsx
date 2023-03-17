@@ -31,7 +31,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
   const onClickPopHandler = () => {
     console.log(data);
     let idList: number[] = [];
-    data.map((d) => idList.push(d.id));
+    data.map((d: any) => idList.push(d.id));
     console.log({ data: idList });
   };
 
