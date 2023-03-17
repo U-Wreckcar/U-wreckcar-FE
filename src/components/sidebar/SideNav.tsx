@@ -9,7 +9,7 @@ export const SideNav = () => {
   const [plusSide, setPlusSide] = useState(true);
   const [side, setSide] = useState(false);
   const path = usePathname();
-  console.log(path);
+
   useEffect(() => {
     if (path === '/main' || path === '/createutm' || path === '/userinfo') {
       setSide(true);
@@ -27,6 +27,13 @@ export const SideNav = () => {
       }
     });
   }, []);
+
+  useEffect(() => {
+    if (window.innerWidth < 520) {
+      setPlusSide(false);
+    }
+  }, [plusSide]);
+
   return (
     <div>
       {side && plusSide && <PlusSideNav setSide={setPlusSide} side={side} />}

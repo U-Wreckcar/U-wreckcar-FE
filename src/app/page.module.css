@@ -411,6 +411,41 @@
   border-top: 1px solid #efefef;
 }
 
+@media (max-width: 500px) {
+  .section_one {
+    display: none;
+    /* background-image: url('../../src/assets/sectionone.png');
+    background-size: cover;
+    background-position: center;
+    height: 844px;
+    min-width: 390px; */
+    /* width: 1000px; */
+  }
+  .section_two {
+    display: none;
+  }
+  .section_one_two {
+    display: none;
+  }
+  .section_three {
+    display: none;
+  }
+  .section_four {
+    display: none;
+  }
+  .section_five {
+    display: none;
+  }
+  .section_six {
+    display: none;
+  }
+  .section_seven {
+    display: none;
+  }
+  .section_eight {
+    display: none;
+  }
+}
 /* @media (max-width: 1000px) {
   .section_one_two img {
     position: relative;
