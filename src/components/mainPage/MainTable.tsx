@@ -476,8 +476,8 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             <Tooltip title={'메모 수정하기'}>
                               <div
                                 id={cell.id}
-                                onClick={(e) => {
-                                  setTarget(e?.target?.id);
+                                onClick={(e: any) => {
+                                  setTarget(e.target?.id);
                                   setShow(true);
                                   setInputValue(`${cell.getValue()}`);
                                 }}
