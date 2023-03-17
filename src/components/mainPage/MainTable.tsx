@@ -1,3 +1,4 @@
+'use client';
 import React, {
   HTMLProps,
   useMemo,
@@ -119,7 +120,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   //   }
   // }, [defaultData]);
 
-  // console.log(window.location.search);
+  console.log(window.location.search);
   useEffect(() => {
     if (window.location.search !== '') {
       const res = async () => {
