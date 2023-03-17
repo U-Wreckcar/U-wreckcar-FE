@@ -30,6 +30,7 @@
 }
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 * {
+  /* min-width: 100vw; */
   margin: 0;
   padding: 0;
 }

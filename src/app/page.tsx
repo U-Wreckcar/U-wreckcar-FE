@@ -134,7 +134,7 @@ export default function Home() {
 
               <p>추가하기 버튼 클릭 한 번으로 간편하게 UTM동시 생성</p>
             </div>
-            <div>
+            <div className={styles.six_card_item}>
               <Image src={six_two} alt="IMG" />
               <h2>
                 자주 쓰는 파라미터를
@@ -143,7 +143,7 @@ export default function Home() {
               </h2>
               <p>북마크 기능을 활용하여 간편하고 빠르게 UTM 생성!</p>
             </div>
-            <div>
+            <div className={styles.six_card_item}>
               <Image src={six_three} alt="IMG" />
               <h2>
                 Shorten UTM기능으로
