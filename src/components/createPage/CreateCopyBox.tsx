@@ -10,22 +10,6 @@ export const CreateCopyBox = () => {
       full: 'https://shop.com.kehop.com.kehop.com.ke',
       short: 'https://shop.com.ke',
     },
-    {
-      full: 'https://shop.com.kehop.com.kehop.com.ke',
-      short: 'https://shop.com.ke',
-    },
-    {
-      full: 'https://shop.com.kehop.com.kehop.com.ke',
-      short: 'https://shop.com.ke',
-    },
-    {
-      full: 'https://shop.com.kehop.com.kehop.com.ke',
-      short: 'https://shop.com.ke',
-    },
-    {
-      full: 'https://shop.com.kehop.com.kehop.com.ke',
-      short: 'https://shop.com.ke',
-    },
   ];
   return (
     <div className={styles.container_copy_box}>

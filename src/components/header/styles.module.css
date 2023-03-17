@@ -65,7 +65,7 @@
   align-items: center;
   text-decoration: none;
   text-decoration-line: none;
-  color: #ffffff;
+  color: #000000;
   font-weight: 700px;
 }
 
@@ -78,6 +78,7 @@
 
 .bold_text {
   font-weight: var(--weight-bold);
+  color: #000000;
 }
 
 .login_box {
