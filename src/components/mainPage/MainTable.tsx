@@ -477,7 +477,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               <div
                                 id={cell.id}
                                 onClick={(e) => {
-                                  setTarget(e.target?.id);
+                                  setTarget(e?.target?.id);
                                   setShow(true);
                                   setInputValue(`${cell.getValue()}`);
                                 }}
