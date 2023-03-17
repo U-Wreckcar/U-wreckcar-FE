@@ -1,5 +1,6 @@
 .user_container {
   display: flex;
+  min-width: none;
   flex-direction: column;
   align-items: center;
 }
@@ -7,6 +8,14 @@
 .profile_img_box img {
   border-radius: 50%;
 }
+.prfile_img {
+  display: inline-block;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background-color: antiquewhite;
+}
+
 .profile_img_box button {
   position: relative;
   top: -24px;
@@ -19,7 +28,12 @@
 
   background-color: yellow;
 }
-
+.title_box {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 1200px;
+}
 .user_container article {
   display: flex;
   flex-direction: column;
@@ -32,6 +46,29 @@
   background-color: #ffffff;
 }
 .item_box {
+  display: flex;
+  align-items: center;
   width: 800px;
+  height: 50px;
   border-bottom: 1px solid #dfdfdf;
+}
+.item_box div {
+  width: 80px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.item_box span {
+  font-size: 14px;
+  font-weight: 400;
+}
+.edit_save {
+  width: 108px;
+  height: 38px;
+  border: none;
+
+  margin-top: 42px;
+  color: #ffffff;
+  background-color: #484bff;
+
+  border-radius: 4px;
 }
