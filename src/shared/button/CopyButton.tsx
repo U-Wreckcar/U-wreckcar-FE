@@ -1,4 +1,4 @@
-import { Alert } from '@mui/material';
+'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
 import check from 'assets/icons.png';
