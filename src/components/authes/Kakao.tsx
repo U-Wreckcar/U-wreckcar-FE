@@ -25,6 +25,7 @@ const KakaoCallback = () => {
         .then(async (response) => {
           console.log(response.json());
           const res = await response.json();
+          console.log(res);
           setCookie('access_token', res.access_token);
           setCookie('refresh_token', res.refresh_token);
           return router.push('/main');
