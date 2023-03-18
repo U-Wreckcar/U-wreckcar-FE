@@ -21,7 +21,7 @@ const KakaoCallback = () => {
         },
       })
         .then((response) => response.json())
-        .then(({ access_token, refresh_token }) => {
+        .then(({ access_token, refresh_token }: any) => {
           // 쿠키에 토큰을 저장하거나 필요한 작업 수행
           console.log('access_token', access_token);
           console.log('refresh_token', refresh_token);
