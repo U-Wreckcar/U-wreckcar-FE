@@ -106,17 +106,22 @@
 }
 
 .header_container dialog div {
-  width: 160px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border-bottom: 1px solid #ddd;
+  width: 130px;
   padding: 5px;
   margin: 5px;
-  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
   color: #222;
+  cursor: pointer;
+}
+.links_box:hover {
+  font-weight: 700;
 }
 
 .links {
   text-decoration: none;
+  margin-bottom: 1px;
 }
 
 @media screen and (max-width: 510px) {
@@ -127,7 +132,7 @@
     padding: 10px 10px 10px 20px;
   }
 
-  .render_nav > div:nth-child(2){
+  .render_nav > div:nth-child(2) {
     display: none;
   }
 }
