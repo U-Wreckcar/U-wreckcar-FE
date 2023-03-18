@@ -20,7 +20,7 @@ type UTMsType = {
     utm_source?: string;
     utm_medium?: string;
     utm_campaign_name?: string | null;
-    utm_campaign_content?: string | null;
+    utm_content?: string | null;
     utm_term?: string | null;
     utm_memo?: string | null;
   }[];
@@ -44,7 +44,7 @@ export const CreateUTM = () => {
           utm_medium: '',
           utm_campaign_name: null,
           utm_term: null,
-          utm_campaign_content: null,
+          utm_content: null,
           utm_memo: null,
         },
       ],
@@ -67,9 +67,9 @@ export const CreateUTM = () => {
         utm_source: '',
         utm_medium: '',
         utm_campaign_name: '',
-        utm_campaign_content: '',
+        utm_content: '',
         utm_term: '',
-        utm_memo: null,
+        utm_memo: '',
       });
     }
   };
@@ -169,13 +169,9 @@ export const CreateUTM = () => {
                       <input
                         onInput={requeirFn}
                         // placeholder="utm_campaign_content"
-                        {...register(
-                          `utms.${index}.utm_campaign_content` as const
-                        )}
+                        {...register(`utms.${index}.utm_content` as const)}
                         className={`${
-                          errors?.utms?.[index]?.utm_campaign_content
-                            ? 'error'
-                            : ''
+                          errors?.utms?.[index]?.utm_content ? 'error' : ''
                         }, ${styles.input_style}`}
                       />
                       <textarea
