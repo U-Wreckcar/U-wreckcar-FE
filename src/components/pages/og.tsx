@@ -1,3 +1,4 @@
+'use client';
 import { ImageResponse } from '@vercel/og';
 import Image from 'next/image';
 import ogimg from 'assets/ogimg.png';

@@ -20,7 +20,7 @@ export const BaseHeader = () => {
         />
         <span>오늘 하루도 유렉카와 함께 효율적인 업무를 진행하세요</span>
       </div>
-      <div className={styles.user_box}>
+      <div className={styles.base_user_box}>
         <div className={styles.user_img}></div>
         <p
           onClick={() => {

@@ -16,7 +16,7 @@ export const RenderHeader = () => {
         <div className={styles.render_nav_left_noti}>공지사항</div>
         <div className={styles.render_nav_left_guide}>가이드</div>
       </div>
-      <div className={styles.user_box}>
+      <div className={styles.render_user_box}>
         <Link href={'/login'} as={'/login'}>
           <p>로그인</p>
         </Link>
