@@ -22,14 +22,16 @@ const KakaoCallback = () => {
           'Content-Type': 'application/json',
         },
       })
-        .then(async (response) => {
+        .then((response) => {
           console.log(response.json());
-          const res = await response.json();
-          console.log(res);
-          setCookie('access_token', res.access_token);
-          setCookie('refresh_token', res.refresh_token);
-          return router.push('/main');
+          return response.json().then((res) => {
+            console.log(res);
+            setCookie('access_token', res.access_token);
+            setCookie('refresh_token', res.refresh_token);
+            return router.push('/main');
+          });
         })
+
         // .then(({ access_token, refresh_token }) => {
         //   // 쿠키에 토큰을 저장하거나 필요한 작업 수행
         //   document.cookie = `access_token=${access_token}; secure=false;`;
