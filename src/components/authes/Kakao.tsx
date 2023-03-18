@@ -21,16 +21,16 @@ const KakaoCallback = () => {
           'Content-Type': 'application/json',
         },
       })
-        .then((response) => router.push('/main'))
-        // .then(({ access_token, refresh_token }) => {
-        //   // 쿠키에 토큰을 저장하거나 필요한 작업 수행
-        //   document.cookie = `access_token=${access_token}; secure=false;`;
-        //   document.cookie = `refresh_token=${refresh_token}; secure=false;`;
-        //   console.log('access_token', access_token);
-        //   console.log('refresh_token', refresh_token);
-        //   // 메인 페이지로 리다이렉션
-
-        // })
+        .then((response) => response.json())
+        .then(({ access_token, refresh_token }) => {
+          // 쿠키에 토큰을 저장하거나 필요한 작업 수행
+          document.cookie = `access_token=${access_token}; secure=false;`;
+          document.cookie = `refresh_token=${refresh_token}; secure=false;`;
+          console.log('access_token', access_token);
+          console.log('refresh_token', refresh_token);
+          // 메인 페이지로 리다이렉션
+          router.push('/main');
+        })
         .catch((error) => {
           // 에러 처리
           console.error(error);
