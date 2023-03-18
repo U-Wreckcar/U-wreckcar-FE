@@ -20,7 +20,6 @@ const KakaoCallback = () => {
           'Content-Type': 'application/json',
         },
       })
-
         .then((response) => {
           console.log(response.json());
         })
