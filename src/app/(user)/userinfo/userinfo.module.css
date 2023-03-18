@@ -18,8 +18,8 @@
 
 .profile_img_box button {
   position: relative;
-  top: -24px;
-  left: -35px;
+  top: -15px;
+  left: -60px;
 
   width: 40px;
   height: 40px;
@@ -33,6 +33,15 @@
   flex-direction: column;
   text-align: left;
   width: 1200px;
+}
+.title_box h1 {
+  margin-top: 40px;
+}
+
+.title_box p {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 22px;
 }
 .user_container article {
   display: flex;

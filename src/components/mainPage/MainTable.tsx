@@ -1,3 +1,4 @@
+'use client';
 import React, {
   HTMLProps,
   useMemo,
@@ -43,11 +44,12 @@ import { DeleteModal } from './DeleteModal';
 import axios from 'axios';
 import { AddUtmModal } from '../sidebar/AddUtmModal';
 import Image from 'next/image';
-
+import Axios from 'util/axiosConfig';
 import plusImg from 'assets/plus.png';
 import filterImg from 'assets/filter.png';
 import { EditModal } from './MainMemoModal';
 import { style } from '@mui/system';
+import { usePathname, useSearchParams } from 'next/navigation';
 declare module '@tanstack/table-core' {
   interface FilterFns {
     fuzzy: FilterFn<unknown>;
@@ -118,6 +120,18 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   //     setData(defaultData);
   //   }
   // }, [defaultData]);
+  const path = useSearchParams();
+  const search = path.get('result');
+
+  useEffect(() => {
+    if (search === 'true') {
+      console.log(search);
+      console.log();
+      Axios.get('/api/user/profile').then((res) => {
+        console.log(res);
+      });
+    }
+  }, [search]);
 
   const customStyles = {
     content: {
@@ -302,6 +316,10 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
       setOutputLength(id);
     }
   };
+  const onCookie = async () => {
+    const res = await Axios.get('https://uwreckcar-api.site/api/utms');
+    console.log('쿠키', res);
+  };
 
   return (
     <div>
@@ -312,6 +330,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
             <h4>{data.length}개의 UTM이 쌓여 있어요!</h4>
           </div>
           <div className={styles.buttons_box}>
+            <button onClick={onCookie}>연석님 🍪</button>
             <button
               className={styles.data_btn}
               onClick={() => setSummary(false)}
