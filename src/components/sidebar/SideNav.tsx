@@ -20,9 +20,9 @@ export const SideNav = () => {
 
   useEffect(() => {
     window.addEventListener('resize', () => {
-      if (window.innerWidth < 1100) {
+      if (window.innerWidth < 1528) {
         setPlusSide(false);
-      } else if (window.innerWidth >= 1100) {
+      } else if (window.innerWidth >= 1528) {
         setPlusSide(true);
       }
     });
