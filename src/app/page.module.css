@@ -495,3 +495,71 @@
     gap: 100px;
   }
 }
+
+/* 반응형 */
+@media screen and (max-width:1300px) {
+  .section_two h2, .section_two h1{
+      font-size: 35px;
+  } 
+
+  .section_two article:nth-child(2){
+    flex-direction: column;
+  }
+
+  .section_three h2, .section_two h1{
+    font-size: 40px;
+}
+  .section_three{
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .section_three article:nth-child(2) {
+    margin-top: 100px;
+  }
+  .section_four {
+    flex-direction:column-reverse;
+    text-align: center;
+  }
+  .section_four article:nth-child(1) {
+    margin-top: 0px;
+  }
+  .section_four article:nth-child(2) {
+    position: initial;
+    
+  }
+  .section_five {
+    flex-direction: column;
+    text-align: center;
+  }
+  .section_five h1{
+    font-size: 40px;
+  }
+  .section_five p{
+    font-size: 20px;
+  }
+  .section_five article:nth-child(2) {
+    margin-top: 100px;
+  }
+ .section_six article {
+  justify-content: initial;
+  width: auto;
+ }
+ .section_six article div{
+  margin: 0 10px;
+ }
+ .section_six article div h2{
+  font-size: 20px;
+ }
+ .section_six article div p{
+  font-size: 14px;
+ }
+ .section_eight article:nth-child(1){
+  justify-content: center;
+ }
+ .section_eight article:nth-child(1) div{
+  margin: 0 10px;
+ }
+}
+
+/* 모바일 */

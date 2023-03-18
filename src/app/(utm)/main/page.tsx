@@ -1,10 +1,16 @@
 'use client';
 import { MainBtnTable } from 'components/mainPage/MainBtnTable';
 import { MainTable } from 'components/mainPage/MainTable';
-import { useState } from 'react';
+
+import { useEffect, useState } from 'react';
 
 export default function MainPage() {
   const [summary, setSummary] = useState(true);
+
+  useEffect(() => {
+    console.log(window.location.search !== '/');
+  }, []);
+
   return (
     <>
       {summary ? (
