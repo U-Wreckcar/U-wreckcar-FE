@@ -1,9 +1,11 @@
+'use client';
 import KakaoCallback from '@/components/authes/Kakao';
 import React from 'react';
 
 export default function KakaoAuth() {
-  return;
-  <>
-    <KakaoCallback />
-  </>;
+  return (
+    <div>
+      <KakaoCallback />
+    </div>
+  );
 }
