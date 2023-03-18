@@ -1,8 +1,5 @@
 import axios from './axiosConfig';
-import instance from "./axiosConfig";
-
-
-
+import instance from './axiosConfig';
 
 /**
  *
@@ -25,15 +22,16 @@ export const postUTMs = async (data: any) => {
  */
 
 // export const getUTMs = axios.get('utms');
+type DataType = { data: string[] };
 
-export const getUTMExcell = async () => {
-  await axios.get('utms/excell');
+export const getUTMExcell = async (data: DataType) => {
+  await axios.post('utms/excell', data);
 };
 export const getUTMPDF = async () => {
-  await axios.get('utms/pdf');
+  await axios.post('utms/pdf');
 };
 export const getUTMNotion = async () => {
-  await axios.get('utms/csv');
+  await axios.post('utms/csv');
 };
 // export const myProfile = async() =>{
 //     await axios.get()
@@ -65,4 +63,3 @@ export const ExternalUTM = async (data: string) => {
 export const deleteUTM = async (utmId: any) => {
   await axios.delete(`utms/delete/${utmId}`);
 };
-

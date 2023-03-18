@@ -121,7 +121,9 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   //   }
   // }, [defaultData]);
   const path = useSearchParams();
-  const search = path.get('result');
+  const search = path?.get('result');
+  const urlParams = new URLSearchParams(window.location.search);
+  console.log(urlParams);
 
   useEffect(() => {
     if (search === 'true') {
