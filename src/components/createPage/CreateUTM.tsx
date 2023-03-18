@@ -79,9 +79,10 @@ export const CreateUTM = () => {
     setMemoText(textareaValue);
   };
 
-  const onSubmit = (data: UTMsType) => {
+  const onSubmit = async (data: UTMsType) => {
     console.log(data);
-    postUTMs(data);
+    const res = await postUTMs(data);
+    console.log(res);
   };
   // JSON.stringify.(data)
   useEffect(() => {}, [memoText]);
