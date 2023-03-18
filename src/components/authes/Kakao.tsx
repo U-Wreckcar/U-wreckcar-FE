@@ -20,9 +20,11 @@ const KakaoCallback = () => {
           'Content-Type': 'application/json',
         },
       })
+
         .then((response) => {
           console.log(response.json());
         })
+
         .then(({ access_token, refresh_token }: any) => {
           // 쿠키에 토큰을 저장하거나 필요한 작업 수행
           document.cookie = `access_token=${access_token}; secure=false;`;

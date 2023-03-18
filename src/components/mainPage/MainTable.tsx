@@ -121,6 +121,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   //   }
   // }, [defaultData]);
 
+
   const customStyles = {
     content: {
       top: '50%',

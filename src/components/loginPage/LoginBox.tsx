@@ -4,7 +4,7 @@ import kakao_login from 'assets/kakao_login.png';
 import naver_login from 'assets/naver_login.png';
 import r_google from 'assets/r_google.png';
 const LoginBox = () => {
-  const kakaoUrl = `${process.env.NEXT_PUBLIC_API_KAKA}/auth/kakao`;
+  const kakaoUrl = `${process.env.NEXT_PUBLIC_API}/auth/kakao`;
   const onClickKakaoBtn = () => {
     window.location.href = kakaoUrl;
   };
