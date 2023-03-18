@@ -10,10 +10,11 @@ const instance = axios.create({
   timeout: 3000,
   headers: {
     'Content-Type': 'application/json',
-    // "access_token": `Bearer ${access_token}`,
-    // "refresh_token":`Bearer ${refresh_token}`
+    'Authorization': `Bearer ${access_token}`,
+    'X-Refresh-Token': `Bearer ${refresh_token}`,
   },
-  // headers: { 'X-Custom-Header': 'foobar' },
 });
+
+
 
 export default instance;
