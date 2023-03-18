@@ -70,7 +70,10 @@
 
   color: #222222;
 }
-
+.memo_td{
+  width: 600px;
+  text-overflow: ellipsis;
+}
 .data_btn {
   width: 125px;
   height: 38px;
