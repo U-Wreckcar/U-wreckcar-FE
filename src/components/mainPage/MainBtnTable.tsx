@@ -471,6 +471,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           {cell.column.id === 'utm_memo' && (
                             <Tooltip title={'메모 수정하기'}>
                               <div
+                                className={styles.memo_td}
                                 onClick={(e: any) => {
                                   setTarget(e.target?.id);
                                   setShow(true);

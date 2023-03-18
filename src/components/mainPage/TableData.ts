@@ -18,7 +18,7 @@ export const defaultDataList:Array<MainTableType> = [
   {
     "id": 1,
     "created_at": "2023.02.22",
-    "utm_url": "www.vava.com",
+    "utm_url": "www.vava.comwww.vava.comwww.vava.comwww.vava.com",
     "utm_campaign_id": "camapign ID",
     "utm_source": "dde",
     "utm_medium": "medium",
