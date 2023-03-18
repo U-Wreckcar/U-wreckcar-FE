@@ -4,8 +4,9 @@ import type { Metadata } from 'next';
 import { SideNav } from '@/components/sidebar/SideNav';
 import Header from '@/components/header/Header';
 export const metadata: Metadata = {
-  title: '유렉카',
-  description: 'UTM을 쉽고 빠르게 생성할 수 있습니다.',
+  title: 'UTM 카테고라이징 서비스 "유렉카"',
+  description:
+    '유렉카는 구글 애널리틱스 마케팅 캠페인 효과 추적을 위해 UTM을 파라미터 별로 생성, 관리, 추출까지! GA를 쓰는 마케터들의 효율적인 업무 관리 툴입니다.',
   icons: {
     icon: './favicon.ico',
   },

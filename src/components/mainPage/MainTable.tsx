@@ -120,20 +120,6 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   //     setData(defaultData);
   //   }
   // }, [defaultData]);
-  const path = useSearchParams();
-  const search = path?.get('result');
-  const urlParams = new URLSearchParams(window.location.search);
-  console.log(urlParams);
-
-  useEffect(() => {
-    if (search === 'true') {
-      console.log(search);
-      console.log();
-      Axios.get('/api/user/profile').then((res) => {
-        console.log(res);
-      });
-    }
-  }, [search]);
 
   const customStyles = {
     content: {
