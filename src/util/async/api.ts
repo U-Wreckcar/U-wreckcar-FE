@@ -11,7 +11,7 @@ export const getUTMs = axios.get('utms');
 
 export const postUTMs = async (data: any) => {
   console.log(data);
-  await axios.post('utms/create', data);
+  await axios.post('utms', data);
 };
 
 /**
