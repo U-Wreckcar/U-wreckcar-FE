@@ -24,11 +24,11 @@ const KakaoCallback = () => {
       })
         .then((response) => {
           console.log(response.json());
-          return response.json().then((res) => {
+          response.json().then((res) => {
             console.log(res);
             setCookie('access_token', res.access_token);
             setCookie('refresh_token', res.refresh_token);
-            return router.push('/main');
+            router.push('/main');
           });
         })
 
