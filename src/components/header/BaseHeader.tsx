@@ -34,9 +34,9 @@ export const BaseHeader = () => {
       {modal && (
         <dialog>
           <Link className={styles.links} href={'/userinfo'}>
-            <div>개인정보 관리</div>
+            <div className={styles.links_box}>개인정보 관리</div>
           </Link>
-          <div>로그아웃</div>
+          <div className={styles.links_box}>로그아웃</div>
         </dialog>
       )}
     </section>

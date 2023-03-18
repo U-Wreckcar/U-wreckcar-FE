@@ -38,7 +38,6 @@ import {
   compareItems,
 } from '@tanstack/match-sorter-utils';
 import styles from './main.module.css';
-import { defaultDataList } from './TableData';
 import { OutputModal } from './OutputModal';
 import { DeleteModal } from './DeleteModal';
 import { AddUtmModal } from '../sidebar/AddUtmModal';
@@ -90,7 +89,7 @@ const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
 
 export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [rowSelection, setRowSelection] = useState({});
-  const [data, setData] = useState<Array<MainTableType>>([...defaultDataList]);
+  const [data, setData] = useState<Array<MainTableType>>([]);
   const [show, setShow] = useState(false);
   const [target, setTarget] = useState('');
   //const getUTMRes = useGetUtm(getUTMs);

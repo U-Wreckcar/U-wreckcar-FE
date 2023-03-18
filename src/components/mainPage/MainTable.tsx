@@ -7,7 +7,7 @@ import React, {
   useRef,
   useImperativeHandle,
 } from 'react';
-import { defaultDataList, MainTableType } from './TableData';
+import { MainTableType } from './TableData';
 import { useGetUtm } from 'util/hooks/useAsync';
 import { getUTMs } from 'util/async/api';
 import Tooltip from '@mui/material/Tooltip';
@@ -89,7 +89,7 @@ const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
 let defaultData: Array<MainTableType> = [];
 export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [rowSelection, setRowSelection] = useState({});
-  const [data, setData] = useState<Array<MainTableType>>([...defaultDataList]);
+  const [data, setData] = useState<Array<MainTableType>>([]);
   const [target, setTarget] = useState('');
   const [show, setShow] = useState(false);
   const [output, setOutput] = useState(false);
@@ -120,20 +120,6 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   //     setData(defaultData);
   //   }
   // }, [defaultData]);
-  const path = useSearchParams();
-  const search = path?.get('result');
-  const urlParams = new URLSearchParams(window.location.search);
-  console.log(urlParams);
-
-  useEffect(() => {
-    if (search === 'true') {
-      console.log(search);
-      console.log();
-      Axios.get('/api/user/profile').then((res) => {
-        console.log(res);
-      });
-    }
-  }, [search]);
 
   const customStyles = {
     content: {
