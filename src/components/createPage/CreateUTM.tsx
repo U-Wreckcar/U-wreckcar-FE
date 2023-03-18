@@ -11,6 +11,7 @@ import plus from 'assets/plus.png';
 import minus from 'assets/minus.png';
 import Image from 'next/image';
 import { CreateCategory } from './CreateCategory';
+import { postUTMs } from '@/util/async/api';
 
 type UTMsType = {
   utms: {
@@ -78,8 +79,10 @@ export const CreateUTM = () => {
     setMemoText(textareaValue);
   };
 
-  const onSubmit = (data: UTMsType) => {
+  const onSubmit = async (data: UTMsType) => {
     console.log(data);
+    const res = await postUTMs(data);
+    console.log(res);
   };
   // JSON.stringify.(data)
   useEffect(() => {}, [memoText]);
