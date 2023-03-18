@@ -10,8 +10,8 @@ const instance = axios.create({
   timeout: 1000,
   headers: {
     'Content-Type': 'application/json',
-    Cookie: `refresh_token = ${refresh_token}; access_token=${access_token}`,
-
+    // "access_token": `Bearer ${access_token}`,
+    // "refresh_token":`Bearer ${refresh_token}`
   },
   // headers: { 'X-Custom-Header': 'foobar' },
 });
