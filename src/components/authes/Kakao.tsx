@@ -22,12 +22,14 @@ const KakaoCallback = () => {
           'Content-Type': 'application/json',
         },
       })
+
         .then(async (response) => {
           const res = await response.json();
           // console.log('json', response.json());
           console.log('1', res);
           setCookie('access_token', res.access_token);
           setCookie('refresh_token', res.refresh_token);
+
         })
         .then(() => router.push('/main'))
 
