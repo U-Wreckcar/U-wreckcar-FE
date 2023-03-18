@@ -7,7 +7,7 @@ const access_token = getCookie("access_token")
 const instance = axios.create({
   withCredentials:true,
   baseURL: process.env.NEXT_PUBLIC_DATA,
-  timeout: 1000,
+  timeout: 3000,
   headers: {
     'Content-Type': 'application/json',
     // "access_token": `Bearer ${access_token}`,
