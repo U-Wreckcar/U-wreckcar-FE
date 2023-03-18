@@ -124,9 +124,10 @@
     display: none;
   }
   .render_nav {
-    padding: 10px;
+    padding: 10px 10px 10px 20px;
   }
-  .render_nav_left_noti {
-    margin: 5px;
+
+  .render_nav > div:nth-child(2){
+    display: none;
   }
 }
