@@ -1,7 +1,8 @@
-import Image from 'next/image';
-import ReactModal from 'react-modal';
-import styles from './main.module.css';
-import b_close from 'assets/b_close.png';
+import Image from "next/image";
+import ReactModal from "react-modal";
+import styles from "./main.module.css";
+import b_close from "assets/b_close.png";
+import { deleteUTM } from "util/async/api";
 type OutputModalType = {
   isOpen: boolean;
   onRequestClose: any;
@@ -15,7 +16,8 @@ export const DeleteModal: React.FC<OutputModalType> = ({
   data,
 }) => {
   const onClickDelHandler = () => {
-    console.log(data);
+    console.log({ data });
+    deleteUTM({ data });
   };
   return (
     <ReactModal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
