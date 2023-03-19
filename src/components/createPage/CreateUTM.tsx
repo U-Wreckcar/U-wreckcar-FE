@@ -227,6 +227,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
             />
           </button>
           <input
+            id="create_btn"
             className={styles.create_button}
             type="submit"
             value="생성하기"
