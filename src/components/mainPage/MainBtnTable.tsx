@@ -375,8 +375,12 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                         {header.isPlaceholder ? null : (
                           <>
                             <div
-                              className={styles.btn_input_Box}
                               {...{
+                                style: {
+                                  height: '50px',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                },
                                 // className: header.column.getCanSort()
                                 //   ? 'cursor-pointer select-none'
                                 //   : '',
@@ -389,7 +393,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 header.getContext()
                               )}
                             </div>
-                            {filter && (
+                            {filter && header.column.id !== 'select' && (
                               <th
                                 className={styles.filter_box}
                                 {...{
@@ -399,12 +403,10 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 }}
                               >
                                 {header.column.getCanFilter() ? (
-                                  <div>
-                                    <Filter
-                                      column={header.column}
-                                      table={table}
-                                    />
-                                  </div>
+                                  <Filter
+                                    column={header.column}
+                                    table={table}
+                                  />
                                 ) : null}
                               </th>
                             )}
@@ -582,7 +584,6 @@ function Filter({
         placeholder={`검색 (${column.getFacetedUniqueValues().size})`}
         list={column.id + 'list'}
       />
-      <div className="h-1" />
     </>
   );
 }

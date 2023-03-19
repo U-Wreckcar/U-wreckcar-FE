@@ -40,7 +40,6 @@ import styles from './main.module.css';
 import instance from 'util/async/axiosConfig';
 import { OutputModal } from './OutputModal';
 import { DeleteModal } from './DeleteModal';
-import axios from 'axios';
 import { AddUtmModal } from '../sidebar/AddUtmModal';
 import Image from 'next/image';
 import Axios from 'util/axiosConfig';
@@ -400,10 +399,16 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                         {header.isPlaceholder ? null : (
                           <>
                             <div
+                              className={styles.btn_input_Box}
                               {...{
-                                className: header.column.getCanSort()
-                                  ? 'cursor-pointer select-none'
-                                  : '',
+                                style: {
+                                  height: '50px',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                },
+                                // className: header.column.getCanSort()
+                                //   ? 'cursor-pointer select-none'
+                                //   : '',
                                 onClick:
                                   header.column.getToggleSortingHandler(),
                               }}
@@ -413,21 +418,21 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 header.getContext()
                               )}
                             </div>
-                            {filter && (
+                            {filter && header.column.id !== 'select' && (
                               <th
+                                className={styles.filter_box}
                                 {...{
                                   style: {
                                     width: '280px',
                                   },
                                 }}
                               >
-                                {header.column.getCanFilter() ? (
-                                  <div className={styles.filter_box}>
-                                    <Filter
-                                      column={header.column}
-                                      table={table}
-                                    />
-                                  </div>
+                                {header.column.getCanFilter() &&
+                                header.column.id !== 'select' ? (
+                                  <Filter
+                                    column={header.column}
+                                    table={table}
+                                  />
                                 ) : null}
                               </th>
                             )}
@@ -602,7 +607,6 @@ function Filter({
             onChange={(value) => column.setFilterValue(value)}
             placeholder={`검색 (${column.getFacetedUniqueValues().size})`}
           />
-          <div className="h-1" />
         </>
       )}
     </>
