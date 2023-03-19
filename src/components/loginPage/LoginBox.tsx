@@ -3,7 +3,19 @@ import styles from "./LoginBox.module.css";
 import kakao_login from "assets/kakao_login.png";
 import naver_login from "assets/naver_login.png";
 import r_google from "assets/r_google.png";
+import { getCookie } from "@/util/async/Cookie";
+import { useEffect } from "react";
+import { redirect } from "next/navigation";
+
 const LoginBox = () => {
+  useEffect(() => {
+    const cookie = getCookie("access_token");
+    console.log(cookie);
+    if (cookie) {
+      redirect("/main");
+    }
+  }, []);
+
   const kakaoUrl = `${process.env.NEXT_PUBLIC_API}auth/kakao`;
   const onClickKakaoBtn = () => {
     window.location.href = kakaoUrl;

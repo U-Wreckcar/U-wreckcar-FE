@@ -63,8 +63,8 @@ export const ExternalUTM = async (data: string) => {
  * * DELETE
  */
 
-export const deleteUTM = async (utmId: any) => {
-  await axios.delete(`utms/delete/${utmId}`);
+export const deleteUTM = async (data: any) => {
+  await axios.post(`utms/delete`,data);
 };
 
 /**
