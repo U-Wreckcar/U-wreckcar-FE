@@ -66,3 +66,11 @@ export const ExternalUTM = async (data: string) => {
 export const deleteUTM = async (utmId: any) => {
   await axios.delete(`utms/delete/${utmId}`);
 };
+
+/**
+ * * PATCH
+ */
+
+export const patchUTM = async (data:any) => {
+  await axios.patch("utms/memo",data)
+}

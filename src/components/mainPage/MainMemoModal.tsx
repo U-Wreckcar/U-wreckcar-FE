@@ -1,8 +1,9 @@
-import Image from 'next/image';
-import ReactModal from 'react-modal';
-import styles from './main.module.css';
-import b_close from 'assets/b_close.png';
-import { useRef } from 'react';
+import Image from "next/image";
+import ReactModal from "react-modal";
+import styles from "./main.module.css";
+import b_close from "assets/b_close.png";
+import { useRef } from "react";
+import { patchUTM } from "@/util/async/api";
 type EditModalType = {
   isOpen: boolean;
   onRequestClose: any;
@@ -22,13 +23,14 @@ export const EditModal: React.FC<EditModalType> = ({
   const textarea_ref = useRef<HTMLTextAreaElement>(null);
   //수정하기
   const onClickEditButton = () => {
-    const id = index.split('_')[0];
+    const id = index.split("_")[0];
     const filter = table
       .getGroupedRowModel()
       .flatRows.filter((row: any) => row.index.toString() === id)[0].original;
 
-    console.log(filter);
+    console.log(filter.utm_id);
     console.log(textarea_ref?.current?.value);
+    patchUTM({ utm_id: filter.utm_id, utm_memo: textarea_ref?.current?.value });
   };
 
   return (
