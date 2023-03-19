@@ -8,7 +8,6 @@ import React, {
   useRef,
 } from 'react';
 import { MainTableType } from './TableData';
-import { useGetUtm } from 'util/hooks/useAsync';
 import { getUTMs } from 'util/async/api';
 import { CopyButton } from '../../shared/button/CopyButton';
 import Tooltip from '@mui/material/Tooltip';
@@ -38,7 +37,6 @@ import {
   compareItems,
 } from '@tanstack/match-sorter-utils';
 import styles from './main.module.css';
-import { defaultDataList } from './TableData';
 import { OutputModal } from './OutputModal';
 import { DeleteModal } from './DeleteModal';
 import { AddUtmModal } from '../sidebar/AddUtmModal';
@@ -90,7 +88,7 @@ const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
 
 export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [rowSelection, setRowSelection] = useState({});
-  const [data, setData] = useState<Array<MainTableType>>([...defaultDataList]);
+  const [data, setData] = useState<Array<MainTableType>>([]);
   const [show, setShow] = useState(false);
   const [target, setTarget] = useState('');
   //const getUTMRes = useGetUtm(getUTMs);
@@ -108,10 +106,19 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [delLength, setDelLength] = useState<Array<MainTableType>>([]);
   const [plus, setPlus] = useState(false);
   const [filter, setFilter] = useState(false);
+
   const [inputValue, setInputValue] = useState('');
-  // useEffect(() => {
-  //   setData(getUTMRes.data);
-  // }, [getUTMRes]);
+
+  const getList = async () => {
+    const res = await getUTMs;
+    console.log(res);
+    setData(res.data);
+  };
+
+  useEffect(() => {
+    getList();
+  }, []);
+
   const customStyles = {
     content: {
       top: '50%',
@@ -368,8 +375,12 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                         {header.isPlaceholder ? null : (
                           <>
                             <div
-                              className={styles.btn_input_Box}
                               {...{
+                                style: {
+                                  height: '50px',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                },
                                 // className: header.column.getCanSort()
                                 //   ? 'cursor-pointer select-none'
                                 //   : '',
@@ -382,7 +393,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 header.getContext()
                               )}
                             </div>
-                            {filter && (
+                            {filter && header.column.id !== 'select' && (
                               <th
                                 className={styles.filter_box}
                                 {...{
@@ -392,12 +403,10 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 }}
                               >
                                 {header.column.getCanFilter() ? (
-                                  <div>
-                                    <Filter
-                                      column={header.column}
-                                      table={table}
-                                    />
-                                  </div>
+                                  <Filter
+                                    column={header.column}
+                                    table={table}
+                                  />
                                 ) : null}
                               </th>
                             )}
@@ -575,7 +584,6 @@ function Filter({
         placeholder={`검색 (${column.getFacetedUniqueValues().size})`}
         list={column.id + 'list'}
       />
-      <div className="h-1" />
     </>
   );
 }
