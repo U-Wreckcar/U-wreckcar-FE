@@ -97,7 +97,6 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [del, setDel] = useState(false);
   const [delLength, setDelLength] = useState<Array<MainTableType>>([]);
   const [inputValue, setInputValue] = useState("");
-  //const getUTMRes = useGetUtm(getUTMs);
   const [columnResizeMode, setColumnResizeMode] =
     useState<ColumnResizeMode>("onChange");
   const [removeModal, setRemoveModal] = useState(false);
@@ -108,12 +107,14 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [plus, setPlus] = useState(false);
   const [filter, setFilter] = useState(false);
 
-  // useEffect(() => {
-  //   if (defaultData.length === 0) {
-  //     console.log(getUTMRes);
-  //     // setData(getUTMRes.data);
-  //   }
-  // }, [getUTMRes]);
+  useEffect(() => {
+    const res = getUTMs();
+    console.log("mainTable getUTM", res);
+
+    if (defaultData.length === 0) {
+      // setData(getUTMRes.data);
+    }
+  }, []);
 
   // useEffect(() => {
   //   if (defaultData.length !== 0) {

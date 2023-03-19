@@ -7,11 +7,14 @@ import instance from "./axiosConfig";
  *
  */
 
-export const getUTMs = axios.get("utms");
+export const getUTMs = async () => {
+  const res = await axios.get("utms");
+  return res;
+};
 
 export const postUTMs = async (data: any) => {
-  console.log(data);
-  await axios.post("utms", data);
+  const res = await axios.post("utms", data);
+  return res;
 };
 
 /**
