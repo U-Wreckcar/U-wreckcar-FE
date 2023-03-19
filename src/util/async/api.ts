@@ -14,6 +14,7 @@ export const postUTMs = async (data: any) => {
 
   await axios.post("utms", data);
 
+
 };
 
 /**

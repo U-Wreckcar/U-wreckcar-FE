@@ -46,7 +46,6 @@ import { OutputModal } from './OutputModal';
 import { DeleteModal } from './DeleteModal';
 import { AddUtmModal } from '../sidebar/AddUtmModal';
 import Image from 'next/image';
-import Axios from 'util/axiosConfig';
 import plusImg from 'assets/plus.png';
 import filterImg from 'assets/filter.png';
 import { EditModal } from './MainMemoModal';
