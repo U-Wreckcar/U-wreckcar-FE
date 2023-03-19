@@ -1,28 +1,28 @@
-'use client';
-import React, { useEffect, useState } from 'react';
-import styles from './page.module.css';
-import sectionseven from 'assets/sectionseven.png';
-import Image from 'next/image';
+"use client";
+import React, { useEffect, useState } from "react";
+import styles from "./page.module.css";
+import sectionseven from "assets/sectionseven.png";
+import Image from "next/image";
 
-import section_two_left_ns from 'assets/section_two_left_ns.png';
-import section_two_right_ns from 'assets/section_two_right_ns.png';
-import section_one_two from 'assets/section_one_two.png';
-import six_one from 'assets/six_one.png';
-import six_two from 'assets/six_two.png';
-import six_three from 'assets/six_three.png';
-import seven_img from 'assets/seven_img.png';
-import create from 'assets/gif/create.gif';
-import f_search from 'assets/gif/f_search.gif';
-import out from 'assets/gif/out.gif';
-import r_kakao from 'assets/r_kakao.png';
-import r_naver from 'assets/r_naver.png';
-import r_google from 'assets/r_google.png';
-import copyright from 'assets/copyright.png';
-import seven_button from 'assets/seven_button.png';
-import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import section_two_left_ns from "assets/section_two_left_ns.png";
+import section_two_right_ns from "assets/section_two_right_ns.png";
+import section_one_two from "assets/section_one_two.png";
+import six_one from "assets/six_one.png";
+import six_two from "assets/six_two.png";
+import six_three from "assets/six_three.png";
+import seven_img from "assets/seven_img.png";
+import create from "assets/gif/create.gif";
+import f_search from "assets/gif/f_search.gif";
+import out from "assets/gif/out.gif";
+import r_kakao from "assets/r_kakao.png";
+import r_naver from "assets/r_naver.png";
+import r_google from "assets/r_google.png";
+import copyright from "assets/copyright.png";
+import seven_button from "assets/seven_button.png";
+import Link from "next/link";
+// import { redirect } from "next/navigation";
 export default function Home() {
-  const texts = ['복잡한', '귀찮은', '어려운'];
+  const texts = ["복잡한", "귀찮은", "어려운"];
   const [text, setText] = useState(texts);
   const [index, setIndex] = useState(0);
 
@@ -34,34 +34,34 @@ export default function Home() {
     return () => clearInterval(intervalText);
   }, []);
 
-  useEffect(() => {
-    if (window.innerWidth < 400) {
-      redirect('/c');
-    }
-  }, [window.innerWidth]);
+  // useEffect(() => {
+  //   if (window.innerWidth < 400) {
+  //     redirect('/c');
+  //   }
+  // }, [window.innerWidth]);
 
   const onClickKakao = () => {
-    window.location.href = 'https://open.kakao.com/o/sbK3Rfaf';
+    window.location.href = "https://open.kakao.com/o/sbK3Rfaf";
   };
 
   const onClickLaw = () => {
     window.location.href =
-      'https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e';
+      "https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e";
   };
 
   const onClickUse = () => {
     window.location.href =
-      'https://unexpected-ceder-0b7.notion.site/c83db210e0574b3b90329f5cc46caf28';
+      "https://unexpected-ceder-0b7.notion.site/c83db210e0574b3b90329f5cc46caf28";
   };
 
   const onClickNoti = () => {
     window.location.href =
-      ' https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492';
+      " https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492";
   };
 
   const onClickGuide = () => {
     window.location.href =
-      'https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3';
+      "https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3";
   };
   return (
     <div>
@@ -73,7 +73,7 @@ export default function Home() {
               <h1>유렉카로 해결하세요! </h1>
               <p>UTM 업무 1시간? 유렉카에서는 3분이면 OK</p>
             </div>
-            <Link href={'/login'}>
+            <Link href={"/login"}>
               <button>무료로 시작하기</button>
             </Link>
           </article>
@@ -194,7 +194,7 @@ export default function Home() {
               src={seven_img}
               alt="Img"
             />
-            <Link href={'/login'}>
+            <Link href={"/login"}>
               <Image
                 className={styles.seven_button_img}
                 src={seven_button}
@@ -208,26 +208,26 @@ export default function Home() {
             <div className={styles.e_cards}>
               <h4>Contact Us</h4>
               <p>Uwreckcar@gmail.com</p>
-              <p style={{ cursor: 'pointer' }} onClick={onClickKakao}>
+              <p style={{ cursor: "pointer" }} onClick={onClickKakao}>
                 카카오톡 문의하기
               </p>
             </div>
             <div className={styles.e_cards}>
               <h4>About 유렉카</h4>
-              <p style={{ cursor: 'pointer' }} onClick={onClickNoti}>
+              <p style={{ cursor: "pointer" }} onClick={onClickNoti}>
                 공지사항
               </p>
-              <p style={{ cursor: 'pointer' }} onClick={onClickGuide}>
+              <p style={{ cursor: "pointer" }} onClick={onClickGuide}>
                 이용 가이드
               </p>
               <div className={styles.button_box}></div>
             </div>
             <div className={styles.e_cards}>
               <h4>Privacy & Terms</h4>
-              <p style={{ cursor: 'pointer' }} onClick={onClickLaw}>
-                개인정보처리방침{' '}
+              <p style={{ cursor: "pointer" }} onClick={onClickLaw}>
+                개인정보처리방침{" "}
               </p>
-              <p style={{ cursor: 'pointer' }} onClick={onClickUse}>
+              <p style={{ cursor: "pointer" }} onClick={onClickUse}>
                 이용약관
               </p>
             </div>
