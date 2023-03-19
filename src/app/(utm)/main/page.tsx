@@ -3,6 +3,7 @@ import { MainBtnTable } from "components/mainPage/MainBtnTable";
 import { MainTable } from "components/mainPage/MainTable";
 import { useEffect, useState } from "react";
 import { isConstructorDeclaration } from "typescript";
+
 export default function MainPage() {
   const [summary, setSummary] = useState(true);
 

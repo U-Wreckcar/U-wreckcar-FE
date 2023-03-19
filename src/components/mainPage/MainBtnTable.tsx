@@ -8,10 +8,10 @@ import React, {
   useRef,
 } from "react";
 import { MainTableType } from "./TableData";
-import { useGetUtm } from "util/hooks/useAsync";
 import { getUTMs } from "util/async/api";
 import { CopyButton } from "../../shared/button/CopyButton";
 import Tooltip from "@mui/material/Tooltip";
+
 import {
   Table,
   Column,
@@ -42,6 +42,7 @@ import { OutputModal } from "./OutputModal";
 import { DeleteModal } from "./DeleteModal";
 import { AddUtmModal } from "../sidebar/AddUtmModal";
 import Image from "next/image";
+
 
 import plusImg from "assets/plus.png";
 import filterImg from "assets/filter.png";
@@ -107,10 +108,9 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [delLength, setDelLength] = useState<Array<MainTableType>>([]);
   const [plus, setPlus] = useState(false);
   const [filter, setFilter] = useState(false);
+  
   const [inputValue, setInputValue] = useState("");
-  // useEffect(() => {
-  //   setData(getUTMRes.data);
-  // }, [getUTMRes]);
+
   const customStyles = {
     content: {
       top: "50%",
@@ -367,8 +367,12 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                         {header.isPlaceholder ? null : (
                           <>
                             <div
-                              className={styles.btn_input_Box}
                               {...{
+                                style: {
+                                  height: '50px',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                },
                                 // className: header.column.getCanSort()
                                 //   ? 'cursor-pointer select-none'
                                 //   : '',
@@ -381,7 +385,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 header.getContext()
                               )}
                             </div>
-                            {filter && (
+                            {filter && header.column.id !== 'select' && (
                               <th
                                 className={styles.filter_box}
                                 {...{
@@ -391,12 +395,10 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 }}
                               >
                                 {header.column.getCanFilter() ? (
-                                  <div>
-                                    <Filter
-                                      column={header.column}
-                                      table={table}
-                                    />
-                                  </div>
+                                  <Filter
+                                    column={header.column}
+                                    table={table}
+                                  />
                                 ) : null}
                               </th>
                             )}
@@ -574,7 +576,6 @@ function Filter({
         placeholder={`검색 (${column.getFacetedUniqueValues().size})`}
         list={column.id + "list"}
       />
-      <div className="h-1" />
     </>
   );
 }
