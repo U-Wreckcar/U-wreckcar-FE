@@ -8,10 +8,11 @@ import React, {
   useImperativeHandle,
 } from "react";
 import { MainTableType } from "./TableData";
-import { useGetUtm } from "util/hooks/useAsync";
+// import { useGetUtm } from "util/hooks/useAsync";
 import { getUTMs } from "util/async/api";
 import Tooltip from "@mui/material/Tooltip";
 import { MainTableProps } from "./MainBtnTable";
+
 import {
   Table,
   Column,
@@ -41,15 +42,14 @@ import styles from "./main.module.css";
 import instance from "util/async/axiosConfig";
 import { OutputModal } from "./OutputModal";
 import { DeleteModal } from "./DeleteModal";
-import axios from "axios";
 import { AddUtmModal } from "../sidebar/AddUtmModal";
 import Image from "next/image";
-import Axios from "util/async/axiosConfig";
 import plusImg from "assets/plus.png";
 import filterImg from "assets/filter.png";
 import { EditModal } from "./MainMemoModal";
 import { style } from "@mui/system";
 import { usePathname, useSearchParams } from "next/navigation";
+import Link from "next/link";
 declare module "@tanstack/table-core" {
   interface FilterFns {
     fuzzy: FilterFn<unknown>;
@@ -96,31 +96,35 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [outputLength, setOutputLength] = useState<Array<MainTableType>>([]);
   const [del, setDel] = useState(false);
   const [delLength, setDelLength] = useState<Array<MainTableType>>([]);
+
   const [inputValue, setInputValue] = useState("");
+
   const [columnResizeMode, setColumnResizeMode] =
     useState<ColumnResizeMode>("onChange");
   const [removeModal, setRemoveModal] = useState(false);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
-
   const [plus, setPlus] = useState(false);
   const [filter, setFilter] = useState(false);
 
-  useEffect(() => {
-    const res = getUTMs();
-    console.log("mainTable getUTM", res);
+  const getData = async () => {
+    const res = await getUTMs();
+    setData(res.data);
+  };
 
+  useEffect(() => {
     if (defaultData.length === 0) {
-      // setData(getUTMRes.data);
+      getData();
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (defaultData.length !== 0) {
-  //     setData(defaultData);
-  //   }
-  // }, [defaultData]);
+  useEffect(() => {
+    getData();
+    if (defaultData.length !== 0) {
+      setData(defaultData);
+    }
+  }, [defaultData]);
 
   const customStyles = {
     content: {
@@ -305,10 +309,6 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
       setOutputLength(id);
     }
   };
-  const onCookie = async () => {
-    const res = await Axios.get("https://uwreckcar-api.site/api/utms");
-    console.log("쿠키", res);
-  };
 
   return (
     <div>
@@ -319,7 +319,6 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
             <h4>{data.length}개의 UTM이 쌓여 있어요!</h4>
           </div>
           <div className={styles.buttons_box}>
-            <button onClick={onCookie}>연석님 🍪</button>
             <button
               className={styles.data_btn}
               onClick={() => setSummary(false)}
@@ -404,10 +403,17 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                         {header.isPlaceholder ? null : (
                           <>
                             <div
+                              className={styles.btn_input_Box}
                               {...{
-                                className: header.column.getCanSort()
-                                  ? "cursor-pointer select-none"
-                                  : "",
+                                style: {
+                                  height: "50px",
+                                  display: "flex",
+                                  alignItems: "center",
+                                },
+                                // className: header.column.getCanSort()
+                                //   ? 'cursor-pointer select-none'
+                                //   : '',
+
                                 onClick:
                                   header.column.getToggleSortingHandler(),
                               }}
@@ -417,21 +423,21 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 header.getContext()
                               )}
                             </div>
-                            {filter && (
+                            {filter && header.column.id !== "select" && (
                               <th
+                                className={styles.filter_box}
                                 {...{
                                   style: {
                                     width: "280px",
                                   },
                                 }}
                               >
-                                {header.column.getCanFilter() ? (
-                                  <div className={styles.filter_box}>
-                                    <Filter
-                                      column={header.column}
-                                      table={table}
-                                    />
-                                  </div>
+                                {header.column.getCanFilter() &&
+                                header.column.id !== "select" ? (
+                                  <Filter
+                                    column={header.column}
+                                    table={table}
+                                  />
                                 ) : null}
                               </th>
                             )}
@@ -464,6 +470,14 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
               ))}
             </thead>
             <tbody>
+              {data.length === 0 && (
+                <div className={styles.no_data}>
+                  <p>등록된 UTM이 없어요.</p>
+                  <Link href={"/createutm"}>
+                    <button>UTM 생성하기</button>
+                  </Link>
+                </div>
+              )}
               {table.getRowModel().rows.map((row) => {
                 return (
                   <tr key={row.id}>
@@ -527,7 +541,8 @@ function Filter({
   const [isOpen, setIsOpen] = useState(false);
 
   let data: Array<MainTableType> = [];
-  instance("/utms").then((result) => (data = result.data));
+
+  getUTMs().then((result) => (data = result.data));
 
   function getDatesStartToLast(startDate: any, lastDate: any) {
     const regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
@@ -606,7 +621,6 @@ function Filter({
             onChange={(value) => column.setFilterValue(value)}
             placeholder={`검색 (${column.getFacetedUniqueValues().size})`}
           />
-          <div className="h-1" />
         </>
       )}
     </>

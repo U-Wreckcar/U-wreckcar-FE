@@ -8,10 +8,10 @@ import React, {
   useRef,
 } from "react";
 import { MainTableType } from "./TableData";
-import { useGetUtm } from "util/hooks/useAsync";
 import { getUTMs } from "util/async/api";
 import { CopyButton } from "../../shared/button/CopyButton";
 import Tooltip from "@mui/material/Tooltip";
+import Link from "next/link";
 import {
   Table,
   Column,
@@ -107,10 +107,18 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [delLength, setDelLength] = useState<Array<MainTableType>>([]);
   const [plus, setPlus] = useState(false);
   const [filter, setFilter] = useState(false);
+
   const [inputValue, setInputValue] = useState("");
-  // useEffect(() => {
-  //   setData(getUTMRes.data);
-  // }, [getUTMRes]);
+
+  const getData = async () => {
+    const res = await getUTMs();
+    setData(res.data);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   const customStyles = {
     content: {
       top: "50%",
@@ -367,8 +375,12 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                         {header.isPlaceholder ? null : (
                           <>
                             <div
-                              className={styles.btn_input_Box}
                               {...{
+                                style: {
+                                  height: "50px",
+                                  display: "flex",
+                                  alignItems: "center",
+                                },
                                 // className: header.column.getCanSort()
                                 //   ? 'cursor-pointer select-none'
                                 //   : '',
@@ -381,7 +393,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 header.getContext()
                               )}
                             </div>
-                            {filter && (
+                            {filter && header.column.id !== "select" && (
                               <th
                                 className={styles.filter_box}
                                 {...{
@@ -391,12 +403,10 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 }}
                               >
                                 {header.column.getCanFilter() ? (
-                                  <div>
-                                    <Filter
-                                      column={header.column}
-                                      table={table}
-                                    />
-                                  </div>
+                                  <Filter
+                                    column={header.column}
+                                    table={table}
+                                  />
                                 ) : null}
                               </th>
                             )}
@@ -429,6 +439,14 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
               ))}
             </thead>
             <tbody>
+              {data.length === 0 && (
+                <div className={styles.no_data}>
+                  <p>등록된 UTM이 없어요.</p>
+                  <Link href={"/createutm"}>
+                    <button>UTM 생성하기</button>
+                  </Link>
+                </div>
+              )}
               {table.getRowModel().rows.map((row) => {
                 return (
                   <tr key={row.id}>
@@ -574,7 +592,6 @@ function Filter({
         placeholder={`검색 (${column.getFacetedUniqueValues().size})`}
         list={column.id + "list"}
       />
-      <div className="h-1" />
     </>
   );
 }
