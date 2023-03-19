@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "유렉카",
     description: "복잡한 UTM을 빠르게 만들자!",
-    url: "https://u-wreckcar-fe-phi.vercel.app/",
+    url: "https://utm.works",
     siteName: "유렉카",
     images: [
       {
