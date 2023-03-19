@@ -1,5 +1,4 @@
 import axios from "./axiosConfig";
-import instance from "./axiosConfig";
 
 /**
  *
@@ -36,9 +35,10 @@ export const getUTMPDF = async () => {
 export const getUTMNotion = async () => {
   await axios.post("utms/csv");
 };
-// export const myProfile = async() =>{
-//     await axios.get()
-// }
+export const myProfile = async () => {
+  const res = await axios.get("users/profile");
+  return res;
+};
 
 /**
  * * POST
