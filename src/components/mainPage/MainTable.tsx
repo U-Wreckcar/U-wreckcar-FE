@@ -107,17 +107,15 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [plus, setPlus] = useState(false);
   const [filter, setFilter] = useState(false);
 
-  // const getList = async () => {
-  //   const res = await getUTMs;
-  //   console.log(res);
-  //   setData(res.data);
-  // };
-
   useEffect(() => {
+    const res = getUTMs();
+    console.log("mainTable getUTM", res);
+
     if (defaultData.length === 0) {
-      // getList();
+      // setData(getUTMRes.data);
     }
-  }, [defaultData]);
+  }, []);
+
 
   useEffect(() => {
     if (defaultData.length !== 0) {

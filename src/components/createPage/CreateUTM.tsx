@@ -1,17 +1,17 @@
-'use client';
-import React, { useEffect, useRef, useState } from 'react';
-import { useFieldArray, useForm } from 'react-hook-form';
-import Axios from '@/util/async/axiosConfig';
-import { nanoid } from 'nanoid';
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+import { useFieldArray, useForm } from "react-hook-form";
+import Axios from "@/util/async/axiosConfig";
+import { nanoid } from "nanoid";
 /**
  * Style, Image
  */
-import styles from './CreateUTM.module.css';
-import plus from 'assets/plus.png';
-import minus from 'assets/minus.png';
-import Image from 'next/image';
-import { CreateCategory } from './CreateCategory';
-import { postUTMs } from '@/util/async/api';
+import styles from "./CreateUTM.module.css";
+import plus from "assets/plus.png";
+import minus from "assets/minus.png";
+import Image from "next/image";
+import { CreateCategory } from "./CreateCategory";
+import { postUTMs } from "@/util/async/api";
 
 type UTMsType = {
   utms: {
@@ -28,7 +28,7 @@ type UTMsType = {
 
 export const CreateUTM = () => {
   const id = nanoid();
-  const [memoText, setMemoText] = useState('');
+  const [memoText, setMemoText] = useState("");
   const {
     handleSubmit,
     register,
@@ -38,10 +38,10 @@ export const CreateUTM = () => {
     defaultValues: {
       utms: [
         {
-          utm_url: '',
-          utm_campaign_id: '',
-          utm_source: '',
-          utm_medium: '',
+          utm_url: "",
+          utm_campaign_id: "",
+          utm_source: "",
+          utm_medium: "",
           utm_campaign_name: null,
           utm_term: null,
           utm_content: null,
@@ -49,27 +49,27 @@ export const CreateUTM = () => {
         },
       ],
     },
-    mode: 'onBlur',
+    mode: "onBlur",
   });
   const { fields, append, remove } = useFieldArray({
-    name: 'utms',
+    name: "utms",
     control,
   });
   const requeirFn = (e: any) => {
-    e.target.value = e.target.value.replace(/[^a-z0-9./:]/, '');
-    e.target.value = e.target.value.replace({ maxLength: 70 }, '');
+    e.target.value = e.target.value.replace(/[^a-z0-9./:]/, "");
+    e.target.value = e.target.value.replace({ maxLength: 70 }, "");
   };
   const addList = () => {
     if (fields.length <= 4) {
       append({
-        utm_url: '',
-        utm_campaign_id: '',
-        utm_source: '',
-        utm_medium: '',
-        utm_campaign_name: '',
-        utm_content: '',
-        utm_term: '',
-        utm_memo: '',
+        utm_url: "",
+        utm_campaign_id: "",
+        utm_source: "",
+        utm_medium: "",
+        utm_campaign_name: "",
+        utm_content: "",
+        utm_term: "",
+        utm_memo: "",
       });
     }
   };
@@ -106,7 +106,7 @@ export const CreateUTM = () => {
                           pattern: /[a-z]/i,
                         })}
                         className={`${
-                          errors?.utms?.[index]?.utm_url ? 'error' : ''
+                          errors?.utms?.[index]?.utm_url ? "error" : ""
                         }, ${styles.input_style}`}
                       />
                       <input
@@ -117,7 +117,7 @@ export const CreateUTM = () => {
                           pattern: /[a-z]/i,
                         })}
                         className={`${
-                          errors?.utms?.[index]?.utm_campaign_id ? 'error' : ''
+                          errors?.utms?.[index]?.utm_campaign_id ? "error" : ""
                         }, ${styles.input_style}`}
                       />
                       <input
@@ -128,7 +128,7 @@ export const CreateUTM = () => {
                           pattern: /[a-z]/i,
                         })}
                         className={`${
-                          errors?.utms?.[index]?.utm_source ? 'error' : ''
+                          errors?.utms?.[index]?.utm_source ? "error" : ""
                         }, ${styles.input_style}`}
                       />
                       <input
@@ -139,7 +139,7 @@ export const CreateUTM = () => {
                           pattern: /[a-z]/i,
                         })}
                         className={`${
-                          errors?.utms?.[index]?.utm_medium ? 'error' : ''
+                          errors?.utms?.[index]?.utm_medium ? "error" : ""
                         }, ${styles.input_style}`}
                       />
                       <input
@@ -151,8 +151,8 @@ export const CreateUTM = () => {
                         )}
                         className={`${
                           errors?.utms?.[index]?.utm_campaign_name
-                            ? 'error'
-                            : ''
+                            ? "error"
+                            : ""
                         }, ${styles.input_style}`}
                       />
                       <input
@@ -160,7 +160,7 @@ export const CreateUTM = () => {
                         // placeholder="utm_term"
                         {...register(`utms.${index}.utm_term` as const, {})}
                         className={`${
-                          errors?.utms?.[index]?.utm_url ? 'error' : ''
+                          errors?.utms?.[index]?.utm_url ? "error" : ""
                         }, ${styles.input_style}`}
                       />
 
@@ -169,7 +169,7 @@ export const CreateUTM = () => {
                         // placeholder="utm_campaign_content"
                         {...register(`utms.${index}.utm_content` as const)}
                         className={`${
-                          errors?.utms?.[index]?.utm_content ? 'error' : ''
+                          errors?.utms?.[index]?.utm_content ? "error" : ""
                         }, ${styles.input_style}`}
                       />
                       <textarea
@@ -195,7 +195,7 @@ export const CreateUTM = () => {
                             alt="리스트 삭제"
                             onError={() => {
                               console.log(
-                                '리스트 빼기 이미지를 불러올 수 없습니다.'
+                                "리스트 빼기 이미지를 불러올 수 없습니다."
                               );
                             }}
                           />
@@ -219,7 +219,7 @@ export const CreateUTM = () => {
               src={plus}
               alt="추가하기"
               onError={() => {
-                console.log('추가버튼 이미지를 불러오지 못했습니다.');
+                console.log("추가버튼 이미지를 불러오지 못했습니다.");
               }}
             />
           </button>
