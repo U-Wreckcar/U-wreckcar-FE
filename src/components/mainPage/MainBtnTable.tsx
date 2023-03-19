@@ -8,7 +8,6 @@ import React, {
   useRef,
 } from 'react';
 import { MainTableType } from './TableData';
-import { useGetUtm } from 'util/hooks/useAsync';
 import { getUTMs } from 'util/async/api';
 import { CopyButton } from '../../shared/button/CopyButton';
 import Tooltip from '@mui/material/Tooltip';
@@ -107,10 +106,19 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [delLength, setDelLength] = useState<Array<MainTableType>>([]);
   const [plus, setPlus] = useState(false);
   const [filter, setFilter] = useState(false);
+
   const [inputValue, setInputValue] = useState('');
-  // useEffect(() => {
-  //   setData(getUTMRes.data);
-  // }, [getUTMRes]);
+
+  const getList = async () => {
+    const res = await getUTMs;
+    console.log(res);
+    setData(res.data);
+  };
+
+  useEffect(() => {
+    getList();
+  }, []);
+
   const customStyles = {
     content: {
       top: '50%',

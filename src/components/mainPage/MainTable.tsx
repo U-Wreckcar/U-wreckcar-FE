@@ -8,7 +8,6 @@ import React, {
   useImperativeHandle,
 } from 'react';
 import { MainTableType } from './TableData';
-import { useGetUtm } from 'util/hooks/useAsync';
 import { getUTMs } from 'util/async/api';
 import Tooltip from '@mui/material/Tooltip';
 import { MainTableProps } from './MainBtnTable';
@@ -97,29 +96,32 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [del, setDel] = useState(false);
   const [delLength, setDelLength] = useState<Array<MainTableType>>([]);
   const [inputValue, setInputValue] = useState('');
-  //const getUTMRes = useGetUtm(getUTMs);
   const [columnResizeMode, setColumnResizeMode] =
     useState<ColumnResizeMode>('onChange');
   const [removeModal, setRemoveModal] = useState(false);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
-
   const [plus, setPlus] = useState(false);
   const [filter, setFilter] = useState(false);
 
-  // useEffect(() => {
-  //   if (defaultData.length === 0) {
-  //     console.log(getUTMRes);
-  //     // setData(getUTMRes.data);
-  //   }
-  // }, [getUTMRes]);
+  const getList = async () => {
+    const res = await getUTMs;
+    console.log(res);
+    setData(res.data);
+  };
 
-  // useEffect(() => {
-  //   if (defaultData.length !== 0) {
-  //     setData(defaultData);
-  //   }
-  // }, [defaultData]);
+  useEffect(() => {
+    if (defaultData.length === 0) {
+      getList();
+    }
+  }, [defaultData]);
+
+  useEffect(() => {
+    if (defaultData.length !== 0) {
+      setData(defaultData);
+    }
+  }, [defaultData]);
 
   const customStyles = {
     content: {
@@ -304,10 +306,6 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
       setOutputLength(id);
     }
   };
-  const onCookie = async () => {
-    const res = await Axios.get('https://uwreckcar-api.site/api/utms');
-    console.log('쿠키', res);
-  };
 
   return (
     <div>
@@ -318,7 +316,6 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
             <h4>{data.length}개의 UTM이 쌓여 있어요!</h4>
           </div>
           <div className={styles.buttons_box}>
-            <button onClick={onCookie}>연석님 🍪</button>
             <button
               className={styles.data_btn}
               onClick={() => setSummary(false)}
@@ -526,7 +523,7 @@ function Filter({
   const [isOpen, setIsOpen] = useState(false);
 
   let data: Array<MainTableType> = [];
-  instance('/utms').then((result) => (data = result.data));
+  getUTMs.then((result) => (data = result.data));
 
   function getDatesStartToLast(startDate: any, lastDate: any) {
     const regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
