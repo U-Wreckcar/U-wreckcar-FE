@@ -25,8 +25,10 @@ type UTMsType = {
     utm_memo?: string | null;
   }[];
 };
-
-export const CreateUTM = () => {
+type PropsType = {
+  setResUTM: any;
+};
+export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
   const id = nanoid();
   const [memoText, setMemoText] = useState("");
   const {
@@ -81,6 +83,7 @@ export const CreateUTM = () => {
 
   const onSubmit = async (data: UTMsType) => {
     const res = await postUTMs(data);
+    setResUTM(res);
     console.log(res);
   };
   useEffect(() => {}, [memoText]);
@@ -147,7 +150,7 @@ export const CreateUTM = () => {
                         // placeholder="utm_campaign_name"
                         {...register(
                           `utms.${index}.utm_campaign_name` as const,
-                          {}
+                          { required: true }
                         )}
                         className={`${
                           errors?.utms?.[index]?.utm_campaign_name
