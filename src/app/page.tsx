@@ -74,7 +74,7 @@ export default function Home() {
               <p>UTM 업무 1시간? 유렉카에서는 3분이면 OK</p>
             </div>
             <Link href={"/login"}>
-              <button>무료로 시작하기</button>
+              <button id="free_btn">무료로 시작하기</button>
             </Link>
           </article>
         </section>
@@ -196,6 +196,7 @@ export default function Home() {
             />
             <Link href={"/login"}>
               <Image
+                id="start_btn"
                 className={styles.seven_button_img}
                 src={seven_button}
                 alt="img"

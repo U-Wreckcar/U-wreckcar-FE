@@ -297,7 +297,11 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
             >
               데이터 상세보기
             </button>
-            <button className={styles.button} onClick={onClickPopBtn}>
+            <button
+              id="export_btn"
+              className={styles.button}
+              onClick={onClickPopBtn}
+            >
               추출하기
             </button>
             <OutputModal

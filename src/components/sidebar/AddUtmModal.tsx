@@ -1,8 +1,8 @@
-'use client';
-import React from 'react';
-import ReactModal from 'react-modal';
-import styles from './AddUtmModal.module.css';
-import { useForm } from 'react-hook-form';
+"use client";
+import React from "react";
+import ReactModal from "react-modal";
+import styles from "./AddUtmModal.module.css";
+import { useForm } from "react-hook-form";
 
 export type ModalType = {
   isOpen: boolean;
@@ -26,7 +26,7 @@ export const AddUtmModal: React.FC<ModalType> = ({
     formState: { errors, isDirty, isSubmitting },
     handleSubmit,
     getValues,
-  } = useForm({ criteriaMode: 'all', mode: 'onChange' });
+  } = useForm({ criteriaMode: "all", mode: "onChange" });
 
   const onSubmit = (data: AddUTMType) => {
     console.log(data);
@@ -49,7 +49,7 @@ export const AddUtmModal: React.FC<ModalType> = ({
             <input
               className={styles.modal_input}
               placeholder="UTM을 입력하세요."
-              {...register('utm_url', {
+              {...register("utm_url", {
                 required: true,
               })}
             ></input>
@@ -60,7 +60,7 @@ export const AddUtmModal: React.FC<ModalType> = ({
               <input
                 className={styles.modal_input_date}
                 type="date"
-                {...register('created_at', {
+                {...register("created_at", {
                   required: true,
                 })}
               />
@@ -70,13 +70,14 @@ export const AddUtmModal: React.FC<ModalType> = ({
               <input
                 className={styles.modal_input_memo}
                 placeholder="메모를 입력하세요."
-                {...register('memo', {
+                {...register("memo", {
                   required: true,
                 })}
               />
             </label>
           </div>
           <button
+            id="add_btn"
             type="submit"
             disabled={isSubmitting}
             className={styles.add_button}
