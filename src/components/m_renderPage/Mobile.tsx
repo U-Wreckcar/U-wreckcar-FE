@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import styles from './mobile.module.css';
-import sectionseven from 'assets/sectionseven.png';
-import Image from 'next/image';
+import React, { useEffect, useState } from "react";
+import styles from "./mobile.module.css";
+import sectionseven from "assets/sectionseven.png";
+import Image from "next/image";
 
-import section_one_main from 'assets/illust main.png';
-import section_two_left_ns from 'assets/section_two_left_ns.png';
-import section_two_right_ns from 'assets/section_two_right_ns.png';
-import section_one_two from 'assets/section_one_two.png';
-import six_one from 'assets/six.gif';
-import seven_img from 'assets/m_seven_img.png';
-import create from 'assets/gif/create.gif';
-import f_search from 'assets/gif/f_search.gif';
-import out from 'assets/gif/out.gif';
-import r_kakao from 'assets/r_kakao.png';
-import r_naver from 'assets/r_naver.png';
-import r_google from 'assets/r_google.png';
-import copyright from 'assets/copyright.png';
-import seven_button from 'assets/m_seven_button.png';
-import Link from 'next/link';
+import section_one_main from "assets/illust main.png";
+import section_two_left_ns from "assets/section_two_left_ns.png";
+import section_two_right_ns from "assets/section_two_right_ns.png";
+import section_one_two from "assets/section_one_two.png";
+import six_one from "assets/six.gif";
+import seven_img from "assets/m_seven_img.png";
+import create from "assets/gif/create.gif";
+import f_search from "assets/gif/f_search.gif";
+import out from "assets/gif/out.gif";
+import r_kakao from "assets/r_kakao.png";
+import r_naver from "assets/r_naver.png";
+import r_google from "assets/r_google.png";
+import copyright from "assets/copyright.png";
+import seven_button from "assets/m_seven_button.png";
+import Link from "next/link";
 
 export default function Mobile() {
-  const texts = ['복잡한', '귀찮은', '어려운'];
+  const texts = ["복잡한", "귀찮은", "어려운"];
   const [text, setText] = useState(texts);
   const [index, setIndex] = useState(0);
 
@@ -31,6 +31,30 @@ export default function Mobile() {
 
     return () => clearInterval(intervalText);
   }, []);
+
+  const onClickKakao = () => {
+    window.location.href = "https://open.kakao.com/o/sbK3Rfaf";
+  };
+
+  const onClickLaw = () => {
+    window.location.href =
+      "https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e";
+  };
+
+  const onClickUse = () => {
+    window.location.href =
+      "https://unexpected-ceder-0b7.notion.site/c83db210e0574b3b90329f5cc46caf28";
+  };
+
+  const onClickNoti = () => {
+    window.location.href =
+      "https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492";
+  };
+
+  const onClickGuide = () => {
+    window.location.href =
+      "https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3";
+  };
   return (
     <div>
       <div className={styles.container}>
@@ -42,7 +66,7 @@ export default function Mobile() {
               <p>UTM 업무 1시간? 유렉카에서는 3분이면 OK</p>
             </div>
             <Image alt="main" src={section_one_main} />
-            <Link href={'/login'}>
+            <Link href={"/webonly"}>
               <button>무료로 시작하기</button>
             </Link>
           </article>
@@ -153,7 +177,9 @@ export default function Mobile() {
               <p>UTM 코드를 심은 URL을 짧고 간편하게 공유해보세요!</p>
             </div> */}
           </article>
-          <button>더 많은 기능 보러가기</button>
+          <Link href={"/webonly"}>
+            <button>더 많은 기능 보러가기</button>
+          </Link>
         </section>
         <section className={styles.section_seven}>
           <article>
@@ -163,7 +189,7 @@ export default function Mobile() {
               src={seven_img}
               alt="Img"
             />
-            <Link href={'/login'}>
+            <Link href={"/webonly"}>
               <Image
                 className={styles.seven_button_img}
                 src={seven_button}
@@ -177,18 +203,18 @@ export default function Mobile() {
             <div className={styles.e_cards}>
               <h4>Contact Us</h4>
               <p>Uwreckcar@gmail.com</p>
-              <p>카카오톡 문의하기</p>
+              <p onClick={onClickKakao}>카카오톡 문의하기</p>
             </div>
             <div className={styles.e_cards}>
               <h4>About 유렉카</h4>
-              <p>공지사항 </p>
-              <p>이용 가이드</p>
+              <p onClick={onClickNoti}>공지사항 </p>
+              <p onClick={onClickGuide}>이용 가이드</p>
               <div className={styles.button_box}></div>
             </div>
             <div className={styles.e_cards}>
               <h4>Privacy & Terms</h4>
-              <p>개인정보처리방침 </p>
-              <p>이용약관</p>
+              <p onClick={onClickLaw}>개인정보처리방침 </p>
+              <p onClick={onClickUse}>이용약관</p>
             </div>
           </article>
           <div className={styles.e_line}>
