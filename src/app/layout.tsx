@@ -32,7 +32,7 @@ export default function RootLayout({
   // const router = useRouter();
 
   return (
-    <html lang="kr">
+    <html lang="en">
       <body>
         <SideNav />
         <div>

@@ -79,9 +79,7 @@ export const CreateUTM = () => {
     setMemoText(textareaValue);
   };
 
-
   const onSubmit = async (data: UTMsType) => {
-    console.log(data);
     const res = await postUTMs(data);
     console.log(res);
 
