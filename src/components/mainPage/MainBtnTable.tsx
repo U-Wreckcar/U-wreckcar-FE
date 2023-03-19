@@ -479,14 +479,16 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             ></CopyButton>
                           )}
                           {cell.column.id === "utm_url" && (
-                            <Tooltip title={`${cell.getValue()}`}>
-                              <button
-                                className={styles.url_button}
-                                onClick={() => moveUrl(`${cell.getValue()}`)}
-                              >
-                                url 연결
-                              </button>
-                            </Tooltip>
+                            <Link href={`${cell.getValue()}`}>
+                              <Tooltip title={`${cell.getValue()}`}>
+                                <button
+                                  className={styles.url_button}
+                                  //onClick={() => moveUrl(`${cell.getValue()}`)}
+                                >
+                                  url 연결
+                                </button>
+                              </Tooltip>
+                            </Link>
                           )}
 
                           {cell.column.id === "utm_memo" && (
