@@ -49,6 +49,7 @@ import filterImg from "assets/filter.png";
 import { EditModal } from "./MainMemoModal";
 import { style } from "@mui/system";
 import { usePathname, useSearchParams } from "next/navigation";
+import Link from "next/link";
 declare module "@tanstack/table-core" {
   interface FilterFns {
     fuzzy: FilterFn<unknown>;
@@ -107,17 +108,19 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [plus, setPlus] = useState(false);
   const [filter, setFilter] = useState(false);
 
-  useEffect(() => {
-    const res = getUTMs();
-    console.log("mainTable getUTM", res);
+  const getData = async () => {
+    const res = await getUTMs();
+    setData(res.data);
+  };
 
+  useEffect(() => {
     if (defaultData.length === 0) {
-      // setData(getUTMRes.data);
+      getData();
     }
   }, []);
 
-
   useEffect(() => {
+    getData();
     if (defaultData.length !== 0) {
       setData(defaultData);
     }
@@ -322,7 +325,11 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
             >
               데이터 요약보기
             </button>
-            <button className={styles.button} onClick={onClickPopBtn}>
+            <button
+              id="export_btn"
+              className={styles.button}
+              onClick={onClickPopBtn}
+            >
               추출하기
             </button>
             <OutputModal
@@ -467,6 +474,14 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
               ))}
             </thead>
             <tbody>
+              {data.length === 0 && (
+                <div className={styles.no_data}>
+                  <p>등록된 UTM이 없어요.</p>
+                  <Link href={"/createutm"}>
+                    <button>UTM 생성하기</button>
+                  </Link>
+                </div>
+              )}
               {table.getRowModel().rows.map((row) => {
                 return (
                   <tr key={row.id}>
@@ -531,7 +546,7 @@ function Filter({
 
   let data: Array<MainTableType> = [];
 
-  // getUTMs.then((result) => (data = result.data));
+  getUTMs().then((result) => (data = result.data));
 
   function getDatesStartToLast(startDate: any, lastDate: any) {
     const regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);

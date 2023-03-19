@@ -461,3 +461,28 @@
   resize: none;
   line-height: 1;
 }
+
+.no_data{
+  width: 100vw;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.no_data p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #A5A5A5;
+}
+
+.no_data button {
+margin-top: 13px;
+background-color: #fff;
+border: 1px solid #484bff;
+border-radius: 4px;
+color: #484bff;
+padding: 8px;
+}

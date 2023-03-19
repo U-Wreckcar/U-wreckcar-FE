@@ -1,16 +1,14 @@
-import React from 'react';
-import { CopyButton } from 'shared/button/CopyButton';
-import styles from './CreateCopyBox.module.css';
-import b_link from 'assets/b_link.png';
-import Image from 'next/image';
-import { CreateCopyButton } from './CreateCopyButton';
-export const CreateCopyBox = () => {
-  const arr = [
-    {
-      full: 'https://shop.com.kehop.com.kehop.com.ke',
-      short: 'https://shop.com.ke',
-    },
-  ];
+import React from "react";
+import { CopyButton } from "shared/button/CopyButton";
+import styles from "./CreateCopyBox.module.css";
+import b_link from "assets/b_link.png";
+import Image from "next/image";
+import { CreateCopyButton } from "./CreateCopyButton";
+
+type PropsType = {
+  resUTM: any;
+};
+export const CreateCopyBox: React.FC<PropsType> = ({ resUTM }) => {
   return (
     <div className={styles.container_copy_box}>
       <div className={styles.copy_title}>
@@ -24,24 +22,24 @@ export const CreateCopyBox = () => {
         <h3 className={styles.utm_shorten_url}>Shorten URL</h3>
       </div>
       <div>
-        {arr.map((i, idx) => (
-          <div key={idx}>
+        {resUTM?.map((i: any, idx: number) => (
+          <div key={i.utm_id}>
             <div className={styles.list_box}>
               <div className={styles.copy_box_number}>{idx + 1}</div>
               <div className={styles.full_box}>
                 <div className={styles.copy_box_full}>
                   <div className={styles.full_utm}>
-                    <div className={styles.text_full}>{i.full}</div>
+                    <div className={styles.text_full}>{i.full_url}</div>
                   </div>
-                  <CreateCopyButton text={i.full} />
+                  <CreateCopyButton text={i.full_url} />
                 </div>
               </div>
               <div className={styles.short_box}>
                 <div className={styles.copy_box_short}>
                   <div className={styles.short_utm}>
-                    <div className={styles.text_full}>{i.short}</div>
+                    <div className={styles.text_full}>{i.shorten_url}</div>
                   </div>
-                  <CreateCopyButton text={i.short} />
+                  <CreateCopyButton text={i.shorten_url} />
                 </div>
               </div>
             </div>

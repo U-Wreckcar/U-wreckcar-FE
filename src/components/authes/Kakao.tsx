@@ -1,10 +1,8 @@
-
-'use client';
-import { setCookie } from '@/util/async/Cookie';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-
+"use client";
+import { setCookie } from "@/util/async/Cookie";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const KakaoCallback = () => {
   const router = useRouter();
@@ -24,26 +22,14 @@ const KakaoCallback = () => {
           "Content-Type": "application/json",
         },
       })
-
-
         .then(async (response) => {
           const res = await response.json();
           // console.log('json', response.json());
-          console.log('1', res);
-          setCookie('access_token', res.access_token);
-          setCookie('refresh_token', res.refresh_token);
+          console.log("1", res);
+          setCookie("access_token", res.access_token);
+          setCookie("refresh_token", res.refresh_token);
         })
-        .then(() => router.push('/main'))
-
-        // .then(({ access_token, refresh_token }) => {
-        //   // 쿠키에 토큰을 저장하거나 필요한 작업 수행
-        //   document.cookie = `access_token=${access_token}; secure=false;`;
-        //   document.cookie = `refresh_token=${refresh_token}; secure=false;`;
-        //   console.log('access_token', access_token);
-        //   console.log('refresh_token', refresh_token);
-        //   // 메인 페이지로 리다이렉션
-        //   router.push('/main');
-        // })
+        .then(() => router.push("/main"))
         .catch((error) => {
           // 에러 처리
           console.error(error);
