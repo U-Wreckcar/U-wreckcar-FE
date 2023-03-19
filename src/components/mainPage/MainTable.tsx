@@ -6,7 +6,6 @@ import React, {
   useState,
   useRef,
   useImperativeHandle,
-
 } from "react";
 import { MainTableType } from "./TableData";
 import { useGetUtm } from "util/hooks/useAsync";
@@ -38,20 +37,19 @@ import {
   RankingInfo,
   rankItem,
   compareItems,
-
-} from '@tanstack/match-sorter-utils';
-import styles from './main.module.css';
-import instance from 'util/async/axiosConfig';
-import { OutputModal } from './OutputModal';
-import { DeleteModal } from './DeleteModal';
-import { AddUtmModal } from '../sidebar/AddUtmModal';
-import Image from 'next/image';
-import plusImg from 'assets/plus.png';
-import filterImg from 'assets/filter.png';
-import { EditModal } from './MainMemoModal';
-import { style } from '@mui/system';
-import { usePathname, useSearchParams } from 'next/navigation';
-declare module '@tanstack/table-core' {
+} from "@tanstack/match-sorter-utils";
+import styles from "./main.module.css";
+import instance from "util/async/axiosConfig";
+import { OutputModal } from "./OutputModal";
+import { DeleteModal } from "./DeleteModal";
+import { AddUtmModal } from "../sidebar/AddUtmModal";
+import Image from "next/image";
+import plusImg from "assets/plus.png";
+import filterImg from "assets/filter.png";
+import { EditModal } from "./MainMemoModal";
+import { style } from "@mui/system";
+import { usePathname, useSearchParams } from "next/navigation";
+declare module "@tanstack/table-core" {
   interface FilterFns {
     fuzzy: FilterFn<unknown>;
   }
@@ -99,7 +97,6 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [delLength, setDelLength] = useState<Array<MainTableType>>([]);
 
   const [inputValue, setInputValue] = useState("");
-  
 
   const [columnResizeMode, setColumnResizeMode] =
     useState<ColumnResizeMode>("onChange");
@@ -312,7 +309,6 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     }
   };
 
-
   return (
     <div>
       <div className={styles.container}>
@@ -408,11 +404,10 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             <div
                               className={styles.btn_input_Box}
                               {...{
-
                                 style: {
-                                  height: '50px',
-                                  display: 'flex',
-                                  alignItems: 'center',
+                                  height: "50px",
+                                  display: "flex",
+                                  alignItems: "center",
                                 },
                                 // className: header.column.getCanSort()
                                 //   ? 'cursor-pointer select-none'
@@ -427,7 +422,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 header.getContext()
                               )}
                             </div>
-                            {filter && header.column.id !== 'select' && (
+                            {filter && header.column.id !== "select" && (
                               <th
                                 className={styles.filter_box}
                                 {...{
@@ -437,7 +432,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 }}
                               >
                                 {header.column.getCanFilter() &&
-                                header.column.id !== 'select' ? (
+                                header.column.id !== "select" ? (
                                   <Filter
                                     column={header.column}
                                     table={table}
@@ -539,7 +534,6 @@ function Filter({
   let data: Array<MainTableType> = [];
 
   getUTMs.then((result) => (data = result.data));
-
 
   function getDatesStartToLast(startDate: any, lastDate: any) {
     const regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
