@@ -1,8 +1,10 @@
+
 'use client';
 import { setCookie } from '@/util/async/Cookie';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+
 
 const KakaoCallback = () => {
   const router = useRouter();
@@ -10,18 +12,19 @@ const KakaoCallback = () => {
   console.log(router);
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    console.log('urlParams', urlParams);
-    const code = urlParams.get('code');
-    console.log('code', code);
+    console.log("urlParams", urlParams);
+    const code = urlParams.get("code");
+    console.log("code", code);
 
     if (code) {
       // 백엔드 서버에 액세스 토큰과 리프레시 토큰을 요청합니다.
-      fetch(`${process.env.NEXT_PUBLIC_API}/auth/kakao/callback?code=${code}`, {
-        method: 'GET',
+      fetch(`${process.env.NEXT_PUBLIC_API}auth/kakao/callback?code=${code}`, {
+        method: "GET",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       })
+
 
         .then(async (response) => {
           const res = await response.json();
@@ -29,7 +32,6 @@ const KakaoCallback = () => {
           console.log('1', res);
           setCookie('access_token', res.access_token);
           setCookie('refresh_token', res.refresh_token);
-
         })
         .then(() => router.push('/main'))
 
