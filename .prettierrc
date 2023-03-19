@@ -1,7 +1,7 @@
 {
   "printWidth": 80,
   "tapWidth": 2,
-  "singleQuote": true,
+
   "arrowParens": "always",
   "trailingComma": "es5",
   "endOfLine": "lf",

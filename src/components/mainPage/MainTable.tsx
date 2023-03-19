@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React, {
   HTMLProps,
   useMemo,
@@ -6,11 +6,14 @@ import React, {
   useState,
   useRef,
   useImperativeHandle,
-} from 'react';
-import { MainTableType } from './TableData';
-import { getUTMs } from 'util/async/api';
-import Tooltip from '@mui/material/Tooltip';
-import { MainTableProps } from './MainBtnTable';
+
+} from "react";
+import { MainTableType } from "./TableData";
+import { useGetUtm } from "util/hooks/useAsync";
+import { getUTMs } from "util/async/api";
+import Tooltip from "@mui/material/Tooltip";
+import { MainTableProps } from "./MainBtnTable";
+
 import {
   Table,
   Column,
@@ -29,12 +32,13 @@ import {
   FilterFn,
   SortingFn,
   FilterFns,
-} from '@tanstack/react-table';
+} from "@tanstack/react-table";
 
 import {
   RankingInfo,
   rankItem,
   compareItems,
+
 } from '@tanstack/match-sorter-utils';
 import styles from './main.module.css';
 import instance from 'util/async/axiosConfig';
@@ -88,15 +92,18 @@ let defaultData: Array<MainTableType> = [];
 export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [rowSelection, setRowSelection] = useState({});
   const [data, setData] = useState<Array<MainTableType>>([]);
-  const [target, setTarget] = useState('');
+  const [target, setTarget] = useState("");
   const [show, setShow] = useState(false);
   const [output, setOutput] = useState(false);
   const [outputLength, setOutputLength] = useState<Array<MainTableType>>([]);
   const [del, setDel] = useState(false);
   const [delLength, setDelLength] = useState<Array<MainTableType>>([]);
-  const [inputValue, setInputValue] = useState('');
+
+  const [inputValue, setInputValue] = useState("");
+  
+
   const [columnResizeMode, setColumnResizeMode] =
-    useState<ColumnResizeMode>('onChange');
+    useState<ColumnResizeMode>("onChange");
   const [removeModal, setRemoveModal] = useState(false);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -124,22 +131,22 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
   const customStyles = {
     content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
       padding: 0,
     },
     overlay: {
-      background: '#ffffff7f',
+      background: "#ffffff7f",
     },
   };
   const columns = useMemo<ColumnDef<MainTableType>[]>(
     () => [
       {
-        id: 'select',
+        id: "select",
         header: ({ table }) => (
           <IndeterminateCheckbox
             {...{
@@ -163,89 +170,89 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         ),
       },
       {
-        header: '생성일자',
-        id: 'created_at',
-        accessorKey: 'created_at',
+        header: "생성일자",
+        id: "created_at",
+        accessorKey: "created_at",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 80,
       },
       {
-        header: 'URL',
-        id: 'utm_url',
-        accessorKey: 'utm_url',
+        header: "URL",
+        id: "utm_url",
+        accessorKey: "utm_url",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 150,
       },
       {
-        header: '캠페인 ID',
-        id: 'utm_campaign_id',
-        accessorKey: 'utm_campaign_id',
+        header: "캠페인 ID",
+        id: "utm_campaign_id",
+        accessorKey: "utm_campaign_id",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 150,
       },
       {
-        header: '소스',
-        id: 'utm_source',
-        accessorKey: 'utm_source',
+        header: "소스",
+        id: "utm_source",
+        accessorKey: "utm_source",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 110,
       },
       {
-        header: '미디움',
-        id: 'utm_medium',
-        accessorKey: 'utm_medium',
+        header: "미디움",
+        id: "utm_medium",
+        accessorKey: "utm_medium",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 110,
       },
       {
-        header: '캠페인 이름',
-        id: 'utm_campaign_name',
-        accessorKey: 'utm_campaign_name',
+        header: "캠페인 이름",
+        id: "utm_campaign_name",
+        accessorKey: "utm_campaign_name",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 260,
       },
       {
-        header: '캠페인 텀',
-        id: 'utm_term',
-        accessorKey: 'utm_term',
+        header: "캠페인 텀",
+        id: "utm_term",
+        accessorKey: "utm_term",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 110,
       },
       {
-        header: '캠페인 콘텐츠',
-        id: 'utm_content',
-        accessorKey: 'utm_content',
+        header: "캠페인 콘텐츠",
+        id: "utm_content",
+        accessorKey: "utm_content",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 110,
       },
       {
-        header: '메모',
-        id: 'utm_memo',
-        accessorKey: 'utm_memo',
+        header: "메모",
+        id: "utm_memo",
+        accessorKey: "utm_memo",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 150,
       },
       {
-        header: 'UTM',
-        id: 'full_url',
-        accessorKey: 'full_url',
+        header: "UTM",
+        id: "full_url",
+        accessorKey: "full_url",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 150,
       },
       {
-        header: 'Shorten URL',
-        id: 'shorten_url',
-        accessorKey: 'shorten_url',
+        header: "Shorten URL",
+        id: "shorten_url",
+        accessorKey: "shorten_url",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 100,
@@ -286,7 +293,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     let id: Array<MainTableType> = [];
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original));
     if (id.length === 0) {
-      alert('삭제할 데이터를 선택해주세요');
+      alert("삭제할 데이터를 선택해주세요");
     } else {
       setDel(true);
       setDelLength(id);
@@ -298,13 +305,14 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     let id: Array<MainTableType> = [];
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original));
     if (id.length === 0) {
-      alert('추출할 데이터를 선택해주세요');
+      alert("추출할 데이터를 선택해주세요");
     } else {
       console.log(id);
       setOutput(true);
       setOutputLength(id);
     }
   };
+
 
   return (
     <div>
@@ -390,7 +398,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           colSpan: header.colSpan,
                           style: {
                             width:
-                              header.column.id === 'select'
+                              header.column.id === "select"
                                 ? 80
                                 : header.getSize(),
                           },
@@ -401,6 +409,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             <div
                               className={styles.btn_input_Box}
                               {...{
+
                                 style: {
                                   height: '50px',
                                   display: 'flex',
@@ -409,6 +418,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 // className: header.column.getCanSort()
                                 //   ? 'cursor-pointer select-none'
                                 //   : '',
+
                                 onClick:
                                   header.column.getToggleSortingHandler(),
                               }}
@@ -423,7 +433,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 className={styles.filter_box}
                                 {...{
                                   style: {
-                                    width: '280px',
+                                    width: "280px",
                                   },
                                 }}
                               >
@@ -475,14 +485,14 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           {...{
                             style: {
                               width:
-                                cell.column.id === 'select'
+                                cell.column.id === "select"
                                   ? 80
                                   : cell.column.getSize(),
                             },
                           }}
                         >
-                          {cell.column.id === 'utm_memo' && (
-                            <Tooltip title={'메모 수정하기'}>
+                          {cell.column.id === "utm_memo" && (
+                            <Tooltip title={"메모 수정하기"}>
                               <div
                                 id={cell.id}
                                 onClick={(e: any) => {
@@ -493,7 +503,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               >{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
-                          {cell.column.id !== 'utm_memo' &&
+                          {cell.column.id !== "utm_memo" &&
                             flexRender(
                               cell.column.columnDef.cell,
                               cell.getContext()
@@ -528,17 +538,19 @@ function Filter({
   const [isOpen, setIsOpen] = useState(false);
 
   let data: Array<MainTableType> = [];
+
   getUTMs.then((result) => (data = result.data));
+
 
   function getDatesStartToLast(startDate: any, lastDate: any) {
     const regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
     if (!(regex.test(startDate) && regex.test(lastDate)))
-      return 'Not Date Format';
+      return "Not Date Format";
     let result: (string | number | Date)[] = [];
     const curDate = new Date(startDate);
     while (curDate <= new Date(lastDate)) {
       result.push(
-        curDate.toISOString().split('T')[0].toString().replace(/-/g, '.')
+        curDate.toISOString().split("T")[0].toString().replace(/-/g, ".")
       );
       curDate.setDate(curDate.getDate() + 1);
     }
@@ -549,7 +561,7 @@ function Filter({
   }
   const sortedUniqueValues = React.useMemo(
     () =>
-      typeof firstValue === 'number'
+      typeof firstValue === "number"
         ? []
         : Array.from(column.getFacetedUniqueValues().keys()).sort(),
     [column.getFacetedUniqueValues()]
@@ -557,24 +569,24 @@ function Filter({
 
   return (
     <>
-      {column.id === 'created_at' && (
+      {column.id === "created_at" && (
         <>
           {isOpen && (
             <div className={styles.dialog}>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <div style={{ display: "flex", flexDirection: "column" }}>
                 <DebouncedInput
                   type="date"
-                  value={(columnFilterValue ?? '') as string}
+                  value={(columnFilterValue ?? "") as string}
                   onChange={(value) => {
                     setStartDate(value);
                   }}
-                  list={column.id + 'list'}
+                  list={column.id + "list"}
                 />
                 <DebouncedInput
                   type="date"
-                  value={(columnFilterValue ?? '') as string}
+                  value={(columnFilterValue ?? "") as string}
                   onChange={(value) => getDatesStartToLast(startDate, value)}
-                  list={column.id + 'list'}
+                  list={column.id + "list"}
                 />
                 <button
                   className={styles.dialog_button}
@@ -593,9 +605,9 @@ function Filter({
           ></input>
         </>
       )}
-      {column.id !== 'created_at' && (
+      {column.id !== "created_at" && (
         <>
-          <datalist id={column.id + 'list'}>
+          <datalist id={column.id + "list"}>
             {sortedUniqueValues.slice(0, 5000).map((value: any) => (
               <option value={value} key={value} />
             ))}
@@ -603,7 +615,7 @@ function Filter({
           <DebouncedInput
             className={styles.search_input}
             type="text"
-            value={(columnFilterValue ?? '') as string}
+            value={(columnFilterValue ?? "") as string}
             onChange={(value) => column.setFilterValue(value)}
             placeholder={`검색 (${column.getFacetedUniqueValues().size})`}
           />
@@ -623,7 +635,7 @@ function DebouncedInput({
   value: string | number;
   onChange: (value: string | number) => void;
   debounce?: number;
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>) {
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange">) {
   const [value, setValue] = React.useState(initialValue);
 
   React.useEffect(() => {
@@ -648,13 +660,13 @@ function DebouncedInput({
 }
 function IndeterminateCheckbox({
   indeterminate,
-  className = '',
+  className = "",
   ...rest
 }: { indeterminate?: boolean } & HTMLProps<HTMLInputElement>) {
   const ref = useRef<HTMLInputElement>(null!);
 
   useEffect(() => {
-    if (typeof indeterminate === 'boolean') {
+    if (typeof indeterminate === "boolean") {
       ref.current.indeterminate = !rest.checked && indeterminate;
     }
   }, [ref, indeterminate]);
@@ -663,7 +675,7 @@ function IndeterminateCheckbox({
     <input
       type="checkbox"
       ref={ref}
-      className={className + ' cursor-pointer'}
+      className={className + " cursor-pointer"}
       {...rest}
     />
   );
