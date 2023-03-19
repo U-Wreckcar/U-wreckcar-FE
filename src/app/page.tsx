@@ -20,6 +20,7 @@ import r_google from 'assets/r_google.png';
 import copyright from 'assets/copyright.png';
 import seven_button from 'assets/seven_button.png';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 export default function Home() {
   const texts = ['복잡한', '귀찮은', '어려운'];
   const [text, setText] = useState(texts);
@@ -32,6 +33,36 @@ export default function Home() {
 
     return () => clearInterval(intervalText);
   }, []);
+
+  useEffect(() => {
+    if (window.innerWidth < 400) {
+      redirect('/c');
+    }
+  }, [window.innerWidth]);
+
+  const onClickKakao = () => {
+    window.location.href = 'https://open.kakao.com/o/sbK3Rfaf';
+  };
+
+  const onClickLaw = () => {
+    window.location.href =
+      'https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e';
+  };
+
+  const onClickUse = () => {
+    window.location.href =
+      'https://unexpected-ceder-0b7.notion.site/c83db210e0574b3b90329f5cc46caf28';
+  };
+
+  const onClickNoti = () => {
+    window.location.href =
+      ' https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492';
+  };
+
+  const onClickGuide = () => {
+    window.location.href =
+      'https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3';
+  };
   return (
     <div>
       <div className={styles.container}>
@@ -132,7 +163,7 @@ export default function Home() {
                 <span>한 번에 만들어보세요</span>
               </h2>
 
-              <p>추가하기 버튼 클릭 한 번으로 간편하게 UTM동시 생성</p>
+              <p>추가하기 버튼 클릭 한 번으로 간편하게 UTM동시 생성!</p>
             </div>
             <div className={styles.six_card_item}>
               <Image src={six_two} alt="IMG" />
@@ -177,18 +208,28 @@ export default function Home() {
             <div className={styles.e_cards}>
               <h4>Contact Us</h4>
               <p>Uwreckcar@gmail.com</p>
-              <p>카카오톡 문의하기</p>
+              <p style={{ cursor: 'pointer' }} onClick={onClickKakao}>
+                카카오톡 문의하기
+              </p>
             </div>
             <div className={styles.e_cards}>
               <h4>About 유렉카</h4>
-              <p>공지사항 </p>
-              <p>이용 가이드</p>
+              <p style={{ cursor: 'pointer' }} onClick={onClickNoti}>
+                공지사항
+              </p>
+              <p style={{ cursor: 'pointer' }} onClick={onClickGuide}>
+                이용 가이드
+              </p>
               <div className={styles.button_box}></div>
             </div>
             <div className={styles.e_cards}>
               <h4>Privacy & Terms</h4>
-              <p>개인정보처리방침 </p>
-              <p>이용약관</p>
+              <p style={{ cursor: 'pointer' }} onClick={onClickLaw}>
+                개인정보처리방침{' '}
+              </p>
+              <p style={{ cursor: 'pointer' }} onClick={onClickUse}>
+                이용약관
+              </p>
             </div>
           </article>
           <div className={styles.e_line}>

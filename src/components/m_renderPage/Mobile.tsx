@@ -8,7 +8,7 @@ import section_two_left_ns from 'assets/section_two_left_ns.png';
 import section_two_right_ns from 'assets/section_two_right_ns.png';
 import section_one_two from 'assets/section_one_two.png';
 import six_one from 'assets/six.gif';
-import seven_img from 'assets/seven_img.png';
+import seven_img from 'assets/m_seven_img.png';
 import create from 'assets/gif/create.gif';
 import f_search from 'assets/gif/f_search.gif';
 import out from 'assets/gif/out.gif';
@@ -16,7 +16,7 @@ import r_kakao from 'assets/r_kakao.png';
 import r_naver from 'assets/r_naver.png';
 import r_google from 'assets/r_google.png';
 import copyright from 'assets/copyright.png';
-import seven_button from 'assets/seven_button.png';
+import seven_button from 'assets/m_seven_button.png';
 import Link from 'next/link';
 
 export default function Mobile() {
