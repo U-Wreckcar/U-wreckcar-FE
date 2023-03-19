@@ -5,7 +5,7 @@ import { CreateCopyBox } from "components/createPage/CreateCopyBox";
 import styles from "./createutm.module.css";
 
 export default function CreateUTMPage() {
-  const [resUTM, setResUTM] = useState();
+  const [resUTM, setResUTM] = useState([]);
   return (
     <div className={styles.create_container}>
       <h1>새 UTM 생성하기</h1>

@@ -12,6 +12,7 @@ import minus from "assets/minus.png";
 import Image from "next/image";
 import { CreateCategory } from "./CreateCategory";
 import { postUTMs } from "@/util/async/api";
+import { Alert } from "@/shared/button/Alert";
 
 type UTMsType = {
   utms: {
@@ -31,6 +32,7 @@ type PropsType = {
 export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
   const id = nanoid();
   const [memoText, setMemoText] = useState("");
+  const [alert, setAlert] = useState(false);
   const {
     handleSubmit,
     register,
@@ -226,11 +228,21 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
               }}
             />
           </button>
+          {alert && (
+            <Alert
+              title={"성공"}
+              contents={"UTM 생성을 성공하셨습니다!"}
+              onClickEvent={setAlert}
+            />
+          )}
           <input
             id="create_btn"
             className={styles.create_button}
             type="submit"
             value="생성하기"
+            onClick={() => {
+              setAlert(true);
+            }}
           />
         </div>
         {/* <FirstNameWatched control={control} /> */}
