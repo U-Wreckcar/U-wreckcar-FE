@@ -56,7 +56,7 @@ export const CreateUTM = () => {
     control,
   });
   const requeirFn = (e: any) => {
-    e.target.value = e.target.value.replace(/[^a-z0-9]/, '');
+    e.target.value = e.target.value.replace(/[^a-z0-9./:]/, '');
     e.target.value = e.target.value.replace({ maxLength: 70 }, '');
   };
   const addList = () => {
@@ -79,12 +79,13 @@ export const CreateUTM = () => {
     setMemoText(textareaValue);
   };
 
+
   const onSubmit = async (data: UTMsType) => {
     console.log(data);
     const res = await postUTMs(data);
     console.log(res);
+
   };
-  // JSON.stringify.(data)
   useEffect(() => {}, [memoText]);
 
   return (
