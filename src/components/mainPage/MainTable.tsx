@@ -8,7 +8,7 @@ import React, {
   useImperativeHandle,
 } from "react";
 import { MainTableType } from "./TableData";
-import { useGetUtm } from "util/hooks/useAsync";
+// import { useGetUtm } from "util/hooks/useAsync";
 import { getUTMs } from "util/async/api";
 import Tooltip from "@mui/material/Tooltip";
 import { MainTableProps } from "./MainBtnTable";
@@ -107,15 +107,15 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [plus, setPlus] = useState(false);
   const [filter, setFilter] = useState(false);
 
-  const getList = async () => {
-    const res = await getUTMs;
-    console.log(res);
-    setData(res.data);
-  };
+  // const getList = async () => {
+  //   const res = await getUTMs;
+  //   console.log(res);
+  //   setData(res.data);
+  // };
 
   useEffect(() => {
     if (defaultData.length === 0) {
-      getList();
+      // getList();
     }
   }, [defaultData]);
 
@@ -533,7 +533,7 @@ function Filter({
 
   let data: Array<MainTableType> = [];
 
-  getUTMs.then((result) => (data = result.data));
+  // getUTMs.then((result) => (data = result.data));
 
   function getDatesStartToLast(startDate: any, lastDate: any) {
     const regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
