@@ -244,7 +244,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
   //url 이동하기
   const moveUrl = (url: string) => {
-    window.open(url, "_blank");
+    window.location.href = url;
   };
 
   //수정하기

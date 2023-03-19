@@ -31,6 +31,7 @@ export const EditModal: React.FC<EditModalType> = ({
     console.log(filter.utm_id);
     console.log(textarea_ref?.current?.value);
     patchUTM({ utm_id: filter.utm_id, utm_memo: textarea_ref?.current?.value });
+    onRequestClose;
   };
 
   return (
