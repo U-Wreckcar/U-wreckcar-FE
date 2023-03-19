@@ -60,7 +60,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
     control,
   });
   const requeirFn = (e: any) => {
-    e.target.value = e.target.value.replace(/[^a-z0-9./:_-;]/, "");
+    e.target.value = e.target.value.replace(/[^a-z0-9./:]/, "");
     e.target.value = e.target.value.replace({ maxLength: 70 }, "");
   };
   const addList = () => {
