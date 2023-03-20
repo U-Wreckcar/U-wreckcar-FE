@@ -48,8 +48,9 @@ import plusImg from "assets/plus.png";
 import filterImg from "assets/filter.png";
 import { EditModal } from "./MainMemoModal";
 import { style } from "@mui/system";
-import { usePathname, useSearchParams } from "next/navigation";
+import { redirect, usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { getCookie } from "@/util/async/Cookie";
 declare module "@tanstack/table-core" {
   interface FilterFns {
     fuzzy: FilterFn<unknown>;
@@ -125,6 +126,14 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
       setData(defaultData);
     }
   }, [defaultData]);
+
+  useEffect(() => {
+    const cookie = getCookie("access_token");
+    console.log(cookie);
+    if (!cookie) {
+      redirect("/login");
+    }
+  }, []);
 
   const customStyles = {
     content: {
@@ -556,7 +565,8 @@ function Filter({
     const curDate = new Date(startDate);
     while (curDate <= new Date(lastDate)) {
       result.push(
-        curDate.toISOString().split("T")[0].toString().replace(/-/g, ".")
+        // curDate.toISOString().split("T")[0].toString().replace(/-/g, ".")
+        curDate.toISOString().split("T")[0].toString()
       );
       curDate.setDate(curDate.getDate() + 1);
     }

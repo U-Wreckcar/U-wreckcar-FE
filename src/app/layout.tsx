@@ -3,6 +3,9 @@ import styles from "./layout.module.css";
 import type { Metadata } from "next";
 import { SideNav } from "@/components/sidebar/SideNav";
 import Header from "@/components/header/Header";
+import Script from "next/script";
+import Head from "next/head";
+
 export const metadata: Metadata = {
   title: 'UTM 카테고라이징 서비스 "유렉카"',
   description:
@@ -17,7 +20,7 @@ export const metadata: Metadata = {
     siteName: "유렉카",
     images: [
       {
-        url: "../../src/assets/ogimg.png",
+        url: "../assets/ogimg.png",
         width: 800,
         height: 600,
       },
@@ -40,6 +43,15 @@ export default function RootLayout({
           {children}
         </div>
       </body>
+
+      <noscript>
+        <iframe
+          src="https://www.googletagmanager.com/ns.html?id=GTM-N6DT5Z8"
+          height="0"
+          width="0"
+          style={{ display: "none" }}
+        ></iframe>
+      </noscript>
     </html>
   );
 }

@@ -46,6 +46,8 @@ import Image from "next/image";
 import plusImg from "assets/plus.png";
 import filterImg from "assets/filter.png";
 import { EditModal } from "./MainMemoModal";
+import { getCookie } from "@/util/async/Cookie";
+import { redirect } from "next/navigation";
 
 export type MainTableProps = {
   setSummary: Dispatch<SetStateAction<boolean>>;
@@ -92,7 +94,6 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [data, setData] = useState<Array<MainTableType>>([]);
   const [show, setShow] = useState(false);
   const [target, setTarget] = useState("");
-  //const getUTMRes = useGetUtm(getUTMs);
   const [columnResizeMode, setColumnResizeMode] =
     useState<ColumnResizeMode>("onChange");
   const [removeModal, setRemoveModal] = useState(false);
@@ -117,6 +118,14 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
   useEffect(() => {
     getData();
+  }, []);
+
+  useEffect(() => {
+    const cookie = getCookie("access_token");
+    console.log(cookie);
+    if (!cookie) {
+      redirect("/login");
+    }
   }, []);
 
   const customStyles = {
