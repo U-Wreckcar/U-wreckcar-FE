@@ -9,10 +9,10 @@ type AlertType = {
   contents: string;
 };
 
-export const Alert: React.FC<AlertType> = ({
-  onClickEvent,
+export const ErrorAlert: React.FC<AlertType> = ({
   title,
   contents,
+  onClickEvent,
 }) => {
   setTimeout(() => {
     onClickEvent(false);

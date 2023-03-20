@@ -1,21 +1,20 @@
-"use client";
-import React, { useEffect, useRef, useState } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
-import Axios from "@/util/async/axiosConfig";
-import { nanoid } from "nanoid";
+'use client';
+import React, { useEffect, useState } from 'react';
+import { useFieldArray, useForm } from 'react-hook-form';
 /**
  * Style, Image
  */
-import styles from "./CreateUTM.module.css";
-import plus from "assets/plus.png";
-import minus from "assets/minus.png";
-import Image from "next/image";
-import { CreateCategory } from "./CreateCategory";
-import { postUTMs } from "@/util/async/api";
-import { Alert } from "@/shared/button/Alert";
-import { getCookie } from "@/util/async/Cookie";
-import { redirect } from "next/navigation";
-
+import styles from './CreateUTM.module.css';
+import plus from 'assets/plus.png';
+import minus from 'assets/minus.png';
+import Image from 'next/image';
+import { CreateCategory } from './CreateCategory';
+import { postUTMs } from '@/util/async/api';
+import { Alert } from '@/shared/button/Alert';
+import { ErrorAlert } from '@/shared/button/ErrorAlert';
+import { getCookie } from '@/util/async/Cookie';
+import { redirect } from 'next/navigation';
+import b_close from 'assets/b_close.png';
 type UTMsType = {
   utms: {
     utm_url?: string;
@@ -30,11 +29,13 @@ type UTMsType = {
 };
 type PropsType = {
   setResUTM: any;
+  resUTM: any;
 };
-export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
-  const id = nanoid();
-  const [memoText, setMemoText] = useState("");
+export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
+  const [memoText, setMemoText] = useState('');
   const [alert, setAlert] = useState(false);
+  const [errorAlert, setErrorAlert] = useState(false);
+  const [sataus, setStatus] = useState();
   const {
     handleSubmit,
     register,
@@ -44,10 +45,10 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
     defaultValues: {
       utms: [
         {
-          utm_url: "",
-          utm_campaign_id: "",
-          utm_source: "",
-          utm_medium: "",
+          utm_url: '',
+          utm_campaign_id: '',
+          utm_source: '',
+          utm_medium: '',
           utm_campaign_name: null,
           utm_term: null,
           utm_content: null,
@@ -55,27 +56,27 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
         },
       ],
     },
-    mode: "onBlur",
+    mode: 'onBlur',
   });
   const { fields, append, remove } = useFieldArray({
-    name: "utms",
+    name: 'utms',
     control,
   });
   const requeirFn = (e: any) => {
-    e.target.value = e.target.value.replace(/[^a-z0-9./:]/, "");
-    e.target.value = e.target.value.replace({ maxLength: 70 }, "");
+    e.target.value = e.target.value.replace(/[^a-z0-9./:_-]?/, '');
+    e.target.value = e.target.value.replace({ maxLength: 70 }, '');
   };
   const addList = () => {
     if (fields.length <= 2) {
       append({
-        utm_url: "",
-        utm_campaign_id: "",
-        utm_source: "",
-        utm_medium: "",
-        utm_campaign_name: "",
-        utm_content: "",
-        utm_term: "",
-        utm_memo: "",
+        utm_url: '',
+        utm_campaign_id: '',
+        utm_source: '',
+        utm_medium: '',
+        utm_campaign_name: '',
+        utm_content: '',
+        utm_term: '',
+        utm_memo: '',
       });
     }
   };
@@ -87,19 +88,22 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
 
   const onSubmit = async (data: UTMsType) => {
     const res = await postUTMs(data);
-    await setResUTM(res.data);
-    console.log(res.data);
+    console.log(res);
+    if (res.data === undefined) {
+      setResUTM(res.data);
+      setAlert(true);
+    }
   };
   useEffect(() => {}, [memoText]);
-
+  console.log(errors);
   /**s
    * 로그인 하지 않은 유저 로그인 페이지로 보내기
    */
   useEffect(() => {
-    const cookie = getCookie("access_token");
-    console.log(cookie);
+    const cookie = getCookie('access_token');
+
     if (!cookie) {
-      redirect("/login");
+      redirect('/login');
     }
   }, []);
 
@@ -124,9 +128,16 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
                           pattern: /[a-z]/i,
                         })}
                         className={`${
-                          errors?.utms?.[index]?.utm_url ? "error" : ""
+                          errors?.utms?.[index]?.utm_url
+                            ? console.log('no value')
+                            : ''
                         }, ${styles.input_style}`}
                       />
+                      {errors?.utms?.[index]?.utm_url ? (
+                        <p className={styles.red_text}>!</p>
+                      ) : (
+                        ''
+                      )}
                       <input
                         // placeholder="utm_campaign_id"
                         onInput={requeirFn}
@@ -135,7 +146,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
                           pattern: /[a-z]/i,
                         })}
                         className={`${
-                          errors?.utms?.[index]?.utm_campaign_id ? "error" : ""
+                          errors?.utms?.[index]?.utm_campaign_id ? 'error' : ''
                         }, ${styles.input_style}`}
                       />
                       <input
@@ -146,9 +157,14 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
                           pattern: /[a-z]/i,
                         })}
                         className={`${
-                          errors?.utms?.[index]?.utm_source ? "error" : ""
+                          errors?.utms?.[index]?.utm_source ? 'error' : ''
                         }, ${styles.input_style}`}
                       />
+                      {errors?.utms?.[index]?.utm_source ? (
+                        <p className={styles.red_text}>!</p>
+                      ) : (
+                        ''
+                      )}
                       <input
                         onInput={requeirFn}
                         // placeholder="utm_medium"
@@ -157,9 +173,14 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
                           pattern: /[a-z]/i,
                         })}
                         className={`${
-                          errors?.utms?.[index]?.utm_medium ? "error" : ""
+                          errors?.utms?.[index]?.utm_medium ? 'error' : ''
                         }, ${styles.input_style}`}
                       />
+                      {errors?.utms?.[index]?.utm_medium ? (
+                        <p className={styles.red_text}>!</p>
+                      ) : (
+                        ''
+                      )}
                       <input
                         onInput={requeirFn}
                         // placeholder="utm_campaign_name"
@@ -169,27 +190,41 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
                         )}
                         className={`${
                           errors?.utms?.[index]?.utm_campaign_name
-                            ? "error"
-                            : ""
+                            ? 'error'
+                            : ''
                         }, ${styles.input_style}`}
                       />
+                      {errors?.utms?.[index]?.utm_campaign_name ? (
+                        <p className={styles.red_text}>!</p>
+                      ) : (
+                        ''
+                      )}
                       <input
                         onInput={requeirFn}
                         // placeholder="utm_term"
                         {...register(`utms.${index}.utm_term` as const, {})}
                         className={`${
-                          errors?.utms?.[index]?.utm_url ? "error" : ""
+                          errors?.utms?.[index]?.utm_term ? 'error' : ''
                         }, ${styles.input_style}`}
                       />
-
+                      {errors?.utms?.[index]?.utm_term ? (
+                        <p className={styles.red_text}>!</p>
+                      ) : (
+                        ''
+                      )}
                       <input
                         onInput={requeirFn}
                         // placeholder="utm_campaign_content"
                         {...register(`utms.${index}.utm_content` as const)}
                         className={`${
-                          errors?.utms?.[index]?.utm_content ? "error" : ""
+                          errors?.utms?.[index]?.utm_content ? 'error' : ''
                         }, ${styles.input_style}`}
                       />
+                      {errors?.utms?.[index]?.utm_content ? (
+                        <p className={styles.red_text}>!</p>
+                      ) : (
+                        ''
+                      )}
                       <textarea
                         className={`${styles.active}`}
                         {...register(`utms.${index}.utm_memo` as const, {
@@ -200,20 +235,19 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
                       <div className={styles.minus_button}>
                         <button
                           className={styles.minus_button_style}
-                          type="button"
+                          type='button'
                           onClick={() => {
                             if (index >= 1) {
                               remove(index);
                             }
-                          }}
-                        >
+                          }}>
                           <Image
                             className={styles.minus_img}
                             src={minus}
-                            alt="리스트 삭제"
+                            alt='리스트 삭제'
                             onError={() => {
                               console.log(
-                                "리스트 빼기 이미지를 불러올 수 없습니다."
+                                '리스트 빼기 이미지를 불러올 수 없습니다.'
                               );
                             }}
                           />
@@ -229,35 +263,36 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
         <div className={styles.create_button_box}>
           <button
             className={styles.add_list_button}
-            type="button"
-            onClick={addList}
-          >
+            type='button'
+            onClick={addList}>
             <Image
               className={styles.plus_button_img}
               src={plus}
-              alt="추가하기"
+              alt='추가하기'
               onError={() => {
-                console.log("추가버튼 이미지를 불러오지 못했습니다.");
+                console.log('추가버튼 이미지를 불러오지 못했습니다.');
               }}
             />
           </button>
           {alert && (
             <Alert
-              title={"성공"}
-              contents={"UTM 생성을 성공하셨습니다!"}
+              title={'성공'}
+              contents={'UTM 생성을 성공하셨습니다!'}
               onClickEvent={setAlert}
             />
           )}
+
           <input
-            id="create_btn"
+            id='create_btn'
             className={styles.create_button}
-            type="submit"
-            value="생성하기"
+            type='submit'
+            value='생성하기'
             onClick={() => {
               setAlert(true);
             }}
           />
         </div>
+
         {/* <FirstNameWatched control={control} /> */}
       </form>
     </div>
