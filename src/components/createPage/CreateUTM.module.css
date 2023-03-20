@@ -40,6 +40,11 @@
   outline: none;
   border: 1px solid #484bff;
 }
+.error:focus {
+  border: none;
+  outline: none;
+  border: 1px solid #704d14;
+}
 .active {
   display: flex;
   justify-items: center;
@@ -151,6 +156,12 @@
   border: none;
 
   cursor: pointer;
+}
+.red_text {
+  color: red;
+  transform: translateY(40%);
+  height: 20px;
+  width: 20px;
 }
 @media (max-width: 1300px) {
   .minus_button {
