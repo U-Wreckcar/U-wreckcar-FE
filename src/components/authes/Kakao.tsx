@@ -45,7 +45,7 @@ const KakaoCallback = () => {
 
   return (
     <div className={styles.container}>
-      <CircularUnderLoad style={{ widht: '200px' }} />
+      <CircularUnderLoad />
       <div>로그인중 ..</div>
     </div>
   );
