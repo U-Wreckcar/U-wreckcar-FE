@@ -6,7 +6,7 @@ import Image from "next/image";
 import section_one_main from "assets/illust main.png";
 import section_two_left_ns from "assets/section_two_left_ns.png";
 import section_two_right_ns from "assets/section_two_right_ns.png";
-import section_one_two from "assets/section_one_two.png";
+import section_one_two from "assets/m_section_one_two.png";
 import six_one from "assets/six.gif";
 import seven_img from "assets/m_seven_img.png";
 import create from "assets/gif/create.gif";
