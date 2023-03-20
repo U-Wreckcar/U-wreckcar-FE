@@ -1,24 +1,24 @@
-'use client';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+"use client";
+import React, { Dispatch, SetStateAction, useState } from "react";
 
-import styles from './styles.module.css';
-import Modal from 'react-modal';
-import { AddUtmModal } from './AddUtmModal';
-import Link from 'next/link';
+import styles from "./styles.module.css";
+import Modal from "react-modal";
+import { AddUtmModal } from "./AddUtmModal";
+import Link from "next/link";
 
 /**
  * Image
  */
-import whitelogo from 'assets/whitelogo.png';
-import myutm from '../../assets/myutm.png';
-import addutm from '../../assets/addutm.png';
-import createutm from '../../assets/createutm.png';
-import slim from '../../assets/slim.png';
-import help from '../../assets/help.png';
-import noti from 'assets/noti.png';
-import guide from 'assets/guide.png';
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import whitelogo from "assets/whitelogo.png";
+import myutm from "../../assets/myutm.png";
+import addutm from "../../assets/addutm.png";
+import createutm from "../../assets/createutm.png";
+import slim from "../../assets/slim.png";
+import help from "../../assets/help.png";
+import noti from "assets/noti.png";
+import guide from "assets/guide.png";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export type setSideProps = {
   setSide: Dispatch<SetStateAction<boolean>>;
@@ -31,12 +31,12 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
 
   const customStyles = {
     content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
       padding: 0,
     },
   };
@@ -46,11 +46,25 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
   const closeModal = () => {
     setModal(false);
   };
+
+  const onClickNoti = () => {
+    window.location.href =
+      " https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492";
+  };
+
+  const onClickGuide = () => {
+    window.location.href =
+      "https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3";
+  };
+
+  const onClickKakao = () => {
+    window.location.href = "https://open.kakao.com/o/sbK3Rfaf";
+  };
   return (
     <section className={styles.plus_container}>
       <div className={styles.category_box}>
         <div className={styles.logo_container}>
-          <Link href={'/'}>
+          <Link href={"/"}>
             <Image
               className={styles.white_logo}
               src={whitelogo}
@@ -66,7 +80,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
             className={styles.slim_button}
             src={slim}
             alt="Slim Button"
-            onError={() => console.log('Image loading failed')}
+            onError={() => console.log("Image loading failed")}
           />
         </div>
         <div className={styles.titleBox}>
@@ -76,7 +90,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
         <Link className={styles.linklink} href="/main">
           <div
             className={` ${
-              pathName === '/main' ? styles.active : styles.utm_category_item
+              pathName === "/main" ? styles.active : styles.utm_category_item
             } `}
           >
             <Image
@@ -85,7 +99,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               height={30}
               src={myutm}
               alt="My-UTM"
-              onError={() => console.log('Image loading failed')}
+              onError={() => console.log("Image loading failed")}
             />
             <span className="category_text">UTM 관리하기</span>
           </div>
@@ -93,7 +107,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
         <Link className={styles.linklink} href="/createutm">
           <div
             className={`${
-              pathName === '/createutm'
+              pathName === "/createutm"
                 ? styles.active
                 : styles.utm_category_item
             }`}
@@ -137,9 +151,11 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               height={24}
               src={noti}
               alt="Noti Img"
-              onError={() => console.log('Image loading failed')}
+              onError={() => console.log("Image loading failed")}
             />
-            <span className="category_text">공지사항</span>
+            <span className="category_text" onClick={onClickNoti}>
+              공지사항
+            </span>
           </div>
           <div className={styles.utm_category_item}>
             <Image
@@ -148,9 +164,11 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               height={24}
               src={guide}
               alt="Guide Img"
-              onError={() => console.log('Image loading failed')}
+              onError={() => console.log("Image loading failed")}
             />
-            <span className="category_text">가이드</span>
+            <span className="category_text" onClick={onClickGuide}>
+              가이드
+            </span>
           </div>
           <div className={styles.utm_category_item}>
             <Image
@@ -159,9 +177,11 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               height={24}
               src={help}
               alt="Help Img"
-              onError={() => console.log('Image loading failed')}
+              onError={() => console.log("Image loading failed")}
             />
-            <span className="category_text">문의하기</span>
+            <span className="category_text" onClick={onClickKakao}>
+              문의하기
+            </span>
           </div>
         </div>
       </div>

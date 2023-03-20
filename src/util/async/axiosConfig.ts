@@ -10,10 +10,10 @@ const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API,
   timeout: 3000,
   headers: {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${access_token}`,
-    'X-Refresh-Token': `Bearer ${refresh_token}`,
-    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${access_token}`,
+    "X-Refresh-Token": `Bearer ${refresh_token}`,
+    "Cache-Control": "no-cache, no-store, must-revalidate",
   },
 });
 

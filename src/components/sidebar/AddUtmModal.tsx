@@ -3,6 +3,7 @@ import React from "react";
 import ReactModal from "react-modal";
 import styles from "./AddUtmModal.module.css";
 import { useForm } from "react-hook-form";
+import { ExternalUTM } from "@/util/async/api";
 
 export type ModalType = {
   isOpen: boolean;
@@ -28,13 +29,14 @@ export const AddUtmModal: React.FC<ModalType> = ({
     getValues,
   } = useForm({ criteriaMode: "all", mode: "onChange" });
 
-  const onSubmit = (data: AddUTMType) => {
+  const onSubmit = (data: any) => {
+    ExternalUTM(data);
     console.log(data);
   };
 
   return (
     <ReactModal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
-      <form className={styles.add_modal}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.add_modal}>
         <div className={styles.title_box}>
           <h1>기존 UTM 추가</h1>
         </div>
