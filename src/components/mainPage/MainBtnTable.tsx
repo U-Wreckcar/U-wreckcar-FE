@@ -174,7 +174,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
       },
       {
         header: "소스",
-        id: "utm_source_",
+        id: "utm_source_name",
         accessorKey: "utm_source_name",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
@@ -182,8 +182,8 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
       },
       {
         header: "미디움",
-        id: "utm_medium",
-        accessorKey: "utm_medium",
+        id: "utm_medium_name",
+        accessorKey: "utm_medium_name",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 175,

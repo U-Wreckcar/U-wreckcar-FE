@@ -572,8 +572,8 @@ function Filter({
       curDate.setDate(curDate.getDate() + 1)
     }
     let dateList: any = []
-    defaultData = data.filter((date) => result.includes(date.created_at))
-    defaultData.map((d) => dateList.push(d.created_at))
+    defaultData = data.filter((date) => result.includes(date.created_at_filter))
+    defaultData.map((d) => dateList.push(d.created_at_filter))
     column.setFilterValue((old: Array<string>) => console.log(old))
   }
   const sortedUniqueValues = React.useMemo(
@@ -586,7 +586,7 @@ function Filter({
 
   return (
     <>
-      {column.id === "created_at" && (
+      {column.id === "created_at_filter" && (
         <>
           {isOpen && (
             <div className={styles.dialog}>
@@ -622,7 +622,7 @@ function Filter({
           ></input>
         </>
       )}
-      {column.id !== "created_at" && (
+      {column.id !== "created_at_filter" && (
         <>
           <datalist id={column.id + "list"}>
             {sortedUniqueValues.slice(0, 5000).map((value: any) => (
