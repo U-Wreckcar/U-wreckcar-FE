@@ -91,23 +91,7 @@ const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
 
 export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [rowSelection, setRowSelection] = useState({})
-  const [data, setData] = useState<Array<MainTableType>>([
-    {
-      created_at_filter: "2023-03-21",
-      full_url:
-        "https://www.naver.com?utm_source=bbb&utm_medium=cccc&utm_campaign=ddd&utm_term=cxxc",
-      shorten_url: "https://cutt.ly/M4xu6ey",
-      utm_campaign_id: "aaa",
-      utm_campaign_name: "ddd",
-      utm_content: null,
-      utm_id: 48,
-      utm_medium_name: "cccc",
-      utm_memo: null,
-      utm_source_name: "bbb",
-      utm_term: "cxxc",
-      utm_url: "www.naver.com",
-    },
-  ])
+  const [data, setData] = useState<Array<MainTableType>>([])
   const [show, setShow] = useState(false)
   const [target, setTarget] = useState("")
   const [columnResizeMode, setColumnResizeMode] =
