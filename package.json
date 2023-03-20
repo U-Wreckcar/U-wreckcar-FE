@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@artsy/fresnel": "^6.1.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.11.12",
