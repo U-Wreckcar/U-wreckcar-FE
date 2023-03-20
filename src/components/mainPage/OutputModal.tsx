@@ -1,16 +1,16 @@
-import Image from 'next/image';
-import ReactModal from 'react-modal';
-import styles from './main.module.css';
+import Image from "next/image";
+import ReactModal from "react-modal";
+import styles from "./main.module.css";
 
-import not_notion from 'assets/notion.png';
-import not_sheet from 'assets/sheet.png';
-import not_excel from 'assets/execel.png';
+import not_notion from "assets/notion.png";
+import not_sheet from "assets/sheet.png";
+import not_excel from "assets/execel.png";
 
-import active_notion from 'assets/blue_notion.png';
-import active_sheet from 'assets/blue_sheet.png';
-import active_excel from 'assets/blue_excel.png';
+import active_notion from "assets/blue_notion.png";
+import active_sheet from "assets/blue_sheet.png";
+import active_excel from "assets/blue_excel.png";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 type OutputModalType = {
   isOpen: boolean;
@@ -33,6 +33,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
     let idList: number[] = [];
     data.map((d: any) => idList.push(d.id));
     console.log({ data: idList });
+    alert("개발 중입니다...!");
   };
 
   useEffect(() => {
