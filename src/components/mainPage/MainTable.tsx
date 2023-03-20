@@ -565,7 +565,8 @@ function Filter({
     const curDate = new Date(startDate);
     while (curDate <= new Date(lastDate)) {
       result.push(
-        curDate.toISOString().split("T")[0].toString().replace(/-/g, ".")
+        // curDate.toISOString().split("T")[0].toString().replace(/-/g, ".")
+        curDate.toISOString().split("T")[0].toString()
       );
       curDate.setDate(curDate.getDate() + 1);
     }

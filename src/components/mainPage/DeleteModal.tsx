@@ -16,7 +16,9 @@ export const DeleteModal: React.FC<OutputModalType> = ({
   data,
 }) => {
   const onClickDelHandler = () => {
-    console.log({ data });
+    console.log(data);
+    // const idList = [];
+    // data.map((datas)=> idList.push(datas.id));
     deleteUTM({ data });
   };
   return (
