@@ -10,7 +10,9 @@ import active_notion from "assets/blue_notion.png";
 import active_sheet from "assets/blue_sheet.png";
 import active_excel from "assets/blue_excel.png";
 
+import b_close from "assets/b_close.png";
 import { useEffect, useRef, useState } from "react";
+import { getUTMExcell, getUTMNotion, getUTMSheet } from "@/util/async/api";
 
 type OutputModalType = {
   isOpen: boolean;
@@ -29,10 +31,18 @@ export const OutputModal: React.FC<OutputModalType> = ({
   const [excel, setExcel] = useState(false);
 
   const onClickPopHandler = () => {
-    console.log(data);
-    let idList: number[] = [];
-    data.map((d: any) => idList.push(d.id));
-    console.log({ data: idList });
+    if (notion) {
+      getUTMNotion(data);
+    }
+    if (excel) {
+      getUTMExcell(data);
+    }
+    if (sheet) {
+      getUTMSheet(data);
+    }
+    if (!notion && !excel && !sheet) {
+      alert("추출하실 방법을 선택해주세요!");
+    }
     alert("개발 중입니다...!");
   };
 
@@ -64,15 +74,15 @@ export const OutputModal: React.FC<OutputModalType> = ({
           </div>
           <div className={styles.cancleBtn_box}>
             <button className={styles.cancleBtn} onClick={onRequestClose}>
-              X
+              <Image src={b_close} alt="close_img" width={24} height={24} />
             </button>
           </div>
         </div>
         <div className={styles.contents}>
           <div className={styles.col_box}>
             <div>
-              <h5>{data.length}개의 UTM이 선택되었습니다.</h5>
-              <h5>UTM 데이터를 보낼 틀을 선택해주세요</h5>
+              <p>{data.length}개의 UTM이 선택되었습니다.</p>
+              <p>UTM 데이터를 보낼 틀을 선택해주세요</p>
             </div>
             <div className={styles.img_box}>
               <div className={styles.img_box_img}>
