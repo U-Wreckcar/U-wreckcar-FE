@@ -6,12 +6,12 @@ import React, {
   useEffect,
   useState,
   useRef,
-} from "react";
-import { MainTableType } from "./TableData";
-import { getUTMs } from "util/async/api";
-import { CopyButton } from "../../shared/button/CopyButton";
-import Tooltip from "@mui/material/Tooltip";
-import Link from "next/link";
+} from "react"
+import { MainTableType } from "./TableData"
+import { getUTMs } from "util/async/api"
+import { CopyButton } from "../../shared/button/CopyButton"
+import Tooltip from "@mui/material/Tooltip"
+import Link from "next/link"
 import {
   Table,
   Column,
@@ -31,102 +31,102 @@ import {
   FilterFn,
   SortingFn,
   FilterFns,
-} from "@tanstack/react-table";
+} from "@tanstack/react-table"
 import {
   RankingInfo,
   rankItem,
   compareItems,
-} from "@tanstack/match-sorter-utils";
-import styles from "./main.module.css";
-import { OutputModal } from "./OutputModal";
-import { DeleteModal } from "./DeleteModal";
-import { AddUtmModal } from "../sidebar/AddUtmModal";
-import Image from "next/image";
+} from "@tanstack/match-sorter-utils"
+import styles from "./main.module.css"
+import { OutputModal } from "./OutputModal"
+import { DeleteModal } from "./DeleteModal"
+import { AddUtmModal } from "../sidebar/AddUtmModal"
+import Image from "next/image"
 
-import plusImg from "assets/plus.png";
-import filterImg from "assets/filter.png";
-import { EditModal } from "./MainMemoModal";
-import { getCookie } from "@/util/async/Cookie";
-import { redirect } from "next/navigation";
+import plusImg from "assets/plus.png"
+import filterImg from "assets/filter.png"
+import { EditModal } from "./MainMemoModal"
+import { getCookie } from "@/util/async/Cookie"
+import { redirect } from "next/navigation"
 
 export type MainTableProps = {
-  setSummary: Dispatch<SetStateAction<boolean>>;
-};
+  setSummary: Dispatch<SetStateAction<boolean>>
+}
 
 declare module "@tanstack/table-core" {
   interface FilterFns {
-    fuzzy: FilterFn<unknown>;
+    fuzzy: FilterFn<unknown>
   }
   interface FilterMeta {
-    itemRank: RankingInfo;
+    itemRank: RankingInfo
   }
 }
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   // Rank the item
-  const itemRank = rankItem(row.getValue(columnId), value);
+  const itemRank = rankItem(row.getValue(columnId), value)
 
   // Store the itemRank info
   addMeta({
     itemRank,
-  });
+  })
 
   // Return if the item should be filtered in/out
-  return itemRank.passed;
-};
+  return itemRank.passed
+}
 
 const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
-  let dir = 0;
+  let dir = 0
 
   // Only sort by rank if the column has ranking information
   if (rowA.columnFiltersMeta[columnId]) {
     dir = compareItems(
       rowA.columnFiltersMeta[columnId]?.itemRank!,
       rowB.columnFiltersMeta[columnId]?.itemRank!
-    );
+    )
   }
 
   // Provide an alphanumeric fallback for when the item ranks are equal
-  return dir === 0 ? sortingFns.alphanumeric(rowA, rowB, columnId) : dir;
-};
+  return dir === 0 ? sortingFns.alphanumeric(rowA, rowB, columnId) : dir
+}
 
 export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
-  const [rowSelection, setRowSelection] = useState({});
-  const [data, setData] = useState<Array<MainTableType>>([]);
-  const [show, setShow] = useState(false);
-  const [target, setTarget] = useState("");
+  const [rowSelection, setRowSelection] = useState({})
+  const [data, setData] = useState<Array<MainTableType>>([])
+  const [show, setShow] = useState(false)
+  const [target, setTarget] = useState("")
   const [columnResizeMode, setColumnResizeMode] =
-    useState<ColumnResizeMode>("onChange");
-  const [removeModal, setRemoveModal] = useState(false);
+    useState<ColumnResizeMode>("onChange")
+  const [removeModal, setRemoveModal] = useState(false)
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
-  );
-  const input_ref = useRef<HTMLInputElement>(null);
-  const textarea_ref = useRef<HTMLTextAreaElement>(null);
-  const [output, setOutput] = useState(false);
-  const [outputLength, setOutputLength] = useState<Array<MainTableType>>([]);
-  const [del, setDel] = useState(false);
-  const [delLength, setDelLength] = useState<Array<MainTableType>>([]);
-  const [plus, setPlus] = useState(false);
-  const [filter, setFilter] = useState(false);
+  )
+  const input_ref = useRef<HTMLInputElement>(null)
+  const textarea_ref = useRef<HTMLTextAreaElement>(null)
+  const [output, setOutput] = useState(false)
+  const [outputLength, setOutputLength] = useState<Array<MainTableType>>([])
+  const [del, setDel] = useState(false)
+  const [delLength, setDelLength] = useState<Array<MainTableType>>([])
+  const [plus, setPlus] = useState(false)
+  const [filter, setFilter] = useState(false)
 
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState("")
 
   const getData = async () => {
-    const res = await getUTMs();
-    setData(res.data);
-  };
+    const res = await getUTMs()
+    setData(res.data)
+  }
 
   useEffect(() => {
-    getData();
-  }, []);
+    getData()
+  }, [])
 
   useEffect(() => {
-    const cookie = getCookie("access_token");
-    console.log(cookie);
+    const cookie = getCookie("access_token")
+    console.log(cookie)
     if (!cookie) {
-      redirect("/login");
+      redirect("/login")
     }
-  }, []);
+  }, [])
 
   const customStyles = {
     content: {
@@ -137,7 +137,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
     },
-  };
+  }
   const columns = useMemo<ColumnDef<MainTableType>[]>(
     () => [
       {
@@ -174,8 +174,8 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
       },
       {
         header: "소스",
-        id: "utm_source",
-        accessorKey: "utm_source",
+        id: "utm_source_",
+        accessorKey: "utm_source_name",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 175,
@@ -222,7 +222,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
       },
     ],
     []
-  );
+  )
 
   const table = useReactTable({
     data,
@@ -249,43 +249,43 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
     debugTable: true,
     debugHeaders: true,
     debugColumns: false,
-  });
+  })
 
   //수정하기
   const onClickEditButton = () => {
-    const index = textarea_ref?.current?.id.split("_")[0];
+    const index = textarea_ref?.current?.id.split("_")[0]
     const filter = table
       .getGroupedRowModel()
-      .flatRows.filter((row) => row.id === index)[0].original;
-    console.log(filter.id);
-    console.log(textarea_ref?.current?.value);
-    setShow(false);
-  };
+      .flatRows.filter((row) => row.id === index)[0].original
+    console.log(filter.id)
+    console.log(textarea_ref?.current?.value)
+    setShow(false)
+  }
 
   //삭제하기
   const onClickDelBtn = () => {
-    let id: Array<MainTableType> = [];
-    table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original));
+    let id: Array<MainTableType> = []
+    table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
     if (id.length === 0) {
-      alert("삭제할 데이터를 선택해주세요");
+      alert("삭제할 데이터를 선택해주세요")
     } else {
-      setDel(true);
-      setDelLength(id);
+      setDel(true)
+      setDelLength(id)
     }
-  };
+  }
 
   //추출하기
   const onClickPopBtn = () => {
-    let id: Array<MainTableType> = [];
-    table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original));
+    let id: Array<MainTableType> = []
+    table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
     if (id.length === 0) {
-      alert("추출할 데이터를 선택해주세요");
+      alert("추출할 데이터를 선택해주세요")
     } else {
-      console.log(id);
-      setOutput(true);
-      setOutputLength(id);
+      console.log(id)
+      setOutput(true)
+      setOutputLength(id)
     }
-  };
+  }
   return (
     <>
       <div className={styles.container}>
@@ -441,7 +441,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           }}
                         /> */}
                       </th>
-                    );
+                    )
                   })}
                 </tr>
               ))}
@@ -497,9 +497,9 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               <div
                                 className={styles.memo_td}
                                 onClick={(e: any) => {
-                                  setTarget(e.target?.id);
-                                  setShow(true);
-                                  setInputValue(`${cell.getValue()}`);
+                                  setTarget(e.target?.id)
+                                  setShow(true)
+                                  setInputValue(`${cell.getValue()}`)
                                 }}
                               >{`${cell.getValue()}`}</div>
                             </Tooltip>
@@ -514,31 +514,31 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               cell.getContext()
                             )}
                         </td>
-                      );
+                      )
                     })}
                   </tr>
-                );
+                )
               })}
             </tbody>
           </table>
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
 function Filter({
   column,
   table,
 }: {
-  column: Column<any, unknown>;
-  table: Table<any>;
+  column: Column<any, unknown>
+  table: Table<any>
 }) {
   const firstValue = table
     .getPreFilteredRowModel()
-    .flatRows[0]?.getValue(column.id);
+    .flatRows[0]?.getValue(column.id)
 
-  const columnFilterValue = column.getFilterValue();
+  const columnFilterValue = column.getFilterValue()
 
   const sortedUniqueValues = React.useMemo(
     () =>
@@ -546,7 +546,7 @@ function Filter({
         ? []
         : Array.from(column.getFacetedUniqueValues().keys()).sort(),
     [column.getFacetedUniqueValues()]
-  );
+  )
 
   return typeof firstValue === "number" ? (
     <div>
@@ -600,7 +600,7 @@ function Filter({
         list={column.id + "list"}
       />
     </>
-  );
+  )
 }
 
 // A debounced input react component
@@ -610,23 +610,23 @@ function DebouncedInput({
   debounce = 500,
   ...props
 }: {
-  value: string | number;
-  onChange: (value: string | number) => void;
-  debounce?: number;
+  value: string | number
+  onChange: (value: string | number) => void
+  debounce?: number
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange">) {
-  const [value, setValue] = React.useState(initialValue);
+  const [value, setValue] = React.useState(initialValue)
 
   React.useEffect(() => {
-    setValue(initialValue);
-  }, [initialValue]);
+    setValue(initialValue)
+  }, [initialValue])
 
   React.useEffect(() => {
     const timeout = setTimeout(() => {
-      onChange(value);
-    }, debounce);
+      onChange(value)
+    }, debounce)
 
-    return () => clearTimeout(timeout);
-  }, [value]);
+    return () => clearTimeout(timeout)
+  }, [value])
 
   return (
     <input
@@ -634,20 +634,20 @@ function DebouncedInput({
       value={value}
       onChange={(e) => setValue(e.target.value)}
     />
-  );
+  )
 }
 function IndeterminateCheckbox({
   indeterminate,
   className = "",
   ...rest
 }: { indeterminate?: boolean } & HTMLProps<HTMLInputElement>) {
-  const ref = useRef<HTMLInputElement>(null!);
+  const ref = useRef<HTMLInputElement>(null!)
 
   useEffect(() => {
     if (typeof indeterminate === "boolean") {
-      ref.current.indeterminate = !rest.checked && indeterminate;
+      ref.current.indeterminate = !rest.checked && indeterminate
     }
-  }, [ref, indeterminate]);
+  }, [ref, indeterminate])
 
   return (
     <input
@@ -656,5 +656,5 @@ function IndeterminateCheckbox({
       className={className + " cursor-pointer"}
       {...rest}
     />
-  );
+  )
 }
