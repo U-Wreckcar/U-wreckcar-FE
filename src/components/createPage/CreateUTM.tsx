@@ -13,6 +13,8 @@ import Image from "next/image";
 import { CreateCategory } from "./CreateCategory";
 import { postUTMs } from "@/util/async/api";
 import { Alert } from "@/shared/button/Alert";
+import { getCookie } from "@/util/async/Cookie";
+import { redirect } from "next/navigation";
 
 type UTMsType = {
   utms: {
@@ -89,6 +91,17 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
     console.log(res.data);
   };
   useEffect(() => {}, [memoText]);
+
+  /**s
+   * 로그인 하지 않은 유저 로그인 페이지로 보내기
+   */
+  useEffect(() => {
+    const cookie = getCookie("access_token");
+    console.log(cookie);
+    if (!cookie) {
+      redirect("/login");
+    }
+  }, []);
 
   return (
     <div>
