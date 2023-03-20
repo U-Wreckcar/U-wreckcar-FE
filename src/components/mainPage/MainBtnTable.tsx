@@ -251,12 +251,6 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
     debugColumns: false,
   });
 
-  //url 이동하기
-  const moveUrl = (url: string) => {
-    console.log(url);
-    window.open(`${url}`);
-  };
-
   //수정하기
   const onClickEditButton = () => {
     const index = textarea_ref?.current?.id.split("_")[0];
@@ -489,14 +483,13 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             ></CopyButton>
                           )}
                           {cell.column.id === "utm_url" && (
-                            <Tooltip title={`${cell.getValue()}`}>
-                              <button
-                                className={styles.url_button}
-                                onClick={() => moveUrl(`${cell.getValue()}`)}
-                              >
-                                url 연결
-                              </button>
-                            </Tooltip>
+                            <a href={`${cell.getValue()}`} target="_blank">
+                              <Tooltip title={`${cell.getValue()}`}>
+                                <button className={styles.url_button}>
+                                  url 연결
+                                </button>
+                              </Tooltip>
+                            </a>
                           )}
 
                           {cell.column.id === "utm_memo" && (

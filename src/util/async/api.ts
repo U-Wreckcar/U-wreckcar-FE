@@ -55,8 +55,8 @@ export const myProfile = async () => {
 /**
  * @param data {utm_url: string, memo:string}
  */
-export const ExternalUTM = async (data: string) => {
-  await axios.post("utm/add", data);
+export const ExternalUTM = async (data: any) => {
+  await axios.post("utms/external", data);
 };
 
 /**
