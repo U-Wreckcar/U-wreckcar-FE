@@ -519,11 +519,13 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               >{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
-                          {cell.column.id !== "utm_memo" &&
-                            flexRender(
-                              cell.column.columnDef.cell,
-                              cell.getContext()
-                            )}
+                          {cell.column.id !== "utm_memo" && (
+                            <Tooltip title={`${cell.getValue()}`}>
+                              <div
+                                className={styles.td_box}
+                              >{`${cell.getValue()}`}</div>
+                            </Tooltip>
+                          )}
                         </td>
                       );
                     })}

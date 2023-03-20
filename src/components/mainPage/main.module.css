@@ -130,6 +130,9 @@
 .memo_td {
   table-layout: fixed;
 }
+.container th{
+  cursor: pointer;
+}
 .container th:nth-child(1),
 .container td {
   /* width: 30px; */
@@ -442,12 +445,8 @@
   display: flex;
 }
 
-.img_box img {
-  margin: 10px;
-}
-
 .img_box_img {
-  margin: 30px 5px 10px 5px;
+  margin: 30px 5px 6px 5px;
 }
 
 .main_area {
@@ -485,4 +484,11 @@ border: 1px solid #484bff;
 border-radius: 4px;
 color: #484bff;
 padding: 8px;
+}
+
+.td_box{
+  width: 130px;
+  margin-right: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
