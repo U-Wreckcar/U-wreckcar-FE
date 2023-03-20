@@ -66,7 +66,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
     e.target.value = e.target.value.replace({ maxLength: 70 }, "");
   };
   const addList = () => {
-    if (fields.length <= 4) {
+    if (fields.length <= 2) {
       append({
         utm_url: "",
         utm_campaign_id: "",
