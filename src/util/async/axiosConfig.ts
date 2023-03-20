@@ -12,7 +12,7 @@ const instance = axios.create({
   timeout: 3000,
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${access_token}`,
+    "Authorization": `Bearer ${access_token}`,
     "X-Refresh-Token": `Bearer ${refresh_token}`,
     "Cache-Control": "no-cache, no-store, must-revalidate",
   },
