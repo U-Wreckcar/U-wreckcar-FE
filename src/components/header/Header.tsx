@@ -11,7 +11,8 @@ export default function Header() {
     if (
       pathName === '/main' ||
       pathName === '/createutm' ||
-      pathName === '/userinfo'
+      pathName === '/userinfo' ||
+      pathName === '/auth'
     ) {
       setPath(true);
     } else {
