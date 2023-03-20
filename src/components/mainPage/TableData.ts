@@ -1,11 +1,11 @@
 export type MainTableType = {
-  id: number;
+  utm_id: number;
   created_at_filter: string;
   utm_url: string;
-  user_utm_source_id:any;
+  // user_utm_source_id:any;
   utm_campaign_id: string;
   utm_source_name: string;
-  user_utm_medium_id:any;
+  // user_utm_medium_id:any;
   utm_medium_name: string;
   utm_campaign_name: string | null;
   utm_term: string | null;
