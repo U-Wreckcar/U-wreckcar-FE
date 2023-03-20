@@ -26,14 +26,14 @@ export const postUTMs = async (data: any) => {
 // export const getUTMs = axios.get('utms');
 type DataType = { data: string[] };
 
-export const getUTMExcell = async (data: DataType) => {
-  await axios.post("utms/excell", data);
+export const getUTMExcell = async (data: any) => {
+  await axios.post("utms/export/excell", data);
 };
-export const getUTMPDF = async () => {
-  await axios.post("utms/pdf");
+export const getUTMNotion = async (data:any) => {
+  await axios.post("utms/export/pdf", data);
 };
-export const getUTMNotion = async () => {
-  await axios.post("utms/csv");
+export const getUTMSheet = async (data:any) => {
+  await axios.post("utms/export/sheet", data);
 };
 export const myProfile = async () => {
   const res = await axios.get("users/profile");
@@ -55,8 +55,8 @@ export const myProfile = async () => {
 /**
  * @param data {utm_url: string, memo:string}
  */
-export const ExternalUTM = async (data: string) => {
-  await axios.post("utm/add", data);
+export const ExternalUTM = async (data: any) => {
+  await axios.post("utms/external", data);
 };
 
 /**
