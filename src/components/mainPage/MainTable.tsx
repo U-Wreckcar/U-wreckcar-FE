@@ -98,7 +98,23 @@ let defaultData: Array<MainTableType> = []
 export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
   const [rowSelection, setRowSelection] = useState({})
-  const [data, setData] = useState<Array<MainTableType>>([])
+  const [data, setData] = useState<Array<MainTableType>>([
+    {
+      created_at_filter: "2023-03-21",
+      full_url:
+        "https://www.naver.com?utm_source=bbb&utm_medium=cccc&utm_campaign=ddd&utm_term=cxxc",
+      shorten_url: "https://cutt.ly/M4xu6ey",
+      utm_campaign_id: "aaa",
+      utm_campaign_name: "ddd",
+      utm_content: null,
+      utm_id: 48,
+      utm_medium_name: "cccc",
+      utm_memo: null,
+      utm_source_name: "bbb",
+      utm_term: "cxxc",
+      utm_url: "www.naver.com",
+    },
+  ])
   const [target, setTarget] = useState("")
   const [show, setShow] = useState(false)
   const [output, setOutput] = useState(false)
@@ -126,15 +142,15 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     if (defaultData.length === 0) {
       getData()
     }
-  }, [])
+  }, [del, output])
 
   useEffect(() => {
     getData()
     if (defaultData.length !== 0) {
       setData(defaultData)
     }
+  }, [defaultData, del, output])
 
-  }, [defaultData])
 
   useEffect(() => {
     const cookie = getCookie("access_token")
@@ -539,13 +555,20 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               >{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
-                          {cell.column.id !== "utm_memo" && (
-                            <Tooltip title={`${cell.getValue()}`}>
-                              <div
-                                className={styles.td_box}
-                              >{`${cell.getValue()}`}</div>
-                            </Tooltip>
-                          )}
+
+                          {cell.column.id === "select" &&
+                            flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}
+                          {cell.column.id !== "utm_memo" &&
+                            cell.column.id !== "select" && (
+                              <Tooltip title={`${cell.getValue()}`}>
+                                <div
+                                  className={styles.td_box}
+                                >{`${cell.getValue()}`}</div>
+                              </Tooltip>
+                            )}
 
                         </td>
                       )
