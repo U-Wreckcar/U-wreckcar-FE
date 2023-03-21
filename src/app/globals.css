@@ -61,6 +61,7 @@ body {
   size: 100px;
 }
 button {
+  font-family: 'Pretendard Variable';
   cursor: pointer;
 }
 h1 {
