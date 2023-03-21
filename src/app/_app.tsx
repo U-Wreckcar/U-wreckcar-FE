@@ -10,15 +10,10 @@ const myFont = localFont({ src: './PretendardVariable.woff2' });
 
 export default function APP({ Component, pageProps }: AppProps) {
   return (
-    <main className={myFont.className}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <link
-          rel='stylesheet'
-          as='./globals.css'
-          href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css'
-        />
+    <Hydrate state={pageProps.dehydratedState}>
+      <main className={myFont.className}>
         <Component {...pageProps} />
-      </Hydrate>
-    </main>
+      </main>
+    </Hydrate>
   );
 }

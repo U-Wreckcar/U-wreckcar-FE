@@ -35,7 +35,7 @@ export default function RootLayout({
 
   return (
     <html
-      lang='en'
+      lang='ko'
       className={myFont.className}>
       <body>
         <SideNav />
