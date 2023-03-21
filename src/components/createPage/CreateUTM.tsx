@@ -136,16 +136,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                       ) : (
                         ''
                       )}
-                      <input
-                        // placeholder="utm_campaign_id"
-                        onInput={requeirFn}
-                        {...register(`utms.${index}.utm_campaign_id` as const, {
-                          pattern: /[a-z]/i,
-                        })}
-                        className={`${
-                          errors?.utms?.[index]?.utm_campaign_id ? 'error' : ''
-                        }, ${styles.input_style}`}
-                      />
+
                       <input
                         // placeholder="utm_source"
                         onInput={requeirFn}
@@ -196,6 +187,16 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                       ) : (
                         ''
                       )}
+                      <input
+                        // placeholder="utm_campaign_id"
+                        onInput={requeirFn}
+                        {...register(`utms.${index}.utm_campaign_id` as const, {
+                          pattern: /[a-z]/i,
+                        })}
+                        className={`${
+                          errors?.utms?.[index]?.utm_campaign_id ? 'error' : ''
+                        }, ${styles.input_style}`}
+                      />
                       <input
                         onInput={requeirFn}
                         // placeholder="utm_term"
