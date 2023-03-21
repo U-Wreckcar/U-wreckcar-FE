@@ -38,6 +38,28 @@ export const BaseHeader = () => {
         <span>오늘 하루도 유렉카와 함께 효율적인 업무를 진행하세요</span>
       </div>
       <div className={styles.base_user_box}>
+        {modal && (
+          <dialog>
+            <Link
+              className={styles.links}
+              href={'/userinfo'}>
+              <div
+                className={styles.links_box}
+                onClick={() => {
+                  setModal(!modal);
+                }}>
+                개인정보 관리
+              </div>
+            </Link>
+            <div
+              className={styles.links_box}
+              onClick={() => {
+                setModal(!modal);
+              }}>
+              로그아웃
+            </div>
+          </dialog>
+        )}
         <Image
           src={userData?.profile_img}
           alt='img'
@@ -54,28 +76,6 @@ export const BaseHeader = () => {
           <span className={styles.bold_text}>{userData?.username}</span>님
         </p>
       </div>
-      {modal && (
-        <dialog>
-          <Link
-            className={styles.links}
-            href={'/userinfo'}>
-            <div
-              className={styles.links_box}
-              onClick={() => {
-                setModal(!modal);
-              }}>
-              개인정보 관리
-            </div>
-          </Link>
-          <div
-            className={styles.links_box}
-            onClick={() => {
-              setModal(!modal);
-            }}>
-            로그아웃
-          </div>
-        </dialog>
-      )}
     </section>
   );
 };

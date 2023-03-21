@@ -61,10 +61,11 @@
   text-decoration: none;
 }
 .base_user_box p {
-  color: #fff;
+  color: rgb(44, 44, 44);
   font-size: 14px;
   font-weight: 700;
 }
+
 .render_user_box {
   display: flex;
   flex-direction: row;
@@ -76,7 +77,7 @@
   flex-direction: row;
   align-items: center;
   text-decoration-line: none;
-  color: #ffffff;
+  color: #1d1d1d;
   font-weight: 700px;
 }
 .render_user_box a {
@@ -91,11 +92,13 @@
 }
 
 .bold_text {
+  margin-right: 4px;
   font-weight: var(--weight-bold);
   color: #000000;
 }
 
 .login_box {
+  color: rgb(9, 9, 9);
   margin-right: 20px;
   cursor: pointer;
 }
@@ -105,13 +108,13 @@
   height: 85px;
   display: flex;
   align-items: center;
-  position: absolute;
+  position: relative;
   flex-direction: column;
   text-align: left;
   border: 1px solid #ddd;
   border-radius: 4px;
-  transform: translate(755%, 60%);
-
+  top: 50px;
+  left: 0px;
   padding: 0;
 }
 
