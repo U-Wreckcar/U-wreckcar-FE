@@ -39,11 +39,11 @@ export default function UserPage() {
           <Image
             className={styles.img}
             src={userData?.profile_img}
-            alt='profile_img'
-            width={160}
-            height={160}
+            alt='프로필 이미지'
+            width={180}
+            height={180}
           />
-          <button>E</button>
+          <button>수정</button>
         </div>
         <div className={styles.item_box}>
           <div>이름</div>
@@ -51,12 +51,12 @@ export default function UserPage() {
           <span>{userData?.username}</span>
         </div>
         <div className={styles.item_box}>
-          <div>{userData?.email}</div>
-          <span>sdfasdf@naver.com</span>
+          <div>이메일</div>
+          <span>{userData?.email}</span>
         </div>
         <div className={styles.item_box}>
           <div>연락처</div>
-          <span>010-1010-1010</span>
+          <span>연락 API 있을까요?</span>
         </div>
         <button className={styles.edit_save}>변경사항 저장</button>
       </article>
