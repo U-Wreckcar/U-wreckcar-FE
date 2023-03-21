@@ -1,21 +1,21 @@
-"use client";
-import React from "react";
-import ReactModal from "react-modal";
-import styles from "./AddUtmModal.module.css";
-import { useForm } from "react-hook-form";
-import { ExternalUTM } from "@/util/async/api";
+"use client"
+import React from "react"
+import ReactModal from "react-modal"
+import styles from "./AddUtmModal.module.css"
+import { useForm } from "react-hook-form"
+import { ExternalUTM } from "@/util/async/api"
 
 export type ModalType = {
-  isOpen: boolean;
-  onRequestClose: any;
-  style: any;
-};
+  isOpen: boolean
+  onRequestClose: any
+  style: any
+}
 
 type AddUTMType = {
-  utm_url: string;
-  created_at: string;
-  memo: string;
-};
+  utm_url: string
+  created_at: string
+  memo: string
+}
 
 export const AddUtmModal: React.FC<ModalType> = ({
   isOpen,
@@ -27,12 +27,13 @@ export const AddUtmModal: React.FC<ModalType> = ({
     formState: { errors, isDirty, isSubmitting },
     handleSubmit,
     getValues,
-  } = useForm({ criteriaMode: "all", mode: "onChange" });
+  } = useForm({ criteriaMode: "all", mode: "onChange" })
 
   const onSubmit = (data: any) => {
-    ExternalUTM(data);
-    console.log(data);
-  };
+    ExternalUTM(data)
+    console.log(data)
+    onRequestClose()
+  }
 
   return (
     <ReactModal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
@@ -90,5 +91,5 @@ export const AddUtmModal: React.FC<ModalType> = ({
         </div>
       </form>
     </ReactModal>
-  );
-};
+  )
+}
