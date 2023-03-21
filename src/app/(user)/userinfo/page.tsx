@@ -10,6 +10,7 @@ interface UserProfile {
   email: string;
   age: number;
   profile_img: any;
+  created_at: string;
   // Add more properties as needed
 }
 
@@ -18,21 +19,21 @@ export default function UserPage() {
   useEffect(() => {
     async function fetchUserData() {
       const res = await myProfile();
-      console.log(res);
       setUserData(res.data);
-      console.log(res.data);
     }
     fetchUserData();
   }, []);
 
-  const time = {
-    time: 30,
-  };
+  const createDate = userData?.created_at.substring(0, 10);
+
   return (
     <section className={styles.user_container}>
       <div className={styles.title_box}>
         <h1>개인정보 관리</h1>
-        <p>{time.time}분 전에 생성됐어요! </p>
+        <p>
+          {' '}
+          {userData?.username}님은 {createDate}에 유렉카에 가입하셨습니다!
+        </p>
       </div>
       <article>
         <div className={styles.profile_img_box}>
@@ -42,8 +43,9 @@ export default function UserPage() {
             alt='프로필 이미지'
             width={180}
             height={180}
+            unoptimized={true}
           />
-          <button>수정</button>
+          {/* <button>수정</button> */}
         </div>
         <div className={styles.item_box}>
           <div>이름</div>
@@ -54,11 +56,11 @@ export default function UserPage() {
           <div>이메일</div>
           <span>{userData?.email}</span>
         </div>
-        <div className={styles.item_box}>
+        {/* <div className={styles.item_box}>
           <div>연락처</div>
           <span>연락 API 있을까요?</span>
         </div>
-        <button className={styles.edit_save}>변경사항 저장</button>
+        <button className={styles.edit_save}>변경사항 저장</button> */}
       </article>
     </section>
   );

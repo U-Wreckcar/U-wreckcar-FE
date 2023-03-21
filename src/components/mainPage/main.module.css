@@ -1,4 +1,16 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+@font-face {
+  font-family: 'Pretendard Variable';
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: local('Pretendard Variable'),
+    url('../../app/PretendardVariable.woff2') format('woff2-variations');
+}
 .container {
+  font-family: 'Pretendard Variable';
+
   display: flex;
   flex-wrap: wrap;
   min-width: none;
@@ -11,12 +23,13 @@
   padding-right: 40px;
 }
 .btn_box {
+  font-family: 'Pretendard Variable';
+
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
   justify-content: space-between;
-  /* margin-top: 100px; */
   margin-bottom: 20px;
 }
 
@@ -130,7 +143,7 @@
 .memo_td {
   table-layout: fixed;
 }
-.container th{
+.container th {
   cursor: pointer;
 }
 .container th:nth-child(1),
@@ -461,7 +474,7 @@
   line-height: 1;
 }
 
-.no_data{
+.no_data {
   width: 100vw;
   height: 800px;
   display: flex;
@@ -474,19 +487,19 @@
 .no_data p {
   font-size: 16px;
   font-weight: 400;
-  color: #A5A5A5;
+  color: #a5a5a5;
 }
 
 .no_data button {
-margin-top: 13px;
-background-color: #fff;
-border: 1px solid #484bff;
-border-radius: 4px;
-color: #484bff;
-padding: 8px;
+  margin-top: 13px;
+  background-color: #fff;
+  border: 1px solid #484bff;
+  border-radius: 4px;
+  color: #484bff;
+  padding: 8px;
 }
 
-.td_box{
+.td_box {
   width: 130px;
   margin-right: 10px;
   text-overflow: ellipsis;
