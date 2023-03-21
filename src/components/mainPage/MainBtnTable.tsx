@@ -47,7 +47,7 @@ import plusImg from "assets/plus.png"
 import filterImg from "assets/filter.png"
 import { EditModal } from "./MainMemoModal"
 import { getCookie } from "@/util/async/Cookie"
-import { redirect } from "next/navigation"
+import { redirect, useRouter } from "next/navigation"
 
 export type MainTableProps = {
   setSummary: Dispatch<SetStateAction<boolean>>
@@ -91,7 +91,23 @@ const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
 
 export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [rowSelection, setRowSelection] = useState({})
-  const [data, setData] = useState<Array<MainTableType>>([])
+  const [data, setData] = useState<Array<MainTableType>>([
+    {
+      created_at_filter: "2023-03-21",
+      full_url:
+        "https://www.naver.com?utm_source=bbb&utm_medium=cccc&utm_campaign=ddd",
+      shorten_url: "https://cutt.ly/F4xsxJK",
+      utm_campaign_id: "aaa",
+      utm_campaign_name: "ddd",
+      utm_content: null,
+      utm_id: 50,
+      utm_medium_name: "cccc",
+      utm_memo: null,
+      utm_source_name: "bbb",
+      utm_term: null,
+      utm_url: "www.naver.com",
+    },
+  ])
   const [show, setShow] = useState(false)
   const [target, setTarget] = useState("")
   const [columnResizeMode, setColumnResizeMode] =
@@ -118,7 +134,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
   useEffect(() => {
     getData()
-  }, [])
+  }, [del, output])
 
   useEffect(() => {
     const cookie = getCookie("access_token")
@@ -257,7 +273,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
     const filter = table
       .getGroupedRowModel()
       .flatRows.filter((row) => row.id === index)[0].original
-    console.log(filter.id)
+    console.log(filter.utm_id)
     console.log(textarea_ref?.current?.value)
     setShow(false)
   }
@@ -285,6 +301,10 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
       setOutput(true)
       setOutputLength(id)
     }
+  }
+  //페이지 이동
+  const moveUrl = (url: string) => {
+    window.open(`https://${url}`, "_blank", "noopener,noreferrer")
   }
   return (
     <>
@@ -483,13 +503,14 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             ></CopyButton>
                           )}
                           {cell.column.id === "utm_url" && (
-                            <a href={`${cell.getValue()}`} target="_blank">
-                              <Tooltip title={`${cell.getValue()}`}>
-                                <button className={styles.url_button}>
-                                  url 연결
-                                </button>
-                              </Tooltip>
-                            </a>
+                            <Tooltip title={`${cell.getValue()}`}>
+                              <button
+                                onClick={() => moveUrl(`${cell.getValue()}`)}
+                                className={styles.url_button}
+                              >
+                                url 연결
+                              </button>
+                            </Tooltip>
                           )}
 
                           {cell.column.id === "utm_memo" && (

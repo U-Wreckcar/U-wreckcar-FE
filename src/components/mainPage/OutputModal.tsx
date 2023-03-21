@@ -1,65 +1,66 @@
-import Image from "next/image";
-import ReactModal from "react-modal";
-import styles from "./main.module.css";
+import Image from "next/image"
+import ReactModal from "react-modal"
+import styles from "./main.module.css"
 
-import not_notion from "assets/notion.png";
-import not_sheet from "assets/sheet.png";
-import not_excel from "assets/execel.png";
+import not_notion from "assets/notion.png"
+import not_sheet from "assets/sheet.png"
+import not_excel from "assets/execel.png"
 
-import active_notion from "assets/blue_notion.png";
-import active_sheet from "assets/blue_sheet.png";
-import active_excel from "assets/blue_excel.png";
+import active_notion from "assets/blue_notion.png"
+import active_sheet from "assets/blue_sheet.png"
+import active_excel from "assets/blue_excel.png"
 
-import b_close from "assets/b_close.png";
-import { useEffect, useRef, useState } from "react";
-import { getUTMExcell, getUTMNotion, getUTMSheet } from "@/util/async/api";
+import b_close from "assets/b_close.png"
+import { useEffect, useRef, useState } from "react"
+import { getUTMExcell, getUTMNotion, getUTMSheet } from "@/util/async/api"
 
 type OutputModalType = {
-  isOpen: boolean;
-  onRequestClose: any;
-  style: any;
-  data: any;
-};
+  isOpen: boolean
+  onRequestClose: any
+  style: any
+  data: any
+}
 export const OutputModal: React.FC<OutputModalType> = ({
   isOpen,
   onRequestClose,
   style,
   data,
 }) => {
-  const [notion, setNotion] = useState(false);
-  const [sheet, setSheet] = useState(false);
-  const [excel, setExcel] = useState(false);
+  const [notion, setNotion] = useState(false)
+  const [sheet, setSheet] = useState(false)
+  const [excel, setExcel] = useState(false)
 
   const onClickPopHandler = () => {
     if (notion) {
-      getUTMNotion(data);
+      getUTMNotion(data)
     }
     if (excel) {
-      getUTMExcell(data);
+      getUTMExcell(data)
     }
     if (sheet) {
-      getUTMSheet(data);
+      getUTMSheet(data)
     }
     if (!notion && !excel && !sheet) {
-      alert("추출하실 방법을 선택해주세요!");
+      alert("추출하실 방법을 선택해주세요!")
     }
-    alert("개발 중입니다...!");
-  };
+    alert("개발 중입니다...!")
+    onRequestClose()
+  }
 
   useEffect(() => {
     if (notion) {
-      setExcel(false);
-      setSheet(false);
+      setExcel(false)
+      setSheet(false)
     }
     if (excel) {
-      setNotion(false);
-      setSheet(false);
+      setNotion(false)
+      setSheet(false)
     }
     if (sheet) {
-      setNotion(false);
-      setExcel(false);
+      setNotion(false)
+      setExcel(false)
     }
-  }, [notion, excel, sheet]);
+  }, [notion, excel, sheet])
 
   return (
     <ReactModal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
@@ -157,5 +158,5 @@ export const OutputModal: React.FC<OutputModalType> = ({
         </div>
       </div>
     </ReactModal>
-  );
-};
+  )
+}
