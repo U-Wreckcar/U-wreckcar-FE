@@ -31,7 +31,6 @@ export const AddUtmModal: React.FC<ModalType> = ({
 
   const onSubmit = (data: any) => {
     ExternalUTM(data)
-    console.log(data)
     onRequestClose()
   }
 
@@ -47,6 +46,13 @@ export const AddUtmModal: React.FC<ModalType> = ({
         </span>
 
         <div className={styles.modal_footer_box}>
+          <div className={styles.error_box}>
+            {errors?.utm_url && (
+              <span className={styles.error_utm}>
+                추가하실 UTM을 입력해주세요!
+              </span>
+            )}
+          </div>
           <div className={styles.modal_input_box}>
             <p>UTM</p>
             <input
@@ -78,6 +84,18 @@ export const AddUtmModal: React.FC<ModalType> = ({
                 })}
               />
             </label>
+          </div>
+          <div className={styles.error_box_memo}>
+            {errors.created_at && (
+              <span className={styles.error_utm}>
+                추가하실 UTM의 날짜를 입력해주세요!
+              </span>
+            )}
+            {errors.memo && (
+              <span className={styles.error_utm}>
+                추가하실 UTM의 메모를 입력해주세요!
+              </span>
+            )}
           </div>
           <button
             id="add_btn"
