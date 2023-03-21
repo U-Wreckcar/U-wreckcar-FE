@@ -142,7 +142,6 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                         // placeholder="utm_campaign_id"
                         onInput={requeirFn}
                         {...register(`utms.${index}.utm_campaign_id` as const, {
-                          required: true,
                           pattern: /[a-z]/i,
                         })}
                         className={`${
