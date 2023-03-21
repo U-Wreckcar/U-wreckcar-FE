@@ -18,9 +18,7 @@ export const BaseHeader = () => {
   useEffect(() => {
     async function fetchUserData() {
       const res = await myProfile();
-      console.log(res);
       setUserData(res.data);
-      console.log(res.data);
     }
     fetchUserData();
   }, []);
@@ -40,11 +38,35 @@ export const BaseHeader = () => {
         <span>오늘 하루도 유렉카와 함께 효율적인 업무를 진행하세요</span>
       </div>
       <div className={styles.base_user_box}>
+        {modal && (
+          <dialog>
+            <Link
+              className={styles.links}
+              href={'/userinfo'}>
+              <div
+                className={styles.links_box}
+                onClick={() => {
+                  setModal(!modal);
+                }}>
+                개인정보 관리
+              </div>
+            </Link>
+            <div
+              className={styles.links_box}
+              onClick={() => {
+                setModal(!modal);
+              }}>
+              로그아웃
+            </div>
+          </dialog>
+        )}
         <Image
           src={userData?.profile_img}
           alt='img'
-          width={20}
-          height={20}
+          width={30}
+          height={30}
+          style={{ borderRadius: '50%', marginRight: '7px' }}
+          unoptimized={true}
         />
         <p
           onClick={() => {
@@ -54,16 +76,6 @@ export const BaseHeader = () => {
           <span className={styles.bold_text}>{userData?.username}</span>님
         </p>
       </div>
-      {modal && (
-        <dialog>
-          <Link
-            className={styles.links}
-            href={'/userinfo'}>
-            <div className={styles.links_box}>개인정보 관리</div>
-          </Link>
-          <div className={styles.links_box}>로그아웃</div>
-        </dialog>
-      )}
     </section>
   );
 };

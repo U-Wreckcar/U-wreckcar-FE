@@ -8,10 +8,10 @@ import Image from 'next/image';
 export const CreateCategory = () => {
   const category = [
     'URL 입력 *',
-    '캠페인 ID 입력',
     '소스 선택/입력 *',
     '미디움 선택/입력 * ',
     '캠페인 이름 입력 *',
+    '캠페인 ID 입력',
     '캠페인 텀 입력',
     '캠페인 콘텐츠 입력',
     '메모 입력',
@@ -23,7 +23,7 @@ export const CreateCategory = () => {
         <Image
           className={styles.b_createutm}
           src={b_createutm}
-          alt="추가이미지"
+          alt='추가이미지'
           onError={() => {
             console.log('추가 이미지가 없습니다.');
           }}
