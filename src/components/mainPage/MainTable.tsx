@@ -91,7 +91,9 @@ const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
   return dir === 0 ? sortingFns.alphanumeric(rowA, rowB, columnId) : dir;
 };
 
-let defaultData: Array<MainTableType> = [];
+let defaultData: Array<MainTableType> = []
+let dData: Array<MainTableType> = []
+
 export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [rowSelection, setRowSelection] = useState({})
   const [data, setData] = useState<Array<MainTableType>>([
@@ -130,9 +132,11 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [filter, setFilter] = useState(false);
 
   const getData = async () => {
-    const res = await getUTMs();
-    setData(res.data);
-  };
+    const res = await getUTMs()
+    setData(res.data)
+    dData = res.data
+  }
+
 
   useEffect(() => {
     if (defaultData.length === 0) {
@@ -142,7 +146,8 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   }, [del, output, show, plus])
 
   useEffect(() => {
-    getData();
+    console.log(defaultData)
+
     if (defaultData.length !== 0) {
       setData(defaultData);
     }
@@ -150,8 +155,8 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   }, [defaultData, del, output, show, plus])
 
   useEffect(() => {
-    const cookie = getCookie('access_token');
-    console.log(cookie);
+
+    const cookie = getCookie("access_token")
     if (!cookie) {
 
       redirect("/login")
@@ -593,18 +598,20 @@ function Filter({
   const columnFilterValue = column.getFilterValue();
   const [startDate, setStartDate] = useState<string | number>();
   const [isOpen, setIsOpen] = useState(false);
-
-  let data: Array<MainTableType> = [];
-
-  getUTMs().then((result) => (data = result.data));
+  
+  // getUTMs().then((result) => (data = result.data))
 
   function getDatesStartToLast(startDate: any, lastDate: any) {
-    const regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
+    const regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/)
+
     if (!(regex.test(startDate) && regex.test(lastDate)))
 
       return "Not Date Format"
+
     let result: (string | number | Date)[] = []
+
     const curDate = new Date(startDate)
+
     while (curDate <= new Date(lastDate)) {
       result.push(
         // curDate.toISOString().split("T")[0].toString().replace(/-/g, ".")
@@ -612,12 +619,23 @@ function Filter({
       );
       curDate.setDate(curDate.getDate() + 1);
     }
-    let dateList: any = [];
-    defaultData = data.filter((date) =>
+
+    console.log("Result", result)
+
+    let dateList: any = []
+
+    console.log("dData", dData)
+    defaultData = dData.filter((date) =>
       result.includes(date.created_at_filter)
-    );
-    defaultData.map((d) => dateList.push(d.created_at_filter));
-    column.setFilterValue((old: Array<string>) => console.log(old));
+    )
+
+    defaultData.map((d) => dateList.push(d.created_at_filter))
+
+    console.log("defaultData", defaultData)
+    console.log("dateList", dateList)
+
+    column.setFilterValue((old: Array<string>) => console.log(old))
+
   }
   const sortedUniqueValues = React.useMemo(
     () =>

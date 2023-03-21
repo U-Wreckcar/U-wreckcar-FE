@@ -134,7 +134,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
   useEffect(() => {
     getData()
-  }, [del, output])
+  }, [del, output, show, plus])
 
   useEffect(() => {
     const cookie = getCookie("access_token")
@@ -266,17 +266,6 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
     debugHeaders: true,
     debugColumns: false,
   })
-
-  //수정하기
-  const onClickEditButton = () => {
-    const index = textarea_ref?.current?.id.split("_")[0]
-    const filter = table
-      .getGroupedRowModel()
-      .flatRows.filter((row) => row.id === index)[0].original
-    console.log(filter.utm_id)
-    console.log(textarea_ref?.current?.value)
-    setShow(false)
-  }
 
   //삭제하기
   const onClickDelBtn = () => {
@@ -516,6 +505,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           {cell.column.id === "utm_memo" && (
                             <Tooltip title={"메모 수정하기"}>
                               <div
+                                id={cell.id}
                                 className={styles.memo_td}
                                 onClick={(e: any) => {
                                   setTarget(e.target?.id)
