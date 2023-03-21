@@ -135,14 +135,14 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     if (defaultData.length === 0) {
       getData()
     }
-  }, [del, output, show])
+  }, [del, output, show, plus])
 
   useEffect(() => {
     getData()
     if (defaultData.length !== 0) {
       setData(defaultData)
     }
-  }, [defaultData, del, output, show])
+  }, [defaultData, del, output, show, plus])
 
   useEffect(() => {
     const cookie = getCookie("access_token")
