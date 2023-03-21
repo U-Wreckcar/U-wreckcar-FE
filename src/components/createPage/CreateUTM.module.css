@@ -94,6 +94,7 @@
   justify-content: center;
 
   margin: 24px 0 28px 0;
+  cursor: pointer;
 }
 .add_list_button {
   display: flex;
