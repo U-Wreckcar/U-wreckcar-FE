@@ -91,7 +91,23 @@ const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
 let defaultData: Array<MainTableType> = []
 export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [rowSelection, setRowSelection] = useState({})
-  const [data, setData] = useState<Array<MainTableType>>([])
+  const [data, setData] = useState<Array<MainTableType>>([
+    {
+      created_at_filter: "2023-03-21",
+      full_url:
+        "https://www.naver.com?utm_source=bbb&utm_medium=cccc&utm_campaign=ddd",
+      shorten_url: "https://cutt.ly/F4xsxJK",
+      utm_campaign_id: "aaa",
+      utm_campaign_name: "ddd",
+      utm_content: null,
+      utm_id: 50,
+      utm_medium_name: "cccc",
+      utm_memo: null,
+      utm_source_name: "bbb",
+      utm_term: null,
+      utm_url: "www.naver.com",
+    },
+  ])
   const [target, setTarget] = useState("")
   const [show, setShow] = useState(false)
   const [output, setOutput] = useState(false)
@@ -119,14 +135,14 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     if (defaultData.length === 0) {
       getData()
     }
-  }, [del, output])
+  }, [del, output, show])
 
   useEffect(() => {
     getData()
     if (defaultData.length !== 0) {
       setData(defaultData)
     }
-  }, [defaultData, del, output])
+  }, [defaultData, del, output, show])
 
   useEffect(() => {
     const cookie = getCookie("access_token")
