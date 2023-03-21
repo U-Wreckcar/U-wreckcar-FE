@@ -1,4 +1,5 @@
 "use client"
+
 import React, {
   HTMLProps,
   useMemo,
@@ -102,6 +103,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [columnResizeMode, setColumnResizeMode] =
     useState<ColumnResizeMode>("onChange")
   const [removeModal, setRemoveModal] = useState(false)
+
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   )
@@ -117,14 +119,14 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     if (defaultData.length === 0) {
       getData()
     }
-  }, [])
+  }, [del, output])
 
   useEffect(() => {
     getData()
     if (defaultData.length !== 0) {
       setData(defaultData)
     }
-  }, [defaultData])
+  }, [defaultData, del, output])
 
   useEffect(() => {
     const cookie = getCookie("access_token")
@@ -178,6 +180,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         header: "생성일자",
         id: "created_at_filter",
         accessorKey: "created_at_filter",
+
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 80,
@@ -202,6 +205,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         header: "소스",
         id: "utm_source_name",
         accessorKey: "utm_source_name",
+
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 110,
@@ -518,13 +522,20 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               >{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
-                          {cell.column.id !== "utm_memo" && (
-                            <Tooltip title={`${cell.getValue()}`}>
-                              <div
-                                className={styles.td_box}
-                              >{`${cell.getValue()}`}</div>
-                            </Tooltip>
-                          )}
+
+                          {cell.column.id === "select" &&
+                            flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}
+                          {cell.column.id !== "utm_memo" &&
+                            cell.column.id !== "select" && (
+                              <Tooltip title={`${cell.getValue()}`}>
+                                <div
+                                  className={styles.td_box}
+                                >{`${cell.getValue()}`}</div>
+                              </Tooltip>
+                            )}
                         </td>
                       )
                     })}
@@ -622,6 +633,7 @@ function Filter({
           ></input>
         </>
       )}
+
       {column.id !== "created_at_filter" && (
         <>
           <datalist id={column.id + "list"}>

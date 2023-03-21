@@ -118,7 +118,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
   useEffect(() => {
     getData()
-  }, [])
+  }, [del, output])
 
   useEffect(() => {
     const cookie = getCookie("access_token")
@@ -257,7 +257,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
     const filter = table
       .getGroupedRowModel()
       .flatRows.filter((row) => row.id === index)[0].original
-    console.log(filter.id)
+    console.log(filter.utm_id)
     console.log(textarea_ref?.current?.value)
     setShow(false)
   }
