@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, {
@@ -10,9 +11,9 @@ import React, {
 } from "react"
 import { MainTableType } from "./TableData"
 // import { useGetUtm } from "util/hooks/useAsync";
-import { getUTMs } from "util/async/api"
-import Tooltip from "@mui/material/Tooltip"
-import { MainTableProps } from "./MainBtnTable"
+import { getUTMs } from 'util/async/api';
+import Tooltip from '@mui/material/Tooltip';
+import { MainTableProps } from './MainBtnTable';
 
 import {
   Table,
@@ -32,12 +33,14 @@ import {
   FilterFn,
   SortingFn,
   FilterFns,
+
 } from "@tanstack/react-table"
 
 import {
   RankingInfo,
   rankItem,
   compareItems,
+
 } from "@tanstack/match-sorter-utils"
 import styles from "./main.module.css"
 import instance from "util/async/axiosConfig"
@@ -54,39 +57,39 @@ import Link from "next/link"
 import { getCookie } from "@/util/async/Cookie"
 declare module "@tanstack/table-core" {
   interface FilterFns {
-    fuzzy: FilterFn<unknown>
+    fuzzy: FilterFn<unknown>;
   }
   interface FilterMeta {
-    itemRank: RankingInfo
+    itemRank: RankingInfo;
   }
 }
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   // Rank the item
-  const itemRank = rankItem(row.getValue(columnId), value)
+  const itemRank = rankItem(row.getValue(columnId), value);
 
   // Store the itemRank info
   addMeta({
     itemRank,
-  })
+  });
 
   // Return if the item should be filtered in/out
-  return itemRank.passed
-}
+  return itemRank.passed;
+};
 
 const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
-  let dir = 0
+  let dir = 0;
 
   // Only sort by rank if the column has ranking information
   if (rowA.columnFiltersMeta[columnId]) {
     dir = compareItems(
       rowA.columnFiltersMeta[columnId]?.itemRank!,
       rowB.columnFiltersMeta[columnId]?.itemRank!
-    )
+    );
   }
 
   // Provide an alphanumeric fallback for when the item ranks are equal
-  return dir === 0 ? sortingFns.alphanumeric(rowA, rowB, columnId) : dir
-}
+  return dir === 0 ? sortingFns.alphanumeric(rowA, rowB, columnId) : dir;
+};
 
 let defaultData: Array<MainTableType> = []
 let dData: Array<MainTableType> = []
@@ -119,14 +122,14 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [inputValue, setInputValue] = useState("")
 
   const [columnResizeMode, setColumnResizeMode] =
-    useState<ColumnResizeMode>("onChange")
-  const [removeModal, setRemoveModal] = useState(false)
+    useState<ColumnResizeMode>('onChange');
+  const [removeModal, setRemoveModal] = useState(false);
 
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
-  )
-  const [plus, setPlus] = useState(false)
-  const [filter, setFilter] = useState(false)
+  );
+  const [plus, setPlus] = useState(false);
+  const [filter, setFilter] = useState(false);
 
   const getData = async () => {
     const res = await getUTMs()
@@ -134,25 +137,31 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     dData = res.data
   }
 
+
   useEffect(() => {
     if (defaultData.length === 0) {
-      getData()
+      getData();
     }
+
   }, [del, output, show, plus])
 
   useEffect(() => {
     console.log(defaultData)
+
     if (defaultData.length !== 0) {
-      setData(defaultData)
+      setData(defaultData);
     }
+
   }, [defaultData, del, output, show, plus])
 
   useEffect(() => {
+
     const cookie = getCookie("access_token")
     if (!cookie) {
+
       redirect("/login")
     }
-  }, [])
+  }, []);
 
   const customStyles = {
     content: {
@@ -167,7 +176,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     overlay: {
       background: "#ffffff7f",
     },
-  }
+  };
   const columns = useMemo<ColumnDef<MainTableType>[]>(
     () => [
       {
@@ -195,6 +204,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         ),
       },
       {
+
         header: "생성일자",
         id: "created_at_filter",
         accessorKey: "created_at_filter",
@@ -220,6 +230,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         minSize: 150,
       },
       {
+
         header: "소스",
         id: "utm_source_name",
         accessorKey: "utm_source_name",
@@ -229,6 +240,8 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         minSize: 110,
       },
       {
+
+   
         header: "미디움",
         id: "utm_medium_name",
         accessorKey: "utm_medium_name",
@@ -286,7 +299,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
       },
     ],
     []
-  )
+  );
 
   const table = useReactTable({
     data,
@@ -313,32 +326,34 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     debugTable: true,
     debugHeaders: true,
     debugColumns: false,
-  })
+  });
 
   //삭제하기
   const onClickDelBtn = () => {
-    let id: Array<MainTableType> = []
-    table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
+    let id: Array<MainTableType> = [];
+    table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original));
     if (id.length === 0) {
+
       alert("삭제할 데이터를 선택해주세요")
     } else {
-      setDel(true)
-      setDelLength(id)
+      setDel(true);
+      setDelLength(id);
     }
-  }
+  };
 
   //추출하기
   const onClickPopBtn = () => {
-    let id: Array<MainTableType> = []
-    table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
+    let id: Array<MainTableType> = [];
+    table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original));
     if (id.length === 0) {
+
       alert("추출할 데이터를 선택해주세요")
     } else {
-      console.log(id)
-      setOutput(true)
-      setOutputLength(id)
+      console.log(id);
+      setOutput(true);
+      setOutputLength(id);
     }
-  }
+  };
 
   return (
     <div>
@@ -498,7 +513,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           }}
                         /> */}
                       </th>
-                    )
+                    );
                   })}
                 </tr>
               ))}
@@ -533,6 +548,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               <div
                                 id={cell.id}
                                 onClick={(e: any) => {
+
                                   setTarget(e.target?.id)
                                   setShow(true)
                                   setInputValue(`${cell.getValue()}`)
@@ -555,40 +571,41 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               </Tooltip>
                             )}
                         </td>
-                      )
+                      );
                     })}
                   </tr>
-                )
+                );
               })}
             </tbody>
           </table>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 function Filter({
   column,
   table,
 }: {
-  column: Column<any, unknown>
-  table: Table<any>
+  column: Column<any, unknown>;
+  table: Table<any>;
 }) {
   const firstValue = table
     .getPreFilteredRowModel()
-    .flatRows[0]?.getValue(column.id)
+    .flatRows[0]?.getValue(column.id);
 
-  const columnFilterValue = column.getFilterValue()
-  const [startDate, setStartDate] = useState<string | number>()
-  const [isOpen, setIsOpen] = useState(false)
-
+  const columnFilterValue = column.getFilterValue();
+  const [startDate, setStartDate] = useState<string | number>();
+  const [isOpen, setIsOpen] = useState(false);
+  
   // getUTMs().then((result) => (data = result.data))
 
   function getDatesStartToLast(startDate: any, lastDate: any) {
     const regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/)
 
     if (!(regex.test(startDate) && regex.test(lastDate)))
+
       return "Not Date Format"
 
     let result: (string | number | Date)[] = []
@@ -598,10 +615,11 @@ function Filter({
     while (curDate <= new Date(lastDate)) {
       result.push(
         // curDate.toISOString().split("T")[0].toString().replace(/-/g, ".")
-        curDate.toISOString().split("T")[0].toString()
-      )
-      curDate.setDate(curDate.getDate() + 1)
+        curDate.toISOString().split('T')[0].toString()
+      );
+      curDate.setDate(curDate.getDate() + 1);
     }
+
     console.log("Result", result)
 
     let dateList: any = []
@@ -617,6 +635,7 @@ function Filter({
     console.log("dateList", dateList)
 
     column.setFilterValue((old: Array<string>) => console.log(old))
+
   }
   const sortedUniqueValues = React.useMemo(
     () =>
@@ -624,10 +643,11 @@ function Filter({
         ? []
         : Array.from(column.getFacetedUniqueValues().keys()).sort(),
     [column.getFacetedUniqueValues()]
-  )
+  );
 
   return (
     <>
+
       {column.id === "created_at_filter" && (
         <>
           {isOpen && (
@@ -637,7 +657,7 @@ function Filter({
                   type="date"
                   value={(columnFilterValue ?? "") as string}
                   onChange={(value) => {
-                    setStartDate(value)
+                    setStartDate(value);
                   }}
                   list={column.id + "list"}
                 />
@@ -665,7 +685,7 @@ function Filter({
         </>
       )}
 
-      {column.id !== "created_at_filter" && (
+      {column.id !== 'created_at_filter' && (
         <>
           <datalist id={column.id + "list"}>
             {sortedUniqueValues.slice(0, 5000).map((value: any) => (
@@ -682,7 +702,7 @@ function Filter({
         </>
       )}
     </>
-  )
+  );
 }
 
 // A debounced input react component
@@ -692,6 +712,7 @@ function DebouncedInput({
   debounce = 500,
   ...props
 }: {
+
   value: string | number
   onChange: (value: string | number) => void
   debounce?: number
@@ -699,16 +720,16 @@ function DebouncedInput({
   const [value, setValue] = React.useState(initialValue)
 
   React.useEffect(() => {
-    setValue(initialValue)
-  }, [initialValue])
+    setValue(initialValue);
+  }, [initialValue]);
 
   React.useEffect(() => {
     const timeout = setTimeout(() => {
-      onChange(value)
-    }, debounce)
+      onChange(value);
+    }, debounce);
 
-    return () => clearTimeout(timeout)
-  }, [value])
+    return () => clearTimeout(timeout);
+  }, [value]);
 
   return (
     <input
@@ -716,20 +737,21 @@ function DebouncedInput({
       value={value}
       onChange={(e) => setValue(e.target.value)}
     />
-  )
+  );
 }
 function IndeterminateCheckbox({
   indeterminate,
   className = "",
   ...rest
 }: { indeterminate?: boolean } & HTMLProps<HTMLInputElement>) {
-  const ref = useRef<HTMLInputElement>(null!)
+  const ref = useRef<HTMLInputElement>(null!);
 
   useEffect(() => {
+
     if (typeof indeterminate === "boolean") {
       ref.current.indeterminate = !rest.checked && indeterminate
     }
-  }, [ref, indeterminate])
+  }, [ref, indeterminate]);
 
   return (
     <input
@@ -738,5 +760,5 @@ function IndeterminateCheckbox({
       className={className + " cursor-pointer"}
       {...rest}
     />
-  )
+  );
 }
