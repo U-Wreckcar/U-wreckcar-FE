@@ -66,6 +66,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
     e.target.value = e.target.value.replace(/[^a-z0-9./:_-]?/, '');
     e.target.value = e.target.value.replace({ maxLength: 70 }, '');
   };
+
   const addList = () => {
     if (fields.length <= 2) {
       append({
