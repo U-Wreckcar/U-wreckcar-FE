@@ -130,6 +130,7 @@
   border-radius: 4px;
   margin-right: 10px;
   color: white;
+  cursor: pointer;
 }
 .minus_button {
   display: flex;
