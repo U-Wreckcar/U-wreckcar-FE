@@ -59,9 +59,21 @@ export const BaseHeader = () => {
           <Link
             className={styles.links}
             href={'/userinfo'}>
-            <div className={styles.links_box}>개인정보 관리</div>
+            <div
+              className={styles.links_box}
+              onClick={() => {
+                setModal(!modal);
+              }}>
+              개인정보 관리
+            </div>
           </Link>
-          <div className={styles.links_box}>로그아웃</div>
+          <div
+            className={styles.links_box}
+            onClick={() => {
+              setModal(!modal);
+            }}>
+            로그아웃
+          </div>
         </dialog>
       )}
     </section>
