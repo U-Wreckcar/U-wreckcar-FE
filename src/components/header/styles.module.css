@@ -20,6 +20,12 @@
   width: 18px;
   margin-right: 6px;
 }
+.profile_img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
 .render_nav {
   background-color: var(--color-blue-900);
   display: flex;

@@ -18,9 +18,7 @@ export const BaseHeader = () => {
   useEffect(() => {
     async function fetchUserData() {
       const res = await myProfile();
-      console.log(res);
       setUserData(res.data);
-      console.log(res.data);
     }
     fetchUserData();
   }, []);
@@ -43,8 +41,10 @@ export const BaseHeader = () => {
         <Image
           src={userData?.profile_img}
           alt='img'
-          width={20}
-          height={20}
+          width={30}
+          height={30}
+          style={{ borderRadius: '50%', marginRight: '7px' }}
+          unoptimized={true}
         />
         <p
           onClick={() => {
