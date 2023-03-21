@@ -52,12 +52,12 @@
     max-width: 1608px;
   }
   .section_one_two img {
-    width: 785px;
-    height: 441px;
+    /* width: 785px;
+    height: 441px; */
     height: auto;
     position: relative;
     top: -110px;
-    left: 185px;
+    /* left: 185px; */
   }
   
   .section_two {
