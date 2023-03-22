@@ -3,11 +3,7 @@ import type { Metadata } from 'next';
 import { SideNav } from '@/components/sidebar/SideNav';
 import Header from '@/components/header/Header';
 import localFont from 'next/font/local';
-import { useRouter } from 'next/router';
 import Script from 'next/script';
-import Head from 'next/head';
-// import { Head } from 'next/document';
-// import Head from 'next/head';
 
 const myFont = localFont({ src: './PretendardVariable.woff2' });
 
@@ -25,11 +21,18 @@ export const metadata: Metadata = {
     siteName: '유렉카',
     images: [
       {
-        url: 'https://utm.works/og-alt.png',
+        url: 'https://utm.works/og.png',
         width: 800,
         height: 600,
       },
+      {
+        url: 'https://utm.works/og-alt.png',
+        width: 1200,
+        height: 600,
+        alt: 'OG IMAGE',
+      },
     ],
+    locale: 'ko-kr',
     type: 'website',
   },
 };
