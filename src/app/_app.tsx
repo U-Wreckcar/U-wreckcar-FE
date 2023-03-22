@@ -10,10 +10,10 @@ const myFont = localFont({ src: './PretendardVariable.woff2' });
 
 export default function APP({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const ogImgPath = `${router.basePath}/og-image.png`;
+  // const ogImgPath = `${router.basePath}/og-image.png`;
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>유렉카!</title>
         <meta
           property='og:title'
@@ -23,7 +23,7 @@ export default function APP({ Component, pageProps }: AppProps) {
           property='og:image'
           content={ogImgPath}
         />
-      </Head>
+      </Head> */}
       <Hydrate state={pageProps.dehydratedState}>
         <main className={myFont.className}>
           <Component {...pageProps} />
