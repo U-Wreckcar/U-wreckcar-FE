@@ -25,11 +25,12 @@ export const metadata: Metadata = {
     siteName: '유렉카',
     images: [
       {
-        url: 'https://utm.works/OGImg',
-        width: 1200,
-        height: 640,
+        url: 'https://utm.works/og.png',
+        width: 800,
+        height: 600,
       },
     ],
+    type: 'website',
   },
 };
 export default function RootLayout({
