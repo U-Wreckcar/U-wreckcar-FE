@@ -35,20 +35,6 @@ const MyDocument = () => {
           }}
         />
       </Head>
-      <body>
-        {/* Google Tag Manager (noscript) */}
-        <noscript
-          dangerouslySetInnerHTML={{
-            __html: `
-              <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6DT5Z8"
-              height="0" width="0" style="display:none;visibility:hidden"></iframe>
-            `,
-          }}
-        />
-
-        <Main />
-        <NextScript />
-      </body>
     </Html>
   );
 };
@@ -59,3 +45,18 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
 };
 
 export default MyDocument;
+
+// <body>
+//   {/* Google Tag Manager (noscript) */}
+//   <noscript
+//     dangerouslySetInnerHTML={{
+//       __html: `
+//         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6DT5Z8"
+//         height="0" width="0" style="display:none;visibility:hidden"></iframe>
+//       `,
+//     }}
+//   />
+
+//   <Main />
+//   <NextScript />
+// </body>
