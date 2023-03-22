@@ -46,7 +46,11 @@ export const BaseHeader = () => {
         />
         <span>오늘 하루도 유렉카와 함께 효율적인 업무를 진행하세요</span>
       </div>
-      <div className={styles.base_user_box}>
+      <div
+        className={styles.base_user_box}
+        onClick={() => {
+          setModal(!modal);
+        }}>
         {modal && (
           <dialog>
             <Link
@@ -69,6 +73,7 @@ export const BaseHeader = () => {
             </div>
           </dialog>
         )}
+
         <Image
           src={`${userData?.profile_img}`}
           alt='img'
@@ -77,11 +82,7 @@ export const BaseHeader = () => {
           style={{ borderRadius: '50%', marginRight: '7px' }}
           unoptimized={true}
         />
-        <p
-          onClick={() => {
-            setModal(!modal);
-          }}
-          className={styles.login_box}>
+        <p className={styles.login_box}>
           <span className={styles.bold_text}>{userData?.username}</span>님
         </p>
       </div>

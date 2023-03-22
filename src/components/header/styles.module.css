@@ -64,6 +64,7 @@
   color: rgb(44, 44, 44);
   font-size: 14px;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .render_user_box {
