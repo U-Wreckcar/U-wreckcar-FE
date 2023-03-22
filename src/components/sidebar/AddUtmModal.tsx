@@ -1,5 +1,5 @@
 "use client"
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import ReactModal from "react-modal"
 import styles from "./AddUtmModal.module.css"
 import { useForm } from "react-hook-form"
@@ -26,13 +26,28 @@ export const AddUtmModal: React.FC<ModalType> = ({
     register,
     formState: { errors, isDirty, isSubmitting },
     handleSubmit,
-    getValues,
+    setError,
+    setValue,
   } = useForm({ criteriaMode: "all", mode: "onChange" })
 
-  const onSubmit = (data: any) => {
-    ExternalUTM(data)
-    onRequestClose()
+  const onSubmit = async (data: any) => {
+    try {
+      const res = await ExternalUTM(data)
+      onRequestClose()
+    } catch (err) {
+      setError(
+        "utm_url",
+        { message: "UTM을 확인해주세요" },
+        { shouldFocus: true }
+      )
+    }
   }
+
+  useEffect(() => {
+    setValue("utm_url", "")
+    setValue("created_at", "")
+    setValue("memo", "")
+  }, [isOpen])
 
   return (
     <ReactModal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
@@ -49,7 +64,7 @@ export const AddUtmModal: React.FC<ModalType> = ({
           <div className={styles.error_box}>
             {errors?.utm_url && (
               <span className={styles.error_utm}>
-                추가하실 UTM을 입력해주세요!
+                추가하실 UTM을 확인해주세요!
               </span>
             )}
           </div>
@@ -70,7 +85,7 @@ export const AddUtmModal: React.FC<ModalType> = ({
                 className={styles.modal_input_date}
                 type="date"
                 {...register("created_at", {
-                  required: true,
+                  required: false,
                 })}
               />
             </label>
@@ -102,7 +117,6 @@ export const AddUtmModal: React.FC<ModalType> = ({
             type="submit"
             disabled={isSubmitting}
             className={styles.add_button}
-            //onClick={onRequestClose}
           >
             추가하기
           </button>
