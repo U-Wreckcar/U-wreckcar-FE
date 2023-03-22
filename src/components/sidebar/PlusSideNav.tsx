@@ -1,33 +1,33 @@
-"use client";
-import React, { Dispatch, SetStateAction, useState } from "react";
+"use client"
+import React, { Dispatch, SetStateAction, useState } from "react"
 
-import styles from "./styles.module.css";
-import Modal from "react-modal";
-import { AddUtmModal } from "./AddUtmModal";
-import Link from "next/link";
+import styles from "./styles.module.css"
+import Modal from "react-modal"
+import { AddUtmModal } from "./AddUtmModal"
+import Link from "next/link"
 
 /**
  * Image
  */
-import whitelogo from "assets/whitelogo.png";
-import myutm from "../../assets/myutm.png";
-import addutm from "../../assets/addutm.png";
-import createutm from "../../assets/createutm.png";
-import slim from "../../assets/slim.png";
-import help from "../../assets/help.png";
-import noti from "assets/noti.png";
-import guide from "assets/guide.png";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
+import whitelogo from "assets/whitelogo.png"
+import myutm from "../../assets/myutm.png"
+import addutm from "../../assets/addutm.png"
+import createutm from "../../assets/createutm.png"
+import slim from "../../assets/slim.png"
+import help from "../../assets/help.png"
+import noti from "assets/noti.png"
+import guide from "assets/guide.png"
+import Image from "next/image"
+import { usePathname } from "next/navigation"
 
 export type setSideProps = {
-  setSide: Dispatch<SetStateAction<boolean>>;
-  side: boolean;
-};
+  setSide: Dispatch<SetStateAction<boolean>>
+  side: boolean
+}
 
 export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
-  const [modal, setModal] = useState(false);
-  const pathName = usePathname();
+  const [modal, setModal] = useState(false)
+  const pathName = usePathname()
 
   const customStyles = {
     content: {
@@ -39,27 +39,31 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
       transform: "translate(-50%, -50%)",
       padding: 0,
     },
-  };
+  }
   const openModal = () => {
-    setModal(true);
-  };
+    setModal(true)
+  }
   const closeModal = () => {
-    setModal(false);
-  };
+    setModal(false)
+  }
 
   const onClickNoti = () => {
-    window.location.href =
-      " https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492";
-  };
+    window.open(
+      "https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492",
+      "_blank"
+    )
+  }
 
   const onClickGuide = () => {
-    window.location.href =
-      "https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3";
-  };
+    window.open(
+      "https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3",
+      "_blank"
+    )
+  }
 
   const onClickKakao = () => {
-    window.location.href = "https://open.kakao.com/o/sbK3Rfaf";
-  };
+    window.open("https://open.kakao.com/o/sbK3Rfaf", "_blank")
+  }
   return (
     <section className={styles.plus_container}>
       <div className={styles.category_box}>
@@ -186,5 +190,5 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}

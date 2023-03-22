@@ -1,26 +1,26 @@
-"use client";
-import React, { useState } from "react";
-import styles from "./styles.module.css";
-import Modal from "react-modal";
-import { AddUtmModal } from "./AddUtmModal";
-import { setSideProps } from "./PlusSideNav";
+"use client"
+import React, { useState } from "react"
+import styles from "./styles.module.css"
+import Modal from "react-modal"
+import { AddUtmModal } from "./AddUtmModal"
+import { setSideProps } from "./PlusSideNav"
 
 /**
  * Image
  */
-import menu from "assets/menu.png";
-import myutm from "assets/myutm.png";
-import addutm from "assets/addutm.png";
-import createutm from "assets/createutm.png";
-import help from "assets/help.png";
-import noti from "assets/noti.png";
-import guide from "assets/guide.png";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import menu from "assets/menu.png"
+import myutm from "assets/myutm.png"
+import addutm from "assets/addutm.png"
+import createutm from "assets/createutm.png"
+import help from "assets/help.png"
+import noti from "assets/noti.png"
+import guide from "assets/guide.png"
+import Image from "next/image"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
-  const [modal, setModal] = useState(false);
-  const pathName = usePathname();
+  const [modal, setModal] = useState(false)
+  const pathName = usePathname()
   const customStyles = {
     content: {
       top: "50%",
@@ -31,27 +31,31 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
       transform: "translate(-50%, -50%)",
       padding: 0,
     },
-  };
+  }
   const openModal = () => {
-    setModal(true);
-  };
+    setModal(true)
+  }
   const closeModal = () => {
-    setModal(false);
-  };
+    setModal(false)
+  }
 
   const onClickNoti = () => {
-    window.location.href =
-      " https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492";
-  };
+    window.open(
+      "https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492",
+      "_blank"
+    )
+  }
 
   const onClickGuide = () => {
-    window.location.href =
-      "https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3";
-  };
+    window.open(
+      "https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3",
+      "_blank"
+    )
+  }
 
   const onClickKakao = () => {
-    window.location.href = "https://open.kakao.com/o/sbK3Rfaf";
-  };
+    window.open("https://open.kakao.com/o/sbK3Rfaf", "_blank")
+  }
   return (
     <div className={styles.slim_container}>
       <div>
@@ -152,5 +156,5 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
