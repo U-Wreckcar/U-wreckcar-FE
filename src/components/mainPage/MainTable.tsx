@@ -444,7 +444,6 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                       <th
                         key={header.id}
                         {...{
-                          // key: header.id,
                           colSpan: header.colSpan,
                           style: {
                             width:
@@ -580,18 +579,6 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               cell.column.columnDef.cell,
                               cell.getContext()
                             )}
-                          {cell.column.id !== "utm_memo" &&
-                            cell.column.id !== "utm_url" &&
-                            cell.column.id !== "select" &&
-                            cell.column.id !== "full_url" &&
-                            cell.column.id !== "shorten_url" && (
-                              <Tooltip title={`${cell.getValue()}`}>
-                                <div
-                                  className={styles.td_box}
-                                >{`${cell.getValue()}`}</div>
-                              </Tooltip>
-                            )}
-
                           {cell.column.id === "full_url" && (
                             <Tooltip title={`${cell.getValue()}`}>
                               <div
@@ -614,6 +601,17 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               >{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
+                          {cell.column.id !== "utm_memo" &&
+                            cell.column.id !== "utm_url" &&
+                            cell.column.id !== "select" &&
+                            cell.column.id !== "full_url" &&
+                            cell.column.id !== "shorten_url" && (
+                              <Tooltip title={`${cell.getValue()}`}>
+                                <div
+                                  className={styles.td_box}
+                                >{`${cell.getValue()}`}</div>
+                              </Tooltip>
+                            )}
                         </td>
                       )
                     })}
