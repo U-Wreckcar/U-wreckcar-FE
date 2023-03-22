@@ -83,6 +83,9 @@
 .render_user_box a {
   text-decoration: none;
 }
+.render_login_btn {
+  color: rgb(237, 237, 237);
+}
 
 .user_img {
   width: 33px;
