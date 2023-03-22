@@ -93,23 +93,7 @@ let dData: Array<MainTableType> = []
 
 export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [rowSelection, setRowSelection] = useState({})
-  const [data, setData] = useState<Array<MainTableType>>([
-    {
-      created_at_filter: "2023-03-21",
-      full_url:
-        "https://www.naver.com?utm_source=bbb&utm_medium=cccc&utm_campaign=ddd",
-      shorten_url: "https://cutt.ly/F4xsxJK",
-      utm_campaign_id: "aaa",
-      utm_campaign_name: "ddd",
-      utm_content: null,
-      utm_id: 50,
-      utm_medium_name: "cccc",
-      utm_memo: null,
-      utm_source_name: "bbb",
-      utm_term: null,
-      utm_url: "www.naver.com",
-    },
-  ])
+  const [data, setData] = useState<Array<MainTableType>>([])
   const [target, setTarget] = useState("")
   const [show, setShow] = useState(false)
   const [output, setOutput] = useState(false)
@@ -341,7 +325,6 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     if (id.length === 0) {
       alert("추출할 데이터를 선택해주세요")
     } else {
-      console.log(id)
       setOutput(true)
       setOutputLength(id)
     }
@@ -610,19 +593,13 @@ function Filter({
       curDate.setDate(curDate.getDate() + 1)
     }
 
-    console.log("Result", result)
-
     let dateList: any = []
 
-    console.log("dData", dData)
     defaultData = dData.filter((date) =>
       result.includes(date.created_at_filter)
     )
 
-    defaultData.map((d) => dateList.push(d.created_at_filter))
-
-    console.log("defaultData", defaultData)
-    console.log("dateList", dateList)
+    //defaultData.map((d) => dateList.push(d.created_at_filter))
 
     column.setFilterValue((old: Array<string>) => console.log(old))
   }

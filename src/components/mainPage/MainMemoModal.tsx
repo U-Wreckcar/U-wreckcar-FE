@@ -27,9 +27,6 @@ export const EditModal: React.FC<EditModalType> = ({
     const filter = table
       .getGroupedRowModel()
       .flatRows.filter((row: any) => row.index.toString() === id)[0].original
-
-    console.log(filter.utm_id)
-    console.log(textarea_ref?.current?.value)
     patchUTM({ utm_id: filter.utm_id, utm_memo: textarea_ref?.current?.value })
     onRequestClose()
   }
