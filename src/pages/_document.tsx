@@ -3,13 +3,15 @@ import { DocumentContext } from 'next/document';
 import Script from 'next/script';
 
 const MyDocument = () => {
+  console.log('안녕하세요');
   return (
     <Html>
       <Head>
         {/* Google Analytics */}
         <script
           async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE}`}></script>
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE}`}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -34,6 +36,20 @@ const MyDocument = () => {
             `,
           }}
         />
+        <body>
+          {/* Google Tag Manager (noscript) */}
+          <noscript
+            dangerouslySetInnerHTML={{
+              __html: `
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6DT5Z8"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>
+      `,
+            }}
+          />
+
+          <Main />
+          <NextScript />
+        </body>
       </Head>
     </Html>
   );
@@ -45,18 +61,3 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
 };
 
 export default MyDocument;
-
-// <body>
-//   {/* Google Tag Manager (noscript) */}
-//   <noscript
-//     dangerouslySetInnerHTML={{
-//       __html: `
-//         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6DT5Z8"
-//         height="0" width="0" style="display:none;visibility:hidden"></iframe>
-//       `,
-//     }}
-//   />
-
-//   <Main />
-//   <NextScript />
-// </body>
