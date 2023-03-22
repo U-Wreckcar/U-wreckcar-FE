@@ -26,8 +26,8 @@ const KakaoCallback = () => {
           setCookie('access_token', res.access_token);
           setCookie('refresh_token', res.refresh_token);
         })
+        .then(() => router.push('/main'))
         .then(() => router.refresh())
-        .then(() => router.replace('/main'))
         .catch((error) => {
           // 에러 처리
           console.error(error);
@@ -42,7 +42,6 @@ const KakaoCallback = () => {
   return (
     <div className={styles.container}>
       <CircularUnderLoad />
-      <div>로그인중 ..</div>
     </div>
   );
 };
