@@ -9,7 +9,6 @@ import Head from 'next/head';
 const myFont = localFont({ src: './PretendardVariable.woff2' });
 
 export default function APP({ Component, pageProps }: AppProps) {
-  const router = useRouter();
   // const ogImgPath = `${router.basePath}/og-image.png`;
   return (
     <>
