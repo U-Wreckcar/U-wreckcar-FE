@@ -3,7 +3,6 @@ import { DocumentContext } from 'next/document';
 import Script from 'next/script';
 
 const MyDocument = () => {
-  console.log('안녕하세요');
   return (
     <Html>
       <Head>
