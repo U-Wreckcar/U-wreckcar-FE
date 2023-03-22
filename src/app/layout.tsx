@@ -1,10 +1,14 @@
 import './globals.css';
-import styles from './layout.module.css';
 import type { Metadata } from 'next';
 import { SideNav } from '@/components/sidebar/SideNav';
 import Header from '@/components/header/Header';
 import localFont from 'next/font/local';
 import { useRouter } from 'next/router';
+import Script from 'next/script';
+import Head from 'next/head';
+// import { Head } from 'next/document';
+// import Head from 'next/head';
+
 const myFont = localFont({ src: './PretendardVariable.woff2' });
 
 export const metadata: Metadata = {
@@ -35,12 +39,25 @@ export default function RootLayout({
     <html
       lang='ko'
       className={myFont.className}>
+      <head>
+        {/* Google Analytics */}
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE}`}></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', ${process.env.NEXT_PUBLIC_GOOGLE});
+            `,
+          }}
+        />
+      </head>
       <body>
         <SideNav />
-        <div>
-          <Header />
-          {children}
-        </div>
+        <div>{children}</div>
       </body>
     </html>
   );
