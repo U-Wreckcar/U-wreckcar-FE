@@ -4,13 +4,13 @@ import { MainTable } from "./MainTable"
 import { useState } from "react"
 
 export default function MainPageComponent() {
-  const [summary, setSummary] = useState(true)
+  const [summary, setSummary] = useState(false)
   return (
     <>
       {summary ? (
-        <MainBtnTable setSummary={setSummary} />
-      ) : (
         <MainTable setSummary={setSummary} />
+      ) : (
+        <MainBtnTable setSummary={setSummary} />
       )}
     </>
   )
