@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: '유렉카',
     images: [
       {
-        url: 'https://utm.works/og-alt.png',
+        url: 'https://utm.works/OGImg',
       },
     ],
   },
@@ -68,8 +68,8 @@ export default function RootLayout({
           }}
         />
       </head>
-      <Header />
       <body>
+        <Header />
         {/* Google Tag Manager (noscript) */}
         <noscript
           dangerouslySetInnerHTML={{

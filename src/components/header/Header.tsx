@@ -6,6 +6,7 @@ import { RenderHeader } from './RenderHeader';
 import { usePathname } from 'next/navigation';
 export default function Header() {
   const [path, setPath] = useState(false);
+  const noHead = <></>;
   const pathName = usePathname();
   useEffect(() => {
     if (
@@ -15,6 +16,7 @@ export default function Header() {
       pathName === '/auth'
     ) {
       setPath(true);
+    } else if (pathName === '/404' || pathName === '/og-alt.png') {
     } else {
       setPath(false);
     }
