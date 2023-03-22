@@ -62,10 +62,10 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
     name: 'utms',
     control,
   });
-  const requeirFn = (e: any) => {
-    e.target.value = e.target.value.replace(/[^a-z0-9./:_-]?/, '');
-    e.target.value = e.target.value.replace({ maxLength: 70 }, '');
-  };
+  // const requeirFn = (e: any) => {
+  //   e.target.value = e.target.value.replace(/[^a-z0-9./:_-]?/, '');
+  //   e.target.value = e.target.value.replace({ maxLength: 70 }, '');
+  // };
 
   const addList = () => {
     if (fields.length <= 2) {
@@ -88,11 +88,17 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
   };
 
   const onSubmit = async (data: UTMsType) => {
-    const res = await postUTMs(data);
-    console.log(res);
-    console.log(res.data);
-    setResUTM(res.data);
-    setAlert(true);
+    try {
+      const res = await postUTMs(data);
+      console.log(res);
+      console.log(res.data);
+      setResUTM(res.data);
+      if (res.data !== '') {
+        setAlert(true);
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
   useEffect(() => {}, [memoText]);
   console.log(errors);
@@ -122,10 +128,10 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
 
                       <input
                         // placeholder="utm_url"
-                        onInput={requeirFn}
+                        // onInput={requeirFn}
                         {...register(`utms.${index}.utm_url` as const, {
                           required: true,
-                          pattern: /[a-z]/i,
+                          // pattern: '*.*.*',
                         })}
                         className={`${
                           errors?.utms?.[index]?.utm_url
@@ -141,10 +147,9 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
 
                       <input
                         // placeholder="utm_source"
-                        onInput={requeirFn}
+                        // onInput={requeirFn}
                         {...register(`utms.${index}.utm_source` as const, {
                           required: true,
-                          pattern: /[a-z]/i,
                         })}
                         className={`${
                           errors?.utms?.[index]?.utm_source ? 'error' : ''
@@ -156,11 +161,11 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                         ''
                       )}
                       <input
-                        onInput={requeirFn}
+                        // onInput={requeirFn}
                         // placeholder="utm_medium"
                         {...register(`utms.${index}.utm_medium` as const, {
                           required: true,
-                          pattern: /[a-z]/i,
+                          // pattern: /[a-z]/i,
                         })}
                         className={`${
                           errors?.utms?.[index]?.utm_medium ? 'error' : ''
@@ -172,7 +177,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                         ''
                       )}
                       <input
-                        onInput={requeirFn}
+                        // onInput={requeirFn}
                         // placeholder="utm_campaign_name"
                         {...register(
                           `utms.${index}.utm_campaign_name` as const,
@@ -191,16 +196,16 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                       )}
                       <input
                         // placeholder="utm_campaign_id"
-                        onInput={requeirFn}
+                        // onInput={requeirFn}
                         {...register(`utms.${index}.utm_campaign_id` as const, {
-                          pattern: /[a-z]/i,
+                          // pattern: /[a-z]/i,
                         })}
                         className={`${
                           errors?.utms?.[index]?.utm_campaign_id ? 'error' : ''
                         }, ${styles.input_style}`}
                       />
                       <input
-                        onInput={requeirFn}
+                        // onInput={requeirFn}
                         // placeholder="utm_term"
                         {...register(`utms.${index}.utm_term` as const, {})}
                         className={`${
@@ -213,7 +218,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                         ''
                       )}
                       <input
-                        onInput={requeirFn}
+                        // onInput={requeirFn}
                         // placeholder="utm_campaign_content"
                         {...register(`utms.${index}.utm_content` as const)}
                         className={`${
@@ -287,9 +292,9 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
             className={styles.create_button}
             type='submit'
             value='생성하기'
-            onClick={() => {
-              setAlert(true);
-            }}
+            // onClick={() => {
+            //   setAlert(true);
+            // }}
           />
         </div>
 

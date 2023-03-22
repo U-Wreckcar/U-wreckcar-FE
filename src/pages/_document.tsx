@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { DocumentContext } from 'next/document';
+import Script from 'next/script';
 
 const MyDocument = () => {
   return (
@@ -8,7 +9,8 @@ const MyDocument = () => {
         {/* Google Analytics */}
         <script
           async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE}`}></script>
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE}`}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -21,7 +23,8 @@ const MyDocument = () => {
         />
 
         {/* Google Tag Manager */}
-        <script
+        <Script
+          id='google-analytics'
           dangerouslySetInnerHTML={{
             __html: `
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -32,21 +35,21 @@ const MyDocument = () => {
             `,
           }}
         />
-      </Head>
-      <body>
-        {/* Google Tag Manager (noscript) */}
-        <noscript
-          dangerouslySetInnerHTML={{
-            __html: `
-              <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6DT5Z8"
-              height="0" width="0" style="display:none;visibility:hidden"></iframe>
-            `,
-          }}
-        />
+        <body>
+          {/* Google Tag Manager (noscript) */}
+          <noscript
+            dangerouslySetInnerHTML={{
+              __html: `
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6DT5Z8"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>
+      `,
+            }}
+          />
 
-        <Main />
-        <NextScript />
-      </body>
+          <Main />
+          <NextScript />
+        </body>
+      </Head>
     </Html>
   );
 };

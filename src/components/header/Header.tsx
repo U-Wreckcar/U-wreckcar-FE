@@ -6,6 +6,7 @@ import { RenderHeader } from './RenderHeader';
 import { usePathname } from 'next/navigation';
 export default function Header() {
   const [path, setPath] = useState(false);
+  const noHead = <></>;
   const pathName = usePathname();
   useEffect(() => {
     if (

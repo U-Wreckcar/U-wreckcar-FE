@@ -64,6 +64,7 @@
   color: rgb(44, 44, 44);
   font-size: 14px;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .render_user_box {
@@ -77,7 +78,7 @@
   flex-direction: row;
   align-items: center;
   text-decoration-line: none;
-  color: #1d1d1d;
+  color: #ffffff;
   font-weight: 700px;
 }
 .render_user_box a {
@@ -117,8 +118,8 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   top: 50px;
-  left: 90%;
-  transform: translateX(-50%);
+  left: 2%;
+  /* transform: translateX(-50%); */
   padding: 0;
 }
 
