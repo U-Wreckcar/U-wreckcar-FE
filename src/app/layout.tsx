@@ -31,8 +31,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // const router = useRouter();
-
   return (
     <html
       lang='ko'
@@ -44,14 +42,6 @@ export default function RootLayout({
           {children}
         </div>
       </body>
-
-      <noscript>
-        <iframe
-          src='https://www.googletagmanager.com/ns.html?id=GTM-N6DT5Z8'
-          height='0'
-          width='0'
-          style={{ display: 'none' }}></iframe>
-      </noscript>
     </html>
   );
 }

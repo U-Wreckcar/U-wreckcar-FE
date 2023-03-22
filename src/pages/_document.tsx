@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { DocumentContext } from 'next/document';
+import Script from 'next/script';
 
 const MyDocument = () => {
   return (
@@ -21,7 +22,8 @@ const MyDocument = () => {
         />
 
         {/* Google Tag Manager */}
-        <script
+        <Script
+          id='google-analytics'
           dangerouslySetInnerHTML={{
             __html: `
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

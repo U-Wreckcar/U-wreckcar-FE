@@ -88,10 +88,15 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
   };
 
   const onSubmit = async (data: UTMsType) => {
-    const res = await postUTMs(data);
-    console.log(res);
-    console.log(res.data);
-    setResUTM(res.data);
+    try {
+      const res = await postUTMs(data);
+      console.log(res);
+      console.log(res.data);
+      setResUTM(res.data);
+    } catch (e) {
+      console.log(e);
+    }
+
     setAlert(true);
   };
   useEffect(() => {}, [memoText]);
