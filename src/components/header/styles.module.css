@@ -117,7 +117,8 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   top: 50px;
-  left: 0px;
+  left: 90%;
+  transform: translateX(-50%);
   padding: 0;
 }
 
@@ -146,7 +147,8 @@
   }
   .render_nav {
     /* padding: 10px 10px 10px 20px; */
-    padding-left: 20px;
+    /* padding-left: 20px; */
+    padding: 0 0 0 20px;
   }
 
   .render_nav > div:nth-child(2) {

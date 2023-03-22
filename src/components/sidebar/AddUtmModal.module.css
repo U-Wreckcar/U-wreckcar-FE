@@ -108,3 +108,22 @@
 /* .memo_text {
   margin-left: 10px;
 } */
+
+.error_utm{
+  font-size: 12px;
+  font-weight: 400;
+  color: crimson;
+  margin-right: 50px;
+}
+
+.error_box{
+  text-align: left;
+  padding-left: 80px;
+}
+
+.error_box_memo{
+  text-align: left;
+  padding-left: 80px;
+  position: relative;
+  top: -30px;
+}
