@@ -1,32 +1,31 @@
-import Image from "next/image";
-import styles from "./LoginBox.module.css";
-import kakao_login from "assets/kakao_login.png";
-import naver_login from "assets/naver_login.png";
-import r_google from "assets/r_google.png";
-import { getCookie } from "@/util/async/Cookie";
-import { useEffect } from "react";
-import { redirect } from "next/navigation";
+import Image from "next/image"
+import styles from "./LoginBox.module.css"
+import kakao_login from "assets/kakao_login.png"
+import naver_login from "assets/naver_login.png"
+import r_google from "assets/r_google.png"
+import { getCookie } from "@/util/async/Cookie"
+import { useEffect } from "react"
+import { redirect } from "next/navigation"
 
 const LoginBox = () => {
   useEffect(() => {
-    const cookie = getCookie("access_token");
-    console.log(cookie);
+    const cookie = getCookie("access_token")
     if (cookie) {
-      redirect("/main");
+      redirect("/main")
     }
-  }, []);
+  }, [])
 
-  const kakaoUrl = `${process.env.NEXT_PUBLIC_API}auth/kakao`;
+  const kakaoUrl = `${process.env.NEXT_PUBLIC_API}auth/kakao`
   const onClickKakaoBtn = () => {
-    window.location.href = kakaoUrl;
-  };
+    window.location.href = kakaoUrl
+  }
   const onClickNaverBtn = () => {
-    alert("개발중입니다..!");
-  };
+    alert("개발중입니다..!")
+  }
 
   const onClickGoogleBtn = () => {
-    alert("개발중입니다...!");
-  };
+    alert("개발중입니다...!")
+  }
   return (
     <div className={styles.container}>
       <div>
@@ -56,7 +55,7 @@ const LoginBox = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LoginBox;
+export default LoginBox
