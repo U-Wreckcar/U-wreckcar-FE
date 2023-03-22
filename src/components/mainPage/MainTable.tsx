@@ -529,10 +529,12 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
             <tbody>
               {data.length === 0 && (
                 <div className={styles.no_data}>
-                  <p>등록된 UTM이 없어요.</p>
-                  <Link href={'/createutm'}>
-                    <button>UTM 생성하기</button>
-                  </Link>
+                  <div className={styles.no_data_item}>
+                    <p>등록된 UTM이 없어요.</p>
+                    <Link href={'/createutm'}>
+                      <button>UTM 생성하기</button>
+                    </Link>
+                  </div>
                 </div>
               )}
               {table.getRowModel().rows.map((row) => {

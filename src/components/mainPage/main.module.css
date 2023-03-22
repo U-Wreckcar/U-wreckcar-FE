@@ -499,6 +499,17 @@
   color: #484bff;
   padding: 8px;
 }
+.no_data_item {
+  /* background-color: #222222; */
+  position: relative;
+  top: -180px;
+  left: -180px;
+}
+.slim_no_data_item {
+  position: relative;
+  top: -180px;
+  left: -180px;
+}
 
 .td_box {
   width: 130px;
