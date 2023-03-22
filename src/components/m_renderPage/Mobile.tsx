@@ -33,28 +33,37 @@ export default function Mobile() {
   }, [])
 
   const onClickKakao = () => {
-    window.location.href = "https://open.kakao.com/o/sbK3Rfaf"
+    window.open("https://open.kakao.com/o/sbK3Rfaf", "_blank")
   }
 
   const onClickLaw = () => {
-    window.location.href =
-      "https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e"
+    window.open(
+      "https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e",
+      "_blank"
+    )
   }
 
   const onClickUse = () => {
-    window.location.href =
-      "https://unexpected-ceder-0b7.notion.site/c83db210e0574b3b90329f5cc46caf28"
+    window.open(
+      "https://unexpected-ceder-0b7.notion.site/c83db210e0574b3b90329f5cc46caf28",
+      "_blank"
+    )
   }
 
   const onClickNoti = () => {
-    window.location.href =
-      "https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492"
+    window.open(
+      " https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492",
+      "_blank"
+    )
   }
 
   const onClickGuide = () => {
-    window.location.href =
-      "https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3"
+    window.open(
+      "https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3",
+      "_blank"
+    )
   }
+
   return (
     <div>
       <div className={styles.container}>
