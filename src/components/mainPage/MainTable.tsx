@@ -49,7 +49,7 @@ import plusImg from "assets/plus.png"
 import filterImg from "assets/filter.png"
 import { EditModal } from "./MainMemoModal"
 import { style } from "@mui/system"
-import { redirect, usePathname, useSearchParams } from "next/navigation"
+import { redirect, useRouter } from "next/navigation"
 import Link from "next/link"
 import { getCookie } from "@/util/async/Cookie"
 declare module "@tanstack/table-core" {
@@ -111,6 +111,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   )
   const [plus, setPlus] = useState(false)
   const [filter, setFilter] = useState(false)
+  const router = useRouter()
 
   const getData = async () => {
     const res = await getUTMs()
@@ -119,7 +120,11 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   }
 
   useEffect(() => {
-    getData()
+    try {
+      getData()
+    } catch (err) {
+      router.refresh()
+    }
   }, [output, show, plus])
 
   useEffect(() => {
@@ -140,6 +145,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
   useEffect(() => {
     const cookie = getCookie("access_token")
+    router.refresh()
     if (!cookie) {
       redirect("/login")
     }
