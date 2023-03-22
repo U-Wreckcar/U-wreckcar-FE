@@ -1,36 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import styles from './styles.module.css';
-import b_noti from 'assets/b_noti.png';
-import Image from 'next/image';
-import Link from 'next/link';
-import { myProfile } from '@/util/async/api';
+import React, { useEffect, useState } from "react"
+import styles from "./styles.module.css"
+import b_noti from "assets/b_noti.png"
+import Image from "next/image"
+import Link from "next/link"
+import { myProfile } from "@/util/async/api"
+import { removeCookie } from "@/util/async/Cookie"
+import { useRouter } from "next/navigation"
 
 interface UserProfile {
-  username: string;
-  email: string;
-  age: number;
-  profile_img: any;
+  username: string
+  email: string
+  age: number
+  profile_img: any
   // Add more properties as needed
 }
 export const BaseHeader = () => {
-  const [modal, setModal] = useState(false);
-  const [userData, setUserData] = useState<UserProfile | undefined>();
+  const [modal, setModal] = useState(false)
+  const [userData, setUserData] = useState<UserProfile | undefined>()
   useEffect(() => {
     async function fetchUserData() {
-      const res = await myProfile();
-      setUserData(res.data);
+      const res = await myProfile()
+      setUserData(res.data)
     }
-    fetchUserData();
-  }, []);
+    fetchUserData()
+  }, [])
+  const router = useRouter()
+  const logOut = () => {
+    removeCookie("access_token")
+    removeCookie("refresh_token")
+    router.push("/")
+    setModal(!modal)
+  }
 
   return (
     <section className={styles.header_container}>
       <div className={styles.title}>
         <Image
           src={b_noti}
-          alt='Noti_img'
+          alt="Noti_img"
           onError={() => {
-            console.log('img load fail');
+            console.log("img load fail")
           }}
           width={18}
           height={18}
@@ -40,42 +49,43 @@ export const BaseHeader = () => {
       <div className={styles.base_user_box}>
         {modal && (
           <dialog>
-            <Link
-              className={styles.links}
-              href={'/userinfo'}>
+            <Link className={styles.links} href={"/userinfo"}>
               <div
                 className={styles.links_box}
                 onClick={() => {
-                  setModal(!modal);
-                }}>
+                  setModal(!modal)
+                }}
+              >
                 개인정보 관리
               </div>
             </Link>
             <div
               className={styles.links_box}
               onClick={() => {
-                setModal(!modal);
-              }}>
+                logOut()
+              }}
+            >
               로그아웃
             </div>
           </dialog>
         )}
         <Image
           src={userData?.profile_img}
-          alt='img'
+          alt="img"
           width={30}
           height={30}
-          style={{ borderRadius: '50%', marginRight: '7px' }}
+          style={{ borderRadius: "50%", marginRight: "7px" }}
           unoptimized={true}
         />
         <p
           onClick={() => {
-            setModal(!modal);
+            setModal(!modal)
           }}
-          className={styles.login_box}>
+          className={styles.login_box}
+        >
           <span className={styles.bold_text}>{userData?.username}</span>님
         </p>
       </div>
     </section>
-  );
-};
+  )
+}
