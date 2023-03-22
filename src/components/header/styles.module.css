@@ -117,8 +117,8 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   top: 50px;
-  left: 90%;
-  transform: translateX(-50%);
+  left: 2%;
+  /* transform: translateX(-50%); */
   padding: 0;
 }
 

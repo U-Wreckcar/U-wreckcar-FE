@@ -4,8 +4,6 @@ import { Hydrate } from '@tanstack/react-query';
 import './globals.css';
 import localFont from 'next/font/local';
 import { useRouter } from 'next/router';
-import Head from 'next/head';
-import Script from 'next/script';
 
 const myFont = localFont({ src: './PretendardVariable.woff2' });
 
