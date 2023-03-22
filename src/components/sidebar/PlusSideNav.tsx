@@ -1,5 +1,5 @@
 "use client"
-import React, { Dispatch, SetStateAction, useState } from "react"
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react"
 
 import styles from "./styles.module.css"
 import Modal from "react-modal"
@@ -27,6 +27,7 @@ export type setSideProps = {
 
 export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
   const [modal, setModal] = useState(false)
+  const [login, setLogin] = useState(false)
   const pathName = usePathname()
 
   const customStyles = {
@@ -64,11 +65,12 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
   const onClickKakao = () => {
     window.open("https://open.kakao.com/o/sbK3Rfaf", "_blank")
   }
+
   return (
     <section className={styles.plus_container}>
       <div className={styles.category_box}>
         <div className={styles.logo_container}>
-          <Link href={"/"}>
+          <Link href={`${pathName === "/login" ? "/" : "/main"}`}>
             <Image
               className={styles.white_logo}
               src={whitelogo}
