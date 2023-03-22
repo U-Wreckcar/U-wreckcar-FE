@@ -33,6 +33,7 @@
   border: 1px solid #e1e1e1;
   border-radius: 4px;
   margin-right: 8px;
+  padding: 0 4px;
   transform: translateY(8px);
 }
 .input_style:focus {
@@ -50,7 +51,7 @@
   justify-items: center;
   align-items: center;
   min-width: 178px;
-
+  padding: 0 4px;
   border: 1px solid #e1e1e1;
   height: 40px;
   width: 178px;
