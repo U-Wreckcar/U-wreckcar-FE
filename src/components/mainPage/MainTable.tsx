@@ -123,7 +123,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     try {
       getData()
     } catch (err) {
-      window.location.reload()
+      //window.location.reload()
     }
   }, [output, show, plus])
 
@@ -145,7 +145,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
   useEffect(() => {
     const cookie = getCookie("access_token")
-    window.location.reload()
+    // window.location.reload()
     if (!cookie) {
       redirect("/login")
     }
