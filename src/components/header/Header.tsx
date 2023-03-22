@@ -16,7 +16,6 @@ export default function Header() {
       pathName === '/auth'
     ) {
       setPath(true);
-    } else if (pathName === '/404' || pathName === '/og-alt.png') {
     } else {
       setPath(false);
     }
