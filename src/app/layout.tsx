@@ -55,6 +55,7 @@ export default function RootLayout({
           }}
         />
       </head>
+      <Header />
       <body>
         <SideNav />
         <div>{children}</div>
