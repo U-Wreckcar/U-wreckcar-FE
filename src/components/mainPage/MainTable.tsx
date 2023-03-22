@@ -38,24 +38,22 @@ import {
   RankingInfo,
   rankItem,
   compareItems,
-
-} from "@tanstack/match-sorter-utils"
-import styles from "./main.module.css"
-import instance from "util/async/axiosConfig"
-import { OutputModal } from "./OutputModal"
-import { DeleteModal } from "./DeleteModal"
-import { AddUtmModal } from "../sidebar/AddUtmModal"
-import Image from "next/image"
-import plusImg from "assets/plus.png"
-import filterImg from "assets/filter.png"
-import { EditModal } from "./MainMemoModal"
-import { style } from "@mui/system"
-import { redirect, useRouter } from "next/navigation"
-import Link from "next/link"
-import { getCookie } from "@/util/async/Cookie"
-import { Alert } from "@/shared/button/Alert"
-declare module "@tanstack/table-core" {
-
+} from '@tanstack/match-sorter-utils';
+import styles from './main.module.css';
+import instance from 'util/async/axiosConfig';
+import { OutputModal } from './OutputModal';
+import { DeleteModal } from './DeleteModal';
+import { AddUtmModal } from '../sidebar/AddUtmModal';
+import Image from 'next/image';
+import plusImg from 'assets/plus.png';
+import filterImg from 'assets/filter.png';
+import { EditModal } from './MainMemoModal';
+import { style } from '@mui/system';
+import { redirect, useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { getCookie } from '@/util/async/Cookie';
+import { Alert } from '@/shared/button/Alert';
+declare module '@tanstack/table-core' {
   interface FilterFns {
     fuzzy: FilterFn<unknown>;
   }
@@ -111,7 +109,10 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
-
+  );
+  const [plus, setPlus] = useState(false);
+  const [filter, setFilter] = useState(false);
+  const [alert, setAlert] = useState(false);
 
   const getData = async () => {
     const res = await getUTMs();
@@ -121,7 +122,11 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
   useEffect(() => {
     try {
-
+      getData();
+    } catch (err) {
+      //window.location.reload()
+    }
+  }, [output, show, plus]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -140,10 +145,8 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   }, [defaultData]);
 
   useEffect(() => {
-
     const cookie = getCookie('access_token');
-
-
+    // window.location.reload()
     if (!cookie) {
       redirect('/login');
     }
@@ -315,9 +318,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     let id: Array<MainTableType> = [];
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original));
     if (id.length === 0) {
-
-      alert('삭제할 데이터를 선택해주세요');
-
+      window.alert('삭제할 데이터를 선택해주세요');
     } else {
       setDel(true);
       setDelLength(id);
@@ -329,41 +330,35 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     let id: Array<MainTableType> = [];
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original));
     if (id.length === 0) {
-
-      alert('추출할 데이터를 선택해주세요');
-
-      window.alert("추출할 데이터를 선택해주세요")
-
+      window.alert('추출할 데이터를 선택해주세요');
     } else {
       setOutput(true);
       setOutputLength(id);
     }
-
-  }
+  };
   //복사하기
   const onClickCopyBtn = (text: string) => {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text).then(() => {
-        setAlert(true)
-      })
+        setAlert(true);
+      });
     }
-  }
+  };
 
   useEffect(() => {
     if (alert) {
       setTimeout(() => {
-        setAlert(false)
-      }, 3000)
+        setAlert(false);
+      }, 3000);
     }
-  }, [alert])
-
+  }, [alert]);
 
   return (
     <div>
       {alert && (
         <Alert
-          title={"성공"}
-          contents={"UTM이 복사되었습니다!"}
+          title={'성공'}
+          contents={'UTM이 복사되었습니다!'}
           onClickEvent={setAlert}
         />
       )}
@@ -554,27 +549,23 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                   ? 80
                                   : cell.column.getSize(),
                             },
-
-                          }}
-                        >
-                          {cell.column.id === "utm_url" && (
+                          }}>
+                          {cell.column.id === 'utm_url' && (
                             <Tooltip title={`${cell.getValue()}`}>
                               <div
                                 className={styles.td_box}
-                                style={{ cursor: "pointer" }}
+                                style={{ cursor: 'pointer' }}
                                 onClick={() =>
                                   window.open(
                                     `https://${cell.getValue()}`,
-                                    "_blank",
-                                    "noopener,noreferrer"
+                                    '_blank',
+                                    'noopener,noreferrer'
                                   )
-                                }
-                              >{`${cell.getValue()}`}</div>
+                                }>{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
-                          {cell.column.id === "utm_memo" && (
-                            <Tooltip title={"메모 수정하기"}>
-
+                          {cell.column.id === 'utm_memo' && (
+                            <Tooltip title={'메모 수정하기'}>
                               <div
                                 id={cell.id}
                                 onClick={(e: any) => {
@@ -584,41 +575,40 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 }}>{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
-
-                          {cell.column.id === "select" &&
-
+                          {cell.column.id === 'select' &&
                             flexRender(
                               cell.column.columnDef.cell,
                               cell.getContext()
                             )}
-
-                          {cell.column.id === "full_url" && (
+                          {cell.column.id === 'full_url' && (
                             <Tooltip title={`${cell.getValue()}`}>
                               <div
-                                style={{ cursor: "pointer" }}
+                                style={{ cursor: 'pointer' }}
                                 onClick={() =>
                                   onClickCopyBtn(`${cell.getValue()}`)
                                 }
-                                className={styles.td_box}
-                              >{`${cell.getValue()}`}</div>
+                                className={
+                                  styles.td_box
+                                }>{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
-                          {cell.column.id === "shorten_url" && (
+                          {cell.column.id === 'shorten_url' && (
                             <Tooltip title={`${cell.getValue()}`}>
                               <div
-                                style={{ cursor: "pointer" }}
+                                style={{ cursor: 'pointer' }}
                                 onClick={() =>
                                   onClickCopyBtn(`${cell.getValue()}`)
                                 }
-                                className={styles.td_box}
-                              >{`${cell.getValue()}`}</div>
+                                className={
+                                  styles.td_box
+                                }>{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
-                          {cell.column.id !== "utm_memo" &&
-                            cell.column.id !== "utm_url" &&
-                            cell.column.id !== "select" &&
-                            cell.column.id !== "full_url" &&
-                            cell.column.id !== "shorten_url" && (
+                          {cell.column.id !== 'utm_memo' &&
+                            cell.column.id !== 'utm_url' &&
+                            cell.column.id !== 'select' &&
+                            cell.column.id !== 'full_url' &&
+                            cell.column.id !== 'shorten_url' && (
                               <Tooltip title={`${cell.getValue()}`}>
                                 <div
                                   className={
