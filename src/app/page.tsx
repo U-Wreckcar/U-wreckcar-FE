@@ -1,78 +1,76 @@
-"use client"
-import React, { useEffect, useState } from "react"
-import { Media, MediaContextProvider } from "./Media"
-import styles from "./page.module.css"
-import sectionseven from "assets/sectionseven.png"
-import Image from "next/image"
+'use client';
+import React, { useEffect, useState } from 'react';
+import { Media, MediaContextProvider } from './Media';
+import styles from './page.module.css';
+import sectionseven from 'assets/sectionseven.png';
+import Image from 'next/image';
 
-import section_two_left_ns from "assets/section_two_left_ns.png"
-import section_two_right_ns from "assets/section_two_right_ns.png"
-import section_one_two from "assets/section_one_two.png"
-import six_one from "assets/six_one.png"
-import six_two from "assets/six_two.png"
-import six_three from "assets/six_three.png"
-import seven_img from "assets/seven_img.png"
-import create from "assets/gif/create.gif"
-import f_search from "assets/gif/f_search.gif"
-import out from "assets/gif/out.gif"
-import r_kakao from "assets/r_kakao.png"
-import r_naver from "assets/r_naver.png"
-import r_google from "assets/r_google.png"
-import copyright from "assets/copyright.png"
-import seven_button from "assets/seven_button.png"
-import Link from "next/link"
-import Mobile from "@/components/m_renderPage/Mobile"
+import section_two_left_ns from 'assets/section_two_left_ns.png';
+import section_two_right_ns from 'assets/section_two_right_ns.png';
+import section_one_two from 'assets/section_one_two.png';
+import six_one from 'assets/six_one.png';
+import six_two from 'assets/six_two.png';
+import six_three from 'assets/six_three.png';
+import seven_img from 'assets/seven_img.png';
+import create from 'assets/gif/create.gif';
+import f_search from 'assets/gif/f_search.gif';
+import out from 'assets/gif/out.gif';
+
+import copyright from 'assets/copyright.png';
+import seven_button from 'assets/seven_button.png';
+import Link from 'next/link';
+import Mobile from '@/components/m_renderPage/Mobile';
 // import { redirect } from "next/navigation";
 export default function Home() {
-  const texts = ["복잡한", "귀찮은", "어려운"]
-  const [text, setText] = useState(texts)
-  const [index, setIndex] = useState(0)
-
+  const texts = ['복잡한', '귀찮은', '어려운'];
+  const [text, setText] = useState(texts);
+  const [index, setIndex] = useState(0);
   useEffect(() => {
     const intervalText = setInterval(() => {
-      setIndex((idx) => (idx + 1) % texts.length)
-    }, 850)
+      setIndex((idx) => (idx + 1) % texts.length);
+    }, 850);
 
-    return () => clearInterval(intervalText)
-  }, [])
+    return () => clearInterval(intervalText);
+  }, []);
 
   const onClickKakao = () => {
-    window.open("https://open.kakao.com/o/sbK3Rfaf", "_blank")
-  }
+    window.open('https://open.kakao.com/o/sbK3Rfaf', '_blank');
+  };
 
   const onClickLaw = () => {
     window.open(
-      "https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e",
-      "_blank"
-    )
-  }
+      'https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e',
+      '_blank'
+    );
+  };
 
   const onClickUse = () => {
     window.open(
-      "https://unexpected-ceder-0b7.notion.site/c83db210e0574b3b90329f5cc46caf28",
-      "_blank"
-    )
-  }
+      'https://unexpected-ceder-0b7.notion.site/c83db210e0574b3b90329f5cc46caf28',
+      '_blank'
+    );
+  };
 
   const onClickNoti = () => {
     window.open(
-      " https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492",
-      "_blank"
-    )
-  }
+      ' https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492',
+      '_blank'
+    );
+  };
 
   const onClickGuide = () => {
     window.open(
-      "https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3",
-      "_blank"
-    )
-  }
+      'https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3',
+      '_blank'
+    );
+  };
+
   return (
     <MediaContextProvider>
-      <Media at="sm">
+      <Media at='sm'>
         <Mobile />
       </Media>
-      <Media greaterThan="sm">
+      <Media greaterThan='sm'>
         <div>
           <div className={styles.container}>
             <section className={styles.section_one}>
@@ -82,14 +80,17 @@ export default function Home() {
                   <h1>유렉카로 해결하세요! </h1>
                   <p>UTM 업무 1시간? 유렉카에서는 3분이면 OK</p>
                 </div>
-                <Link href={"/login"}>
-                  <button id="free_btn">무료로 시작하기</button>
+                <Link href={'/login'}>
+                  <button id='free_btn'>무료로 시작하기</button>
                 </Link>
               </article>
             </section>
             <section className={styles.section_one_two}>
               <article>
-                <Image src={section_one_two} alt="Img" />
+                <Image
+                  src={section_one_two}
+                  alt='Img'
+                />
               </article>
             </section>
             <section className={styles.section_two}>
@@ -102,10 +103,16 @@ export default function Home() {
               </article>
               <article>
                 <div className={styles.section_two_img}>
-                  <Image src={section_two_right_ns} alt="Left_img" />
+                  <Image
+                    src={section_two_right_ns}
+                    alt='Left_img'
+                  />
                 </div>
                 <div className={styles.section_two_img}>
-                  <Image src={section_two_left_ns} alt="Right_img" />
+                  <Image
+                    src={section_two_left_ns}
+                    alt='Right_img'
+                  />
                 </div>
               </article>
             </section>
@@ -124,12 +131,18 @@ export default function Home() {
                 </p>
               </article>
               <article>
-                <Image src={create} alt="Gif" />
+                <Image
+                  src={create}
+                  alt='Gif'
+                />
               </article>
             </section>
             <section className={styles.section_four}>
               <article>
-                <Image src={f_search} alt="Gif" />
+                <Image
+                  src={f_search}
+                  alt='Gif'
+                />
               </article>
               <article>
                 <p className={styles.sub_title}>필요한 UTM만 바로바로 필터링</p>
@@ -162,13 +175,19 @@ export default function Home() {
                 </p>
               </article>
               <article>
-                <Image src={out} alt="Gif" />
+                <Image
+                  src={out}
+                  alt='Gif'
+                />
               </article>
             </section>
             <section className={styles.section_six}>
               <article>
                 <div className={styles.six_card_item}>
-                  <Image src={six_one} alt="IMG" />
+                  <Image
+                    src={six_one}
+                    alt='IMG'
+                  />
                   <h2>
                     여러개의 UTM을
                     <br />
@@ -178,7 +197,10 @@ export default function Home() {
                   <p>추가하기 버튼 클릭 한 번으로 간편하게 UTM동시 생성!</p>
                 </div>
                 <div className={styles.six_card_item}>
-                  <Image src={six_two} alt="IMG" />
+                  <Image
+                    src={six_two}
+                    alt='IMG'
+                  />
                   <h2>
                     자주 쓰는 파라미터를
                     <br />
@@ -187,7 +209,10 @@ export default function Home() {
                   <p>북마크 기능을 활용하여 간편하고 빠르게 UTM 생성!</p>
                 </div>
                 <div className={styles.six_card_item}>
-                  <Image src={six_three} alt="IMG" />
+                  <Image
+                    src={six_three}
+                    alt='IMG'
+                  />
                   <h2>
                     Shorten UTM기능으로
                     <br />
@@ -204,14 +229,14 @@ export default function Home() {
                 <Image
                   className={styles.seven_first_img}
                   src={seven_img}
-                  alt="Img"
+                  alt='Img'
                 />
-                <Link href={"/login"}>
+                <Link href={'/login'}>
                   <Image
-                    id="start_btn"
+                    id='start_btn'
                     className={styles.seven_button_img}
                     src={seven_button}
-                    alt="img"
+                    alt='img'
                   />
                 </Link>
               </article>
@@ -221,26 +246,36 @@ export default function Home() {
                 <div className={styles.e_cards}>
                   <h4>Contact Us</h4>
                   <p>Uwreckcar@gmail.com</p>
-                  <p style={{ cursor: "pointer" }} onClick={onClickKakao}>
+                  <p
+                    style={{ cursor: 'pointer' }}
+                    onClick={onClickKakao}>
                     카카오톡 문의하기
                   </p>
                 </div>
                 <div className={styles.e_cards}>
                   <h4>About 유렉카</h4>
-                  <p style={{ cursor: "pointer" }} onClick={onClickNoti}>
+                  <p
+                    style={{ cursor: 'pointer' }}
+                    onClick={onClickNoti}>
                     공지사항
                   </p>
-                  <p style={{ cursor: "pointer" }} onClick={onClickGuide}>
+                  <p
+                    style={{ cursor: 'pointer' }}
+                    onClick={onClickGuide}>
                     이용 가이드
                   </p>
                   <div className={styles.button_box}></div>
                 </div>
                 <div className={styles.e_cards}>
                   <h4>Privacy & Terms</h4>
-                  <p style={{ cursor: "pointer" }} onClick={onClickLaw}>
-                    개인정보처리방침{" "}
+                  <p
+                    style={{ cursor: 'pointer' }}
+                    onClick={onClickLaw}>
+                    개인정보처리방침{' '}
                   </p>
-                  <p style={{ cursor: "pointer" }} onClick={onClickUse}>
+                  <p
+                    style={{ cursor: 'pointer' }}
+                    onClick={onClickUse}>
                     이용약관
                   </p>
                 </div>
@@ -248,7 +283,7 @@ export default function Home() {
               <div className={styles.e_line}>
                 <Image
                   src={copyright}
-                  alt="copyright"
+                  alt='copyright'
                   width={168}
                   height={15}
                 />
@@ -259,5 +294,5 @@ export default function Home() {
         </div>
       </Media>
     </MediaContextProvider>
-  )
+  );
 }
