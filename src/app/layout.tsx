@@ -22,8 +22,6 @@ export const metadata: Metadata = {
     images: [
       {
         url: 'https://utm.works/og-alt/png',
-        width: 800,
-        height: 600,
       },
     ],
   },
