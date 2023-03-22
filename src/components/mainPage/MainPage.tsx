@@ -8,9 +8,9 @@ export default function MainPageComponent() {
   return (
     <>
       {summary ? (
-        <MainTable setSummary={setSummary} />
-      ) : (
         <MainBtnTable setSummary={setSummary} />
+      ) : (
+        <MainTable setSummary={setSummary} />
       )}
     </>
   )
