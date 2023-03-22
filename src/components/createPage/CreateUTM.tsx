@@ -93,11 +93,12 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
       console.log(res);
       console.log(res.data);
       setResUTM(res.data);
+      if (res.data !== '') {
+        setAlert(true);
+      }
     } catch (e) {
       console.log(e);
     }
-
-    setAlert(true);
   };
   useEffect(() => {}, [memoText]);
   console.log(errors);
@@ -130,7 +131,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                         // onInput={requeirFn}
                         {...register(`utms.${index}.utm_url` as const, {
                           required: true,
-                          // pattern: /[a-z]/i,
+                          // pattern: '*.*.*',
                         })}
                         className={`${
                           errors?.utms?.[index]?.utm_url
@@ -291,9 +292,9 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
             className={styles.create_button}
             type='submit'
             value='생성하기'
-            onClick={() => {
-              setAlert(true);
-            }}
+            // onClick={() => {
+            //   setAlert(true);
+            // }}
           />
         </div>
 
