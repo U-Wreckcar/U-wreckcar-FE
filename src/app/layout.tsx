@@ -4,7 +4,9 @@ import type { Metadata } from 'next';
 import { SideNav } from '@/components/sidebar/SideNav';
 import Header from '@/components/header/Header';
 import localFont from 'next/font/local';
+import { useRouter } from 'next/router';
 const myFont = localFont({ src: './PretendardVariable.woff2' });
+
 export const metadata: Metadata = {
   title: 'UTM 카테고라이징 서비스 "유렉카"',
   description:
@@ -12,19 +14,19 @@ export const metadata: Metadata = {
   icons: {
     icon: './favicon.ico',
   },
-  openGraph: {
-    title: '유렉카',
-    description: '복잡한 UTM을 빠르게 만들자!',
-    url: 'https://utm.works',
-    siteName: '유렉카',
-    images: [
-      {
-        url: '../assets/ogimg.png',
-        width: 800,
-        height: 600,
-      },
-    ],
-  },
+  // openGraph: {
+  //   title: '유렉카',
+  //   description: '복잡한 UTM을 빠르게 만들자!',
+  //   url: 'https://utm.works',
+  //   siteName: '유렉카',
+  //   images: [
+  //     {
+  //       url: '../assets/ogimg.png',
+  //       width: 800,
+  //       height: 600,
+  //     },
+  //   ],
+  // },
 };
 export default function RootLayout({
   children,

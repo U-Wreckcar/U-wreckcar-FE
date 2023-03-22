@@ -1,37 +1,48 @@
-import React from "react";
-import styles from "./styles.module.css";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import Image from "next/image";
-import whitelogo from "assets/whitelogo.png";
+import React from 'react';
+import styles from './styles.module.css';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import whitelogo from 'assets/whitelogo.png';
 export const RenderHeader = () => {
   const onClickNoti = () => {
     window.location.href =
-      " https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492";
+      ' https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492';
   };
 
   const onClickGuide = () => {
     window.location.href =
-      "https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3";
+      'https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3';
   };
   return (
     <nav className={styles.render_nav}>
       <div className={styles.render_nav_left}>
         <div className={styles.render_nav_left_img}>
-          <Link href={"/"}>
-            <Image src={whitelogo} alt="LOGO" width={108.15} height={40} />
+          <Link href={'/'}>
+            <Image
+              src={whitelogo}
+              alt='LOGO'
+              width={108.15}
+              height={40}
+            />
           </Link>
         </div>
-        <div className={styles.render_nav_left_noti} onClick={onClickNoti}>
+        <div
+          className={styles.render_nav_left_noti}
+          onClick={onClickNoti}>
           공지사항
         </div>
-        <div className={styles.render_nav_left_guide} onClick={onClickGuide}>
+        <div
+          className={styles.render_nav_left_guide}
+          onClick={onClickGuide}>
           가이드
         </div>
       </div>
       <div className={styles.render_user_box}>
-        <Link href={"/login"} as={"/login"}>
-          <p id="login_btn">로그인</p>
+        <Link
+          href={'/login'}
+          as={'/login'}>
+          <p id='render_login_btn'>로그인</p>
         </Link>
       </div>
     </nav>
