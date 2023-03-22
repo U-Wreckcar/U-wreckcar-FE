@@ -95,7 +95,7 @@ export const AddUtmModal: React.FC<ModalType> = ({
                 className={styles.modal_input_memo}
                 placeholder="메모를 입력하세요."
                 {...register("memo", {
-                  required: true,
+                  required: false,
                 })}
               />
             </label>
@@ -104,11 +104,6 @@ export const AddUtmModal: React.FC<ModalType> = ({
             {errors.created_at && (
               <span className={styles.error_utm}>
                 추가하실 UTM의 날짜를 입력해주세요!
-              </span>
-            )}
-            {errors.memo && (
-              <span className={styles.error_utm}>
-                추가하실 UTM의 메모를 입력해주세요!
               </span>
             )}
           </div>
