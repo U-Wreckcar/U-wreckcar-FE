@@ -7,6 +7,8 @@ export default function OGImage() {
       <Image
         src={ogimg}
         alt='og-image'
+        width={800}
+        height={600}
       />
     </>
   );

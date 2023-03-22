@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: '유렉카',
     images: [
       {
-        url: 'https://utm.works/og.png',
+        url: 'https://utm.works/og-alt.png',
         width: 800,
         height: 600,
       },
