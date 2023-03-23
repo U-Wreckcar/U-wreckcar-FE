@@ -75,19 +75,21 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Header />
         {/* Google Tag Manager (noscript) */}
         <noscript
           dangerouslySetInnerHTML={{
             __html: `
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6DT5Z8"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe>
-      `,
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6DT5Z8"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+            `,
           }}
         />
 
         <SideNav />
-        <div>{children}</div>
+        <div>
+          <Header />
+          {children}
+        </div>
       </body>
     </html>
   );
