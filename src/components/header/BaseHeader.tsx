@@ -20,10 +20,6 @@ export const BaseHeader = () => {
   const [userData, setUserData] = useState<UserProfile | undefined>()
 
   async function fetchUserData() {
-    const access = await getCookie("access_token")
-    const refresh = await getCookie("refresh_token")
-    setClientHeaders(access, refresh)
-
     const res = await myProfile()
     setUserData(res.data)
   }
