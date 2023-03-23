@@ -29,11 +29,17 @@ type DataType = { data: string[] };
 export const getUTMExcell = async (data: any) => {
   await axios.post('utms/export/excell', data);
 };
+export const testExcell = async (data: any) => {
+  await axios.post('utms/export/excell', { data });
+};
 export const getUTMNotion = async (data: any) => {
   await axios.post('utms/export/pdf', data);
 };
 export const getUTMSheet = async (data: any) => {
   await axios.post('utms/export/sheet', data);
+};
+export const testUTMSheet = async (data: any) => {
+  await axios.post('utms/export/sheet', { data });
 };
 export const myProfile = async () => {
   const res = await axios.get('users/profile');
