@@ -96,10 +96,15 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
     const res = await getUTMs()
     setData(res.data)
   }
+  useEffect(() => {
+    setTimeout(() => {
+      getData()
+    }, 500)
+  }, [del])
 
   useEffect(() => {
     getData()
-  }, [del, output, show, plus])
+  }, [output, show, plus])
 
   useEffect(() => {
     const cookie = getCookie("access_token")
@@ -186,7 +191,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: "utm_memo",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 400,
+        minSize: 600,
       },
       {
         header: "UTM",
