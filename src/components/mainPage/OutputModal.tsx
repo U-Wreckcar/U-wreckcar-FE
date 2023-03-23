@@ -33,9 +33,11 @@ export const OutputModal: React.FC<OutputModalType> = ({
   const onClickPopHandler = () => {
     if (notion) {
       getUTMNotion(data)
+      alert("개발 중입니다...!")
     }
     if (excel) {
       getUTMExcell(data)
+      alert("개발 중입니다...!")
     }
     if (sheet) {
       getUTMSheet(data)
@@ -43,7 +45,6 @@ export const OutputModal: React.FC<OutputModalType> = ({
     if (!notion && !excel && !sheet) {
       alert("추출하실 방법을 선택해주세요!")
     }
-    //alert("개발 중입니다...!")
     onRequestClose()
   }
 
