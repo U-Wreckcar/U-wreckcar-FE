@@ -38,7 +38,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
     }
     if (excel) {
       // getUTMExcell(data);
-      testExcell(data);
+      // testExcell(data);
       console.log('엑셀', data);
 
       try {
@@ -52,7 +52,8 @@ export const OutputModal: React.FC<OutputModalType> = ({
         const a = document.createElement('a');
         console.log('a', a);
         a.href = url;
-        a.download = 'ytest.xlsx';
+        const timestamp = new Date(Date.now()).toISOString().slice(0, 10);
+        a.download = `${timestamp}.xlsx`;
         a.click();
         window.URL.revokeObjectURL(url);
         console.log('엑셀보내기성공', data);
@@ -63,9 +64,28 @@ export const OutputModal: React.FC<OutputModalType> = ({
 
     if (sheet) {
       // getUTMSheet(data );
-      testUTMSheet(data);
+      // testUTMSheet(data);
       console.log(data);
       console.log('시트', data);
+      try {
+        const response = await Axios.post(
+          'utms/tocsv',
+          { data },
+          { responseType: 'blob' }
+        );
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        console.log('url', url);
+        const a = document.createElement('a');
+        console.log('a', a);
+        a.href = url;
+        const timestamp = new Date(Date.now()).toISOString().slice(0, 10);
+        a.download = `${timestamp}.csv`;
+        a.click();
+        window.URL.revokeObjectURL(url);
+        console.log('시트보내기성공', data);
+      } catch (error) {
+        console.error('시트 다운로드 에러', error);
+      }
     }
     if (!notion && !excel && !sheet) {
       alert('추출하실 방법을 선택해주세요!');
