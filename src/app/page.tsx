@@ -29,7 +29,7 @@ export default function Home() {
   useEffect(() => {
     const intervalText = setInterval(() => {
       setIndex((idx) => (idx + 1) % texts.length);
-    }, 11850);
+    }, 850);
 
     return () => clearInterval(intervalText);
   }, []);
@@ -69,7 +69,10 @@ export default function Home() {
   return (
     <>
       <MediaContextProvider>
-        <Media at='lg'>
+        <Media at='sm'>
+          <Mobile />
+        </Media>
+        <Media greaterThan='sm'>
           {/* <IsRender /> */}
           <div>
             <div className={styles.container}>
@@ -294,9 +297,6 @@ export default function Home() {
               </section>
             </div>
           </div>
-        </Media>
-        <Media greaterThan='sm'>
-          <Mobile />
         </Media>
       </MediaContextProvider>
     </>
