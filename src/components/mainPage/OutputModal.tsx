@@ -30,15 +30,20 @@ export const OutputModal: React.FC<OutputModalType> = ({
   const [notion, setNotion] = useState(false)
   const [sheet, setSheet] = useState(false)
   const [excel, setExcel] = useState(false)
-
+  const mapdata = data.map((i: any) => i.utm_id)
+  console.log("메타데이터", mapdata)
   const onClickPopHandler = async () => {
     if (notion) {
+      console.log("안녕")
+      console.log("시트", mapdata)
+
       getUTMNotion(data)
-      alert("개발 중입니다...!")
+      // alert("개발 중입니다...!")
     }
     if (excel) {
       // getUTMExcell(data);
       // testExcell(data);
+
       console.log("엑셀", data)
 
       try {
@@ -63,25 +68,30 @@ export const OutputModal: React.FC<OutputModalType> = ({
     }
 
     if (sheet) {
-      // getUTMSheet(data );
+      const res = getUTMSheet(mapdata)
+      console.log(res)
+
       // testUTMSheet(data);
-      console.log("시트", data)
-      try {
-        const response = await Axios.get("utms/tocsv", { data })
-        console.log("sheet res", response)
-        const url = window.URL.createObjectURL(new Blob([response.data]))
-        console.log("url", url)
-        const a = document.createElement("a")
-        console.log("a", a)
-        a.href = url
-        const timestamp = new Date(Date.now()).toISOString().slice(0, 10)
-        a.download = `${timestamp}.csv`
-        a.click()
-        window.URL.revokeObjectURL(url)
-        console.log("시트보내기성공", data)
-      } catch (error) {
-        console.error("시트 다운로드 에러", error)
-      }
+      // try {
+      //   const response = await Axios.post(
+      //     "utms/tocsv",
+      //     { data },
+      //     { responseType: "blob" }
+      //   )
+      //   console.log("sheet res", response)
+      //   const url = window.URL.createObjectURL(new Blob([response.data]))
+      //   console.log("url", url)
+      //   const a = document.createElement("a")
+      //   console.log("a", a)
+      //   a.href = url
+      //   const timestamp = new Date(Date.now()).toISOString().slice(0, 10)
+      //   a.download = `${timestamp}.csv`
+      //   a.click()
+      //   window.URL.revokeObjectURL(url)
+      //   console.log("시트보내기성공", data)
+      // } catch (error) {
+      //   console.error("시트 다운로드 에러", error)
+      // }
     }
     if (!notion && !excel && !sheet) {
       alert("추출하실 방법을 선택해주세요!")
