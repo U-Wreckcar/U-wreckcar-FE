@@ -67,11 +67,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
       // testUTMSheet(data);
       console.log("시트", data)
       try {
-        const response = await Axios.post(
-          "utms/tocsv",
-          { data },
-          { responseType: "blob" }
-        )
+        const response = await Axios.get("utms/tocsv", { data })
         console.log("sheet res", response)
         const url = window.URL.createObjectURL(new Blob([response.data]))
         console.log("url", url)
