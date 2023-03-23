@@ -17,7 +17,11 @@ interface UserProfile {
   profile_img: any
   // Add more properties as needed
 }
-export const BaseHeader = () => {
+
+type BaseHeaderProp = {
+  path: boolean
+}
+export const BaseHeader: React.FC<BaseHeaderProp> = ({ path }) => {
   const [modal, setModal] = useState(false)
   const [userData, setUserData] = useState<UserProfile | undefined>()
 
@@ -33,7 +37,7 @@ export const BaseHeader = () => {
 
   useEffect(() => {
     fetchUserData()
-  }, [])
+  }, [path])
 
   const router = useRouter()
   const logOut = () => {
