@@ -191,7 +191,9 @@
 .menu_button_style {
   border: none;
 }
-
+.slim_category_bottom_box {
+  margin-bottom: 50px;
+}
 .icon {
   margin-right: 12px;
 }
