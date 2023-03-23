@@ -21,5 +21,5 @@ export default function Header() {
     }
   }, [pathName, path])
 
-  return <>{path ? <BaseHeader path={path} /> : <RenderHeader />}</>
+  return <>{path ? <BaseHeader pathName={pathName} /> : <RenderHeader />}</>
 }
