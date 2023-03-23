@@ -29,7 +29,7 @@ const KakaoCallback = () => {
           setClientHeaders(res.access_token, res.refresh_token)
         })
         .then(() => {
-          redirect("/main")
+          router.push("/main")
         })
         .catch((error) => {
           // 에러 처리
