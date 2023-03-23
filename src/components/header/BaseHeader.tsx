@@ -1,10 +1,12 @@
+"use client"
+
 import React, { useEffect, useState } from "react"
 import styles from "./styles.module.css"
 import b_noti from "assets/b_noti.png"
 import Image from "next/image"
 import Link from "next/link"
 import { myProfile } from "@/util/async/api"
-import { getCookie, removeCookie } from "@/util/async/Cookie"
+import { removeCookie } from "@/util/async/Cookie"
 import { useRouter } from "next/navigation"
 import { setClientHeaders } from "@/util/async/axiosConfig"
 
