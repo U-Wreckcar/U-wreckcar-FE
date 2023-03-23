@@ -26,7 +26,7 @@
   justify-content: space-between;
   float: left;
   width: 270px;
-
+  height: 100vh;
   min-height: 780px;
 
   background-color: #484bff;

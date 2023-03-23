@@ -12,10 +12,12 @@ const myFont = localFont({ src: './PretendardVariable.woff2' });
 export default function APP({ Component, pageProps }: AppProps) {
   // const ogImgPath = `${router.basePath}/og-image.png`;
   return (
-    <Hydrate state={pageProps.dehydratedState}>
-      <main className={myFont.className}>
-        <Component {...pageProps} />
-      </main>
-    </Hydrate>
+    <>
+      <Hydrate state={pageProps.dehydratedState}>
+        <main className={myFont.className}>
+          <Component {...pageProps} />
+        </main>
+      </Hydrate>
+    </>
   );
 }
