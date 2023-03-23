@@ -39,7 +39,7 @@ export const getUTMSheet = async (data: any) => {
   await axios.post('utms/export/sheet', data);
 };
 export const testUTMSheet = async (data: any) => {
-  await axios.post('utms/utms/tocsv', { data });
+  await axios.post('utms/tocsv', { data });
 };
 export const myProfile = async () => {
   const res = await axios.get('users/profile');
