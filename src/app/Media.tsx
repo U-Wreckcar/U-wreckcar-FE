@@ -1,5 +1,6 @@
 import { createMedia } from "@artsy/fresnel"
 
+
 const ExampleAppMedia = createMedia({
   breakpoints: {
     sm: 0,
