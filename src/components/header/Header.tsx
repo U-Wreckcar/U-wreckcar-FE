@@ -7,7 +7,6 @@ import { usePathname } from 'next/navigation';
 export default function Header() {
   const [renderPath, setRenderPath] = useState(false);
   const [basePath, setBasePath] = useState(false);
-  const noHead = <></>;
   const pathName = usePathname();
   useEffect(() => {
     if (
@@ -17,7 +16,9 @@ export default function Header() {
       pathName === '/auth'
     ) {
       setBasePath(true);
+      setRenderPath(false);
     } else {
+      setBasePath(false);
       setRenderPath(true);
     }
   }, [pathName, basePath, renderPath]);
