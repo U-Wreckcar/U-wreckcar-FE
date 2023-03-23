@@ -20,8 +20,13 @@ export const BaseHeader = () => {
   const [userData, setUserData] = useState<UserProfile | undefined>()
 
   async function fetchUserData() {
-    const res = await myProfile()
-    setUserData(res.data)
+    try {
+      const res = await myProfile()
+      setUserData(res.data)
+    } catch (err) {
+      const res = await myProfile()
+      setUserData(res.data)
+    }
   }
 
   useEffect(() => {
