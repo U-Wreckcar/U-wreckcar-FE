@@ -43,7 +43,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
     if (!notion && !excel && !sheet) {
       alert("추출하실 방법을 선택해주세요!")
     }
-    alert("개발 중입니다...!")
+    //alert("개발 중입니다...!")
     onRequestClose()
   }
 
