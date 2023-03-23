@@ -38,12 +38,13 @@ export const OutputModal: React.FC<OutputModalType> = ({
     if (excel) {
       // getUTMExcell(data);
       testExcell(data);
-      alert('개발 중입니다...!');
+      console.log('엑셀', data);
     }
     if (sheet) {
       // getUTMSheet(data );
       testUTMSheet(data);
       console.log(data);
+      console.log('시트', data);
     }
     if (!notion && !excel && !sheet) {
       alert('추출하실 방법을 선택해주세요!');
