@@ -1,9 +1,10 @@
-import React from "react";
-import { CopyButton } from "shared/button/CopyButton";
-import styles from "./CreateCopyBox.module.css";
-import b_link from "assets/b_link.png";
-import Image from "next/image";
-import { CreateCopyButton } from "./CreateCopyButton";
+'use client';
+import React from 'react';
+import { CopyButton } from 'shared/button/CopyButton';
+import styles from './CreateCopyBox.module.css';
+import b_link from 'assets/b_link.png';
+import Image from 'next/image';
+import { CreateCopyButton } from './CreateCopyButton';
 
 type PropsType = {
   resUTM: any;
@@ -13,11 +14,19 @@ export const CreateCopyBox: React.FC<PropsType> = ({ resUTM }) => {
     <div className={styles.container_copy_box}>
       <div className={styles.copy_title}>
         <div className={styles.link_img_box}>
-          <Image className={styles.link_img} src={b_link} alt="링크" />
+          <Image
+            className={styles.link_img}
+            src={b_link}
+            alt='링크'
+          />
         </div>
         <h3 className={styles.utm_url}>UTM URL</h3>
         <div className={styles.link_img_box}>
-          <Image className={styles.link_img} src={b_link} alt="링크" />
+          <Image
+            className={styles.link_img}
+            src={b_link}
+            alt='링크'
+          />
         </div>
         <h3 className={styles.utm_shorten_url}>Shorten URL</h3>
       </div>
