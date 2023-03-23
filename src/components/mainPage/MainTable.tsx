@@ -1,15 +1,7 @@
 "use client"
 
-import React, {
-  HTMLProps,
-  useMemo,
-  useEffect,
-  useState,
-  useRef,
-  useImperativeHandle,
-} from "react"
+import React, { HTMLProps, useMemo, useEffect, useState, useRef } from "react"
 import { MainTableType } from "./TableData"
-// import { useGetUtm } from "util/hooks/useAsync";
 import { getUTMs } from "util/async/api"
 import Tooltip from "@mui/material/Tooltip"
 import { MainTableProps } from "./MainBtnTable"
@@ -31,7 +23,6 @@ import {
   getSortedRowModel,
   FilterFn,
   SortingFn,
-  FilterFns,
 } from "@tanstack/react-table"
 
 import {
@@ -40,7 +31,6 @@ import {
   compareItems,
 } from "@tanstack/match-sorter-utils"
 import styles from "./main.module.css"
-import instance from "util/async/axiosConfig"
 import { OutputModal } from "./OutputModal"
 import { DeleteModal } from "./DeleteModal"
 import { AddUtmModal } from "../sidebar/AddUtmModal"
@@ -48,8 +38,7 @@ import Image from "next/image"
 import plusImg from "assets/plus.png"
 import filterImg from "assets/filter.png"
 import { EditModal } from "./MainMemoModal"
-import { style } from "@mui/system"
-import { redirect, useRouter } from "next/navigation"
+import { redirect } from "next/navigation"
 import Link from "next/link"
 import { getCookie } from "@/util/async/Cookie"
 import { Alert } from "@/shared/button/Alert"
@@ -74,21 +63,6 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   return itemRank.passed
 }
 
-const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
-  let dir = 0
-
-  // Only sort by rank if the column has ranking information
-  if (rowA.columnFiltersMeta[columnId]) {
-    dir = compareItems(
-      rowA.columnFiltersMeta[columnId]?.itemRank!,
-      rowB.columnFiltersMeta[columnId]?.itemRank!
-    )
-  }
-
-  // Provide an alphanumeric fallback for when the item ranks are equal
-  return dir === 0 ? sortingFns.alphanumeric(rowA, rowB, columnId) : dir
-}
-
 let defaultData: Array<MainTableType> = []
 let dData: Array<MainTableType> = []
 
@@ -105,7 +79,6 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
   const [columnResizeMode, setColumnResizeMode] =
     useState<ColumnResizeMode>("onChange")
-  const [removeModal, setRemoveModal] = useState(false)
 
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -124,7 +97,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     try {
       getData()
     } catch (err) {
-      //window.location.reload()
+      console.log(err)
     }
   }, [output, show, plus])
 
@@ -135,7 +108,6 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   }, [del])
 
   useEffect(() => {
-    console.log(defaultData)
     if (defaultData.length === 0 || !defaultData) {
       setData([])
     }
@@ -146,7 +118,6 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
   useEffect(() => {
     const cookie = getCookie("access_token")
-    // window.location.reload()
     if (!cookie) {
       redirect("/login")
     }
