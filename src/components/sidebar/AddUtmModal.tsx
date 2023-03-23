@@ -29,7 +29,6 @@ export const AddUtmModal: React.FC<ModalType> = ({
     setError,
     setValue,
   } = useForm({ criteriaMode: "all", mode: "onChange" })
-
   const onSubmit = async (data: any) => {
     try {
       const res = await ExternalUTM(data)
@@ -72,18 +71,17 @@ export const AddUtmModal: React.FC<ModalType> = ({
             <p>UTM</p>
             <input
               className={styles.modal_input}
-              placeholder="UTM을 입력하세요."
+              placeholder='UTM을 입력하세요.'
               {...register("utm_url", {
                 required: true,
-              })}
-            ></input>
+              })}></input>
           </div>
           <div className={styles.modal_footer}>
             <label>
               생성 날짜
               <input
                 className={styles.modal_input_date}
-                type="date"
+                type='date'
                 {...register("created_at", {
                   required: false,
                 })}
@@ -93,7 +91,7 @@ export const AddUtmModal: React.FC<ModalType> = ({
               메모
               <input
                 className={styles.modal_input_memo}
-                placeholder="메모를 입력하세요."
+                placeholder='메모를 입력하세요.'
                 {...register("memo", {
                   required: false,
                 })}
@@ -107,12 +105,12 @@ export const AddUtmModal: React.FC<ModalType> = ({
               </span>
             )}
           </div>
+
           <button
-            id="add_btn"
-            type="submit"
+            id='add_btn'
+            type='submit'
             disabled={isSubmitting}
-            className={styles.add_button}
-          >
+            className={styles.add_button}>
             추가하기
           </button>
         </div>
