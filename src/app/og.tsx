@@ -1,30 +1,17 @@
 import { ImageResponse } from '@vercel/og';
 import Image from 'next/image';
-import ogimg from 'assets/ogimg.png';
 
 export const config = {
   runtime: 'experimental-edge',
 };
-
+/* eslint import/no-anonymous-default-export: [2, {"allowAnonymousFunction": true}] */
 export default function () {
   return new ImageResponse(
     (
-      <div
-        style={{
-          fontSize: 128,
-          background: 'white',
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          textAlign: 'center',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <Image
-          src={ogimg}
-          alt='imgage'
-        />
-      </div>
+      <Image
+        src='https://utm.works/og.png'
+        alt='imgage'
+      />
     ),
     {
       width: 1200,
