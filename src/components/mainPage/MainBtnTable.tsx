@@ -25,12 +25,10 @@ import {
   getFacetedRowModel,
   getFacetedUniqueValues,
   getFacetedMinMaxValues,
-  getPaginationRowModel,
   sortingFns,
   getSortedRowModel,
   FilterFn,
   SortingFn,
-  FilterFns,
 } from "@tanstack/react-table"
 import {
   RankingInfo,
@@ -74,21 +72,6 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   return itemRank.passed
 }
 
-const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
-  let dir = 0
-
-  // Only sort by rank if the column has ranking information
-  if (rowA.columnFiltersMeta[columnId]) {
-    dir = compareItems(
-      rowA.columnFiltersMeta[columnId]?.itemRank!,
-      rowB.columnFiltersMeta[columnId]?.itemRank!
-    )
-  }
-
-  // Provide an alphanumeric fallback for when the item ranks are equal
-  return dir === 0 ? sortingFns.alphanumeric(rowA, rowB, columnId) : dir
-}
-
 export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [rowSelection, setRowSelection] = useState({})
   const [data, setData] = useState<Array<MainTableType>>([])
@@ -96,20 +79,18 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [target, setTarget] = useState("")
   const [columnResizeMode, setColumnResizeMode] =
     useState<ColumnResizeMode>("onChange")
-  const [removeModal, setRemoveModal] = useState(false)
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   )
-  const input_ref = useRef<HTMLInputElement>(null)
-  const textarea_ref = useRef<HTMLTextAreaElement>(null)
   const [output, setOutput] = useState(false)
   const [outputLength, setOutputLength] = useState<Array<MainTableType>>([])
   const [del, setDel] = useState(false)
   const [delLength, setDelLength] = useState<Array<MainTableType>>([])
   const [plus, setPlus] = useState(false)
   const [filter, setFilter] = useState(false)
-
   const [inputValue, setInputValue] = useState("")
+
+  const router = useRouter()
 
   const getData = async () => {
     const res = await getUTMs()
@@ -122,7 +103,9 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
   useEffect(() => {
     const cookie = getCookie("access_token")
-
+    if (cookie) {
+      router.refresh()
+    }
     if (!cookie) {
       redirect("/login")
     }
@@ -171,7 +154,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: "utm_url",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 130,
+        minSize: 100,
       },
       {
         header: "소스",
@@ -179,7 +162,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: "utm_source_name",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 175,
+        minSize: 135,
       },
       {
         header: "미디움",
@@ -187,7 +170,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: "utm_medium_name",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 175,
+        minSize: 145,
       },
       {
         header: "캠페인 이름",
@@ -195,7 +178,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: "utm_campaign_name",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 290,
+        minSize: 150,
       },
       {
         header: "메모",
@@ -203,7 +186,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         accessorKey: "utm_memo",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 620,
+        minSize: 400,
       },
       {
         header: "UTM",
