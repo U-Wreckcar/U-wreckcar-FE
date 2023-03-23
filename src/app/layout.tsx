@@ -72,7 +72,7 @@ export default function RootLayout({
             `,
           }}
         />
-        <meta property="og:image" content="https://utm.works/og.png" />
+        <meta property="og:image" content="https://utm.works/api/og" />
       </head>
       <body>
         {/* Google Tag Manager (noscript) */}

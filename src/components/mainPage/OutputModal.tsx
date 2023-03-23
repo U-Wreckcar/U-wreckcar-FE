@@ -14,6 +14,8 @@ import b_close from "assets/b_close.png"
 import { useEffect, useRef, useState } from "react"
 import { getUTMExcell, getUTMNotion, getUTMSheet } from "@/util/async/api"
 
+import axios from "../../util/async/axiosConfig"
+
 type OutputModalType = {
   isOpen: boolean
   onRequestClose: any
@@ -31,21 +33,28 @@ export const OutputModal: React.FC<OutputModalType> = ({
   const [excel, setExcel] = useState(false)
 
   const onClickPopHandler = () => {
-    if (notion) {
-      getUTMNotion(data)
-      alert("개발 중입니다...!")
+    console.log(data)
+    const idList: Array<string> = []
+    data.map((d: any) => idList.push(d.utm_id))
+    console.log(idList)
+    for (let i = 0; i <= idList.length; i++) {
+      axios.get(`utms/export/sheet?utm_id=${idList[i]}`)
     }
-    if (excel) {
-      getUTMExcell(data)
-      alert("개발 중입니다...!")
-    }
-    if (sheet) {
-      getUTMSheet(data)
-    }
-    if (!notion && !excel && !sheet) {
-      alert("추출하실 방법을 선택해주세요!")
-    }
-    onRequestClose()
+    // if (notion) {
+    //   getUTMNotion(data)
+    //   alert("개발 중입니다...!")
+    // }
+    // if (excel) {
+    //   getUTMExcell(data)
+    //   alert("개발 중입니다...!")
+    // }
+    // if (sheet) {
+    //   getUTMSheet(data)
+    // }
+    // if (!notion && !excel && !sheet) {
+    //   alert("추출하실 방법을 선택해주세요!")
+    // }
+    // onRequestClose()
   }
 
   useEffect(() => {
