@@ -20,7 +20,7 @@ export default function Header() {
     } else {
       setRenderPath(true);
     }
-  }, [pathName]);
+  }, [pathName, basePath, renderPath]);
 
   return (
     <>
