@@ -19,25 +19,20 @@ interface UserProfile {
 }
 
 type BaseHeaderProp = {
-  path: boolean
+  pathName: string | null
 }
-export const BaseHeader: React.FC<BaseHeaderProp> = ({ path }) => {
+export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
   const [modal, setModal] = useState(false)
   const [userData, setUserData] = useState<UserProfile | undefined>()
 
   async function fetchUserData() {
-    try {
-      const res = await myProfile()
-      setUserData(res.data)
-    } catch (err) {
-      const res = await myProfile()
-      setUserData(res.data)
-    }
+    const res = await myProfile()
+    setUserData(res.data)
   }
 
   useEffect(() => {
     fetchUserData()
-  }, [path])
+  }, [pathName])
 
   const router = useRouter()
   const logOut = () => {
