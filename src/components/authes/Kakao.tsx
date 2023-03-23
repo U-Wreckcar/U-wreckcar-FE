@@ -2,7 +2,7 @@
 import { setClientHeaders } from "@/util/async/axiosConfig"
 import { setCookie } from "@/util/async/Cookie"
 import axios from "axios"
-import { useRouter } from "next/navigation"
+import { redirect, useRouter } from "next/navigation"
 import { useEffect } from "react"
 import CircularUnderLoad from "../CircularUnderLoad"
 import styles from "./Kakao.module.css"
@@ -29,7 +29,7 @@ const KakaoCallback = () => {
           setClientHeaders(res.access_token, res.refresh_token)
         })
         .then(() => {
-          router.push("/main")
+          redirect("/main")
         })
         .catch((error) => {
           // 에러 처리
