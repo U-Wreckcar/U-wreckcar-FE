@@ -74,7 +74,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
             <Image
               className={styles.white_logo}
               src={whitelogo}
-              alt="Logo"
+              alt='Logo'
               width={81.11}
               height={30}
             />
@@ -85,7 +85,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
             height={30}
             className={styles.slim_button}
             src={slim}
-            alt="Slim Button"
+            alt='Slim Button'
             onError={() => console.log("Image loading failed")}
           />
         </div>
@@ -93,39 +93,37 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
           <h3>MY UTM</h3>
         </div>
 
-        <Link className={styles.linklink} href="/main">
+        <Link className={styles.linklink} href='/main'>
           <div
             className={` ${
               pathName === "/main" ? styles.active : styles.utm_category_item
-            } `}
-          >
+            } `}>
             <Image
               className={styles.icon}
               width={30}
               height={30}
               src={myutm}
-              alt="My-UTM"
+              alt='My-UTM'
               onError={() => console.log("Image loading failed")}
             />
-            <span className="category_text">UTM 관리하기</span>
+            <span className='category_text'>UTM 관리하기</span>
           </div>
         </Link>
-        <Link className={styles.linklink} href="/createutm">
+        <Link className={styles.linklink} href='/createutm'>
           <div
             className={`${
               pathName === "/createutm"
                 ? styles.active
                 : styles.utm_category_item
-            }`}
-          >
+            }`}>
             <Image
               className={styles.icon}
               width={30}
               height={30}
               src={createutm}
-              alt="Create-UTM"
+              alt='Create-UTM'
             />
-            <span className="category_text">새 UTM 생성하기</span>
+            <span className='category_text'>새 UTM 생성하기</span>
           </div>
         </Link>
         <div className={styles.utm_category_item}>
@@ -134,11 +132,13 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
             width={24}
             height={24}
             src={addutm}
-            alt="Add_UTM"
+            alt='Add_UTM'
           />
-          <span className="category_text" onClick={() => setModal(!modal)}>
-            기존 UTM 추가하기
-          </span>
+          <Link className={styles.link} href={"/main"}>
+            <span className={styles.link} onClick={() => setModal(!modal)}>
+              기존 UTM 추가하기
+            </span>
+          </Link>
           <AddUtmModal
             isOpen={modal}
             onRequestClose={closeModal}
@@ -156,10 +156,10 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               width={24}
               height={24}
               src={noti}
-              alt="Noti Img"
+              alt='Noti Img'
               onError={() => console.log("Image loading failed")}
             />
-            <span className="category_text" onClick={onClickNoti}>
+            <span className='category_text' onClick={onClickNoti}>
               공지사항
             </span>
           </div>
@@ -169,10 +169,10 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               width={24}
               height={24}
               src={guide}
-              alt="Guide Img"
+              alt='Guide Img'
               onError={() => console.log("Image loading failed")}
             />
-            <span className="category_text" onClick={onClickGuide}>
+            <span className='category_text' onClick={onClickGuide}>
               가이드
             </span>
           </div>
@@ -182,10 +182,10 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               width={24}
               height={24}
               src={help}
-              alt="Help Img"
+              alt='Help Img'
               onError={() => console.log("Image loading failed")}
             />
-            <span className="category_text" onClick={onClickKakao}>
+            <span className='category_text' onClick={onClickKakao}>
               문의하기
             </span>
           </div>

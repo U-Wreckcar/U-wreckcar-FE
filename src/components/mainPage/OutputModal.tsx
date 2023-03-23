@@ -68,7 +68,9 @@ export const OutputModal: React.FC<OutputModalType> = ({
     }
 
     if (sheet) {
-      const res = getUTMSheet(mapdata)
+      const res = getUTMSheet(mapdata).then((i) => {
+        console.log("res", i)
+      })
       console.log(res)
 
       // testUTMSheet(data);
