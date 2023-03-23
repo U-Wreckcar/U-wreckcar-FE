@@ -14,6 +14,7 @@ import b_close from 'assets/b_close.png';
 import { useEffect, useRef, useState } from 'react';
 import { getUTMExcell, getUTMNotion, getUTMSheet } from '@/util/async/api';
 import { testExcell, testUTMSheet } from '@/util/async/api';
+import Axios from 'util/async/axiosConfig';
 type OutputModalType = {
   isOpen: boolean;
   onRequestClose: any;
@@ -30,7 +31,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
   const [sheet, setSheet] = useState(false);
   const [excel, setExcel] = useState(false);
 
-  const onClickPopHandler = () => {
+  const onClickPopHandler = async () => {
     if (notion) {
       getUTMNotion(data);
       alert('개발 중입니다...!');
@@ -39,7 +40,27 @@ export const OutputModal: React.FC<OutputModalType> = ({
       // getUTMExcell(data);
       testExcell(data);
       console.log('엑셀', data);
+
+      try {
+        const response = await Axios.post(
+          'utms/toxlsx',
+          { data },
+          { responseType: 'blob' }
+        );
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        console.log('url', url);
+        const a = document.createElement('a');
+        console.log('a', a);
+        a.href = url;
+        a.download = 'ytest.xlsx';
+        a.click();
+        window.URL.revokeObjectURL(url);
+        console.log('엑셀보내기성공', data);
+      } catch (error) {
+        console.error('다운로드 에러', error);
+      }
     }
+
     if (sheet) {
       // getUTMSheet(data );
       testUTMSheet(data);
@@ -51,6 +72,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
     }
     onRequestClose();
   };
+  //
 
   useEffect(() => {
     if (notion) {
