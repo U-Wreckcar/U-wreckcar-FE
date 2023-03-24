@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from 'redux/store/store';
+// import type { RootState } from 'redux/store/store';
 type FilterItem = {
   create_st?: string | null;
   create_end?: string | null;
@@ -47,6 +47,6 @@ export const filterSlice = createSlice({
 });
 
 export const { addFilterItem, setAddFilterItem } = filterSlice.actions;
-export const dateFilter = (state: RootState) => state.filter.filterItem;
-export const datetag = (state: RootState) => state.filter.tag;
+// export const dateFilter = (state: RootState) => state.filter.filterItem;
+// export const datetag = (state: RootState) => state.filter.tag;
 export default filterSlice.reducer;

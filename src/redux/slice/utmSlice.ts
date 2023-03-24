@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "redux/store/store";
+// import type { RootState } from "redux/store/store";
 
 type UTMItem = {
   id?: number;
@@ -35,5 +35,5 @@ export const utmSlice = createSlice({
 });
 
 export const { addUTM } = utmSlice.actions;
-export const utms = (state: RootState) => state.utms.utms;
+// export const utms = (state: RootState) => state.utms.utms;
 export default utmSlice.reducer;
