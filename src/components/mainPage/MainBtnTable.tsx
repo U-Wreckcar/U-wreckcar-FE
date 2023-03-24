@@ -96,6 +96,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
     const res = await getUTMs()
     setData(res.data)
   }
+
   useEffect(() => {
     setTimeout(() => {
       getData()
@@ -244,6 +245,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const onClickDelBtn = () => {
     let id: Array<MainTableType> = []
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
+    setRowSelection({})
     if (id.length === 0) {
       alert("삭제할 데이터를 선택해주세요")
     } else {
@@ -636,6 +638,7 @@ function IndeterminateCheckbox({
 
   return (
     <input
+      id=""
       type="checkbox"
       ref={ref}
       className={className + " cursor-pointer"}

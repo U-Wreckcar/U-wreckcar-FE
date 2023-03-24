@@ -288,6 +288,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const onClickDelBtn = () => {
     let id: Array<MainTableType> = []
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
+    setRowSelection({})
     if (id.length === 0) {
       window.alert("삭제할 데이터를 선택해주세요")
     } else {
