@@ -244,7 +244,6 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   //삭제하기
   const onClickDelBtn = () => {
     let id: Array<MainTableType> = []
-    console.log("삭제", rowSelection)
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
     setRowSelection({})
     if (id.length === 0) {
