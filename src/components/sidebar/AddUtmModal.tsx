@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form"
 import { ExternalUTM } from "@/util/async/api"
 import { useDispatch } from "react-redux"
 import { addItem } from "@/redux/slice/addslice"
-// import { useAppDispatch } from "@/util/reduxType/type"
 
 export type ModalType = {
   isOpen: boolean
