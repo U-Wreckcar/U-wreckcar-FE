@@ -10,6 +10,8 @@
   align-items: center;
   width: 60px;
   height: 58px;
+  /* background-color: #704d14; */
+  /* margin-right: 20 */
 }
 .scroll_input {
   display: flex;
@@ -21,25 +23,15 @@
   margin-bottom: 8px;
   height: 60px;
   background-color: var(--color-white-100);
+  width: 100%;
   min-width: 1590px;
-
+  /* gap: 2px; */
   border-radius: 4px;
-}
-.input_style {
-  height: 40px;
-  width: 178px;
-  min-width: 178px;
-  border: 1px solid #e1e1e1;
-  border-radius: 4px;
-  margin-right: 8px;
-  padding: 0 4px;
-  transform: translateY(8px);
 }
 
 .input_style {
   height: 40px;
   width: 178px;
-  min-width: 178px;
   border: 1px solid #e1e1e1;
   border-radius: 4px;
   margin-right: 8px;

@@ -122,7 +122,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
             {fields.map((field, index) => {
               return (
                 <div key={field.id}>
-                  <section key={field.id}>
+                  <div key={field.id}>
                     <div className={styles.item_box}>
                       <div className={styles.number}>{index + 1}</div>
 
@@ -260,7 +260,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                         </button>
                       </div>
                     </div>
-                  </section>
+                  </div>
                 </div>
               )
             })}
