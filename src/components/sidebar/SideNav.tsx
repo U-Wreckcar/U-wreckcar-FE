@@ -1,43 +1,47 @@
-'use client';
-import React, { useEffect, useState } from 'react';
-import { PlusSideNav } from './PlusSideNav';
-import { SlimSideNav } from './SlimSideNav';
-import styles from './styles.module.css';
-import { usePathname } from 'next/navigation';
+"use client"
+import React, { useEffect, useState } from "react"
+import { PlusSideNav } from "./PlusSideNav"
+import { SlimSideNav } from "./SlimSideNav"
+import styles from "./styles.module.css"
+import { usePathname } from "next/navigation"
+import { Provider } from "react-redux"
+import store from "@/redux/store/store"
 
 export const SideNav = () => {
-  const [plusSide, setPlusSide] = useState(true);
-  const [side, setSide] = useState(false);
-  const path = usePathname();
+  const [plusSide, setPlusSide] = useState(true)
+  const [side, setSide] = useState(false)
+  const path = usePathname()
 
   useEffect(() => {
-    if (path === '/main' || path === '/createutm' || path === '/userinfo') {
-      setSide(true);
+    if (path === "/main" || path === "/createutm" || path === "/userinfo") {
+      setSide(true)
     } else {
-      setSide(false);
+      setSide(false)
     }
-  }, [path, side]);
+  }, [path, side])
 
   useEffect(() => {
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       if (window.innerWidth < 1528) {
-        setPlusSide(false);
+        setPlusSide(false)
       } else if (window.innerWidth >= 1528) {
-        setPlusSide(true);
+        setPlusSide(true)
       }
-    });
-  }, []);
+    })
+  }, [])
 
   useEffect(() => {
     if (window.innerWidth < 520) {
-      setPlusSide(false);
+      setPlusSide(false)
     }
-  }, [plusSide]);
+  }, [plusSide])
 
   return (
     <div>
-      {side && plusSide && <PlusSideNav setSide={setPlusSide} side={side} />}
-      {side && !plusSide && <SlimSideNav setSide={setPlusSide} side={side} />}
+      <Provider store={store}>
+        {side && plusSide && <PlusSideNav setSide={setPlusSide} side={side} />}
+        {side && !plusSide && <SlimSideNav setSide={setPlusSide} side={side} />}
+      </Provider>
     </div>
-  );
-};
+  )
+}
