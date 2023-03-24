@@ -34,6 +34,7 @@
 }
 .list_box {
   min-width: 760px;
+  min-height: 60px;
   height: 60px;
   display: flex;
   justify-content: center;
@@ -47,12 +48,14 @@
 
 .full_box {
   width: 54%;
+  min-width: 700px;
   display: flex;
 }
 .short_box {
   width: 40%;
   display: flex;
   margin-left: 50px;
+  min-width: 400px;
 }
 
 .full_box {
@@ -69,6 +72,8 @@
   overflow: hidden;
 }
 .text_full {
+  text-align: left;
+
   transform: translateX(4%);
 }
 .short_utm {
