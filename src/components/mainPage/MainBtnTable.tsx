@@ -46,6 +46,7 @@ import filterImg from "assets/filter.png"
 import { EditModal } from "./MainMemoModal"
 import { getCookie } from "@/util/async/Cookie"
 import { redirect, useRouter } from "next/navigation"
+import { useSelector } from "react-redux"
 
 export type MainTableProps = {
   setSummary: Dispatch<SetStateAction<boolean>>
@@ -89,13 +90,14 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [plus, setPlus] = useState(false)
   const [filter, setFilter] = useState(false)
   const [inputValue, setInputValue] = useState("")
-
   const router = useRouter()
+  const isOpen = useSelector((state: any) => state.add.isOpen)
 
   const getData = async () => {
     const res = await getUTMs()
     setData(res.data)
   }
+
   useEffect(() => {
     setTimeout(() => {
       getData()
@@ -104,7 +106,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
   useEffect(() => {
     getData()
-  }, [output, show, plus])
+  }, [output, show, plus, isOpen])
 
   useEffect(() => {
     const cookie = getCookie("access_token")
@@ -244,6 +246,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const onClickDelBtn = () => {
     let id: Array<MainTableType> = []
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
+    setRowSelection({})
     if (id.length === 0) {
       alert("삭제할 데이터를 선택해주세요")
     } else {
@@ -636,6 +639,7 @@ function IndeterminateCheckbox({
 
   return (
     <input
+      id=""
       type="checkbox"
       ref={ref}
       className={className + " cursor-pointer"}

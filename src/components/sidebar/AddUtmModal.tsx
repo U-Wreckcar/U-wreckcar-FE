@@ -4,6 +4,8 @@ import ReactModal from "react-modal"
 import styles from "./AddUtmModal.module.css"
 import { useForm } from "react-hook-form"
 import { ExternalUTM } from "@/util/async/api"
+import { useDispatch } from "react-redux"
+import { addItem } from "@/redux/slice/addslice"
 
 export type ModalType = {
   isOpen: boolean
@@ -29,10 +31,14 @@ export const AddUtmModal: React.FC<ModalType> = ({
     setError,
     setValue,
   } = useForm({ criteriaMode: "all", mode: "onChange" })
+
+  const dispatch = useDispatch()
+
   const onSubmit = async (data: any) => {
     try {
       const res = await ExternalUTM(data)
       onRequestClose()
+      dispatch(addItem(isOpen))
     } catch (err) {
       setError(
         "utm_url",
@@ -43,6 +49,7 @@ export const AddUtmModal: React.FC<ModalType> = ({
   }
 
   useEffect(() => {
+    dispatch(addItem(isOpen))
     setValue("utm_url", "")
     setValue("created_at", "")
     setValue("memo", "")
@@ -71,17 +78,18 @@ export const AddUtmModal: React.FC<ModalType> = ({
             <p>UTM</p>
             <input
               className={styles.modal_input}
-              placeholder='UTM을 입력하세요.'
+              placeholder="UTM을 입력하세요."
               {...register("utm_url", {
                 required: true,
-              })}></input>
+              })}
+            ></input>
           </div>
           <div className={styles.modal_footer}>
             <label>
               생성 날짜
               <input
                 className={styles.modal_input_date}
-                type='date'
+                type="date"
                 {...register("created_at", {
                   required: false,
                 })}
@@ -91,7 +99,7 @@ export const AddUtmModal: React.FC<ModalType> = ({
               메모
               <input
                 className={styles.modal_input_memo}
-                placeholder='메모를 입력하세요.'
+                placeholder="메모를 입력하세요."
                 {...register("memo", {
                   required: false,
                 })}
@@ -107,10 +115,11 @@ export const AddUtmModal: React.FC<ModalType> = ({
           </div>
 
           <button
-            id='add_btn'
-            type='submit'
+            id="add_btn"
+            type="submit"
             disabled={isSubmitting}
-            className={styles.add_button}>
+            className={styles.add_button}
+          >
             추가하기
           </button>
         </div>
