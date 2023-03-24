@@ -6,57 +6,30 @@ export const config = {
   runtime: "edge",
 }
 
-export default async function handler() {
+export default function () {
   return new ImageResponse(
     (
       <div
         style={{
-          backgroundColor: "black",
-          backgroundSize: "150px 150px",
-          height: "100%",
+          fontSize: 128,
+          backgroundImage: `url("https://utm.works/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fogimg.0b843f68.png&w=1920&q=75")`,
+          backgroundPosition: "0% -20%",
+          backgroundSize: "100%",
+          backgroundRepeat: "no-repeat",
+          color: "white",
+          fontWeight: 900,
           width: "100%",
+          height: "100%",
           display: "flex",
           textAlign: "center",
           alignItems: "center",
           justifyContent: "center",
-          flexDirection: "column",
-          flexWrap: "nowrap",
         }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            justifyItems: "center",
-          }}
-        >
-          <Image
-            style={{ objectFit: "cover", objectPosition: "center" }}
-            alt="Vercel"
-            height={200}
-            src={"https://utm.works/og.png"}
-            // style={{ margin: "0 30px" }}
-            width={232}
-          />
-        </div>
-        <div
-          style={{
-            fontSize: 60,
-            fontStyle: "normal",
-            letterSpacing: "-0.025em",
-            color: "white",
-            marginTop: 30,
-            padding: "0 120px",
-            lineHeight: 1.4,
-            whiteSpace: "pre-wrap",
-          }}
-        ></div>
-      </div>
+      ></div>
     ),
     {
       width: 1200,
-      height: 630,
+      height: 600,
     }
   )
 }
