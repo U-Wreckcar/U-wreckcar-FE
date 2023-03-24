@@ -170,6 +170,9 @@
 }
 
 @media screen and (max-width: 400px) {
+  .render_nav_left_img {
+    margin-left: 20px;
+  }
   .render_nav {
     /* padding: 10px 10px 10px 20px; */
     /* padding-left: 20px; */

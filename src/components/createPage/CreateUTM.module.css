@@ -42,11 +42,19 @@
   border: none;
   outline: none;
   border: 1px solid #484bff;
+  /* border: 1px solid #704d14; */
 }
-.error:focus {
+.error {
+  height: 40px;
+  width: 178px;
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+  margin-right: 8px;
+  padding: 0 4px;
+  transform: translateY(8px);
   border: none;
   outline: none;
-  border: 1px solid #704d14;
+  border: 1px solid #ff4205;
 }
 .active {
   display: flex;
@@ -167,6 +175,7 @@
   transform: translateY(40%);
   height: 20px;
   width: 20px;
+  margin-right: 7px;
 }
 @media (max-width: 1910px) {
   .minus_button {
