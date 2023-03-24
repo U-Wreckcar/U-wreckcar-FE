@@ -25,6 +25,16 @@
 
   border-radius: 4px;
 }
+.input_style {
+  height: 40px;
+  width: 178px;
+  min-width: 178px;
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+  margin-right: 8px;
+  padding: 0 4px;
+  transform: translateY(8px);
+}
 
 .input_style {
   height: 40px;
@@ -146,6 +156,7 @@
 .minus_img {
   width: 24px;
   height: 24px;
+  z-index: 999999px;
 }
 
 .minus_button_style {
@@ -165,7 +176,7 @@
   height: 20px;
   width: 20px;
 }
-@media (max-width: 1800px) {
+@media (max-width: 1910px) {
   .minus_button {
     display: flex;
     justify-content: center;
@@ -198,4 +209,10 @@
 
     line-height: 1;
   }
+}
+@media (max-height: 700px) {
+  /* .scroll_input {
+    height: 250px;
+    overflow-y: scroll;
+  } */
 }
