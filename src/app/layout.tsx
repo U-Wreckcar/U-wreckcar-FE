@@ -1,18 +1,18 @@
-import './globals.css';
-import type { Metadata } from 'next';
-import { SideNav } from '@/components/sidebar/SideNav';
-import Header from '@/components/header/Header';
-import localFont from 'next/font/local';
-import Script from 'next/script';
+import "./globals.css"
+import type { Metadata } from "next"
+import { SideNav } from "@/components/sidebar/SideNav"
+import Header from "@/components/header/Header"
+import localFont from "next/font/local"
+import Script from "next/script"
 
-const myFont = localFont({ src: './PretendardVariable.woff2' });
+const myFont = localFont({ src: "./PretendardVariable.woff2" })
 
 export const metadata: Metadata = {
   title: 'UTM 카테고라이징 서비스 "유렉카"',
   description:
-    '유렉카는 구글 애널리틱스 마케팅 캠페인 효과 추적을 위해 UTM을 파라미터 별로 생성, 관리, 추출까지! GA를 쓰는 마케터들의 효율적인 업무 관리 툴입니다.',
+    "유렉카는 구글 애널리틱스 마케팅 캠페인 효과 추적을 위해 UTM을 파라미터 별로 생성, 관리, 추출까지! GA를 쓰는 마케터들의 효율적인 업무 관리 툴입니다.",
   icons: {
-    icon: './favicon.ico',
+    icon: "./favicon.ico",
   },
   // openGraph: {
   //   title: '유렉카',
@@ -35,21 +35,20 @@ export const metadata: Metadata = {
   //   locale: 'ko-kr',
   //   type: 'website',
   // },
-};
+}
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <html
-      lang='ko'
-      className={myFont.className}>
+    <html lang="ko" className={myFont.className}>
       <head>
         {/* Google Analytics */}
         <script
           async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE}`}></script>
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE}`}
+        ></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -62,7 +61,7 @@ export default function RootLayout({
         />
         {/* Google Tag Manager */}
         <Script
-          id='google-analytics'
+          id="google-analytics"
           dangerouslySetInnerHTML={{
             __html: `
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -73,6 +72,7 @@ export default function RootLayout({
             `,
           }}
         />
+        <meta property="og:image" content="https://utm.works/api/og" />
       </head>
       <body>
         {/* Google Tag Manager (noscript) */}
@@ -92,5 +92,5 @@ export default function RootLayout({
         </div>
       </body>
     </html>
-  );
+  )
 }
