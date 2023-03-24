@@ -4,7 +4,9 @@ import ReactModal from "react-modal"
 import styles from "./AddUtmModal.module.css"
 import { useForm } from "react-hook-form"
 import { ExternalUTM } from "@/util/async/api"
-import { usePathname, useRouter } from "next/navigation"
+import { useDispatch } from "react-redux"
+import { addItem } from "@/redux/slice/addslice"
+// import { useAppDispatch } from "@/util/reduxType/type"
 
 export type ModalType = {
   isOpen: boolean
@@ -30,14 +32,14 @@ export const AddUtmModal: React.FC<ModalType> = ({
     setError,
     setValue,
   } = useForm({ criteriaMode: "all", mode: "onChange" })
-  const router = useRouter()
+
+  const dispatch = useDispatch()
 
   const onSubmit = async (data: any) => {
     try {
       const res = await ExternalUTM(data)
-      router.refresh()
-      // router.replace("/main")
       onRequestClose()
+      dispatch(addItem(isOpen))
     } catch (err) {
       setError(
         "utm_url",
@@ -48,6 +50,7 @@ export const AddUtmModal: React.FC<ModalType> = ({
   }
 
   useEffect(() => {
+    dispatch(addItem(isOpen))
     setValue("utm_url", "")
     setValue("created_at", "")
     setValue("memo", "")

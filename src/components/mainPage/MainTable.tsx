@@ -42,6 +42,7 @@ import { redirect } from "next/navigation"
 import Link from "next/link"
 import { getCookie } from "@/util/async/Cookie"
 import { Alert } from "@/shared/button/Alert"
+import { useSelector } from "react-redux"
 declare module "@tanstack/table-core" {
   interface FilterFns {
     fuzzy: FilterFn<unknown>
@@ -86,7 +87,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [plus, setPlus] = useState(false)
   const [filter, setFilter] = useState(false)
   const [alert, setAlert] = useState(false)
-
+  const isOpen = useSelector((state: any) => state.add.isOpen)
   const getData = async () => {
     const res = await getUTMs()
     setData(res.data)
@@ -99,7 +100,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     } catch (err) {
       console.log(err)
     }
-  }, [output, show, plus])
+  }, [output, show, plus, isOpen])
 
   useEffect(() => {
     setTimeout(() => {
