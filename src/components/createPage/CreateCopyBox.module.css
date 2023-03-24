@@ -33,9 +33,9 @@
   border-radius: 4px;
 }
 .list_container {
-  background-color: orange;
+  /* background-color: orange;
   height: 80px;
-  overflow-y: scroll;
+  overflow-y: scroll; */
 }
 .list_box {
   min-width: 760px;

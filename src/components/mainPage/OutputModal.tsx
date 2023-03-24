@@ -37,11 +37,8 @@ export const OutputModal: React.FC<OutputModalType> = ({
   console.log("메타데이터", mapdata)
   const onClickPopHandler = async () => {
     if (notion) {
-      console.log("안녕")
-      console.log("시트", mapdata)
-
       getUTMNotion(data)
-      // alert("개발 중입니다...!")
+      alert("개발 중입니다...!")
     }
     if (excel) {
       // getUTMExcell(data);
@@ -71,12 +68,13 @@ export const OutputModal: React.FC<OutputModalType> = ({
     }
 
     if (sheet) {
-      const res = getUTMSheet(mapdata).then((i) => {
-        console.log("res", i)
-      })
-      console.log(res)
+      // const res = getUTMSheet(mapdata).then((i) => {
+      //   console.log("res", i)
+      // })
+      // console.log(res)
+      alert("개발 중입니다...!")
 
-      // testUTMSheet(data);
+      // testUTMSheet(data)
       // try {
       //   const response = await Axios.post(
       //     "utms/tocsv",
@@ -125,15 +123,14 @@ export const OutputModal: React.FC<OutputModalType> = ({
       <div
         className={styles.dialogBox}
         {...(isOpen && true ? { open: true } : {})}
-        id="favDialog"
-      >
+        id='favDialog'>
         <div className={styles.header}>
           <div className={styles.title_box}>
             <span className={styles.title}>UTM 추출하기</span>
           </div>
           <div className={styles.cancleBtn_box}>
             <button className={styles.cancleBtn} onClick={onRequestClose}>
-              <Image src={b_close} alt="close_img" width={24} height={24} />
+              <Image src={b_close} alt='close_img' width={24} height={24} />
             </button>
           </div>
         </div>
@@ -149,7 +146,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
                   <Image
                     width={150}
                     height={100}
-                    alt="outputmodal"
+                    alt='outputmodal'
                     src={active_notion}
                     onClick={() => setNotion(!notion)}
                   />
@@ -157,7 +154,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
                   <Image
                     width={150}
                     height={100}
-                    alt="outputmodal"
+                    alt='outputmodal'
                     src={not_notion}
                     onClick={() => setNotion(!notion)}
                   />
@@ -168,7 +165,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
                   <Image
                     width={150}
                     height={100}
-                    alt="outputmodal"
+                    alt='outputmodal'
                     src={active_sheet}
                     onClick={() => setSheet(!sheet)}
                   />
@@ -176,7 +173,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
                   <Image
                     width={150}
                     height={100}
-                    alt="outputmodal"
+                    alt='outputmodal'
                     src={not_sheet}
                     onClick={() => setSheet(!sheet)}
                   />
@@ -185,20 +182,19 @@ export const OutputModal: React.FC<OutputModalType> = ({
 
               <div
                 onClick={() => setExcel(true)}
-                className={styles.img_box_img}
-              >
+                className={styles.img_box_img}>
                 {excel ? (
                   <Image
                     width={150}
                     height={100}
-                    alt="outputmodal"
+                    alt='outputmodal'
                     src={active_excel}
                   />
                 ) : (
                   <Image
                     width={150}
                     height={100}
-                    alt="outputmodal"
+                    alt='outputmodal'
                     src={not_excel}
                   />
                 )}
@@ -210,8 +206,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
           <button
             onClick={onClickPopHandler}
             className={styles.modal_button}
-            value="default"
-          >
+            value='default'>
             추출하기
           </button>
         </div>
