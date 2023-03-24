@@ -3,6 +3,7 @@ import ReactModal from "react-modal"
 import styles from "./main.module.css"
 import b_close from "assets/b_close.png"
 import { deleteUTM } from "util/async/api"
+import { useRouter } from "next/navigation"
 type OutputModalType = {
   isOpen: boolean
   onRequestClose: any
@@ -15,11 +16,13 @@ export const DeleteModal: React.FC<OutputModalType> = ({
   style,
   data,
 }) => {
+  const router = useRouter()
   const onClickDelHandler = () => {
     // const idList = [];
     // data.map((datas)=> idList.push(datas.id));
     deleteUTM({ data })
     onRequestClose()
+    router.replace("/main")
   }
   return (
     <ReactModal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
