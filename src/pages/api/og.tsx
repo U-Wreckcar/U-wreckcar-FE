@@ -18,11 +18,7 @@ export default function () {
           color: "white",
           width: "100%",
           height: "100%",
-          // display: "flex",
-          // alignItems: "center",
-          // justifyContent: "center",
-        }}
-      ></div>
+        }}></div>
     ),
     {
       width: 1900,
