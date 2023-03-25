@@ -36,14 +36,15 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
   const [memoText, setMemoText] = useState("")
   const [alert, setAlert] = useState(false)
   const [errorAlert, setErrorAlert] = useState(false)
+  // const [res, setRes] = useState()
   // const { data, isError, isLoading, isSuccess } = useQuery({
   //   queryKey: ["create_utm"],
   //   queryFn: postUTMs,
   // })
   const { mutate, isLoading, isError, isSuccess, data } = useMutation(postUTMs)
 
-  console.log("create_utm", data)
-  console.log("isLoading", isLoading)
+  const res = data?.data
+  setResUTM(res)
   const {
     handleSubmit,
     register,
@@ -91,7 +92,6 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
   }
   const memoHandler = (e: any) => {
     const textareaValue = e.target?.value
-    console.log(e.target)
     setMemoText(textareaValue)
   }
 
@@ -99,19 +99,13 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
     try {
       mutate(data)
 
-      const res = await postUTMs(data)
-      console.log(res)
-      console.log(res.data)
-      setResUTM(res.data)
-      if (res.data !== "") {
-        setAlert(true)
-      }
+      isSuccess && setAlert(true)
     } catch (e) {
       console.log(e)
     }
   }
   useEffect(() => {}, [memoText])
-  console.log(errors)
+
   /**
    * 로그인 하지 않은 유저 로그인 페이지로 보내기
    */
