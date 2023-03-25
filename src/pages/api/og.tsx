@@ -11,13 +11,13 @@ export default function () {
     (
       <div
         style={{
-          backgroundImage: `url("https://utm.works/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fog1200.7099e82f.png&w=3840&q=75")`,
+          backgroundImage: `url("https://utm.works/api/og1200.png")`,
           backgroundPosition: "center",
           backgroundSize: "100%",
           backgroundRepeat: "no-repeat",
           color: "white",
-          width: "100%",
-          height: "100%",
+          width: "1200",
+          height: "630",
         }}></div>
     ),
     {
