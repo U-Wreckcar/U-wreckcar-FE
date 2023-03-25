@@ -21,8 +21,7 @@ export default function () {
           // display: "flex",
           // alignItems: "center",
           // justifyContent: "center",
-        }}
-      ></div>
+        }}></div>
     ),
     {
       width: 1900,
