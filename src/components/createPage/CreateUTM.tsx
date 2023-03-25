@@ -15,6 +15,7 @@ import { ErrorAlert } from "@/shared/button/ErrorAlert"
 import { getCookie } from "@/util/async/Cookie"
 import { redirect } from "next/navigation"
 import b_close from "assets/b_close.png"
+import { style } from "@mui/system"
 type UTMsType = {
   utms: {
     utm_url?: string
@@ -122,7 +123,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
             {fields.map((field, index) => {
               return (
                 <div key={field.id}>
-                  <section key={field.id}>
+                  <div key={field.id}>
                     <div className={styles.item_box}>
                       <div className={styles.number}>{index + 1}</div>
 
@@ -136,15 +137,15 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                         })}
                         className={`${
                           errors?.utms?.[index]?.utm_url
-                            ? console.log("no value")
-                            : ""
-                        }, ${styles.input_style}`}
+                            ? styles.error
+                            : styles.input_style
+                        }`}
                       />
-                      {errors?.utms?.[index]?.utm_url ? (
+                      {/* {errors?.utms?.[index]?.utm_url ? (
                         <p className={styles.red_text}>!</p>
                       ) : (
                         ""
-                      )}
+                      )} */}
 
                       <input
                         // placeholder="utm_source"
@@ -153,14 +154,12 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                           required: true,
                         })}
                         className={`${
-                          errors?.utms?.[index]?.utm_source ? "error" : ""
-                        }, ${styles.input_style}`}
+                          errors?.utms?.[index]?.utm_source
+                            ? styles.error
+                            : styles.input_style
+                        }`}
                       />
-                      {errors?.utms?.[index]?.utm_source ? (
-                        <p className={styles.red_text}>!</p>
-                      ) : (
-                        ""
-                      )}
+
                       <input
                         // onInput={requeirFn}
                         // placeholder="utm_medium"
@@ -169,14 +168,12 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                           // pattern: /[a-z]/i,
                         })}
                         className={`${
-                          errors?.utms?.[index]?.utm_medium ? "error" : ""
-                        }, ${styles.input_style}`}
+                          errors?.utms?.[index]?.utm_medium
+                            ? styles.error
+                            : styles.input_style
+                        }`}
                       />
-                      {errors?.utms?.[index]?.utm_medium ? (
-                        <p className={styles.red_text}>!</p>
-                      ) : (
-                        ""
-                      )}
+
                       <input
                         // onInput={requeirFn}
                         // placeholder="utm_campaign_name"
@@ -186,15 +183,11 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                         )}
                         className={`${
                           errors?.utms?.[index]?.utm_campaign_name
-                            ? "error"
-                            : ""
-                        }, ${styles.input_style}`}
+                            ? styles.error
+                            : styles.input_style
+                        }`}
                       />
-                      {errors?.utms?.[index]?.utm_campaign_name ? (
-                        <p className={styles.red_text}>!</p>
-                      ) : (
-                        ""
-                      )}
+
                       <input
                         // placeholder="utm_campaign_id"
                         // onInput={requeirFn}
@@ -210,27 +203,19 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                         // placeholder="utm_term"
                         {...register(`utms.${index}.utm_term` as const, {})}
                         className={`${
-                          errors?.utms?.[index]?.utm_term ? "error" : ""
+                          errors?.utms?.[index]?.utm_campaign_id ? "error" : ""
                         }, ${styles.input_style}`}
                       />
-                      {errors?.utms?.[index]?.utm_term ? (
-                        <p className={styles.red_text}>!</p>
-                      ) : (
-                        ""
-                      )}
+
                       <input
                         // onInput={requeirFn}
                         // placeholder="utm_campaign_content"
                         {...register(`utms.${index}.utm_content` as const)}
                         className={`${
-                          errors?.utms?.[index]?.utm_content ? "error" : ""
+                          errors?.utms?.[index]?.utm_campaign_id ? "error" : ""
                         }, ${styles.input_style}`}
                       />
-                      {errors?.utms?.[index]?.utm_content ? (
-                        <p className={styles.red_text}>!</p>
-                      ) : (
-                        ""
-                      )}
+
                       <textarea
                         className={`${styles.active}`}
                         {...register(`utms.${index}.utm_memo` as const, {
@@ -260,7 +245,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                         </button>
                       </div>
                     </div>
-                  </section>
+                  </div>
                 </div>
               )
             })}

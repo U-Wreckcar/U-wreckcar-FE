@@ -4,6 +4,7 @@
   margin-bottom: 8px;
 
   height: 40px;
+  /* width: 100vw; */
   min-width: 1590px;
 
   background-color: var(--color-white-100);
@@ -17,13 +18,19 @@
   transform: translateX(-0.5%);
 }
 .item {
-  width: 188px;
+  /* width: 190px; */
+  margin-left: 15px;
 }
 .category_item {
   align-items: center;
-  max-width: 178px;
+  background-color: aqua;
 }
 .category_text {
+  /* display: block; */
+  width: 100%;
+  min-width: 178px;
+
+  /* gap: 15px; */
 }
 .create_img_box {
   display: flex;
