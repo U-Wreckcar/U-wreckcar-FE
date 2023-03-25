@@ -10,6 +10,8 @@
   align-items: center;
   width: 60px;
   height: 58px;
+  /* background-color: #704d14; */
+  /* margin-right: 20 */
 }
 .scroll_input {
   display: flex;
@@ -21,15 +23,15 @@
   margin-bottom: 8px;
   height: 60px;
   background-color: var(--color-white-100);
+  width: 100%;
   min-width: 1590px;
-
+  /* gap: 2px; */
   border-radius: 4px;
 }
 
 .input_style {
   height: 40px;
   width: 178px;
-  min-width: 178px;
   border: 1px solid #e1e1e1;
   border-radius: 4px;
   margin-right: 8px;
@@ -40,11 +42,19 @@
   border: none;
   outline: none;
   border: 1px solid #484bff;
+  /* border: 1px solid #704d14; */
 }
-.error:focus {
+.error {
+  height: 40px;
+  width: 178px;
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+  margin-right: 8px;
+  padding: 0 4px;
+  transform: translateY(8px);
   border: none;
   outline: none;
-  border: 1px solid #704d14;
+  border: 1px solid #ff4205;
 }
 .active {
   display: flex;
@@ -146,6 +156,7 @@
 .minus_img {
   width: 24px;
   height: 24px;
+  z-index: 999999px;
 }
 
 .minus_button_style {
@@ -164,8 +175,9 @@
   transform: translateY(40%);
   height: 20px;
   width: 20px;
+  margin-right: 7px;
 }
-@media (max-width: 1800px) {
+@media (max-width: 1910px) {
   .minus_button {
     display: flex;
     justify-content: center;
@@ -198,4 +210,10 @@
 
     line-height: 1;
   }
+}
+@media (max-height: 700px) {
+  /* .scroll_input {
+    height: 250px;
+    overflow-y: scroll;
+  } */
 }

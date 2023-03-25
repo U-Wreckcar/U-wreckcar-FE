@@ -7,7 +7,8 @@ export default function MainPage() {
   return (
     <>
       {/* <Provider store={store}> */}
-      <MainPageComponent />;{/* </Provider> */}
+      <MainPageComponent />
+      {/* </Provider> */}
     </>
   )
 }

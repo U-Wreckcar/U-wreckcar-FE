@@ -32,8 +32,14 @@
   min-width: 760px;
   border-radius: 4px;
 }
+.list_container {
+  /* background-color: orange;
+  height: 80px;
+  overflow-y: scroll; */
+}
 .list_box {
   min-width: 760px;
+  min-height: 60px;
   height: 60px;
   display: flex;
   justify-content: center;
@@ -47,16 +53,22 @@
 
 .full_box {
   width: 54%;
+  min-width: 700px;
+  /* max-width: 700px; */
+
   display: flex;
+  /* overflow: hidden; */
 }
 .short_box {
   width: 40%;
   display: flex;
   margin-left: 50px;
+  min-width: 400px;
 }
 
 .full_box {
   display: flex;
+  min-width: 700px;
 }
 .full_utm {
   background-color: #f5f9fc;
@@ -69,7 +81,10 @@
   overflow: hidden;
 }
 .text_full {
-  transform: translateX(4%);
+  text-align: left;
+  width: 600px;
+
+  transform: translateX(1%);
 }
 .short_utm {
   background-color: #f5f9fc;
@@ -80,7 +95,7 @@
   text-align: center;
 
   width: 100%;
-  padding: 0 5px;
+  /* padding: 0 5px; */
   overflow: hidden;
 }
 .link_img {
