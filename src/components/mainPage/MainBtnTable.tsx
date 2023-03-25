@@ -246,7 +246,6 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const onClickDelBtn = () => {
     let id: Array<MainTableType> = []
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
-    setRowSelection({})
     if (id.length === 0) {
       alert("삭제할 데이터를 선택해주세요")
     } else {
@@ -281,13 +280,15 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
           <div className={styles.buttons_box}>
             <button
               className={styles.data_btn}
-              onClick={() => setSummary(true)}>
+              onClick={() => setSummary(true)}
+            >
               데이터 상세보기
             </button>
             <button
-              id='export_btn'
+              id="export_btn"
               className={styles.button}
-              onClick={onClickPopBtn}>
+              onClick={onClickPopBtn}
+            >
               추출하기
             </button>
             <OutputModal
@@ -304,16 +305,19 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
               onRequestClose={() => setDel(false)}
               style={customStyles}
               data={delLength}
+              setRowSelection={setRowSelection}
             />
             <button
               className={styles.plus_button}
-              onClick={() => setFilter(!filter)}>
-              <Image src={filterImg} alt='filter' width={24} height={24} />
+              onClick={() => setFilter(!filter)}
+            >
+              <Image src={filterImg} alt="filter" width={24} height={24} />
             </button>
             <button
               className={styles.plus_button}
-              onClick={() => setPlus(true)}>
-              <Image src={plusImg} alt='plus' width={24} height={24} />
+              onClick={() => setPlus(true)}
+            >
+              <Image src={plusImg} alt="plus" width={24} height={24} />
             </button>
             <AddUtmModal
               isOpen={plus}
@@ -331,16 +335,17 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
           />
         </div>
         <div className={styles.table_scroll}>
-          <div className='h-2' />
-          <div className='h-4' />
-          <div className='overflow-x-auto'></div>
+          <div className="h-2" />
+          <div className="h-4" />
+          <div className="overflow-x-auto"></div>
           <table
             className={styles.table}
             {...{
               style: {
                 maxWidth: table.getCenterTotalSize(),
               },
-            }}>
+            }}
+          >
             <thead className={styles.th}>
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
@@ -357,7 +362,8 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 ? 80
                                 : header.getSize(),
                           },
-                        }}>
+                        }}
+                      >
                         {header.isPlaceholder ? null : (
                           <>
                             <div
@@ -372,7 +378,8 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 //   : '',
                                 onClick:
                                   header.column.getToggleSortingHandler(),
-                              }}>
+                              }}
+                            >
                               {flexRender(
                                 header.column.columnDef.header,
                                 header.getContext()
@@ -385,7 +392,8 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                   style: {
                                     width: "630px",
                                   },
-                                }}>
+                                }}
+                              >
                                 {header.column.getCanFilter() ? (
                                   <Filter
                                     column={header.column}
@@ -448,20 +456,24 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                   ? 80
                                   : cell.column.getSize(),
                             },
-                          }}>
+                          }}
+                        >
                           {cell.column.id === "full_url" && (
                             <CopyButton
-                              text={`${cell.getValue()}`}></CopyButton>
+                              text={`${cell.getValue()}`}
+                            ></CopyButton>
                           )}
                           {cell.column.id === "shorten_url" && (
                             <CopyButton
-                              text={`${cell.getValue()}`}></CopyButton>
+                              text={`${cell.getValue()}`}
+                            ></CopyButton>
                           )}
                           {cell.column.id === "utm_url" && (
                             <Tooltip title={`${cell.getValue()}`}>
                               <button
                                 onClick={() => moveUrl(`${cell.getValue()}`)}
-                                className={styles.url_button}>
+                                className={styles.url_button}
+                              >
                                 url 연결
                               </button>
                             </Tooltip>
@@ -476,7 +488,8 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                   setTarget(e.target?.id)
                                   setShow(true)
                                   setInputValue(`${cell.getValue()}`)
-                                }}>{`${cell.getValue()}`}</div>
+                                }}
+                              >{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
 
@@ -525,9 +538,9 @@ function Filter({
 
   return typeof firstValue === "number" ? (
     <div>
-      <div className='flex space-x-2'>
+      <div className="flex space-x-2">
         <DebouncedInput
-          type='number'
+          type="number"
           min={Number(column.getFacetedMinMaxValues()?.[0] ?? "")}
           max={Number(column.getFacetedMinMaxValues()?.[1] ?? "")}
           value={(columnFilterValue as [number, number])?.[0] ?? ""}
@@ -539,10 +552,10 @@ function Filter({
               ? `(${column.getFacetedMinMaxValues()?.[0]})`
               : ""
           }`}
-          className='w-24 border shadow rounded'
+          className="w-24 border shadow rounded"
         />
         <DebouncedInput
-          type='number'
+          type="number"
           min={Number(column.getFacetedMinMaxValues()?.[0] ?? "")}
           max={Number(column.getFacetedMinMaxValues()?.[1] ?? "")}
           value={(columnFilterValue as [number, number])?.[1] ?? ""}
@@ -554,10 +567,10 @@ function Filter({
               ? `(${column.getFacetedMinMaxValues()?.[1]})`
               : ""
           }`}
-          className='w-24 border shadow rounded'
+          className="w-24 border shadow rounded"
         />
       </div>
-      <div className='h-1' />
+      <div className="h-1" />
     </div>
   ) : (
     <>
@@ -568,7 +581,7 @@ function Filter({
       </datalist>
       <DebouncedInput
         className={styles.search_input}
-        type='text'
+        type="text"
         value={(columnFilterValue ?? "") as string}
         onChange={(value) => column.setFilterValue(value)}
         placeholder={`검색 (${column.getFacetedUniqueValues().size})`}
@@ -626,8 +639,8 @@ function IndeterminateCheckbox({
 
   return (
     <input
-      id=''
-      type='checkbox'
+      id=""
+      type="checkbox"
       ref={ref}
       className={className + " cursor-pointer"}
       {...rest}
