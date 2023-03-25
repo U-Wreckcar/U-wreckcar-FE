@@ -1,5 +1,6 @@
 .container_copy_box {
   flex-direction: column;
+  /* width: 1590px; */
 }
 .copy_box_full {
   width: 100%;
@@ -33,9 +34,8 @@
   border-radius: 4px;
 }
 .list_container {
-  /* background-color: orange;
-  height: 80px;
-  overflow-y: scroll; */
+  width: 100%;
+  min-width: 1590px;
 }
 .list_box {
   min-width: 760px;
@@ -109,9 +109,9 @@
   justify-content: center;
   align-items: center;
   width: 58px;
+  min-width: 58px;
 
   height: 60px;
-  /* padding: 0px 25px; */
   margin: 0;
 }
 .link_img_box {
@@ -122,4 +122,11 @@
   height: 40px;
 
   margin-left: 3px;
+}
+@media screen and (max-width: 1910px) {
+  .container_copy_box {
+    flex-direction: column;
+    width: 100%;
+    overflow-x: scroll;
+  }
 }
