@@ -647,6 +647,7 @@ function Filter({
 
     column.setFilterValue((old: Array<string>) => console.log(old))
   }
+
   const sortedUniqueValues = React.useMemo(
     () =>
       typeof firstValue === "number"
@@ -700,7 +701,7 @@ function Filter({
       {column.id !== "created_at_filter" && (
         <>
           <datalist id={column.id + "list"}>
-            {sortedUniqueValues.slice(0, 5000).map((value: any) => (
+            {sortedUniqueValues.map((value: any) => (
               <option value={value} key={value} />
             ))}
           </datalist>
@@ -710,6 +711,7 @@ function Filter({
             value={(columnFilterValue ?? "") as string}
             onChange={(value) => column.setFilterValue(value)}
             placeholder={`검색 (${column.getFacetedUniqueValues().size})`}
+            list={column.id + "list"}
           />
         </>
       )}
