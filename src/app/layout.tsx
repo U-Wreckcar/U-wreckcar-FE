@@ -4,6 +4,7 @@ import { SideNav } from "@/components/sidebar/SideNav"
 import Header from "@/components/header/Header"
 import localFont from "next/font/local"
 import Script from "next/script"
+import Providers from "./providers"
 
 const myFont = localFont({ src: "./PretendardVariable.woff2" })
 
@@ -42,13 +43,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ko" className={myFont.className}>
+    <html lang='ko' className={myFont.className}>
       <head>
         {/* Google Analytics */}
         <script
           async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE}`}
-        ></script>
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE}`}></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -61,7 +61,7 @@ export default function RootLayout({
         />
         {/* Google Tag Manager */}
         <Script
-          id="google-analytics"
+          id='google-analytics'
           dangerouslySetInnerHTML={{
             __html: `
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -72,7 +72,7 @@ export default function RootLayout({
             `,
           }}
         />
-        <meta property="og:image" content="https://utm.works/api/og" />
+        <meta property='og:image' content='https://utm.works/api/og' />
       </head>
       <body>
         {/* Google Tag Manager (noscript) */}
@@ -88,7 +88,8 @@ export default function RootLayout({
         <SideNav />
         <div>
           <Header />
-          {children}
+
+          <Providers> {children}</Providers>
         </div>
       </body>
     </html>

@@ -11,11 +11,11 @@ import Image from "next/image"
 import { CreateCategory } from "./CreateCategory"
 import { postUTMs } from "@/util/async/api"
 import { Alert } from "@/shared/button/Alert"
-import { ErrorAlert } from "@/shared/button/ErrorAlert"
 import { getCookie } from "@/util/async/Cookie"
 import { redirect } from "next/navigation"
-import b_close from "assets/b_close.png"
-import { style } from "@mui/system"
+import { useMutation, useQuery } from "@tanstack/react-query"
+import { Modal } from "@/shared/modal/Modal"
+import Loading from "@/shared/modal/Loading"
 type UTMsType = {
   utms: {
     utm_url?: string
@@ -36,7 +36,14 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
   const [memoText, setMemoText] = useState("")
   const [alert, setAlert] = useState(false)
   const [errorAlert, setErrorAlert] = useState(false)
-  const [sataus, setStatus] = useState()
+  // const { data, isError, isLoading, isSuccess } = useQuery({
+  //   queryKey: ["create_utm"],
+  //   queryFn: postUTMs,
+  // })
+  const { mutate, isLoading, isError, isSuccess, data } = useMutation(postUTMs)
+
+  console.log("create_utm", data)
+  console.log("isLoading", isLoading)
   const {
     handleSubmit,
     register,
@@ -90,6 +97,8 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
 
   const onSubmit = async (data: UTMsType) => {
     try {
+      mutate(data)
+
       const res = await postUTMs(data)
       console.log(res)
       console.log(res.data)
@@ -103,7 +112,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
   }
   useEffect(() => {}, [memoText])
   console.log(errors)
-  /**s
+  /**
    * 로그인 하지 않은 유저 로그인 페이지로 보내기
    */
   useEffect(() => {
@@ -265,23 +274,26 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
               }}
             />
           </button>
-          {alert && (
-            <Alert
-              title={"성공"}
-              contents={"UTM 생성을 성공하셨습니다!"}
-              onClickEvent={setAlert}
+          <div className={styles.create_button_box_section}>
+            {alert && (
+              <Alert
+                title={"성공"}
+                contents={"UTM 생성을 성공하셨습니다!"}
+                onClickEvent={setAlert}
+              />
+            )}
+            {isLoading && <Loading isOpen={true} />}
+            <input
+              id='create_btn'
+              className={styles.create_button}
+              type='submit'
+              value='생성하기'
+              disabled={isLoading}
+              // onClick={() => {
+              //   setAlert(true);
+              // }}
             />
-          )}
-
-          <input
-            id='create_btn'
-            className={styles.create_button}
-            type='submit'
-            value='생성하기'
-            // onClick={() => {
-            //   setAlert(true);
-            // }}
-          />
+          </div>
         </div>
 
         {/* <FirstNameWatched control={control} /> */}
