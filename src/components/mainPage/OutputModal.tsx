@@ -34,7 +34,6 @@ export const OutputModal: React.FC<OutputModalType> = ({
   const [excel, setExcel] = useState(false)
 
   const mapdata = data.map((i: any) => i.utm_id)
-  console.log("메타데이터", mapdata)
   const onClickPopHandler = async () => {
     if (notion) {
       getUTMNotion(data)
@@ -43,8 +42,6 @@ export const OutputModal: React.FC<OutputModalType> = ({
     if (excel) {
       // getUTMExcell(data);
       // testExcell(data);
-
-      console.log("엑셀", data)
 
       try {
         const response = await Axios.post(
