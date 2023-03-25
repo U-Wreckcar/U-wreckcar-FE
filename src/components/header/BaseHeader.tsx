@@ -55,7 +55,7 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
           height={18}
         />
         <p>
-          <span>
+          <span className={styles.event_noti}>
             <Link
               href={
                 "https://docs.google.com/forms/d/e/1FAIpQLSc9YT3SIVC6ARWONo5DZSd4CN4TD68E-dXCwAJcAitOWWSnuw/viewform"
