@@ -9,7 +9,7 @@ import { myProfile } from "@/util/async/api"
 import { removeCookie } from "@/util/async/Cookie"
 import { useRouter } from "next/navigation"
 import { setClientHeaders } from "@/util/async/axiosConfig"
-
+import plus from "assets/plus.png"
 interface UserProfile {
   username: string
   email: string
@@ -47,7 +47,7 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
       <div className={styles.title}>
         <Image
           src={b_noti}
-          alt="Noti_img"
+          alt='Noti_img'
           onError={() => {
             console.log("img load fail")
           }}
@@ -60,8 +60,7 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
         className={styles.base_user_box}
         onClick={() => {
           setModal(!modal)
-        }}
-      >
+        }}>
         {modal && (
           <dialog>
             <Link className={styles.links} href={"/userinfo"}>
@@ -69,8 +68,7 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
                 className={styles.links_box}
                 onClick={() => {
                   setModal(!modal)
-                }}
-              >
+                }}>
                 개인정보 관리
               </div>
             </Link>
@@ -78,16 +76,15 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
               className={styles.links_box}
               onClick={() => {
                 logOut()
-              }}
-            >
+              }}>
               로그아웃
             </div>
           </dialog>
         )}
 
         <Image
-          src={`${userData?.profile_img}`}
-          alt="img"
+          src={userData?.profile_img}
+          alt=''
           width={30}
           height={30}
           style={{ borderRadius: "50%", marginRight: "7px" }}
