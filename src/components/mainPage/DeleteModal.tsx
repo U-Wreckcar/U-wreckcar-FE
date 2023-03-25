@@ -9,18 +9,22 @@ type OutputModalType = {
   onRequestClose: any
   style: any
   data: any
+  setRowSelection: any
 }
 export const DeleteModal: React.FC<OutputModalType> = ({
   isOpen,
   onRequestClose,
   style,
   data,
+  setRowSelection,
 }) => {
   const router = useRouter()
   const onClickDelHandler = () => {
     // const idList = [];
     // data.map((datas)=> idList.push(datas.id));
-    deleteUTM({ data })
+    deleteUTM({ data }).then(() => {
+      setRowSelection({})
+    })
     onRequestClose()
     router.replace("/main")
   }
