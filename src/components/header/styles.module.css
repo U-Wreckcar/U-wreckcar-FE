@@ -7,9 +7,15 @@
   background-color: rgb(255, 255, 255);
   padding: 0 24px;
 }
+.header_container p {
+  font-size: 14px;
+  font-weight: 400;
+}
 .header_container span {
   font-size: 14px;
   font-weight: 400;
+  color: red;
+  cursor: pointer;
 }
 .title {
   display: flex;

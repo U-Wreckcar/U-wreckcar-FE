@@ -54,7 +54,18 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
           width={18}
           height={18}
         />
-        <span>오늘 하루도 유렉카와 함께 효율적인 업무를 진행하세요</span>
+        <p>
+          <span>
+            <Link
+              href={
+                "https://docs.google.com/forms/d/e/1FAIpQLSc9YT3SIVC6ARWONo5DZSd4CN4TD68E-dXCwAJcAitOWWSnuw/viewform"
+              }
+              target='_blank'>
+              [클릭]
+            </Link>
+          </span>{" "}
+          설문조사 참여하고 백화점 상품권 받으러 가기
+        </p>
       </div>
       <div
         className={styles.base_user_box}
