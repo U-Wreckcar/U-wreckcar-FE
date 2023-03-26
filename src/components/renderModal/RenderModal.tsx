@@ -4,6 +4,7 @@ import ReactModal from "react-modal"
 import close from "assets/b_close.png"
 import Image from "next/image"
 import Link from "next/link"
+import logo from "assets/renderlogo.png"
 
 type RenderModalType = {
   isOpen: boolean
@@ -25,6 +26,13 @@ const RenderModal: React.FC<RenderModalType> = ({ isOpen, onRequestClose }) => {
   return (
     <ReactModal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
       <div className={styles.container}>
+        {/* <Image
+          className={styles.modal_logo_img}
+          src={logo}
+          alt="logo"
+          width={120}
+          height={40}
+        /> */}
         <button className={styles.close_button} onClick={onRequestClose}>
           <Image src={close} alt="close" width={32} height={32} />
         </button>
@@ -52,7 +60,9 @@ const RenderModal: React.FC<RenderModalType> = ({ isOpen, onRequestClose }) => {
             "https://docs.google.com/forms/d/e/1FAIpQLSc9YT3SIVC6ARWONo5DZSd4CN4TD68E-dXCwAJcAitOWWSnuw/viewform"
           }
         >
-          <button>설문조사 참여하러 가기</button>
+          <button className={styles.modal_link_button}>
+            설문조사 참여하러 가기
+          </button>
         </Link>
       </div>
     </ReactModal>
