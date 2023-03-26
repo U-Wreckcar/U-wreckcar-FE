@@ -30,11 +30,8 @@ export default function UserPage() {
     <>
       <section className={styles.user_container}>
         <div className={styles.title_box}>
+          서버배포 테스
           <h1>개인정보 관리</h1>
-          <p>
-            {" "}
-            {data?.data?.username}님은 {createDate}에 유렉카에 가입하셨습니다!
-          </p>
         </div>
         <article>
           <div className={styles.profile_img_box}>
