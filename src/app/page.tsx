@@ -22,10 +22,13 @@ import Link from "next/link"
 import Mobile from "@/components/m_renderPage/Mobile"
 import IsRender from "@/components/m_renderPage/IsRender"
 import { render } from "react-dom"
+import RenderModal from "@/components/renderModal/RenderModal"
 export default function Home() {
   const texts = ["복잡한", "귀찮은", "어려운"]
   const [text, setText] = useState(texts)
   const [index, setIndex] = useState(0)
+  const [alert, setAlert] = useState(true)
+
   useEffect(() => {
     const intervalText = setInterval(() => {
       setIndex((idx) => (idx + 1) % texts.length)
@@ -68,6 +71,9 @@ export default function Home() {
 
   return (
     <>
+      {alert && (
+        <RenderModal isOpen={alert} onRequestClose={() => setAlert(false)} />
+      )}
       <MediaContextProvider>
         <Media at="sm">
           <Mobile />
