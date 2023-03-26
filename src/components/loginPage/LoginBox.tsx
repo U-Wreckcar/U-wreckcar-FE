@@ -6,6 +6,11 @@ import r_google from "assets/r_google.png"
 import { getCookie } from "@/util/async/Cookie"
 import { useEffect, useState } from "react"
 import { redirect } from "next/navigation"
+import { Modal } from "@/shared/modal/Modal"
+
+
+ 
+
 import LocalLogin from "./LocalLogin"
 import logo from "assets/renderlogo.png"
 import { Alert, AlertTitle } from "@mui/material"
@@ -13,7 +18,8 @@ import { Alert, AlertTitle } from "@mui/material"
 const LoginBox = () => {
   const [local, setLocal] = useState(false)
   const [alert, setAlert] = useState(false)
-
+  const [noti, setNoti] = useState(true)
+  
   useEffect(() => {
     const cookie = getCookie("access_token")
     if (cookie) {
@@ -44,6 +50,22 @@ const LoginBox = () => {
   }, [alert])
 
   return (
+    <div className={styles.container}>
+      {noti && (
+        <Modal
+          x={500}
+          y={250}
+          setNoti={setNoti}
+          modalTitle={"카카오톡 로그인하기"}
+          context={
+            "현재 회원가입 시 전체 동의하기에 체크해야 유렉카의 \n 모든 기능을 정상적으로 이용하실 수 있습니다"
+          }
+          contextSeconde={
+            "*프로필 사진이 제대로 나오지 않거나 기능이 정상적으로 작동하지 않을 시에 가이드를 참고해주세요."
+          }
+          confirmButtonName={"확인"}
+        />
+      )}
     <>
       <div className={styles.container}>
         <div>
@@ -57,6 +79,7 @@ const LoginBox = () => {
               <strong>카카오로 바로 시작해보세요!</strong>
             </Alert>
           )}
+
         </div>
         <div>
           {!local ? (
@@ -92,6 +115,10 @@ const LoginBox = () => {
             // <LocalLogin setLocal={setLocal} />
           )}
         </div>
+        <p className={styles.login_decription}>
+          ※ 현재 회원가입 시 전체 동의하기에 체크해야 유렉카 기능을 정상적으로
+          이용하실 수 있습니다.
+        </p>
       </div>
     </>
   )
