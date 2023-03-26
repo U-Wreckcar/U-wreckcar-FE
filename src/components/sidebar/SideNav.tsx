@@ -31,7 +31,7 @@ export const SideNav = () => {
   }, [])
 
   useEffect(() => {
-    if (window.innerWidth < 520) {
+    if (window.innerWidth < 750) {
       setPlusSide(false)
     }
   }, [plusSide])
