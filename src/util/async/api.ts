@@ -2,14 +2,11 @@ import axios from "./axiosConfig"
 
 /**
  *
- * Mock Data
+ * Server
  *
+ * * POST
  */
 
-export const getUTMs = async () => {
-  const res = await axios.get("utms")
-  return res
-}
 
 export const postUTMs = async (data: any) => {
   const res = await axios.post("utms", data)
@@ -22,6 +19,11 @@ export const postUTMs = async (data: any) => {
  *
  * * GET
  */
+
+ export const getUTMs = async () => {
+  const res = await axios.get("utms")
+  return res
+}
 
 // export const getUTMs = axios.get('utms');
 type DataType = { data: string[] }
@@ -93,3 +95,7 @@ export const confirmEmail =async (data:any) => {
   const res = await axios.post("users/email", data)
   return res
 }
+
+/**
+ * * Login
+ */
