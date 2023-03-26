@@ -8,9 +8,6 @@ import { useEffect, useState } from "react"
 import { redirect } from "next/navigation"
 import { Modal } from "@/shared/modal/Modal"
 
-
- 
-
 import LocalLogin from "./LocalLogin"
 import logo from "assets/renderlogo.png"
 import { Alert, AlertTitle } from "@mui/material"
@@ -19,7 +16,7 @@ const LoginBox = () => {
   const [local, setLocal] = useState(false)
   const [alert, setAlert] = useState(false)
   const [noti, setNoti] = useState(true)
-  
+
   useEffect(() => {
     const cookie = getCookie("access_token")
     if (cookie) {
@@ -66,7 +63,6 @@ const LoginBox = () => {
           confirmButtonName={"확인"}
         />
       )}
-    <>
       <div className={styles.container}>
         <div>
           <h1 className={styles.title}>Login</h1>
@@ -79,7 +75,6 @@ const LoginBox = () => {
               <strong>카카오로 바로 시작해보세요!</strong>
             </Alert>
           )}
-
         </div>
         <div>
           {!local ? (
@@ -120,7 +115,7 @@ const LoginBox = () => {
           이용하실 수 있습니다.
         </p>
       </div>
-    </>
+    </div>
   )
 }
 
