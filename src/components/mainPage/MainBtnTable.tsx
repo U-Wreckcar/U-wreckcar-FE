@@ -504,6 +504,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             <Tooltip title={"메모 수정하기"}>
                               <div
                                 id={cell.id}
+                                style={{ cursor: "pointer" }}
                                 className={styles.memo_td}
                                 onClick={(e: any) => {
                                   setTarget(e.target?.id)
