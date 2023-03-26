@@ -41,8 +41,9 @@ import { EditModal } from "./MainMemoModal"
 import { redirect } from "next/navigation"
 import Link from "next/link"
 import { getCookie } from "@/util/async/Cookie"
-import { Alert } from "@/shared/button/Alert"
+import BtnAlert from "@/shared/button/Alert"
 import { useSelector } from "react-redux"
+import { AlertTitle, Alert } from "@mui/material"
 declare module "@tanstack/table-core" {
   interface FilterFns {
     fuzzy: FilterFn<unknown>
@@ -87,6 +88,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [plus, setPlus] = useState(false)
   const [filter, setFilter] = useState(false)
   const [alert, setAlert] = useState(false)
+  const [warningAlert, setWarningAlert] = useState(false)
   const isOpen = useSelector((state: any) => state.add.isOpen)
 
   const getData = async () => {
@@ -292,7 +294,8 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
     // setRowSelection({})
     if (id.length === 0) {
-      window.alert("삭제할 데이터를 선택해주세요")
+      setWarningAlert(true)
+      // window.alert("삭제할 데이터를 선택해주세요")
     } else {
       setDel(true)
       setDelLength(id)
@@ -304,7 +307,8 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     let id: Array<MainTableType> = []
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
     if (id.length === 0) {
-      window.alert("추출할 데이터를 선택해주세요")
+      setWarningAlert(true)
+      // window.alert("추출할 데이터를 선택해주세요")
     } else {
       setOutput(true)
       setOutputLength(id)
@@ -327,10 +331,25 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     }
   }, [alert])
 
+  useEffect(() => {
+    if (warningAlert) {
+      setTimeout(() => {
+        setWarningAlert(false)
+      }, 3000)
+    }
+  }, [warningAlert])
+
   return (
     <div>
+      {warningAlert && (
+        <Alert severity="warning">
+          <AlertTitle>Warning</AlertTitle>
+          선택된 데이터가 없습니다.
+          <strong>데이터를 체크해주세요!</strong>
+        </Alert>
+      )}
       {alert && (
-        <Alert
+        <BtnAlert
           title={"성공"}
           contents={"UTM이 복사되었습니다!"}
           onClickEvent={setAlert}

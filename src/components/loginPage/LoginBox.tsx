@@ -53,7 +53,8 @@ const LoginBox = () => {
           </p>
           {alert && (
             <Alert className={styles.alert} severity="warning">
-              아직 개발 중입니다...! <strong>카카오로 시작해보세요!</strong>
+              아직 개발 중입니다...!{" "}
+              <strong>카카오로 바로 시작해보세요!</strong>
             </Alert>
           )}
         </div>

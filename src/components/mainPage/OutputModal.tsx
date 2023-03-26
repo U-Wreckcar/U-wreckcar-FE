@@ -40,7 +40,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
     if (notion) {
       getUTMNotion(data)
       setAlert(true)
-      onRequestClose()
+      // onRequestClose()
     }
     if (excel) {
       // getUTMExcell(data);
@@ -74,7 +74,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
       // })
       // console.log(res)
       setAlert(true)
-      onRequestClose()
+      // onRequestClose()
 
       // testUTMSheet(data)
       // try {
@@ -104,6 +104,13 @@ export const OutputModal: React.FC<OutputModalType> = ({
     }
   }
   //
+  useEffect(() => {
+    if (alert) {
+      setTimeout(() => {
+        setAlert(false)
+      }, 3000)
+    }
+  }, [alert])
 
   useEffect(() => {
     if (notion) {
