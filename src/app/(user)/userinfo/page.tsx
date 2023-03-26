@@ -30,7 +30,7 @@ export default function UserPage() {
     <>
       <section className={styles.user_container}>
         <div className={styles.title_box}>
-          서버배포 테스트
+          서버배포 테스
           <h1>개인정보 관리</h1>
         </div>
         <article>
