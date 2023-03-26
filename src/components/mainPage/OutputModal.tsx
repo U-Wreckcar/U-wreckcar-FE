@@ -16,6 +16,7 @@ import { getUTMExcell, getUTMNotion, getUTMSheet } from "@/util/async/api"
 
 import { testExcell, testUTMSheet } from "@/util/async/api"
 import Axios from "util/async/axiosConfig"
+import { Alert, AlertTitle } from "@mui/material"
 
 type OutputModalType = {
   isOpen: boolean
@@ -32,12 +33,14 @@ export const OutputModal: React.FC<OutputModalType> = ({
   const [notion, setNotion] = useState(false)
   const [sheet, setSheet] = useState(false)
   const [excel, setExcel] = useState(false)
+  const [alert, setAlert] = useState(false)
 
   const mapdata = data.map((i: any) => i.utm_id)
   const onClickPopHandler = async () => {
     if (notion) {
       getUTMNotion(data)
-      alert("개발 중입니다...!")
+      setAlert(true)
+      onRequestClose()
     }
     if (excel) {
       // getUTMExcell(data);
@@ -59,6 +62,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
         a.click()
         window.URL.revokeObjectURL(url)
         console.log("엑셀보내기성공", data)
+        onRequestClose()
       } catch (error) {
         console.error("다운로드 에러", error)
       }
@@ -69,7 +73,8 @@ export const OutputModal: React.FC<OutputModalType> = ({
       //   console.log("res", i)
       // })
       // console.log(res)
-      alert("개발 중입니다...!")
+      setAlert(true)
+      onRequestClose()
 
       // testUTMSheet(data)
       // try {
@@ -94,9 +99,9 @@ export const OutputModal: React.FC<OutputModalType> = ({
       // }
     }
     if (!notion && !excel && !sheet) {
-      alert("추출하실 방법을 선택해주세요!")
+      setAlert(true)
+      onRequestClose()
     }
-    onRequestClose()
   }
   //
 
@@ -120,14 +125,15 @@ export const OutputModal: React.FC<OutputModalType> = ({
       <div
         className={styles.dialogBox}
         {...(isOpen && true ? { open: true } : {})}
-        id='favDialog'>
+        id="favDialog"
+      >
         <div className={styles.header}>
           <div className={styles.title_box}>
             <span className={styles.title}>UTM 추출하기</span>
           </div>
           <div className={styles.cancleBtn_box}>
             <button className={styles.cancleBtn} onClick={onRequestClose}>
-              <Image src={b_close} alt='close_img' width={24} height={24} />
+              <Image src={b_close} alt="close_img" width={24} height={24} />
             </button>
           </div>
         </div>
@@ -143,7 +149,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
                   <Image
                     width={150}
                     height={100}
-                    alt='outputmodal'
+                    alt="outputmodal"
                     src={active_notion}
                     onClick={() => setNotion(!notion)}
                   />
@@ -151,7 +157,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
                   <Image
                     width={150}
                     height={100}
-                    alt='outputmodal'
+                    alt="outputmodal"
                     src={not_notion}
                     onClick={() => setNotion(!notion)}
                   />
@@ -162,7 +168,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
                   <Image
                     width={150}
                     height={100}
-                    alt='outputmodal'
+                    alt="outputmodal"
                     src={active_sheet}
                     onClick={() => setSheet(!sheet)}
                   />
@@ -170,7 +176,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
                   <Image
                     width={150}
                     height={100}
-                    alt='outputmodal'
+                    alt="outputmodal"
                     src={not_sheet}
                     onClick={() => setSheet(!sheet)}
                   />
@@ -179,19 +185,20 @@ export const OutputModal: React.FC<OutputModalType> = ({
 
               <div
                 onClick={() => setExcel(true)}
-                className={styles.img_box_img}>
+                className={styles.img_box_img}
+              >
                 {excel ? (
                   <Image
                     width={150}
                     height={100}
-                    alt='outputmodal'
+                    alt="outputmodal"
                     src={active_excel}
                   />
                 ) : (
                   <Image
                     width={150}
                     height={100}
-                    alt='outputmodal'
+                    alt="outputmodal"
                     src={not_excel}
                   />
                 )}
@@ -199,11 +206,18 @@ export const OutputModal: React.FC<OutputModalType> = ({
             </div>
           </div>
         </div>
+        {alert && (
+          <Alert severity="warning">
+            <AlertTitle>Warning</AlertTitle>
+            아직 개발 중입니다...! <strong>엑셀로 추출해보세요!</strong>
+          </Alert>
+        )}
         <div className={styles.bottom}>
           <button
             onClick={onClickPopHandler}
             className={styles.modal_button}
-            value='default'>
+            value="default"
+          >
             추출하기
           </button>
         </div>

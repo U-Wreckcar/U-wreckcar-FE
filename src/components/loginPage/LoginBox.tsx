@@ -4,10 +4,13 @@ import kakao_login from "assets/kakao_login.png"
 import naver_login from "assets/naver_login.png"
 import r_google from "assets/r_google.png"
 import { getCookie } from "@/util/async/Cookie"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { redirect } from "next/navigation"
+import LocalLogin from "./LocalLogin"
+import logo from "assets/renderlogo.png"
 
 const LoginBox = () => {
+  const [local, setLocal] = useState(false)
   useEffect(() => {
     const cookie = getCookie("access_token")
     if (cookie) {
@@ -35,24 +38,34 @@ const LoginBox = () => {
         </p>
       </div>
       <div>
-        <div>
-          <Image src={kakao_login} alt="" width={15} height={15} />
-          <button className={styles.kakao_btn} onClick={onClickKakaoBtn}>
-            카카오로 1초만에 시작하기
-          </button>
-        </div>
-        <div>
-          <Image src={naver_login} alt="" width={15} height={15} />
-          <button className={styles.naver_btn} onClick={onClickNaverBtn}>
-            네이버로 1초만에 시작하기
-          </button>
-        </div>
-        <div>
-          <Image src={r_google} alt={""} width={15} height={15} />
-          <button className={styles.google_btn} onClick={onClickGoogleBtn}>
-            구글로 1초만에 시작하기
-          </button>
-        </div>
+        {!local ? (
+          <>
+            <div>
+              <Image src={kakao_login} alt="" width={15} height={15} />
+              <button className={styles.kakao_btn} onClick={onClickKakaoBtn}>
+                카카오로 1초만에 시작하기
+              </button>
+            </div>
+            <div>
+              <Image src={naver_login} alt="" width={15} height={15} />
+              <button className={styles.naver_btn} onClick={onClickNaverBtn}>
+                네이버로 1초만에 시작하기
+              </button>
+            </div>
+            <div>
+              <Image src={r_google} alt={""} width={15} height={15} />
+              <button className={styles.google_btn} onClick={onClickGoogleBtn}>
+                구글로 1초만에 시작하기
+              </button>
+            </div>
+            <div onClick={() => setLocal(true)}>
+              <Image src={logo} alt={""} width={40} height={15} />
+              <button className={styles.email_btn}>이메일로 시작하기</button>
+            </div>
+          </>
+        ) : (
+          <LocalLogin setLocal={setLocal} />
+        )}
       </div>
     </div>
   )

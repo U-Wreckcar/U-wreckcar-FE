@@ -113,7 +113,7 @@ export default function SignUp() {
           </>
         ) : (
           <>
-            {errors.phone_no && <p>{errors.phone_no?.message}</p>}
+            {/* {errors.phone_no && <p>{errors.phone_no?.message}</p>}
             <div className={styles.wrap}>
               <label>전화번호</label>
               <input
@@ -126,7 +126,7 @@ export default function SignUp() {
                   },
                 })}
               />
-            </div>
+            </div> */}
             {errors.userName && <p>{errors.userName?.message}</p>}
             <div className={styles.wrap}>
               <label>이름</label>
@@ -141,6 +141,7 @@ export default function SignUp() {
             <div className={styles.wrap}>
               <label>비밀번호</label>
               <input
+                type="password"
                 placeholder="영문,숫자,특수문자 포함 8자 이상 20자 이하"
                 {...register("password", {
                   required: "비밀번호는 필수 입력입니다.",
@@ -164,6 +165,7 @@ export default function SignUp() {
             <div className={styles.wrap}>
               <label>비밀번호 확인</label>
               <input
+                type="password"
                 placeholder="비밀번호를 다시 입력해주세요"
                 {...register("confirmPw", {
                   required: "비밀번호 확인을 해주세요",
