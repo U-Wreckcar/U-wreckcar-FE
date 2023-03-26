@@ -26,6 +26,7 @@ export default function Home() {
   const texts = ["복잡한", "귀찮은", "어려운"]
   const [text, setText] = useState(texts)
   const [index, setIndex] = useState(0)
+
   useEffect(() => {
     const intervalText = setInterval(() => {
       setIndex((idx) => (idx + 1) % texts.length)
