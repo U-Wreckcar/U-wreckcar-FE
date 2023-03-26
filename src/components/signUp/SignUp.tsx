@@ -11,8 +11,8 @@ type FormData = {
   email: string
   emailNum: number
   phone_no: number
-  userName: any
-  password: any
+  userName: string | number
+  password: string
   company_name: string
   confirmPw: string
 }
@@ -54,7 +54,12 @@ export default function SignUp() {
   //    회원가입
   // 완료 후 로그인페이지로
   const onSubmit = (data: FormData) => {
-    signUp(data)
+    try {
+      signUp(data)
+      redirect("/login")
+    } catch (err) {
+      console.log(err)
+    }
     console.log(data)
   }
 
@@ -122,7 +127,7 @@ export default function SignUp() {
                 })}
               />
             </div>
-            {/* {errors.userName && <p>{errors.userName?.message}</p>} */}
+            {errors.userName && <p>{errors.userName?.message}</p>}
             <div className={styles.wrap}>
               <label>이름</label>
               <input
@@ -132,7 +137,7 @@ export default function SignUp() {
                 })}
               />
             </div>
-            {/* {errors.password && <p>{errors.password?.message}</p>} */}
+            {errors.password && <p>{errors.password?.message}</p>}
             <div className={styles.wrap}>
               <label>비밀번호</label>
               <input
