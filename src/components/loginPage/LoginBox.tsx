@@ -63,6 +63,7 @@ const LoginBox = () => {
           confirmButtonName={"확인"}
         />
       )}
+
       <div className={styles.container}>
         <div>
           <h1 className={styles.title}>Login</h1>
@@ -70,7 +71,7 @@ const LoginBox = () => {
             U렉카와 함께 쉽고 빠른 업무를 느껴보세요!
           </p>
           {alert && (
-            <Alert className={styles.alert} severity="warning">
+            <Alert className={styles.alert} severity='warning'>
               아직 개발 중입니다...!{" "}
               <strong>카카오로 바로 시작해보세요!</strong>
             </Alert>
@@ -80,13 +81,13 @@ const LoginBox = () => {
           {!local ? (
             <>
               <div>
-                <Image src={kakao_login} alt="" width={15} height={15} />
+                <Image src={kakao_login} alt='' width={15} height={15} />
                 <button className={styles.kakao_btn} onClick={onClickKakaoBtn}>
                   카카오로 1초만에 시작하기
                 </button>
               </div>
               <div>
-                <Image src={naver_login} alt="" width={15} height={15} />
+                <Image src={naver_login} alt='' width={15} height={15} />
                 <button className={styles.naver_btn} onClick={onClickNaverBtn}>
                   네이버로 1초만에 시작하기
                 </button>
@@ -95,8 +96,7 @@ const LoginBox = () => {
                 <Image src={r_google} alt={""} width={15} height={15} />
                 <button
                   className={styles.google_btn}
-                  onClick={onClickGoogleBtn}
-                >
+                  onClick={onClickGoogleBtn}>
                   구글로 1초만에 시작하기
                 </button>
               </div>
