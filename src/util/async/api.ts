@@ -80,3 +80,16 @@ export const deleteUTM = async (data: any) => {
 export const patchUTM = async (data: any) => {
   await axios.patch("utms/memo", data)
 }
+
+/**
+ * * SIGNUP
+ */
+
+export const signUp =async (data:any) => {
+  await axios.post("users/signup", data)
+}
+
+export const confirmEmail =async (data:any) => {
+  const res = await axios.post("users/email", data)
+  return res
+}
