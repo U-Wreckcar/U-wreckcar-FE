@@ -47,6 +47,7 @@ import { EditModal } from "./MainMemoModal"
 import { getCookie } from "@/util/async/Cookie"
 import { redirect, useRouter } from "next/navigation"
 import { useSelector } from "react-redux"
+import { AlertTitle, Alert } from "@mui/material"
 
 export type MainTableProps = {
   setSummary: Dispatch<SetStateAction<boolean>>
@@ -91,10 +92,12 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [filter, setFilter] = useState(false)
   const [inputValue, setInputValue] = useState("")
   const router = useRouter()
+  const [warningAlert, setWarningAlert] = useState(false)
   const isOpen = useSelector((state: any) => state.add.isOpen)
 
   const getData = async () => {
     const res = await getUTMs()
+    console.log(res)
     setData(res.data)
   }
 
@@ -211,6 +214,14 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         footer: (props) => props.column.id,
         minSize: 120,
       },
+      {
+        header: "Shorten Count",
+        id: "click_count",
+        accessorKey: "click_count",
+        cell: (info) => info.getValue(),
+        footer: (props) => props.column.id,
+        minSize: 120,
+      },
     ],
     []
   )
@@ -247,7 +258,8 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
     let id: Array<MainTableType> = []
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
     if (id.length === 0) {
-      alert("삭제할 데이터를 선택해주세요")
+      setWarningAlert(true)
+      // alert("삭제할 데이터를 선택해주세요")
     } else {
       setDel(true)
       setDelLength(id)
@@ -259,7 +271,8 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
     let id: Array<MainTableType> = []
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
     if (id.length === 0) {
-      alert("추출할 데이터를 선택해주세요")
+      setWarningAlert(true)
+      // alert("추출할 데이터를 선택해주세요")
     } else {
       setOutput(true)
       setOutputLength(id)
@@ -269,9 +282,25 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const moveUrl = (url: string) => {
     window.open(`${url}`, "_blank", "noopener,noreferrer")
   }
+
+  useEffect(() => {
+    if (warningAlert) {
+      setTimeout(() => {
+        setWarningAlert(false)
+      }, 3000)
+    }
+  }, [warningAlert])
+
   return (
     <>
       <div className={styles.container}>
+        {warningAlert && (
+          <Alert severity="warning">
+            <AlertTitle>Warning</AlertTitle>
+            선택된 데이터가 없습니다.
+            <strong>데이터를 체크해주세요!</strong>
+          </Alert>
+        )}
         <div className={styles.btn_box}>
           <div>
             <h1>내 UTM</h1>
@@ -483,6 +512,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             <Tooltip title={"메모 수정하기"}>
                               <div
                                 id={cell.id}
+                                style={{ cursor: "pointer" }}
                                 className={styles.memo_td}
                                 onClick={(e: any) => {
                                   setTarget(e.target?.id)
@@ -492,14 +522,21 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               >{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
-
-                          {cell.column.id !== "utm_memo" &&
-                            cell.column.id !== "utm_url" &&
-                            cell.column.id !== "full_url" &&
-                            cell.column.id !== "shorten_url" &&
+                          {cell.column.id === "select" &&
                             flexRender(
                               cell.column.columnDef.cell,
                               cell.getContext()
+                            )}
+                          {cell.column.id !== "utm_memo" &&
+                            cell.column.id !== "select" &&
+                            cell.column.id !== "utm_url" &&
+                            cell.column.id !== "full_url" &&
+                            cell.column.id !== "shorten_url" && (
+                              <Tooltip title={`${cell.getValue()}`}>
+                                <div
+                                  className={styles.td_box}
+                                >{`${cell.getValue()}`}</div>
+                              </Tooltip>
                             )}
                         </td>
                       )
