@@ -82,13 +82,14 @@ const LoginBox = () => {
                   구글로 1초만에 시작하기
                 </button>
               </div>
-              <div onClick={() => setLocal(true)}>
+              {/* <div onClick={() => setLocal(true)}>
                 <Image src={logo} alt={""} width={40} height={15} />
                 <button className={styles.email_btn}>이메일로 시작하기</button>
-              </div>
+              </div> */}
             </>
           ) : (
-            <LocalLogin setLocal={setLocal} />
+            <></>
+            // <LocalLogin setLocal={setLocal} />
           )}
         </div>
       </div>
