@@ -1,16 +1,8 @@
 .container {
     width: 500px;
     height: 700px;
-    border-radius: 4px;
+    border-radius: 8px;
     text-align: center;
-}
-
-.close_button{
-    position: relative;
-    top:0px;
-    left: 210px;
-    background-color: transparent;
-    border: none;
 }
 
 .container h1{
@@ -33,5 +25,14 @@
     padding: 8px 16px;
     height: 40px;
     border-radius: 4px;
+    border: none;
+}
+
+
+.close_button{
+    position: relative;
+    top:0px;
+    left: 210px;
+    background-color: transparent;
     border: none;
 }

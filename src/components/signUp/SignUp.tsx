@@ -43,7 +43,7 @@ export default function SignUp() {
     const email = getValues("email")
     const emailNum = getValues("emailNum")
     try {
-      const res = await confirmEmail(email)
+      const res = await confirmEmail({ email })
       console.log(res)
       setEmailNum(true)
     } catch (err) {
