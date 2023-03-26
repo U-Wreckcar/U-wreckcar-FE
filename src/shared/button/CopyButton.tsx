@@ -1,34 +1,34 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import check from "assets/icons.png";
-import styles from "./copy.module.css";
-import { Alert } from "./Alert";
+"use client"
+import React, { useEffect, useState } from "react"
+import Image from "next/image"
+import check from "assets/icons.png"
+import styles from "./copy.module.css"
+import Alert from "./Alert"
 
 type CopyButtonProps = {
-  text: string;
-};
+  text: string
+}
 
 //style 속성 프롭스 no
 
 export const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
-  const [alert, setAlert] = useState(false);
+  const [alert, setAlert] = useState(false)
 
   useEffect(() => {
     if (alert) {
       setTimeout(() => {
-        setAlert(false);
-      }, 3000);
+        setAlert(false)
+      }, 3000)
     }
-  }, [alert]);
+  }, [alert])
 
   const onClickCopyBtn = () => {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text).then(() => {
-        setAlert(true);
-      });
+        setAlert(true)
+      })
     }
-  };
+  }
   return (
     <>
       {alert && (
@@ -46,5 +46,5 @@ export const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
         복사하기
       </button>
     </>
-  );
-};
+  )
+}

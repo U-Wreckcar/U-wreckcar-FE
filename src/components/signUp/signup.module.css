@@ -1,0 +1,57 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    width: 800px;
+    margin: 30px auto;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.container input {
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin: 8px;
+    height: 20px;
+    width: 240px;
+    border: 2px solid #ddd
+}
+
+.container p {
+    color: rgb(177, 42, 42);
+}
+
+.container button {
+    padding: 8px 16px;
+    width: 120px;
+    height: 40px;
+    border-radius: 4px;
+    border: none;
+    background-color:#484bff; 
+    color: #fff;
+    font-weight: 400;
+    margin-top: 30px;
+}
+
+.wrap {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 80px;
+}

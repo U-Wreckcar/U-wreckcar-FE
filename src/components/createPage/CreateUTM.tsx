@@ -10,7 +10,7 @@ import minus from "assets/minus.png"
 import Image from "next/image"
 import { CreateCategory } from "./CreateCategory"
 import { postUTMs } from "@/util/async/api"
-import { Alert } from "@/shared/button/Alert"
+import Alert from "@/shared/button/Alert"
 import { getCookie } from "@/util/async/Cookie"
 import { redirect } from "next/navigation"
 import { useMutation, useQuery } from "@tanstack/react-query"
@@ -131,9 +131,9 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                       <div className={styles.number}>{index + 1}</div>
 
                       <input
-                        placeholder='https://를 붙여서 입력해 주세요.'
+                        placeholder="https://를 붙여서 입력해 주세요."
                         // onInput={requeirFn}
-                        type='url'
+                        type="url"
                         // pattern='https://.*'
                         {...register(`utms.${index}.utm_url` as const, {
                           required: true,
@@ -229,16 +229,17 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                       <div className={styles.minus_button}>
                         <button
                           className={styles.minus_button_style}
-                          type='button'
+                          type="button"
                           onClick={() => {
                             if (index >= 1) {
                               remove(index)
                             }
-                          }}>
+                          }}
+                        >
                           <Image
                             className={styles.minus_img}
                             src={minus}
-                            alt='리스트 삭제'
+                            alt="리스트 삭제"
                             onError={() => {
                               console.log(
                                 "리스트 빼기 이미지를 불러올 수 없습니다."
@@ -257,12 +258,13 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
         <div className={styles.create_button_box}>
           <button
             className={styles.add_list_button}
-            type='button'
-            onClick={addList}>
+            type="button"
+            onClick={addList}
+          >
             <Image
               className={styles.plus_button_img}
               src={plus}
-              alt='추가하기'
+              alt="추가하기"
               onError={() => {
                 console.log("추가버튼 이미지를 불러오지 못했습니다.")
               }}
@@ -278,10 +280,10 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
             )}
             {isLoading && <Loading isOpen={true} />}
             <input
-              id='create_btn'
+              id="create_btn"
               className={styles.create_button}
-              type='submit'
-              value='생성하기'
+              type="submit"
+              value="생성하기"
               disabled={isLoading}
               // onClick={() => {
               //   setAlert(true);
