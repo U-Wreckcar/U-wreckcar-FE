@@ -6,11 +6,12 @@ import React, {
   useEffect,
   useState,
   useRef,
-} from 'react';
-import { MainTableType } from './TableData';
-import { getUTMs } from 'util/async/api';
-import { CopyButton } from '../../shared/button/CopyButton';
-import Tooltip from '@mui/material/Tooltip';
+} from "react"
+import { MainTableType } from "./TableData"
+import { getUTMs } from "util/async/api"
+import { CopyButton } from "../../shared/button/CopyButton"
+import Tooltip from "@mui/material/Tooltip"
+import Link from "next/link"
 import {
   Table,
   Column,
@@ -24,115 +25,114 @@ import {
   getFacetedRowModel,
   getFacetedUniqueValues,
   getFacetedMinMaxValues,
-  getPaginationRowModel,
   sortingFns,
   getSortedRowModel,
   FilterFn,
   SortingFn,
-  FilterFns,
-} from '@tanstack/react-table';
+} from "@tanstack/react-table"
 import {
   RankingInfo,
   rankItem,
   compareItems,
-} from '@tanstack/match-sorter-utils';
-import styles from './main.module.css';
-import { OutputModal } from './OutputModal';
-import { DeleteModal } from './DeleteModal';
-import { AddUtmModal } from '../sidebar/AddUtmModal';
-import Image from 'next/image';
+} from "@tanstack/match-sorter-utils"
+import styles from "./main.module.css"
+import { OutputModal } from "./OutputModal"
+import { DeleteModal } from "./DeleteModal"
+import { AddUtmModal } from "../sidebar/AddUtmModal"
+import Image from "next/image"
 
-import plusImg from 'assets/plus.png';
-import filterImg from 'assets/filter.png';
-import { EditModal } from './MainMemoModal';
+import plusImg from "assets/plus.png"
+import filterImg from "assets/filter.png"
+import { EditModal } from "./MainMemoModal"
+import { getCookie } from "@/util/async/Cookie"
+import { redirect, useRouter } from "next/navigation"
+import { useSelector } from "react-redux"
 
 export type MainTableProps = {
-  setSummary: Dispatch<SetStateAction<boolean>>;
-};
+  setSummary: Dispatch<SetStateAction<boolean>>
+}
 
-declare module '@tanstack/table-core' {
+declare module "@tanstack/table-core" {
   interface FilterFns {
-    fuzzy: FilterFn<unknown>;
+    fuzzy: FilterFn<unknown>
   }
   interface FilterMeta {
-    itemRank: RankingInfo;
+    itemRank: RankingInfo
   }
 }
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   // Rank the item
-  const itemRank = rankItem(row.getValue(columnId), value);
+  const itemRank = rankItem(row.getValue(columnId), value)
 
   // Store the itemRank info
   addMeta({
     itemRank,
-  });
+  })
 
   // Return if the item should be filtered in/out
-  return itemRank.passed;
-};
-
-const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
-  let dir = 0;
-
-  // Only sort by rank if the column has ranking information
-  if (rowA.columnFiltersMeta[columnId]) {
-    dir = compareItems(
-      rowA.columnFiltersMeta[columnId]?.itemRank!,
-      rowB.columnFiltersMeta[columnId]?.itemRank!
-    );
-  }
-
-  // Provide an alphanumeric fallback for when the item ranks are equal
-  return dir === 0 ? sortingFns.alphanumeric(rowA, rowB, columnId) : dir;
-};
+  return itemRank.passed
+}
 
 export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
-  const [rowSelection, setRowSelection] = useState({});
-  const [data, setData] = useState<Array<MainTableType>>([]);
-  const [show, setShow] = useState(false);
-  const [target, setTarget] = useState('');
-  //const getUTMRes = useGetUtm(getUTMs);
+  const [rowSelection, setRowSelection] = useState({})
+  const [data, setData] = useState<Array<MainTableType>>([])
+  const [show, setShow] = useState(false)
+  const [target, setTarget] = useState("")
   const [columnResizeMode, setColumnResizeMode] =
-    useState<ColumnResizeMode>('onChange');
-  const [removeModal, setRemoveModal] = useState(false);
+    useState<ColumnResizeMode>("onChange")
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
-  );
-  const input_ref = useRef<HTMLInputElement>(null);
-  const textarea_ref = useRef<HTMLTextAreaElement>(null);
-  const [output, setOutput] = useState(false);
-  const [outputLength, setOutputLength] = useState<Array<MainTableType>>([]);
-  const [del, setDel] = useState(false);
-  const [delLength, setDelLength] = useState<Array<MainTableType>>([]);
-  const [plus, setPlus] = useState(false);
-  const [filter, setFilter] = useState(false);
+  )
+  const [output, setOutput] = useState(false)
+  const [outputLength, setOutputLength] = useState<Array<MainTableType>>([])
+  const [del, setDel] = useState(false)
+  const [delLength, setDelLength] = useState<Array<MainTableType>>([])
+  const [plus, setPlus] = useState(false)
+  const [filter, setFilter] = useState(false)
+  const [inputValue, setInputValue] = useState("")
+  const router = useRouter()
+  const isOpen = useSelector((state: any) => state.add.isOpen)
 
-  const [inputValue, setInputValue] = useState('');
-
-  const getList = async () => {
-    const res = await getUTMs;
-    console.log(res);
-    setData(res.data);
-  };
+  const getData = async () => {
+    const res = await getUTMs()
+    setData(res.data)
+  }
 
   useEffect(() => {
-    getList();
-  }, []);
+    setTimeout(() => {
+      getData()
+    }, 500)
+  }, [del])
+
+  useEffect(() => {
+    getData()
+  }, [output, show, plus, isOpen])
+
+  useEffect(() => {
+    const cookie = getCookie("access_token")
+    if (cookie) {
+      router.refresh()
+    }
+    if (!cookie) {
+      redirect("/login")
+    }
+  }, [])
 
   const customStyles = {
     content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      padding: 0,
     },
-  };
+  }
   const columns = useMemo<ColumnDef<MainTableType>[]>(
     () => [
       {
-        id: 'select',
+        id: "select",
         header: ({ table }) => (
           <IndeterminateCheckbox
             {...{
@@ -156,64 +156,64 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         ),
       },
       {
-        header: 'URL',
-        id: 'utm_url',
-        accessorKey: 'utm_url',
+        header: "URL",
+        id: "utm_url",
+        accessorKey: "utm_url",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 130,
+        minSize: 100,
       },
       {
-        header: '소스',
-        id: 'utm_source',
-        accessorKey: 'utm_source',
+        header: "소스",
+        id: "utm_source_name",
+        accessorKey: "utm_source_name",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 175,
+        minSize: 135,
       },
       {
-        header: '미디움',
-        id: 'utm_medium',
-        accessorKey: 'utm_medium',
+        header: "미디움",
+        id: "utm_medium_name",
+        accessorKey: "utm_medium_name",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 175,
+        minSize: 145,
       },
       {
-        header: '캠페인 이름',
-        id: 'utm_campaign_name',
-        accessorKey: 'utm_campaign_name',
+        header: "캠페인 이름",
+        id: "utm_campaign_name",
+        accessorKey: "utm_campaign_name",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 290,
+        minSize: 150,
       },
       {
-        header: '메모',
-        id: 'utm_memo',
-        accessorKey: 'utm_memo',
+        header: "메모",
+        id: "utm_memo",
+        accessorKey: "utm_memo",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        minSize: 620,
+        minSize: 600,
       },
       {
-        header: 'UTM',
-        id: 'full_url',
-        accessorKey: 'full_url',
+        header: "UTM",
+        id: "full_url",
+        accessorKey: "full_url",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 120,
       },
       {
-        header: 'Shorten URL',
-        id: 'shorten_url',
-        accessorKey: 'shorten_url',
+        header: "Shorten URL",
+        id: "shorten_url",
+        accessorKey: "shorten_url",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 120,
       },
     ],
     []
-  );
+  )
 
   const table = useReactTable({
     data,
@@ -240,48 +240,35 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
     debugTable: true,
     debugHeaders: true,
     debugColumns: false,
-  });
-
-  //url 이동하기
-  const moveUrl = (url: string) => {
-    window.open(url, '_blank');
-  };
-
-  //수정하기
-  const onClickEditButton = () => {
-    const index = textarea_ref?.current?.id.split('_')[0];
-    const filter = table
-      .getGroupedRowModel()
-      .flatRows.filter((row) => row.id === index)[0].original;
-    console.log(filter.id);
-    console.log(textarea_ref?.current?.value);
-    setShow(false);
-  };
+  })
 
   //삭제하기
   const onClickDelBtn = () => {
-    let id: Array<MainTableType> = [];
-    table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original));
+    let id: Array<MainTableType> = []
+    table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
     if (id.length === 0) {
-      alert('삭제할 데이터를 선택해주세요');
+      alert("삭제할 데이터를 선택해주세요")
     } else {
-      setDel(true);
-      setDelLength(id);
+      setDel(true)
+      setDelLength(id)
     }
-  };
+  }
 
   //추출하기
   const onClickPopBtn = () => {
-    let id: Array<MainTableType> = [];
-    table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original));
+    let id: Array<MainTableType> = []
+    table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
     if (id.length === 0) {
-      alert('추출할 데이터를 선택해주세요');
+      alert("추출할 데이터를 선택해주세요")
     } else {
-      console.log(id);
-      setOutput(true);
-      setOutputLength(id);
+      setOutput(true)
+      setOutputLength(id)
     }
-  };
+  }
+  //페이지 이동
+  const moveUrl = (url: string) => {
+    window.open(`${url}`, "_blank", "noopener,noreferrer")
+  }
   return (
     <>
       <div className={styles.container}>
@@ -297,7 +284,11 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
             >
               데이터 상세보기
             </button>
-            <button className={styles.button} onClick={onClickPopBtn}>
+            <button
+              id="export_btn"
+              className={styles.button}
+              onClick={onClickPopBtn}
+            >
               추출하기
             </button>
             <OutputModal
@@ -314,6 +305,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
               onRequestClose={() => setDel(false)}
               style={customStyles}
               data={delLength}
+              setRowSelection={setRowSelection}
             />
             <button
               className={styles.plus_button}
@@ -366,7 +358,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           colSpan: header.colSpan,
                           style: {
                             width:
-                              header.column.id === 'select'
+                              header.column.id === "select"
                                 ? 80
                                 : header.getSize(),
                           },
@@ -377,9 +369,9 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             <div
                               {...{
                                 style: {
-                                  height: '50px',
-                                  display: 'flex',
-                                  alignItems: 'center',
+                                  height: "50px",
+                                  display: "flex",
+                                  alignItems: "center",
                                 },
                                 // className: header.column.getCanSort()
                                 //   ? 'cursor-pointer select-none'
@@ -393,12 +385,12 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 header.getContext()
                               )}
                             </div>
-                            {filter && header.column.id !== 'select' && (
+                            {filter && header.column.id !== "select" && (
                               <th
                                 className={styles.filter_box}
                                 {...{
                                   style: {
-                                    width: '630px',
+                                    width: "630px",
                                   },
                                 }}
                               >
@@ -433,12 +425,22 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           }}
                         /> */}
                       </th>
-                    );
+                    )
                   })}
                 </tr>
               ))}
             </thead>
             <tbody>
+              {data.length === 0 && (
+                <div className={styles.no_data}>
+                  <div className={styles.slim_no_data_item}>
+                    <p>등록된 UTM이 없어요.</p>
+                    <Link href={"/createutm"}>
+                      <button>UTM 생성하기</button>
+                    </Link>
+                  </div>
+                </div>
+              )}
               {table.getRowModel().rows.map((row) => {
                 return (
                   <tr key={row.id}>
@@ -450,119 +452,120 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           {...{
                             style: {
                               width:
-                                cell.column.id === 'select'
+                                cell.column.id === "select"
                                   ? 80
                                   : cell.column.getSize(),
                             },
                           }}
                         >
-                          {cell.column.id === 'full_url' && (
+                          {cell.column.id === "full_url" && (
                             <CopyButton
                               text={`${cell.getValue()}`}
                             ></CopyButton>
                           )}
-                          {cell.column.id === 'shorten_url' && (
+                          {cell.column.id === "shorten_url" && (
                             <CopyButton
                               text={`${cell.getValue()}`}
                             ></CopyButton>
                           )}
-                          {cell.column.id === 'utm_url' && (
+                          {cell.column.id === "utm_url" && (
                             <Tooltip title={`${cell.getValue()}`}>
                               <button
-                                className={styles.url_button}
                                 onClick={() => moveUrl(`${cell.getValue()}`)}
+                                className={styles.url_button}
                               >
                                 url 연결
                               </button>
                             </Tooltip>
                           )}
 
-                          {cell.column.id === 'utm_memo' && (
-                            <Tooltip title={'메모 수정하기'}>
+                          {cell.column.id === "utm_memo" && (
+                            <Tooltip title={"메모 수정하기"}>
                               <div
+                                id={cell.id}
                                 className={styles.memo_td}
                                 onClick={(e: any) => {
-                                  setTarget(e.target?.id);
-                                  setShow(true);
-                                  setInputValue(`${cell.getValue()}`);
+                                  setTarget(e.target?.id)
+                                  setShow(true)
+                                  setInputValue(`${cell.getValue()}`)
                                 }}
                               >{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
 
-                          {cell.column.id !== 'utm_memo' &&
-                            cell.column.id !== 'utm_url' &&
-                            cell.column.id !== 'full_url' &&
-                            cell.column.id !== 'shorten_url' &&
+                          {cell.column.id !== "utm_memo" &&
+                            cell.column.id !== "utm_url" &&
+                            cell.column.id !== "full_url" &&
+                            cell.column.id !== "shorten_url" &&
                             flexRender(
                               cell.column.columnDef.cell,
                               cell.getContext()
                             )}
                         </td>
-                      );
+                      )
                     })}
                   </tr>
-                );
+                )
               })}
             </tbody>
           </table>
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
 function Filter({
   column,
   table,
 }: {
-  column: Column<any, unknown>;
-  table: Table<any>;
+  column: Column<any, unknown>
+  table: Table<any>
 }) {
   const firstValue = table
     .getPreFilteredRowModel()
-    .flatRows[0]?.getValue(column.id);
+    .flatRows[0]?.getValue(column.id)
 
-  const columnFilterValue = column.getFilterValue();
+  const columnFilterValue = column.getFilterValue()
 
   const sortedUniqueValues = React.useMemo(
     () =>
-      typeof firstValue === 'number'
+      typeof firstValue === "number"
         ? []
         : Array.from(column.getFacetedUniqueValues().keys()).sort(),
     [column.getFacetedUniqueValues()]
-  );
+  )
 
-  return typeof firstValue === 'number' ? (
+  return typeof firstValue === "number" ? (
     <div>
       <div className="flex space-x-2">
         <DebouncedInput
           type="number"
-          min={Number(column.getFacetedMinMaxValues()?.[0] ?? '')}
-          max={Number(column.getFacetedMinMaxValues()?.[1] ?? '')}
-          value={(columnFilterValue as [number, number])?.[0] ?? ''}
+          min={Number(column.getFacetedMinMaxValues()?.[0] ?? "")}
+          max={Number(column.getFacetedMinMaxValues()?.[1] ?? "")}
+          value={(columnFilterValue as [number, number])?.[0] ?? ""}
           onChange={(value) =>
             column.setFilterValue((old: [number, number]) => [value, old?.[1]])
           }
           placeholder={`Min ${
             column.getFacetedMinMaxValues()?.[0]
               ? `(${column.getFacetedMinMaxValues()?.[0]})`
-              : ''
+              : ""
           }`}
           className="w-24 border shadow rounded"
         />
         <DebouncedInput
           type="number"
-          min={Number(column.getFacetedMinMaxValues()?.[0] ?? '')}
-          max={Number(column.getFacetedMinMaxValues()?.[1] ?? '')}
-          value={(columnFilterValue as [number, number])?.[1] ?? ''}
+          min={Number(column.getFacetedMinMaxValues()?.[0] ?? "")}
+          max={Number(column.getFacetedMinMaxValues()?.[1] ?? "")}
+          value={(columnFilterValue as [number, number])?.[1] ?? ""}
           onChange={(value) =>
             column.setFilterValue((old: [number, number]) => [old?.[0], value])
           }
           placeholder={`Max ${
             column.getFacetedMinMaxValues()?.[1]
               ? `(${column.getFacetedMinMaxValues()?.[1]})`
-              : ''
+              : ""
           }`}
           className="w-24 border shadow rounded"
         />
@@ -571,7 +574,7 @@ function Filter({
     </div>
   ) : (
     <>
-      <datalist id={column.id + 'list'}>
+      <datalist id={column.id + "list"}>
         {sortedUniqueValues.slice(0, 5000).map((value: any) => (
           <option value={value} key={value} />
         ))}
@@ -579,13 +582,13 @@ function Filter({
       <DebouncedInput
         className={styles.search_input}
         type="text"
-        value={(columnFilterValue ?? '') as string}
+        value={(columnFilterValue ?? "") as string}
         onChange={(value) => column.setFilterValue(value)}
         placeholder={`검색 (${column.getFacetedUniqueValues().size})`}
-        list={column.id + 'list'}
+        list={column.id + "list"}
       />
     </>
-  );
+  )
 }
 
 // A debounced input react component
@@ -595,23 +598,23 @@ function DebouncedInput({
   debounce = 500,
   ...props
 }: {
-  value: string | number;
-  onChange: (value: string | number) => void;
-  debounce?: number;
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>) {
-  const [value, setValue] = React.useState(initialValue);
+  value: string | number
+  onChange: (value: string | number) => void
+  debounce?: number
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange">) {
+  const [value, setValue] = React.useState(initialValue)
 
   React.useEffect(() => {
-    setValue(initialValue);
-  }, [initialValue]);
+    setValue(initialValue)
+  }, [initialValue])
 
   React.useEffect(() => {
     const timeout = setTimeout(() => {
-      onChange(value);
-    }, debounce);
+      onChange(value)
+    }, debounce)
 
-    return () => clearTimeout(timeout);
-  }, [value]);
+    return () => clearTimeout(timeout)
+  }, [value])
 
   return (
     <input
@@ -619,27 +622,28 @@ function DebouncedInput({
       value={value}
       onChange={(e) => setValue(e.target.value)}
     />
-  );
+  )
 }
 function IndeterminateCheckbox({
   indeterminate,
-  className = '',
+  className = "",
   ...rest
 }: { indeterminate?: boolean } & HTMLProps<HTMLInputElement>) {
-  const ref = useRef<HTMLInputElement>(null!);
+  const ref = useRef<HTMLInputElement>(null!)
 
   useEffect(() => {
-    if (typeof indeterminate === 'boolean') {
-      ref.current.indeterminate = !rest.checked && indeterminate;
+    if (typeof indeterminate === "boolean") {
+      ref.current.indeterminate = !rest.checked && indeterminate
     }
-  }, [ref, indeterminate]);
+  }, [ref, indeterminate])
 
   return (
     <input
+      id=""
       type="checkbox"
       ref={ref}
-      className={className + ' cursor-pointer'}
+      className={className + " cursor-pointer"}
       {...rest}
     />
-  );
+  )
 }

@@ -5,19 +5,28 @@ import { BaseHeader } from './BaseHeader';
 import { RenderHeader } from './RenderHeader';
 import { usePathname } from 'next/navigation';
 export default function Header() {
-  const [path, setPath] = useState(false);
+  const [renderPath, setRenderPath] = useState(false);
+  const [basePath, setBasePath] = useState(false);
   const pathName = usePathname();
   useEffect(() => {
     if (
       pathName === '/main' ||
       pathName === '/createutm' ||
-      pathName === '/userinfo'
+      pathName === '/userinfo' ||
+      pathName === '/auth'
     ) {
-      setPath(true);
+      setBasePath(true);
+      setRenderPath(false);
     } else {
-      setPath(false);
+      setBasePath(false);
+      setRenderPath(true);
     }
-  }, [pathName, path]);
+  }, [pathName, basePath, renderPath]);
 
-  return <>{path ? <BaseHeader /> : <RenderHeader />}</>;
+  return (
+    <>
+      {basePath && <BaseHeader pathName={pathName} />}
+      {renderPath && <RenderHeader />}
+    </>
+  );
 }

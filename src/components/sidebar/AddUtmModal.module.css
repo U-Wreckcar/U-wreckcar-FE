@@ -32,12 +32,19 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 12px;
 }
 .modal_input_box p {
   margin-right: 10px;
 }
+
+.modal_footer_box input[type="date"] {
+  width: 142px;
+  margin-right: 35px;
+}
+
 .modal_footer_box input {
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .modal_footer_box p {
@@ -47,12 +54,11 @@
   font-weight: 700;
 }
 .modal_input {
-  width: 639px;
+  width: 648px;
   height: 44px;
   border: 1px solid #ddd;
   border-radius: 4px;
   padding-left: 10px;
-
   transform: translateX(2%);
 }
 
@@ -62,11 +68,11 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   margin-right: 26px;
-  padding-left: 10px;
+  padding:0 10px;
 }
 
 .modal_input_memo {
-  width: 421px;
+  width: 411px;
   height: 44px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -108,3 +114,22 @@
 /* .memo_text {
   margin-left: 10px;
 } */
+
+.error_utm{
+  font-size: 12px;
+  font-weight: 400;
+  color: crimson;
+  margin-right: 50px;
+}
+
+.error_box{
+  text-align: left;
+  padding-left: 80px;
+}
+
+.error_box_memo{
+  text-align: left;
+  padding-left: 80px;
+  position: relative;
+  top: -30px;
+}

@@ -1,18 +1,14 @@
-'use client';
-import { MainBtnTable } from 'components/mainPage/MainBtnTable';
-import { MainTable } from 'components/mainPage/MainTable';
-import { useEffect, useState } from 'react';
-import { isConstructorDeclaration } from 'typescript';
-export default function MainPage() {
-  const [summary, setSummary] = useState(true);
+import MainPageComponent from "@/components/mainPage/MainPage"
+import store from "@/redux/store/store"
+import { Provider } from "react-redux"
+import React from "react"
 
+export default function MainPage() {
   return (
     <>
-      {summary ? (
-        <MainTable setSummary={setSummary} />
-      ) : (
-        <MainBtnTable setSummary={setSummary} />
-      )}
+      {/* <Provider store={store}> */}
+      <MainPageComponent />
+      {/* </Provider> */}
     </>
-  );
+  )
 }

@@ -1,17 +1,33 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: local("Pretendard Variable"),
+    url("../../app/PretendardVariable.woff2") format("woff2-variations");
+}
 .logo_container {
+  font-family: "Pretendard Variable";
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  margin-left: 7px;
 }
 
 .plus_container {
+  font-family: "Pretendard Variable";
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   float: left;
   width: 270px;
-  min-height: 110vh;
+  height: 100vh;
+  min-height: 780px;
 
   background-color: #484bff;
 
@@ -26,6 +42,7 @@
   margin: 100px 0 0 10px;
 }
 .titleBox h3 {
+  font-family: "Pretendard Variable";
   margin-bottom: 20px;
 }
 .white_logo {
@@ -43,6 +60,7 @@
   display: flex;
   flex-direction: column;
   width: 246px;
+  font-family: "Pretendard Variable";
 }
 
 .category_bottom_box {
@@ -51,16 +69,9 @@
   margin-left: 4px;
   width: 246px;
   margin-bottom: 50px;
+  font-family: "Pretendard Variable";
 }
 
-.utm_category_item:hover {
-  background-color: #382ade;
-  width: 255px;
-  height: 38px;
-
-  padding-left: 3px;
-  border-radius: 4px;
-}
 .active {
   display: flex;
   align-items: center;
@@ -70,6 +81,7 @@
   margin-bottom: 10px;
   border-radius: 4px;
   background-color: #382ade;
+  font-family: "Pretendard Variable";
 }
 .utm_category_item {
   display: flex;
@@ -81,6 +93,18 @@
   overflow: hidden;
   padding-left: 7px;
   cursor: pointer;
+  font-family: "Pretendard Variable";
+}
+.utm_category_item:hover {
+  background-color: #382ade;
+  width: 255px;
+  height: 38px;
+  display: flex;
+  padding: 0px;
+  align-items: center;
+  padding-left: 7px;
+  margin-bottom: 10px;
+  border-radius: 4px;
 }
 .urc_category {
   margin: 15px;
@@ -91,9 +115,10 @@
 */
 .slim_container {
   width: 60px;
-  height: 100vh;
+  /* height: 100vh; */
   background-color: #484bff;
-  min-height: 110vh;
+  height: 100vh;
+  min-height: 780px;
 
   position: sticky;
   top: 0px;
@@ -148,13 +173,14 @@
   margin-top: 15px;
   margin-left: 15px;
   border: none;
+  cursor: pointer;
 }
 .slim_button {
   border: none;
   width: 24px;
   height: 24px;
   margin-top: 10px;
-  margin-right: 25px;
+  /* margin-right: 25px; */
   cursor: pointer;
 }
 .slim_button_style {
@@ -165,7 +191,9 @@
 .menu_button_style {
   border: none;
 }
-
+.slim_category_bottom_box {
+  margin-bottom: 50px;
+}
 .icon {
   margin-right: 12px;
 }
@@ -173,7 +201,16 @@
   cursor: pointer;
   margin-bottom: 10px;
 } */
-
+.link {
+  font-family: "Pretendard Variable";
+  font-family: "Pretendard";
+  font-size: var(--font-category);
+  font-weight: var(--weight-regular);
+  line-height: 24px;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
 .addbtnstyle {
   display: flex;
   align-items: center;

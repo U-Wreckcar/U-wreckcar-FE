@@ -1,17 +1,10 @@
-"use client";
-import React, {
-  HTMLProps,
-  useMemo,
-  useEffect,
-  useState,
-  useRef,
-  useImperativeHandle,
-} from "react";
-import { MainTableType } from "./TableData";
-// import { useGetUtm } from "util/hooks/useAsync";
-import { getUTMs } from "util/async/api";
-import Tooltip from "@mui/material/Tooltip";
-import { MainTableProps } from "./MainBtnTable";
+"use client"
+
+import React, { HTMLProps, useMemo, useEffect, useState, useRef } from "react"
+import { MainTableType } from "./TableData"
+import { getUTMs } from "util/async/api"
+import Tooltip from "@mui/material/Tooltip"
+import { MainTableProps } from "./MainBtnTable"
 
 import {
   Table,
@@ -30,100 +23,107 @@ import {
   getSortedRowModel,
   FilterFn,
   SortingFn,
-  FilterFns,
-} from "@tanstack/react-table";
+} from "@tanstack/react-table"
 
 import {
   RankingInfo,
   rankItem,
   compareItems,
-} from "@tanstack/match-sorter-utils";
-import styles from "./main.module.css";
-import instance from "util/async/axiosConfig";
-import { OutputModal } from "./OutputModal";
-import { DeleteModal } from "./DeleteModal";
-import { AddUtmModal } from "../sidebar/AddUtmModal";
-import Image from "next/image";
-import plusImg from "assets/plus.png";
-import filterImg from "assets/filter.png";
-import { EditModal } from "./MainMemoModal";
-import { style } from "@mui/system";
-import { usePathname, useSearchParams } from "next/navigation";
+} from "@tanstack/match-sorter-utils"
+import styles from "./main.module.css"
+import { OutputModal } from "./OutputModal"
+import { DeleteModal } from "./DeleteModal"
+import { AddUtmModal } from "../sidebar/AddUtmModal"
+import Image from "next/image"
+import plusImg from "assets/plus.png"
+import filterImg from "assets/filter.png"
+import { EditModal } from "./MainMemoModal"
+import { redirect } from "next/navigation"
+import Link from "next/link"
+import { getCookie } from "@/util/async/Cookie"
+import { Alert } from "@/shared/button/Alert"
+import { useSelector } from "react-redux"
 declare module "@tanstack/table-core" {
   interface FilterFns {
-    fuzzy: FilterFn<unknown>;
+    fuzzy: FilterFn<unknown>
   }
   interface FilterMeta {
-    itemRank: RankingInfo;
+    itemRank: RankingInfo
   }
 }
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   // Rank the item
-  const itemRank = rankItem(row.getValue(columnId), value);
+  const itemRank = rankItem(row.getValue(columnId), value)
 
   // Store the itemRank info
   addMeta({
     itemRank,
-  });
+  })
 
   // Return if the item should be filtered in/out
-  return itemRank.passed;
-};
+  return itemRank.passed
+}
 
-const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
-  let dir = 0;
+let defaultData: Array<MainTableType> = []
+let dData: Array<MainTableType> = []
 
-  // Only sort by rank if the column has ranking information
-  if (rowA.columnFiltersMeta[columnId]) {
-    dir = compareItems(
-      rowA.columnFiltersMeta[columnId]?.itemRank!,
-      rowB.columnFiltersMeta[columnId]?.itemRank!
-    );
-  }
-
-  // Provide an alphanumeric fallback for when the item ranks are equal
-  return dir === 0 ? sortingFns.alphanumeric(rowA, rowB, columnId) : dir;
-};
-
-let defaultData: Array<MainTableType> = [];
 export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
-  const [rowSelection, setRowSelection] = useState({});
-  const [data, setData] = useState<Array<MainTableType>>([]);
-  const [target, setTarget] = useState("");
-  const [show, setShow] = useState(false);
-  const [output, setOutput] = useState(false);
-  const [outputLength, setOutputLength] = useState<Array<MainTableType>>([]);
-  const [del, setDel] = useState(false);
-  const [delLength, setDelLength] = useState<Array<MainTableType>>([]);
-
-  const [inputValue, setInputValue] = useState("");
+  const [rowSelection, setRowSelection] = useState({})
+  const [data, setData] = useState<Array<MainTableType>>([])
+  const [target, setTarget] = useState("")
+  const [show, setShow] = useState(false)
+  const [output, setOutput] = useState(false)
+  const [outputLength, setOutputLength] = useState<Array<MainTableType>>([])
+  const [del, setDel] = useState(false)
+  const [delLength, setDelLength] = useState<Array<MainTableType>>([])
+  const [inputValue, setInputValue] = useState("")
 
   const [columnResizeMode, setColumnResizeMode] =
-    useState<ColumnResizeMode>("onChange");
-  const [removeModal, setRemoveModal] = useState(false);
+    useState<ColumnResizeMode>("onChange")
+
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
-  );
-  const [plus, setPlus] = useState(false);
-  const [filter, setFilter] = useState(false);
+  )
+  const [plus, setPlus] = useState(false)
+  const [filter, setFilter] = useState(false)
+  const [alert, setAlert] = useState(false)
+  const isOpen = useSelector((state: any) => state.add.isOpen)
 
-  // const getList = async () => {
-  //   const res = await getUTMs;
-  //   console.log(res);
-  //   setData(res.data);
-  // };
+  const getData = async () => {
+    const res = await getUTMs()
+    setData(res.data)
+    dData = res.data
+  }
 
   useEffect(() => {
-    if (defaultData.length === 0) {
-      // getList();
+    try {
+      getData()
+    } catch (err) {
+      console.log(err)
     }
-  }, [defaultData]);
+  }, [output, show, plus, isOpen])
 
   useEffect(() => {
+    setTimeout(() => {
+      getData()
+    }, 500)
+  }, [del])
+
+  useEffect(() => {
+    if (defaultData.length === 0 || !defaultData) {
+      setData([])
+    }
     if (defaultData.length !== 0) {
-      setData(defaultData);
+      setData(defaultData)
     }
-  }, [defaultData]);
+  }, [defaultData.length])
+
+  useEffect(() => {
+    const cookie = getCookie("access_token")
+    if (!cookie) {
+      redirect("/login")
+    }
+  }, [])
 
   const customStyles = {
     content: {
@@ -138,7 +138,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     overlay: {
       background: "#ffffff7f",
     },
-  };
+  }
   const columns = useMemo<ColumnDef<MainTableType>[]>(
     () => [
       {
@@ -167,8 +167,9 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
       },
       {
         header: "생성일자",
-        id: "created_at",
-        accessorKey: "created_at",
+        id: "created_at_filter",
+        accessorKey: "created_at_filter",
+
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 80,
@@ -191,16 +192,17 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
       },
       {
         header: "소스",
-        id: "utm_source",
-        accessorKey: "utm_source",
+        id: "utm_source_name",
+        accessorKey: "utm_source_name",
+
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 110,
       },
       {
         header: "미디움",
-        id: "utm_medium",
-        accessorKey: "utm_medium",
+        id: "utm_medium_name",
+        accessorKey: "utm_medium_name",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         minSize: 110,
@@ -255,7 +257,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
       },
     ],
     []
-  );
+  )
 
   const table = useReactTable({
     data,
@@ -282,35 +284,58 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     debugTable: true,
     debugHeaders: true,
     debugColumns: false,
-  });
+  })
 
   //삭제하기
   const onClickDelBtn = () => {
-    let id: Array<MainTableType> = [];
-    table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original));
+    let id: Array<MainTableType> = []
+    table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
+    // setRowSelection({})
     if (id.length === 0) {
-      alert("삭제할 데이터를 선택해주세요");
+      window.alert("삭제할 데이터를 선택해주세요")
     } else {
-      setDel(true);
-      setDelLength(id);
+      setDel(true)
+      setDelLength(id)
     }
-  };
+  }
 
   //추출하기
   const onClickPopBtn = () => {
-    let id: Array<MainTableType> = [];
-    table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original));
+    let id: Array<MainTableType> = []
+    table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
     if (id.length === 0) {
-      alert("추출할 데이터를 선택해주세요");
+      window.alert("추출할 데이터를 선택해주세요")
     } else {
-      console.log(id);
-      setOutput(true);
-      setOutputLength(id);
+      setOutput(true)
+      setOutputLength(id)
     }
-  };
+  }
+  //복사하기
+  const onClickCopyBtn = (text: string) => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        setAlert(true)
+      })
+    }
+  }
+
+  useEffect(() => {
+    if (alert) {
+      setTimeout(() => {
+        setAlert(false)
+      }, 3000)
+    }
+  }, [alert])
 
   return (
     <div>
+      {alert && (
+        <Alert
+          title={"성공"}
+          contents={"UTM이 복사되었습니다!"}
+          onClickEvent={setAlert}
+        />
+      )}
       <div className={styles.container}>
         <div className={styles.btn_box}>
           <div className={styles.title_box_d}>
@@ -324,7 +349,11 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
             >
               데이터 요약보기
             </button>
-            <button className={styles.button} onClick={onClickPopBtn}>
+            <button
+              id="export_btn"
+              className={styles.button}
+              onClick={onClickPopBtn}
+            >
               추출하기
             </button>
             <OutputModal
@@ -341,6 +370,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
               onRequestClose={() => setDel(false)}
               style={customStyles}
               data={delLength}
+              setRowSelection={setRowSelection}
             />
             <button
               className={styles.plus_button}
@@ -389,7 +419,6 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                       <th
                         key={header.id}
                         {...{
-                          // key: header.id,
                           colSpan: header.colSpan,
                           style: {
                             width:
@@ -463,12 +492,22 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           }}
                         /> */}
                       </th>
-                    );
+                    )
                   })}
                 </tr>
               ))}
             </thead>
             <tbody>
+              {data.length === 0 && (
+                <div className={styles.no_data}>
+                  <div className={styles.no_data_item}>
+                    <p>등록된 UTM이 없어요.</p>
+                    <Link href={"/createutm"}>
+                      <button>UTM 생성하기</button>
+                    </Link>
+                  </div>
+                </div>
+              )}
               {table.getRowModel().rows.map((row) => {
                 return (
                   <tr key={row.id}>
@@ -485,84 +524,141 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             },
                           }}
                         >
+                          {cell.column.id === "utm_url" && (
+                            <Tooltip title={`${cell.getValue()}`}>
+                              <div
+                                className={styles.td_box}
+                                style={{ cursor: "pointer" }}
+                                onClick={() =>
+                                  window.open(
+                                    `${cell.getValue()}`,
+                                    "_blank",
+                                    "noopener,noreferrer"
+                                  )
+                                }
+                              >{`${cell.getValue()}`}</div>
+                            </Tooltip>
+                          )}
                           {cell.column.id === "utm_memo" && (
                             <Tooltip title={"메모 수정하기"}>
                               <div
                                 id={cell.id}
                                 onClick={(e: any) => {
-                                  setTarget(e.target?.id);
-                                  setShow(true);
-                                  setInputValue(`${cell.getValue()}`);
+                                  setTarget(e.target?.id)
+                                  setShow(true)
+                                  setInputValue(`${cell.getValue()}`)
                                 }}
                               >{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
-                          {cell.column.id !== "utm_memo" &&
+                          {cell.column.id === "select" &&
                             flexRender(
                               cell.column.columnDef.cell,
                               cell.getContext()
                             )}
+                          {cell.column.id === "full_url" && (
+                            <Tooltip title={`${cell.getValue()}`}>
+                              <div
+                                style={{ cursor: "pointer" }}
+                                onClick={() =>
+                                  onClickCopyBtn(`${cell.getValue()}`)
+                                }
+                                className={styles.td_box}
+                              >{`${cell.getValue()}`}</div>
+                            </Tooltip>
+                          )}
+                          {cell.column.id === "shorten_url" && (
+                            <Tooltip title={`${cell.getValue()}`}>
+                              <div
+                                style={{ cursor: "pointer" }}
+                                onClick={() =>
+                                  onClickCopyBtn(`${cell.getValue()}`)
+                                }
+                                className={styles.td_box}
+                              >{`${cell.getValue()}`}</div>
+                            </Tooltip>
+                          )}
+                          {cell.column.id !== "utm_memo" &&
+                            cell.column.id !== "utm_url" &&
+                            cell.column.id !== "select" &&
+                            cell.column.id !== "full_url" &&
+                            cell.column.id !== "shorten_url" && (
+                              <Tooltip title={`${cell.getValue()}`}>
+                                <div
+                                  className={styles.td_box}
+                                >{`${cell.getValue()}`}</div>
+                              </Tooltip>
+                            )}
                         </td>
-                      );
+                      )
                     })}
                   </tr>
-                );
+                )
               })}
             </tbody>
           </table>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 function Filter({
   column,
   table,
 }: {
-  column: Column<any, unknown>;
-  table: Table<any>;
+  column: Column<any, unknown>
+  table: Table<any>
 }) {
   const firstValue = table
     .getPreFilteredRowModel()
-    .flatRows[0]?.getValue(column.id);
+    .flatRows[0]?.getValue(column.id)
 
-  const columnFilterValue = column.getFilterValue();
-  const [startDate, setStartDate] = useState<string | number>();
-  const [isOpen, setIsOpen] = useState(false);
+  const columnFilterValue = column.getFilterValue()
+  const [startDate, setStartDate] = useState<string | number>()
+  const [isOpen, setIsOpen] = useState(false)
 
-  let data: Array<MainTableType> = [];
-
-  // getUTMs.then((result) => (data = result.data));
-
-  function getDatesStartToLast(startDate: any, lastDate: any) {
-    const regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
-    if (!(regex.test(startDate) && regex.test(lastDate)))
-      return "Not Date Format";
-    let result: (string | number | Date)[] = [];
-    const curDate = new Date(startDate);
-    while (curDate <= new Date(lastDate)) {
-      result.push(
-        curDate.toISOString().split("T")[0].toString().replace(/-/g, ".")
-      );
-      curDate.setDate(curDate.getDate() + 1);
+  useEffect(() => {
+    if (isOpen) {
+      defaultData = dData
+      column.setFilterValue((old: Array<string>) => console.log(old))
     }
-    let dateList: any = [];
-    defaultData = data.filter((date) => result.includes(date.created_at));
-    defaultData.map((d) => dateList.push(d.created_at));
-    column.setFilterValue((old: Array<string>) => console.log(old));
+  }, [isOpen])
+
+  //날짜 두 개 받아서 사이 값 구하기
+  function getDatesStartToLast(startDate: any, lastDate: any) {
+    const regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/)
+
+    if (!(regex.test(startDate) && regex.test(lastDate)))
+      return "Not Date Format"
+
+    let result: (string | number | Date)[] = []
+
+    const curDate = new Date(startDate)
+
+    while (curDate <= new Date(lastDate)) {
+      result.push(curDate.toISOString().split("T")[0].toString())
+      curDate.setDate(curDate.getDate() + 1)
+    }
+
+    defaultData = dData.filter((date) =>
+      result.includes(date.created_at_filter)
+    )
+
+    column.setFilterValue((old: Array<string>) => console.log(old))
   }
+
   const sortedUniqueValues = React.useMemo(
     () =>
       typeof firstValue === "number"
         ? []
         : Array.from(column.getFacetedUniqueValues().keys()).sort(),
     [column.getFacetedUniqueValues()]
-  );
+  )
 
   return (
     <>
-      {column.id === "created_at" && (
+      {column.id === "created_at_filter" && (
         <>
           {isOpen && (
             <div className={styles.dialog}>
@@ -571,7 +667,7 @@ function Filter({
                   type="date"
                   value={(columnFilterValue ?? "") as string}
                   onChange={(value) => {
-                    setStartDate(value);
+                    setStartDate(value)
                   }}
                   list={column.id + "list"}
                 />
@@ -594,14 +690,18 @@ function Filter({
             type="text"
             className={styles.search_input}
             placeholder="기간 선택"
-            onFocus={() => setIsOpen(true)}
+            onFocus={() => {
+              setIsOpen(true)
+              defaultData = dData
+            }}
           ></input>
         </>
       )}
-      {column.id !== "created_at" && (
+
+      {column.id !== "created_at_filter" && (
         <>
           <datalist id={column.id + "list"}>
-            {sortedUniqueValues.slice(0, 5000).map((value: any) => (
+            {sortedUniqueValues.map((value: any) => (
               <option value={value} key={value} />
             ))}
           </datalist>
@@ -611,11 +711,12 @@ function Filter({
             value={(columnFilterValue ?? "") as string}
             onChange={(value) => column.setFilterValue(value)}
             placeholder={`검색 (${column.getFacetedUniqueValues().size})`}
+            list={column.id + "list"}
           />
         </>
       )}
     </>
-  );
+  )
 }
 
 // A debounced input react component
@@ -625,23 +726,23 @@ function DebouncedInput({
   debounce = 500,
   ...props
 }: {
-  value: string | number;
-  onChange: (value: string | number) => void;
-  debounce?: number;
+  value: string | number
+  onChange: (value: string | number) => void
+  debounce?: number
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange">) {
-  const [value, setValue] = React.useState(initialValue);
+  const [value, setValue] = React.useState(initialValue)
 
   React.useEffect(() => {
-    setValue(initialValue);
-  }, [initialValue]);
+    setValue(initialValue)
+  }, [initialValue])
 
   React.useEffect(() => {
     const timeout = setTimeout(() => {
-      onChange(value);
-    }, debounce);
+      onChange(value)
+    }, debounce)
 
-    return () => clearTimeout(timeout);
-  }, [value]);
+    return () => clearTimeout(timeout)
+  }, [value])
 
   return (
     <input
@@ -649,20 +750,20 @@ function DebouncedInput({
       value={value}
       onChange={(e) => setValue(e.target.value)}
     />
-  );
+  )
 }
 function IndeterminateCheckbox({
   indeterminate,
   className = "",
   ...rest
 }: { indeterminate?: boolean } & HTMLProps<HTMLInputElement>) {
-  const ref = useRef<HTMLInputElement>(null!);
+  const ref = useRef<HTMLInputElement>(null!)
 
   useEffect(() => {
     if (typeof indeterminate === "boolean") {
-      ref.current.indeterminate = !rest.checked && indeterminate;
+      ref.current.indeterminate = !rest.checked && indeterminate
     }
-  }, [ref, indeterminate]);
+  }, [ref, indeterminate])
 
   return (
     <input
@@ -671,5 +772,5 @@ function IndeterminateCheckbox({
       className={className + " cursor-pointer"}
       {...rest}
     />
-  );
+  )
 }

@@ -1,60 +1,69 @@
-import React, { useEffect, useState } from "react";
-import styles from "./mobile.module.css";
-import sectionseven from "assets/sectionseven.png";
-import Image from "next/image";
+import React, { useEffect, useState } from "react"
+import styles from "./mobile.module.css"
+import sectionseven from "assets/sectionseven.png"
+import Image from "next/image"
 
-import section_one_main from "assets/illust main.png";
-import section_two_left_ns from "assets/section_two_left_ns.png";
-import section_two_right_ns from "assets/section_two_right_ns.png";
-import section_one_two from "assets/section_one_two.png";
-import six_one from "assets/six.gif";
-import seven_img from "assets/m_seven_img.png";
-import create from "assets/gif/create.gif";
-import f_search from "assets/gif/f_search.gif";
-import out from "assets/gif/out.gif";
-import r_kakao from "assets/r_kakao.png";
-import r_naver from "assets/r_naver.png";
-import r_google from "assets/r_google.png";
-import copyright from "assets/copyright.png";
-import seven_button from "assets/m_seven_button.png";
-import Link from "next/link";
+import section_one_main from "assets/illust main.png"
+import section_two_left_ns from "assets/section_two_left_ns.png"
+import section_two_right_ns from "assets/section_two_right_ns.png"
+import section_one_two from "assets/m_section_one_two.png"
+import six_one from "assets/six.gif"
+import seven_img from "assets/m_seven_img.png"
+import create from "assets/gif/create.gif"
+import f_search from "assets/gif/f_search.gif"
+import out from "assets/gif/out.gif"
+import r_kakao from "assets/r_kakao.png"
+import r_naver from "assets/r_naver.png"
+import r_google from "assets/r_google.png"
+import copyright from "assets/copyright.png"
+import seven_button from "assets/m_seven_button.png"
+import Link from "next/link"
 
 export default function Mobile() {
-  const texts = ["복잡한", "귀찮은", "어려운"];
-  const [text, setText] = useState(texts);
-  const [index, setIndex] = useState(0);
+  const texts = ["복잡한", "귀찮은", "어려운"]
+  const [text, setText] = useState(texts)
+  const [index, setIndex] = useState(0)
 
   useEffect(() => {
     const intervalText = setInterval(() => {
-      setIndex((idx) => (idx + 1) % texts.length);
-    }, 850);
+      setIndex((idx) => (idx + 1) % texts.length)
+    }, 850)
 
-    return () => clearInterval(intervalText);
-  }, []);
+    return () => clearInterval(intervalText)
+  }, [])
 
   const onClickKakao = () => {
-    window.location.href = "https://open.kakao.com/o/sbK3Rfaf";
-  };
+    window.open("https://open.kakao.com/o/sbK3Rfaf", "_blank")
+  }
 
   const onClickLaw = () => {
-    window.location.href =
-      "https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e";
-  };
+    window.open(
+      "https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e",
+      "_blank"
+    )
+  }
 
   const onClickUse = () => {
-    window.location.href =
-      "https://unexpected-ceder-0b7.notion.site/c83db210e0574b3b90329f5cc46caf28";
-  };
+    window.open(
+      "https://unexpected-ceder-0b7.notion.site/c83db210e0574b3b90329f5cc46caf28",
+      "_blank"
+    )
+  }
 
   const onClickNoti = () => {
-    window.location.href =
-      "https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492";
-  };
+    window.open(
+      " https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492",
+      "_blank"
+    )
+  }
 
   const onClickGuide = () => {
-    window.location.href =
-      "https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3";
-  };
+    window.open(
+      "https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3",
+      "_blank"
+    )
+  }
+
   return (
     <div>
       <div className={styles.container}>
@@ -73,7 +82,7 @@ export default function Mobile() {
         </section>
         <section className={styles.section_one_two}>
           <article>
-            <Image src={section_one_two} alt="Img" />
+            <Image src={section_one_two} alt="Img" width={350} />
           </article>
         </section>
         <section className={styles.section_two}>
@@ -224,5 +233,5 @@ export default function Mobile() {
         </section>
       </div>
     </div>
-  );
+  )
 }

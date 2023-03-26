@@ -7,13 +7,16 @@
 
 .profile_img_box img {
   border-radius: 50%;
+  margin-bottom: 70px;
 }
-.prfile_img {
+.img {
   display: inline-block;
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  background-color: antiquewhite;
+  background-size: cover;
+
+  /* background-color: antiquewhite; */
 }
 
 .profile_img_box button {
@@ -26,7 +29,7 @@
   border-radius: 50%;
   border: none;
 
-  background-color: yellow;
+  /* background-color: yellow; */
 }
 .title_box {
   display: flex;

@@ -1,5 +1,4 @@
-import axios from "./axiosConfig";
-import instance from "./axiosConfig";
+import axios from "./axiosConfig"
 
 /**
  *
@@ -7,15 +6,15 @@ import instance from "./axiosConfig";
  *
  */
 
-export const getUTMs = axios.get("utms");
+export const getUTMs = async () => {
+  const res = await axios.get("utms")
+  return res
+}
 
 export const postUTMs = async (data: any) => {
-  console.log(data);
-
-  await axios.post("utms", data);
-
-
-};
+  const res = await axios.post("utms", data)
+  return res
+}
 
 /**
  *
@@ -25,20 +24,27 @@ export const postUTMs = async (data: any) => {
  */
 
 // export const getUTMs = axios.get('utms');
-type DataType = { data: string[] };
+type DataType = { data: string[] }
 
-export const getUTMExcell = async (data: DataType) => {
-  await axios.post("utms/excell", data);
-};
-export const getUTMPDF = async () => {
-  await axios.post("utms/pdf");
-};
-export const getUTMNotion = async () => {
-  await axios.post("utms/csv");
-};
-// export const myProfile = async() =>{
-//     await axios.get()
-// }
+export const getUTMExcell = async (data: any) => {
+  await axios.post("utms/export/excell", data)
+}
+export const testExcell = async (data: any) => {
+  await axios.post("utms/toxlsx", { data })
+}
+export const getUTMNotion = async (data: any) => {
+  await axios.post("utms/export/pdf", data)
+}
+export const getUTMSheet = async (data: any) => {
+  await axios.get(`utms/export/sheet`, data)
+}
+export const testUTMSheet = async (data: any) => {
+  await axios.post("utms/tocsv", { data })
+}
+export const myProfile = async () => {
+  const res = await axios.get("users/profile")
+  return res
+}
 
 /**
  * * POST
@@ -55,14 +61,22 @@ export const getUTMNotion = async () => {
 /**
  * @param data {utm_url: string, memo:string}
  */
-export const ExternalUTM = async (data: string) => {
-  await axios.post("utm/add", data);
-};
+export const ExternalUTM = async (data: any) => {
+  await axios.post("utms/external", data)
+}
 
 /**
  * * DELETE
  */
 
-export const deleteUTM = async (utmId: any) => {
-  await axios.delete(`utms/delete/${utmId}`);
-};
+export const deleteUTM = async (data: any) => {
+  await axios.post(`utms/delete`, data)
+}
+
+/**
+ * * PATCH
+ */
+
+export const patchUTM = async (data: any) => {
+  await axios.patch("utms/memo", data)
+}

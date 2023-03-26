@@ -1,22 +1,33 @@
-import Image from 'next/image';
-import ReactModal from 'react-modal';
-import styles from './main.module.css';
-import b_close from 'assets/b_close.png';
+import Image from "next/image"
+import ReactModal from "react-modal"
+import styles from "./main.module.css"
+import b_close from "assets/b_close.png"
+import { deleteUTM } from "util/async/api"
+import { useRouter } from "next/navigation"
 type OutputModalType = {
-  isOpen: boolean;
-  onRequestClose: any;
-  style: any;
-  data: any;
-};
+  isOpen: boolean
+  onRequestClose: any
+  style: any
+  data: any
+  setRowSelection: any
+}
 export const DeleteModal: React.FC<OutputModalType> = ({
   isOpen,
   onRequestClose,
   style,
   data,
+  setRowSelection,
 }) => {
+  const router = useRouter()
   const onClickDelHandler = () => {
-    console.log(data);
-  };
+    // const idList = [];
+    // data.map((datas)=> idList.push(datas.id));
+    deleteUTM({ data }).then(() => {
+      setRowSelection({})
+    })
+    onRequestClose()
+    router.replace("/main")
+  }
   return (
     <ReactModal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
       <div
@@ -59,5 +70,5 @@ export const DeleteModal: React.FC<OutputModalType> = ({
         </div>
       </div>
     </ReactModal>
-  );
-};
+  )
+}

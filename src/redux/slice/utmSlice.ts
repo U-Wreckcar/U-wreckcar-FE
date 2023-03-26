@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from 'redux/store/store';
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+// import type { RootState } from "redux/store/store";
 
 type UTMItem = {
   id?: number;
@@ -25,18 +25,15 @@ const initialState: UTMState = {
 };
 
 export const utmSlice = createSlice({
-  name: 'UTMItem',
+  name: "UTMItem",
   initialState,
   reducers: {
     addUTM(state, action: PayloadAction<UTMItem>) {
       state.utms?.push(action.payload);
     },
-    deleteUTM(state, action: PayloadAction<number>) {
-      state.utms = state.utms?.filter((i) => i.id !== action.payload);
-    },
   },
 });
 
-export const { addUTM, deleteUTM } = utmSlice.actions;
-export const utms = (state: RootState) => state.utms.utms;
+export const { addUTM } = utmSlice.actions;
+// export const utms = (state: RootState) => state.utms.utms;
 export default utmSlice.reducer;
