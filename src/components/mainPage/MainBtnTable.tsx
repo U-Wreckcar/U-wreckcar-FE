@@ -97,7 +97,6 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
   const getData = async () => {
     const res = await getUTMs()
-    console.log(res)
     setData(res.data)
   }
 
