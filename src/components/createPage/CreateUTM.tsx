@@ -98,8 +98,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
   const onSubmit = async (data: UTMsType) => {
     try {
       mutate(data)
-
-      isSuccess && setAlert(true)
+      // isSuccess && setAlert(true)
     } catch (e) {
       console.log(e)
     }
