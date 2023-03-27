@@ -30,7 +30,8 @@
 }
 .copy_title {
   background-color: var(--color-white-100);
-  min-width: 760px;
+  width: 100vw;
+  min-width: 1590px;
   border-radius: 4px;
 }
 .list_container {
