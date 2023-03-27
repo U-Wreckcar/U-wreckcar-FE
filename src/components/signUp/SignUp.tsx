@@ -9,7 +9,7 @@ import styles from "./signup.module.css"
 
 type FormData = {
   email: string
-  emailNum: number
+  emailNum: string
   phone_no: number
   userName: string | number
   password: string
@@ -18,7 +18,8 @@ type FormData = {
 }
 
 export default function SignUp() {
-  const [emailNum, setEmailNum] = useState(false)
+  const [emailNum, setEmailNum] = useState(0)
+  const [confirmNum, setConfirmNum] = useState("")
 
   //이미 로그인 한 사람은 메인으로
   //   useEffect(() => {
@@ -36,31 +37,57 @@ export default function SignUp() {
     handleSubmit,
   } = useForm<FormData>({ criteriaMode: "all", mode: "onChange" })
 
-  //   이메일 인증 번호
+  //   이메일 인증 발송
   // 1. 이메일 인증에 실패했을 경우 -> 중복된 이메일 문구 -> catch문
   // 2. 이메일 인증번호와 틀린 경우 -> 이메일 인증 번호 확인 문구 -> try 내 if 문
   const emailConfirm = async () => {
     const email = getValues("email")
-    const emailNum = getValues("emailNum")
+
     try {
-      const res = await confirmEmail({ email })
-      console.log(res)
-      setEmailNum(true)
+      const res = await confirmEmail({ data: { email: email } })
+      console.log(res.data.verificationCode)
+      setConfirmNum(res.data.verificationCode)
+      setEmailNum(1)
     } catch (err) {
       setError("email", { message: "중복된 이메일은 사용하실 수 없습니다." })
+    }
+  }
+
+  //인증번호 확인
+  const confirmEmailNum = async () => {
+    const emailNum = await getValues("emailNum")
+    if (emailNum === confirmNum) {
+      setEmailNum(2)
+    } else {
+      setError("emailNum", { message: "이메일 인증번호를 확인해주세요." })
     }
   }
 
   //    회원가입
   // 완료 후 로그인페이지로
   const onSubmit = (data: FormData) => {
-    try {
-      signUp(data)
-      redirect("/login")
-    } catch (err) {
-      console.log(err)
+    const email = getValues("email")
+    const password = getValues("password")
+    const passwordConfirm = getValues("confirmPw")
+    const username = getValues("userName")
+    const company_name = getValues("company_name")
+    if (password === passwordConfirm) {
+      try {
+        const data = {
+          email,
+          username,
+          password,
+          company_name,
+          marketing_accept: true,
+        }
+        signUp({ data })
+        redirect("/login")
+      } catch (err) {
+        console.log(err)
+      }
+    } else {
+      setError("confirmPw", { message: "비밀번호를 동일하게 적어주세요." })
     }
-    console.log(data)
   }
 
   return (
@@ -68,7 +95,7 @@ export default function SignUp() {
       <h1>유렉카 회원가입</h1>
       <h4>반갑습니다! 유렉카의 새로운 회원님!</h4>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {!emailNum ? (
+        {emailNum === 0 && (
           <>
             {errors.email && <p>{errors.email?.message}</p>}
             <div className={styles.wrap}>
@@ -93,6 +120,14 @@ export default function SignUp() {
                 })}
               />
             </div>
+
+            <button type="button" onClick={emailConfirm}>
+              인증번호 발송
+            </button>
+          </>
+        )}
+        {emailNum === 1 && (
+          <>
             {errors.emailNum && <p>{errors.emailNum?.message}</p>}
             <div className={styles.wrap}>
               <label>E-mail 인증번호</label>
@@ -100,18 +135,15 @@ export default function SignUp() {
                 placeholder="받으신 이메일 인증번호를 입력해주세요"
                 {...register("emailNum", {
                   required: "이메일 인증번호를 입력해주세요.",
-                  pattern: {
-                    value: /^[0-9]+$/,
-                    message: "인증번호를 숫자로만 작성해주세요",
-                  },
                 })}
               />
             </div>
-            <button type="button" onClick={emailConfirm}>
+            <button type="button" onClick={confirmEmailNum}>
               인증번호 확인
             </button>
           </>
-        ) : (
+        )}
+        {emailNum === 2 && (
           <>
             {/* {errors.phone_no && <p>{errors.phone_no?.message}</p>}
             <div className={styles.wrap}>
@@ -134,6 +166,14 @@ export default function SignUp() {
                 placeholder="성함을 입력해주세요"
                 {...register("userName", {
                   required: "성함을 입력해주세요",
+                  minLength: {
+                    value: 1,
+                    message: "성함을 1자 이상 작성해주세요",
+                  },
+                  maxLength: {
+                    value: 16,
+                    message: "성함을 16자 이하로 작성해주세요",
+                  },
                 })}
               />
             </div>

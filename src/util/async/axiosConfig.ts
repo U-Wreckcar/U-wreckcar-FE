@@ -4,7 +4,7 @@ import { getCookie } from "./Cookie"
 const instance = axios.create({
   withCredentials: true,
   baseURL: process.env.NEXT_PUBLIC_API,
-  timeout: 3000,
+  timeout: 10000,
   headers: {
     "Content-Type": "application/json",
     Authorization: `Bearer ${getCookie("access_token")}`,
