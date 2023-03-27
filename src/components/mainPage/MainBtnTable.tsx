@@ -48,6 +48,7 @@ import { getCookie } from "@/util/async/Cookie"
 import { redirect, useRouter } from "next/navigation"
 import { useSelector } from "react-redux"
 import { AlertTitle, Alert } from "@mui/material"
+import blackFilterImg from "assets/b_filter.png"
 
 export type MainTableProps = {
   setSummary: Dispatch<SetStateAction<boolean>>
@@ -413,6 +414,16 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 header.getContext()
                               )}
                             </div>
+                            {filter && header.column.id === "select" && (
+                              <div className={styles.header_filter_box}>
+                                <Image
+                                  src={blackFilterImg}
+                                  alt="filter"
+                                  width={25}
+                                  height={25}
+                                />
+                              </div>
+                            )}
                             {filter && header.column.id !== "select" && (
                               <th
                                 className={styles.filter_box}
