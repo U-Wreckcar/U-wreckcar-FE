@@ -213,18 +213,17 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
         footer: (props) => props.column.id,
         minSize: 120,
       },
-      {
-        header: "Shorten Count",
-        id: "click_count",
-        accessorKey: "click_count",
-        cell: (info) => info.getValue(),
-        footer: (props) => props.column.id,
-        minSize: 120,
-      },
+      // {
+      //   header: "Shorten Count",
+      //   id: "click_count",
+      //   accessorKey: "click_count",
+      //   cell: (info) => info.getValue(),
+      //   footer: (props) => props.column.id,
+      //   minSize: 120,
+      // },
     ],
     []
   )
-
   const table = useReactTable({
     data,
     columns,
