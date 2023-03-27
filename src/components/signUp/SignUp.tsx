@@ -2,7 +2,7 @@
 import { confirmEmail, signUp } from "@/util/async/api"
 import { getCookie } from "@/util/async/Cookie"
 import Link from "next/link"
-import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation"
 import React, { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import styles from "./signup.module.css"
@@ -21,14 +21,15 @@ type FormData = {
 export default function SignUp() {
   const [emailNum, setEmailNum] = useState(0)
   const [confirmNum, setConfirmNum] = useState("")
+  const router = useRouter()
 
-  //이미 로그인 한 사람은 메인으로
-  //   useEffect(() => {
-  //     const cookie = getCookie("access_token")
-  //     if (cookie) {
-  //       redirect("/main")
-  //     }
-  //   }, [])
+  // 이미 로그인 한 사람은 메인으로
+  useEffect(() => {
+    const cookie = getCookie("access_token")
+    if (cookie) {
+      router.push("/main")
+    }
+  }, [])
 
   const {
     register,
@@ -46,7 +47,6 @@ export default function SignUp() {
 
     try {
       const res = await confirmEmail({ data: { email: email } })
-      console.log(res.data.verificationCode)
       setConfirmNum(res.data.verificationCode)
       setEmailNum(1)
     } catch (err) {
@@ -56,7 +56,7 @@ export default function SignUp() {
 
   //인증번호 확인
   const confirmEmailNum = async () => {
-    const emailNum = await getValues("emailNum")
+    const emailNum = getValues("emailNum")
     if (emailNum === confirmNum) {
       setEmailNum(2)
     } else {
@@ -66,24 +66,15 @@ export default function SignUp() {
 
   //    회원가입
   // 완료 후 로그인페이지로
-  const onSubmit = (data: FormData) => {
-    console.log(data)
-    const email = getValues("email")
+  const onSubmit = async (data: FormData) => {
     const password = getValues("password")
     const passwordConfirm = getValues("confirmPw")
-    const username = getValues("userName")
-    const company_name = getValues("company_name")
     if (password === passwordConfirm) {
       try {
-        const data = {
-          email,
-          username,
-          password,
-          company_name,
-          marketing_accept: true,
-        }
-        signUp({ data })
-        redirect("/login")
+        const { confirmPw, emailNum, ...otherData } = data
+        signUp({ data: otherData })
+        alert("유렉카의 회원이 되신 걸 환영합니다!")
+        router.push("/login")
       } catch (err) {
         alert("회원가입에 실패하셨습니다. 다시 시도해주세요!")
         console.log(err)
