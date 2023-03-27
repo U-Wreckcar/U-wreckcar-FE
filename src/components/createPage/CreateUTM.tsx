@@ -131,12 +131,13 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                       <div className={styles.number}>{index + 1}</div>
 
                       <input
-                        placeholder="https://를 붙여서 입력해 주세요."
+                        placeholder='https://를 붙여서 입력해 주세요.'
                         // onInput={requeirFn}
-                        type="url"
+                        type='url'
                         // pattern='https://.*'
                         {...register(`utms.${index}.utm_url` as const, {
                           required: true,
+                          maxLength: 50,
                         })}
                         className={`${
                           errors?.utms?.[index]?.utm_url
@@ -155,6 +156,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                         // onInput={requeirFn}
                         {...register(`utms.${index}.utm_source` as const, {
                           required: true,
+                          maxLength: 20,
                         })}
                         className={`${
                           errors?.utms?.[index]?.utm_source
@@ -168,6 +170,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                         // placeholder="utm_medium"
                         {...register(`utms.${index}.utm_medium` as const, {
                           required: true,
+                          maxLength: 20,
                           // pattern: /[a-z]/i,
                         })}
                         className={`${
@@ -182,7 +185,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                         // placeholder="utm_campaign_name"
                         {...register(
                           `utms.${index}.utm_campaign_name` as const,
-                          { required: true }
+                          { maxLength: 20, required: true }
                         )}
                         className={`${
                           errors?.utms?.[index]?.utm_campaign_name
@@ -196,6 +199,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                         // onInput={requeirFn}
                         {...register(`utms.${index}.utm_campaign_id` as const, {
                           // pattern: /[a-z]/i,
+                          maxLength: 20,
                         })}
                         className={`${
                           errors?.utms?.[index]?.utm_campaign_id ? "error" : ""
@@ -204,7 +208,9 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                       <input
                         // onInput={requeirFn}
                         // placeholder="utm_term"
-                        {...register(`utms.${index}.utm_term` as const, {})}
+                        {...register(`utms.${index}.utm_term` as const, {
+                          maxLength: 20,
+                        })}
                         className={`${
                           errors?.utms?.[index]?.utm_campaign_id ? "error" : ""
                         }, ${styles.input_style}`}
@@ -213,7 +219,9 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                       <input
                         // onInput={requeirFn}
                         // placeholder="utm_campaign_content"
-                        {...register(`utms.${index}.utm_content` as const)}
+                        {...register(`utms.${index}.utm_content` as const, {
+                          maxLength: 20,
+                        })}
                         className={`${
                           errors?.utms?.[index]?.utm_campaign_id ? "error" : ""
                         }, ${styles.input_style}`}
@@ -221,25 +229,25 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
 
                       <textarea
                         className={`${styles.active}`}
+                        placeholder='100자까지 가능합니다'
                         {...register(`utms.${index}.utm_memo` as const, {
-                          maxLength: 80,
+                          maxLength: 100,
                         })}
                         spellCheck={false}
                       />
                       <div className={styles.minus_button}>
                         <button
                           className={styles.minus_button_style}
-                          type="button"
+                          type='button'
                           onClick={() => {
                             if (index >= 1) {
                               remove(index)
                             }
-                          }}
-                        >
+                          }}>
                           <Image
                             className={styles.minus_img}
                             src={minus}
-                            alt="리스트 삭제"
+                            alt='리스트 삭제'
                             onError={() => {
                               console.log(
                                 "리스트 빼기 이미지를 불러올 수 없습니다."
@@ -258,13 +266,12 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
         <div className={styles.create_button_box}>
           <button
             className={styles.add_list_button}
-            type="button"
-            onClick={addList}
-          >
+            type='button'
+            onClick={addList}>
             <Image
               className={styles.plus_button_img}
               src={plus}
-              alt="추가하기"
+              alt='추가하기'
               onError={() => {
                 console.log("추가버튼 이미지를 불러오지 못했습니다.")
               }}
@@ -280,10 +287,10 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
             )}
             {isLoading && <Loading isOpen={true} />}
             <input
-              id="create_btn"
+              id='create_btn'
               className={styles.create_button}
-              type="submit"
-              value="생성하기"
+              type='submit'
+              value='생성하기'
               disabled={isLoading}
               // onClick={() => {
               //   setAlert(true);
