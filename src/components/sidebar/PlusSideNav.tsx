@@ -150,7 +150,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
       <div className={styles.bottom_box}>
         <h3 className={styles.urc_category}>유렉카</h3>
         <div className={styles.category_bottom_box}>
-          <div className={styles.utm_category_item}>
+          <div className={styles.utm_category_item} onClick={onClickNoti}>
             <Image
               className={styles.icon}
               width={24}
@@ -159,11 +159,9 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               alt='Noti Img'
               onError={() => console.log("Image loading failed")}
             />
-            <span className='category_text' onClick={onClickNoti}>
-              공지사항
-            </span>
+            <span className='category_text'>공지사항</span>
           </div>
-          <div className={styles.utm_category_item}>
+          <div className={styles.utm_category_item} onClick={onClickGuide}>
             <Image
               className={styles.icon}
               width={24}
@@ -172,11 +170,9 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               alt='Guide Img'
               onError={() => console.log("Image loading failed")}
             />
-            <span className='category_text' onClick={onClickGuide}>
-              가이드
-            </span>
+            <span className='category_text'>가이드</span>
           </div>
-          <div className={styles.utm_category_item}>
+          <div className={styles.utm_category_item} onClick={onClickKakao}>
             <Image
               className={styles.icon}
               width={24}
@@ -185,9 +181,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               alt='Help Img'
               onError={() => console.log("Image loading failed")}
             />
-            <span className='category_text' onClick={onClickKakao}>
-              문의하기
-            </span>
+            <span className='category_text'>문의하기</span>
           </div>
         </div>
       </div>
