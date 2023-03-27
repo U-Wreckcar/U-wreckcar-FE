@@ -13,7 +13,7 @@ export type MainTableType = {
   utm_memo: string | null;
   full_url: string;
   shorten_url: string;
-  click_count:number
+  //click_count:number
 };
 
 
