@@ -224,7 +224,6 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
     ],
     []
   )
-
   const table = useReactTable({
     data,
     columns,
