@@ -137,7 +137,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                         // pattern='https://.*'
                         {...register(`utms.${index}.utm_url` as const, {
                           required: true,
-                          maxLength: 200,
+                          maxLength: 50,
                         })}
                         className={`${
                           errors?.utms?.[index]?.utm_url
