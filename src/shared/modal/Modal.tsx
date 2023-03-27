@@ -18,9 +18,6 @@ type PropsType = {
 }
 
 export const Modal: React.FC<PropsType> = ({
-  isCancle,
-  buttonName,
-  cancleButtonName,
   confirmButtonName,
   context,
   contextSeconde,
