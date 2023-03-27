@@ -15,6 +15,7 @@ type FormData = {
   password: string
   company_name: string
   confirmPw: string
+  marketing_accept: boolean
 }
 
 export default function SignUp() {
@@ -66,6 +67,7 @@ export default function SignUp() {
   //    회원가입
   // 완료 후 로그인페이지로
   const onSubmit = (data: FormData) => {
+    console.log(data)
     const email = getValues("email")
     const password = getValues("password")
     const passwordConfirm = getValues("confirmPw")
@@ -83,6 +85,7 @@ export default function SignUp() {
         signUp({ data })
         redirect("/login")
       } catch (err) {
+        alert("회원가입에 실패하셨습니다. 다시 시도해주세요!")
         console.log(err)
       }
     } else {
@@ -221,6 +224,19 @@ export default function SignUp() {
                   required: "회사이름을 입력해주세요",
                 })}
               />
+            </div>
+            {errors.marketing_accept && (
+              <p>{errors.marketing_accept?.message}</p>
+            )}
+            <div className={styles.wrap}>
+              <label>마케팅 동의</label>
+              <input
+                type="checkbox"
+                {...register("marketing_accept", {
+                  required: "마케팅 활용에 동의 해주세요",
+                })}
+              />
+              <div>개인정보 처리 방침에 동의합니다.</div>
             </div>
             <button type="submit" disabled={isSubmitting}>
               회원가입
