@@ -99,3 +99,8 @@ export const confirmEmail =async (data:any) => {
 /**
  * * Login
  */
+
+export const localLogin = async (data:any) => {
+  const res = await axios.post("users/login", data)
+  return res
+}

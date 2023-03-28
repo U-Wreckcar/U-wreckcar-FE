@@ -11,7 +11,7 @@ type FormData = {
   email: string
   emailNum: string
   phone_no: number
-  userName: string | number
+  username: string | number
   password: string
   company_name: string
   confirmPw: string
@@ -153,12 +153,12 @@ export default function SignUp() {
                 })}
               />
             </div> */}
-            {errors.userName && <p>{errors.userName?.message}</p>}
+            {errors.username && <p>{errors.username?.message}</p>}
             <div className={styles.wrap}>
               <label>이름</label>
               <input
                 placeholder="성함을 입력해주세요"
-                {...register("userName", {
+                {...register("username", {
                   required: "성함을 입력해주세요",
                   minLength: {
                     value: 1,
@@ -219,15 +219,14 @@ export default function SignUp() {
             {errors.marketing_accept && (
               <p>{errors.marketing_accept?.message}</p>
             )}
-            <div className={styles.wrap}>
-              <label>마케팅 동의</label>
+            <div className={styles.check_wrap}>
               <input
                 type="checkbox"
                 {...register("marketing_accept", {
                   required: "마케팅 활용에 동의 해주세요",
                 })}
               />
-              <div>개인정보 처리 방침에 동의합니다.</div>
+              <label>유렉카의 개인정보 처리 방침에 동의합니다.</label>
             </div>
             <button type="submit" disabled={isSubmitting}>
               회원가입
@@ -235,12 +234,6 @@ export default function SignUp() {
           </>
         )}
       </form>
-      <div className={styles.login}>
-        <span>이미 유렉카의 회원이신가요?</span>
-        <Link href={"/login"}>
-          <button>로그인</button>
-        </Link>
-      </div>
     </div>
   )
 }

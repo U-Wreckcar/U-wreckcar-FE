@@ -55,3 +55,14 @@
     justify-content: center;
     margin-top: 80px;
 }
+
+.check_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.check_wrap >  input {
+    width: 50px;
+}
