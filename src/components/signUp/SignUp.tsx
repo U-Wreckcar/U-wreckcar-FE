@@ -22,6 +22,7 @@ type FormData = {
 export default function SignUp() {
   const [emailNum, setEmailNum] = useState(0)
   const [confirmNum, setConfirmNum] = useState("")
+
   const [email, setEmail] = useState("")
   const router = useRouter()
 
@@ -46,6 +47,7 @@ export default function SignUp() {
   // 2. 이메일 인증번호와 틀린 경우 -> 이메일 인증 번호 확인 문구 -> try 내 if 문
   const emailConfirm = async () => {
     const email = getValues("email")
+
     setEmail(email)
     try {
       const res = await confirmEmail({ data: { email: email } })
@@ -58,6 +60,7 @@ export default function SignUp() {
 
   //인증번호 확인
   const confirmEmailNum = async () => {
+
     const emailNum = getValues("emailNum")
     if (emailNum === confirmNum) {
       setEmailNum(2)
@@ -68,6 +71,7 @@ export default function SignUp() {
 
   //    회원가입
   // 완료 후 로그인페이지로
+
   const onSubmit = async (data: FormData) => {
     const password = getValues("password")
     const passwordConfirm = getValues("confirmPw")
