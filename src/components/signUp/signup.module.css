@@ -85,6 +85,13 @@
     border: 0.7px solid #ddd;
 }
 
+.check_input{
+    width: 15px;
+    height: 15px;
+    margin-right: 20px;
+    transform: translateY(2px);
+}
+
 .signup_input:focus{
     outline:  0.7px solid #ddd;
 }
