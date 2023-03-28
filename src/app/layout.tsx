@@ -48,14 +48,14 @@ export default function RootLayout({
         {/* Google Analytics */}
         <script
           async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE}`}></script>
+          src={`https://www.googletagmanager.com/gtag/js?id=G-N10RX7RLWY`}></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G - N10RX7RLWY');
+              gtag('config', 'G-N10RX7RLWY');
             `,
           }}
         />
