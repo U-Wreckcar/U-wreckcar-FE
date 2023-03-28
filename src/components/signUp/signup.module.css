@@ -1,7 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    align-items: left;
+    align-items: center;
     justify-content: center;
     width: 800px;
     margin: 30px auto;
@@ -12,32 +12,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 100px;
-}
-
-.container input {
-    padding: 8px 16px;
-    border-radius: 4px;
-    margin: 8px;
-    height: 20px;
-    width: 240px;
-    border: 2px solid #ddd
+    margin-top: 50px;
 }
 
 .container p {
     color: rgb(177, 42, 42);
-}
-
-.container button {
-    padding: 8px 16px;
-    width: 120px;
-    height: 40px;
-    border-radius: 4px;
-    border: none;
-    background-color:#484bff; 
-    color: #fff;
-    font-weight: 400;
-    margin-top: 30px;
 }
 
 .wrap {
@@ -54,4 +33,67 @@
     align-items: center;
     justify-content: center;
     margin-top: 80px;
+}
+
+.check_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.check_wrap >  input {
+    width: 50px;
+}
+
+.confirm_button{
+    background-color:#484bff; 
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    height: 37px;
+}
+.email_input{
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin: 8px;
+    position: relative;
+    left: 30px;
+    width: 170px;
+    height: 20px;
+    border: 0.7px solid #ddd;
+}
+.confirm_input{
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin: 8px;
+    width: 170px;
+    height: 20px;
+    border: 0.7px solid #ddd;
+}
+
+.signup_input{
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin: 8px;
+    height: 20px;
+    width: 240px;
+    border: 0.7px solid #ddd;
+}
+
+.signup_input:focus{
+    outline:  0.7px solid #ddd;
+}
+
+.signup_button{
+    padding: 8px 16px;
+    width: 120px;
+    height: 40px;
+    border-radius: 4px;
+    border: none;
+    background-color:#484bff; 
+    color: #fff;
+    font-weight: 400;
+    margin-top: 30px;
 }
