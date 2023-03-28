@@ -38,9 +38,9 @@ export const RenderHeader = () => {
         <Link href={"/login"} as={"/login"}>
           <p id="render_login_btn">로그인</p>
         </Link>
-        {/* <Link href={"/signup"} as={"/signup"}>
+        <Link href={"/signup"} as={"/signup"}>
           <p id="render_login_btn">회원가입</p>
-        </Link> */}
+        </Link>
       </div>
     </nav>
   )

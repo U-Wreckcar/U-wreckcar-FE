@@ -87,8 +87,12 @@ export const patchUTM = async (data: any) => {
  * * SIGNUP
  */
 
-export const signUp =async (data:any) => {
-  await axios.post("users/signup", data)
+export const signUp = async (data:any) => {
+  try{
+    await axios.post("users/signup", data)
+  }catch{
+    alert("회원가입에 실패하셨습니다.")
+  }
 }
 
 export const confirmEmail =async (data:any) => {
@@ -99,3 +103,8 @@ export const confirmEmail =async (data:any) => {
 /**
  * * Login
  */
+
+export const localLogin = async (data:any) => {
+  const res = await axios.post("users/login", data)
+  return res
+}
