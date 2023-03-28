@@ -1,5 +1,8 @@
+import { localLogin } from "@/util/async/api"
+import { setClientHeaders } from "@/util/async/axiosConfig"
+import { setCookie } from "@/util/async/Cookie"
 import Link from "next/link"
-import { redirect } from "next/navigation"
+import { redirect, useRouter } from "next/navigation"
 import React, { Dispatch, SetStateAction } from "react"
 import { useForm } from "react-hook-form"
 import styles from "./LoginBox.module.css"
@@ -14,6 +17,8 @@ type LoginFormData = {
 }
 
 const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
+  const router = useRouter()
+
   const {
     register,
     setError,
@@ -25,13 +30,17 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
   //    로그인
   // 완료 후 쿠키에 토큰 값 담기
   // 메인페이지로 이동하기
-  const onSubmit = (data: LoginFormData) => {
+  const onSubmit = async (data: LoginFormData) => {
     try {
-      redirect("/main")
+      const res = await localLogin({ data })
+      setCookie("access_token", res.data.access_token)
+      setCookie("refresh_token", res.data.refresh_token)
+      setClientHeaders(res.data.access_token, res.data.refresh_token)
+      router.push("/main")
     } catch (err) {
-      console.log(err)
+      setError("email", { message: "e-mail을 다시 확인해주세요" })
+      setError("password", { message: "비밀번호를 다시 확인해주세요" })
     }
-    console.log(data)
   }
 
   return (
