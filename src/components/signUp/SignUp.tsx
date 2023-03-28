@@ -102,6 +102,7 @@ export default function SignUp() {
         <div className={styles.wrap}>
           <label>E-mail</label>
           <input
+            type="text"
             className={styles.email_input}
             placeholder="사용하실 이메일을 입력해주세요"
             {...register("email", {
@@ -135,6 +136,7 @@ export default function SignUp() {
         <div className={styles.wrap}>
           <label>E-mail 인증번호</label>
           <input
+            type={"text"}
             className={styles.confirm_input}
             placeholder="받으신 이메일 인증번호를 입력해주세요"
             {...register("emailNum", {
@@ -154,6 +156,7 @@ export default function SignUp() {
         <div className={styles.wrap}>
           <label>이름</label>
           <input
+            type="text"
             className={styles.signup_input}
             placeholder="성함을 입력해주세요"
             {...register("username", {
@@ -219,23 +222,25 @@ export default function SignUp() {
         </div>
         {errors.marketing_accept && <p>{errors.marketing_accept?.message}</p>}
         <div className={styles.check_wrap}>
-          <input
-            className={styles.signup_input}
-            type="checkbox"
-            {...register("marketing_accept", {
-              required: "마케팅 활용에 동의 해주세요",
-            })}
-          />
+          <label style={{ cursor: "pointer" }}>
+            <input
+              className={styles.check_input}
+              type="checkbox"
+              {...register("marketing_accept", {
+                required: "마케팅 활용에 동의 해주세요",
+              })}
+            />
+            유렉카의 개인정보 처리 방침에 동의합니다.
+          </label>
           <div
+            style={{ cursor: "pointer" }}
             onClick={() =>
               window.open(
                 "https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e"
               )
             }
           >
-            <label style={{ cursor: "pointer" }}>
-              유렉카의 개인정보 처리 방침에 동의합니다.
-            </label>
+            (상세보기)
           </div>
         </div>
         <div className={styles.button_box}>
