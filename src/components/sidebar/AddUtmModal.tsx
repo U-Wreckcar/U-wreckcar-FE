@@ -102,6 +102,7 @@ export const AddUtmModal: React.FC<ModalType> = ({
                 placeholder="메모를 입력하세요."
                 {...register("memo", {
                   required: false,
+                  maxLength: 100,
                 })}
               />
             </label>
