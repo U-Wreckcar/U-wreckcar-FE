@@ -48,11 +48,10 @@ export default function RootLayout({
     <html lang='ko' className={myFont.className}>
       <head>
         {/* Google Analytics */}
-        <Script
-          strategy='afterInteractive'
-          src={`https://www.googletagmanager.com/gtag/js?id=G-FHG5QTJZLE`}></Script>
-        <Script
-          id='gtag-init'
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=G-FHG5QTJZLE`}></script>
+        <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
