@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/next-script-for-ga */
 import "./globals.css"
 import type { Metadata } from "next"
 import { SideNav } from "@/components/sidebar/SideNav"
@@ -47,23 +48,24 @@ export default function RootLayout({
     <html lang='ko' className={myFont.className}>
       <head>
         {/* Google Analytics */}
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE}`}></script>
-        <script
+        <Script
+          strategy='afterInteractive'
+          src={`https://www.googletagmanager.com/gtag/js?id=G-FHG5QTJZLE`}></Script>
+        <Script
+          id='gtag-init'
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-N10RX7RLWY');
+              gtag('config', "G-FHG5QTJZLE");
             `,
           }}
         />
 
         {/* Google Tag Manager */}
 
-        <Script
+        {/* <Script
           id='google-analytics'
           dangerouslySetInnerHTML={{
             __html: `
@@ -74,17 +76,17 @@ export default function RootLayout({
           })(window,document,'script','dataLayer','GTM-PTJSFK5');
         `,
           }}
-        />
+        /> */}
       </head>
       <body>
         {/* Google Tag Manager (noscript) */}
-        <noscript>
+        {/* <noscript>
           <iframe
             src='https://www.googletagmanager.com/ns.html?id=GTM-PTJSFK5'
             height='0'
             width='0'
             style={{ display: "none", visibility: "hidden" }}></iframe>
-        </noscript>
+        </noscript> */}
 
         <SideNav />
         <div>
