@@ -10,13 +10,16 @@
 .container form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items:flex-start;
     justify-content: center;
     margin-top: 50px;
 }
 
 .container p {
+    display: inline-block;
     color: rgb(177, 42, 42);
+    text-align: left;
+    transform: translateX(122px);
 }
 
 .wrap {
@@ -96,4 +99,10 @@
     color: #fff;
     font-weight: 400;
     margin-top: 30px;
+}
+
+.button_box{
+    display: flex;
+    align-items: center;
+    transform: translateX(120px);
 }
