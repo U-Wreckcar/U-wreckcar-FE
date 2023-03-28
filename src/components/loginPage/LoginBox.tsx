@@ -80,13 +80,19 @@ const LoginBox = () => {
         <div>
           {!local ? (
             <>
+              <div onClick={() => setLocal(true)}>
+                <Image src={logo} alt={""} width={40} height={15} />
+                <button className={styles.email_btn}>
+                  이메일로 바로 시작하기
+                </button>
+              </div>
               <div>
                 <Image src={kakao_login} alt="" width={15} height={15} />
                 <button className={styles.kakao_btn} onClick={onClickKakaoBtn}>
                   카카오로 1초만에 시작하기
                 </button>
               </div>
-              <div>
+              {/* <div>
                 <Image src={naver_login} alt="" width={15} height={15} />
                 <button className={styles.naver_btn} onClick={onClickNaverBtn}>
                   네이버로 1초만에 시작하기
@@ -100,13 +106,7 @@ const LoginBox = () => {
                 >
                   구글로 1초만에 시작하기
                 </button>
-              </div>
-              <div onClick={() => setLocal(true)}>
-                <Image src={logo} alt={""} width={40} height={15} />
-                <button className={styles.email_btn}>
-                  이메일로 바로 시작하기
-                </button>
-              </div>
+              </div> */}
             </>
           ) : (
             <>
