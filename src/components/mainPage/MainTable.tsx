@@ -44,6 +44,7 @@ import { getCookie } from "@/util/async/Cookie"
 import BtnAlert from "@/shared/button/Alert"
 import { useSelector } from "react-redux"
 import { AlertTitle, Alert } from "@mui/material"
+import ShortenModal from "./ShortenModal"
 declare module "@tanstack/table-core" {
   interface FilterFns {
     fuzzy: FilterFn<unknown>
@@ -330,6 +331,14 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
       })
     }
   }
+  const [shortenCopy, setShortenCopy] = useState(false)
+  const onShortenCopyBtn = (text: string) => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        setShortenCopy(!shortenCopy)
+      })
+    }
+  }
 
   useEffect(() => {
     if (alert) {
@@ -475,7 +484,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               <div className={styles.header_filter_box}>
                                 <Image
                                   src={blackFilterImg}
-                                  alt="filter"
+                                  alt='filter'
                                   width={25}
                                   height={25}
                                 />
@@ -595,12 +604,15 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 }>{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
+                          {shortenCopy && (
+                            <ShortenModal setShortenCopy={setShortenCopy} />
+                          )}
                           {cell.column.id === "shorten_url" && (
                             <Tooltip title={`${cell.getValue()}`}>
                               <div
                                 style={{ cursor: "pointer" }}
                                 onClick={() =>
-                                  onClickCopyBtn(`${cell.getValue()}`)
+                                  onShortenCopyBtn(`${cell.getValue()}`)
                                 }
                                 className={
                                   styles.td_box
