@@ -49,6 +49,7 @@ import { redirect, useRouter } from "next/navigation"
 import { useSelector } from "react-redux"
 import { AlertTitle, Alert } from "@mui/material"
 import blackFilterImg from "assets/b_filter.png"
+import ShortenModal from "./ShortenModal"
 
 export type MainTableProps = {
   setSummary: Dispatch<SetStateAction<boolean>>
@@ -290,6 +291,14 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
     }
   }, [warningAlert])
 
+  const [shortenCopy, setShortenCopy] = useState(false)
+  const onShortenCopyBtn = (text: string) => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        setShortenCopy(!shortenCopy)
+      })
+    }
+  }
   return (
     <>
       <div className={styles.container}>
@@ -410,7 +419,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               <div className={styles.header_filter_box}>
                                 <Image
                                   src={blackFilterImg}
-                                  alt="filter"
+                                  alt='filter'
                                   width={25}
                                   height={25}
                                 />
@@ -491,10 +500,18 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             <CopyButton
                               text={`${cell.getValue()}`}></CopyButton>
                           )}
-                          {cell.column.id === "shorten_url" && (
-                            <CopyButton
-                              text={`${cell.getValue()}`}></CopyButton>
+                          {shortenCopy && (
+                            <ShortenModal setShortenCopy={setShortenCopy} />
                           )}
+                          <div
+                            onClick={() => {
+                              setShortenCopy(true)
+                            }}>
+                            {cell.column.id === "shorten_url" && (
+                              <CopyButton
+                                text={`${cell.getValue()}`}></CopyButton>
+                            )}
+                          </div>
                           {cell.column.id === "utm_url" && (
                             <Tooltip title={`${cell.getValue()}`}>
                               <button
