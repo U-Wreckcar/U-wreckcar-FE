@@ -226,15 +226,27 @@ export default function SignUp() {
               required: "마케팅 활용에 동의 해주세요",
             })}
           />
-          <label>유렉카의 개인정보 처리 방침에 동의합니다.</label>
+          <div
+            onClick={() =>
+              window.open(
+                "https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e"
+              )
+            }
+          >
+            <label style={{ cursor: "pointer" }}>
+              유렉카의 개인정보 처리 방침에 동의합니다.
+            </label>
+          </div>
         </div>
-        <button
-          className={styles.signup_button}
-          type="submit"
-          disabled={isSubmitting}
-        >
-          회원가입
-        </button>
+        <div className={styles.button_box}>
+          <button
+            className={styles.signup_button}
+            type="submit"
+            disabled={isSubmitting}
+          >
+            회원가입
+          </button>
+        </div>
       </form>
     </div>
   )
