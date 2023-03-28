@@ -45,7 +45,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='ko' className={myFont.className}>
-      <Head>
+      <head>
         {/* Google Analytics */}
         <script
           async
@@ -63,7 +63,8 @@ export default function RootLayout({
 
         {/* Google Tag Manager */}
 
-        <script
+        <Script
+          id='google-analytics'
           dangerouslySetInnerHTML={{
             __html: `
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -74,7 +75,7 @@ export default function RootLayout({
         `,
           }}
         />
-      </Head>
+      </head>
       <body>
         {/* Google Tag Manager (noscript) */}
         <noscript>
