@@ -126,25 +126,25 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
             <span className='category_text'>새 UTM 생성하기</span>
           </div>
         </Link>
-        <div className={styles.utm_category_item}>
-          <Image
-            className={styles.icon}
-            width={24}
-            height={24}
-            src={addutm}
-            alt='Add_UTM'
-          />
-          <Link className={styles.link} href={"/main"}>
-            <span className={styles.link} onClick={() => setModal(!modal)}>
+        <Link className={styles.link} href={"/main"}>
+          <span className={styles.link} onClick={() => setModal(!modal)}>
+            <div className={styles.utm_category_item}>
+              <Image
+                className={styles.icon}
+                width={24}
+                height={24}
+                src={addutm}
+                alt='Add_UTM'
+              />
               기존 UTM 추가하기
-            </span>
-          </Link>
-          <AddUtmModal
-            isOpen={modal}
-            onRequestClose={closeModal}
-            style={customStyles}
-          />
-        </div>
+              <AddUtmModal
+                isOpen={modal}
+                onRequestClose={closeModal}
+                style={customStyles}
+              />
+            </div>
+          </span>
+        </Link>
       </div>
 
       <div className={styles.bottom_box}>
