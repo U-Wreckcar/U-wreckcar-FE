@@ -604,15 +604,15 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 }>{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
-                          {shortenCopy && (
+                          {/* {shortenCopy && (
                             <ShortenModal setShortenCopy={setShortenCopy} />
-                          )}
+                          )} */}
                           {cell.column.id === "shorten_url" && (
                             <Tooltip title={`${cell.getValue()}`}>
                               <div
                                 style={{ cursor: "pointer" }}
                                 onClick={() =>
-                                  onShortenCopyBtn(`${cell.getValue()}`)
+                                  onClickCopyBtn(`${cell.getValue()}`)
                                 }
                                 className={
                                   styles.td_box

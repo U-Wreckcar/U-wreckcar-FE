@@ -500,18 +500,18 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             <CopyButton
                               text={`${cell.getValue()}`}></CopyButton>
                           )}
-                          {shortenCopy && (
+                          {/* {shortenCopy && (
                             <ShortenModal setShortenCopy={setShortenCopy} />
-                          )}
-                          <div
+                          )} */}
+                          {/* <div
                             onClick={() => {
                               setShortenCopy(true)
-                            }}>
-                            {cell.column.id === "shorten_url" && (
-                              <CopyButton
-                                text={`${cell.getValue()}`}></CopyButton>
-                            )}
-                          </div>
+                            }}> */}
+                          {cell.column.id === "shorten_url" && (
+                            <CopyButton
+                              text={`${cell.getValue()}`}></CopyButton>
+                          )}
+                          {/* </div> */}
                           {cell.column.id === "utm_url" && (
                             <Tooltip title={`${cell.getValue()}`}>
                               <button
