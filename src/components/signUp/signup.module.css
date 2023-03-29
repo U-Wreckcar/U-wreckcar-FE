@@ -22,6 +22,14 @@
     transform: translateX(122px);
 }
 
+.container span {
+    display: inline-block;
+    color: #484bff; 
+    font-size: 12px;
+    text-align: left;
+    transform: translateX(122px);
+}
+
 .wrap {
     width: 400px;
     display: flex;
