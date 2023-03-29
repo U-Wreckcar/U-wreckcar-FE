@@ -142,6 +142,7 @@
   top: 50px;
   left: 2%;
   /* transform: translateX(-50%); */
+  /* pointer-events: none; */
   padding: 0;
 }
 
