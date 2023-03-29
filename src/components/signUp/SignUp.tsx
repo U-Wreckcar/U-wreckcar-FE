@@ -27,12 +27,12 @@ export default function SignUp() {
   const router = useRouter()
 
   // 이미 로그인 한 사람은 메인으로
-  useEffect(() => {
-    const cookie = getCookie("access_token")
-    if (cookie) {
-      router.push("/main")
-    }
-  }, [])
+  // useEffect(() => {
+  //   const cookie = getCookie("access_token")
+  //   if (cookie) {
+  //     router.push("/main")
+  //   }
+  // }, [])
 
   const {
     register,
@@ -44,23 +44,25 @@ export default function SignUp() {
 
   //   이메일 인증 발송
   // 1. 이메일 인증에 실패했을 경우 -> 중복된 이메일 문구 -> catch문
-  // 2. 이메일 인증번호와 틀린 경우 -> 이메일 인증 번호 확인 문구 -> try 내 if 문
   const emailConfirm = async () => {
-    const email = getValues("email")
-
-    setEmail(email)
+    const emailValue = getValues("email")
+    const emailRegex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}")
     try {
-      const res = await confirmEmail({ data: { email: email } })
-      setConfirmNum(res.data.verificationCode)
-      setEmailNum(1)
+      if (emailRegex.test(emailValue)) {
+        const res = await confirmEmail({ data: { email: emailValue } })
+        setConfirmNum(res.data.verificationCode)
+        setEmailNum(1)
+      } else {
+        setError("email", { message: "이메일 형식을 확인해주세요." })
+      }
     } catch (err) {
       setError("email", { message: "중복된 이메일은 사용하실 수 없습니다." })
     }
   }
 
   //인증번호 확인
+  // 1. 이메일 인증번호와 틀린 경우 -> 이메일 인증 번호 확인 문구 -> if 문
   const confirmEmailNum = async () => {
-
     const emailNum = getValues("emailNum")
     if (emailNum === confirmNum) {
       setEmailNum(2)
@@ -69,26 +71,27 @@ export default function SignUp() {
     }
   }
 
-  //    회원가입
-  // 완료 후 로그인페이지로
-
+  // 회원가입
+  //1. if문으로 비밀번호와 비밀번호 확인 로직 -> 다른 경우 else로 넘어감
+  // 2. 완료 후 로그인페이지로
   const onSubmit = async (data: FormData) => {
     const password = getValues("password")
     const passwordConfirm = getValues("confirmPw")
     if (password === passwordConfirm) {
       try {
-        signUp({
+        const res: any = await signUp({
           data: {
-            email,
+            email: data.email,
             company_name: data.company_name,
             marketing_accept: data.marketing_accept,
             password: data.password,
             username: data.username,
           },
-        }).then(() => {
+        })
+        if (res) {
           alert("유렉카의 회원이 되신 걸 환영합니다!")
           router.push("/login")
-        })
+        }
       } catch (err) {
         console.log(err)
       }
@@ -102,11 +105,10 @@ export default function SignUp() {
       <h1>유렉카 회원가입</h1>
       <h4>반갑습니다! 유렉카의 새로운 회원님!</h4>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {errors.email && <p>{errors.email?.message}</p>}
         <div className={styles.wrap}>
           <label>E-mail</label>
           <input
-            type="text"
+            type="email"
             className={styles.email_input}
             placeholder="사용하실 이메일을 입력해주세요"
             {...register("email", {
@@ -135,8 +137,8 @@ export default function SignUp() {
             인증 발송
           </button>
         </div>
-
-        {errors.emailNum && <p>{errors.emailNum?.message}</p>}
+        {errors.email && <p>{errors.email?.message}</p>}
+        {emailNum === 1 && <span>인증번호 발송에 성공했습니다.</span>}
         <div className={styles.wrap}>
           <label>E-mail 인증번호</label>
           <input
@@ -156,7 +158,8 @@ export default function SignUp() {
             인증 확인
           </button>
         </div>
-        {errors.username && <p>{errors.username?.message}</p>}
+        {errors.emailNum && <p>{errors.emailNum?.message}</p>}
+        {emailNum === 2 && <span>인증번호가 일치합니다.</span>}
         <div className={styles.wrap}>
           <label>이름</label>
           <input
@@ -176,7 +179,7 @@ export default function SignUp() {
             })}
           />
         </div>
-        {errors.password && <p>{errors.password?.message}</p>}
+        {errors.username && <p>{errors.username?.message}</p>}
         <div className={styles.wrap}>
           <label>비밀번호</label>
           <input
@@ -201,7 +204,7 @@ export default function SignUp() {
             })}
           />
         </div>
-        {errors.confirmPw && <p>{errors.confirmPw?.message}</p>}
+        {errors.password && <p>{errors.password?.message}</p>}
         <div className={styles.wrap}>
           <label>비밀번호 확인</label>
           <input
@@ -213,7 +216,7 @@ export default function SignUp() {
             })}
           />
         </div>
-        {errors.company_name && <p>{errors.company_name?.message}</p>}
+        {errors.confirmPw && <p>{errors.confirmPw?.message}</p>}
         <div className={styles.wrap}>
           <label>회사이름</label>
           <input
@@ -224,7 +227,8 @@ export default function SignUp() {
             })}
           />
         </div>
-        {errors.marketing_accept && <p>{errors.marketing_accept?.message}</p>}
+        {errors.company_name && <p>{errors.company_name?.message}</p>}
+
         <div className={styles.check_wrap}>
           <label style={{ cursor: "pointer" }}>
             <input
@@ -247,6 +251,7 @@ export default function SignUp() {
             (상세보기)
           </div>
         </div>
+        {errors.marketing_accept && <p>{errors.marketing_accept?.message}</p>}
         <div className={styles.button_box}>
           <button
             className={styles.signup_button}
