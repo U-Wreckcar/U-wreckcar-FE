@@ -77,6 +77,7 @@ export default function SignUp() {
   const onSubmit = async (data: FormData) => {
     const password = getValues("password")
     const passwordConfirm = getValues("confirmPw")
+    console.log(data)
     if (password === passwordConfirm) {
       try {
         const res: any = await signUp({
@@ -108,9 +109,9 @@ export default function SignUp() {
         <div className={styles.wrap}>
           <label>E-mail</label>
           <input
-            type="email"
+            type='email'
             className={styles.email_input}
-            placeholder="사용하실 이메일을 입력해주세요"
+            placeholder='사용하실 이메일을 입력해주세요'
             {...register("email", {
               required: "이메일은 필수 입력입니다.",
               minLength: {
@@ -131,9 +132,8 @@ export default function SignUp() {
           />
           <button
             className={styles.confirm_button}
-            type="button"
-            onClick={emailConfirm}
-          >
+            type='button'
+            onClick={emailConfirm}>
             인증 발송
           </button>
         </div>
@@ -144,7 +144,7 @@ export default function SignUp() {
           <input
             type={"text"}
             className={styles.confirm_input}
-            placeholder="받으신 이메일 인증번호를 입력해주세요"
+            placeholder='받으신 이메일 인증번호를 입력해주세요'
             {...register("emailNum", {
               required: "이메일 인증번호를 입력해주세요.",
               disabled: emailNum > 1 ? true : false,
@@ -152,9 +152,8 @@ export default function SignUp() {
           />
           <button
             className={styles.confirm_button}
-            type="button"
-            onClick={confirmEmailNum}
-          >
+            type='button'
+            onClick={confirmEmailNum}>
             인증 확인
           </button>
         </div>
@@ -163,9 +162,9 @@ export default function SignUp() {
         <div className={styles.wrap}>
           <label>이름</label>
           <input
-            type="text"
+            type='text'
             className={styles.signup_input}
-            placeholder="성함을 입력해주세요"
+            placeholder='성함을 입력해주세요'
             {...register("username", {
               required: "성함을 입력해주세요",
               minLength: {
@@ -184,8 +183,8 @@ export default function SignUp() {
           <label>비밀번호</label>
           <input
             className={styles.signup_input}
-            type="password"
-            placeholder="영문,숫자,특수문자 포함 8자 이상 20자 이하"
+            type='password'
+            placeholder='영문,숫자,특수문자 포함 8자 이상 20자 이하'
             {...register("password", {
               required: "비밀번호는 필수 입력입니다.",
               minLength: {
@@ -209,8 +208,8 @@ export default function SignUp() {
           <label>비밀번호 확인</label>
           <input
             className={styles.signup_input}
-            type="password"
-            placeholder="비밀번호를 다시 입력해주세요"
+            type='password'
+            placeholder='비밀번호를 다시 입력해주세요'
             {...register("confirmPw", {
               required: "비밀번호 확인을 해주세요",
             })}
@@ -221,7 +220,7 @@ export default function SignUp() {
           <label>회사이름</label>
           <input
             className={styles.signup_input}
-            placeholder="회사이름을 입력해주세요"
+            placeholder='회사이름을 입력해주세요'
             {...register("company_name", {
               required: "회사이름을 입력해주세요",
             })}
@@ -233,7 +232,7 @@ export default function SignUp() {
           <label style={{ cursor: "pointer" }}>
             <input
               className={styles.check_input}
-              type="checkbox"
+              type='checkbox'
               {...register("marketing_accept", {
                 required: "마케팅 활용에 동의 해주세요",
               })}
@@ -246,8 +245,7 @@ export default function SignUp() {
               window.open(
                 "https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e"
               )
-            }
-          >
+            }>
             (상세보기)
           </div>
         </div>
@@ -255,9 +253,8 @@ export default function SignUp() {
         <div className={styles.button_box}>
           <button
             className={styles.signup_button}
-            type="submit"
-            disabled={isSubmitting}
-          >
+            type='submit'
+            disabled={isSubmitting}>
             회원가입
           </button>
         </div>
