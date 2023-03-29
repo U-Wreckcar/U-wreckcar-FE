@@ -89,8 +89,10 @@ export const patchUTM = async (data: any) => {
 
 export const signUp = async (data:any) => {
   try{
-    await axios.post("users/signup", data)
-  }catch{
+   const res = await axios.post("users/signup", data)
+    return res
+  }catch(err){
+    console.log(err)
     alert("회원가입에 실패하셨습니다.")
   }
 }
