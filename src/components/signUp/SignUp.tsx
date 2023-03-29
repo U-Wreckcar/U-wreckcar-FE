@@ -77,7 +77,7 @@ export default function SignUp() {
   const onSubmit = async (data: FormData) => {
     const password = getValues("password")
     const passwordConfirm = getValues("confirmPw")
-    if (password === passwordConfirm) {
+    if (password === passwordConfirm && emailNum === 2) {
       try {
         const res: any = await signUp({
           data: {
@@ -95,8 +95,12 @@ export default function SignUp() {
       } catch (err) {
         console.log(err)
       }
-    } else {
+    } else if (password !== passwordConfirm) {
       setError("confirmPw", { message: "비밀번호를 동일하게 적어주세요." })
+    } else if (emailNum === 0) {
+      setError("email", { message: "이메일 인증번호발송을 해주세요." })
+    } else if (emailNum === 1) {
+      setError("email", { message: "인증번호를 확인해주세요." })
     }
   }
 
