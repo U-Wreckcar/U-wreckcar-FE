@@ -16,6 +16,8 @@
   /* box-shadow: rgba(113, 113, 117, 0.2) 0px 7px 29px 0px; */
   width: 720px;
   height: 320px;
+
+  z-index: 100000;
 }
 .container h1 {
   margin-bottom: 30px;

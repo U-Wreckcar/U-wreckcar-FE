@@ -133,7 +133,6 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                         placeholder='https://를 붙여서 입력해 주세요.'
                         // onInput={requeirFn}
                         type='url'
-                        // pattern='https://.*'
                         {...register(`utms.${index}.utm_url` as const, {
                           required: true,
                           maxLength: 200,
@@ -151,7 +150,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                       )} */}
 
                       <input
-                        // placeholder="utm_source"
+                        placeholder='ex) google, naver, facebook…'
                         // onInput={requeirFn}
                         {...register(`utms.${index}.utm_source` as const, {
                           required: true,
@@ -166,7 +165,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
 
                       <input
                         // onInput={requeirFn}
-                        // placeholder="utm_medium"
+                        placeholder='ex) email, display, cpc…'
                         {...register(`utms.${index}.utm_medium` as const, {
                           required: true,
                           maxLength: 20,
@@ -181,7 +180,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
 
                       <input
                         // onInput={requeirFn}
-                        // placeholder="utm_campaign_name"
+                        placeholder='ex) close_beta, open_beta, open…'
                         {...register(
                           `utms.${index}.utm_campaign_name` as const,
                           { maxLength: 20, required: true }
@@ -194,7 +193,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                       />
 
                       <input
-                        // placeholder="utm_campaign_id"
+                        placeholder='ex) 20230312_UCB, 20230329_abc…'
                         // onInput={requeirFn}
                         {...register(`utms.${index}.utm_campaign_id` as const, {
                           // pattern: /[a-z]/i,
@@ -206,7 +205,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                       />
                       <input
                         // onInput={requeirFn}
-                        // placeholder="utm_term"
+                        placeholder='ex) GA, UTM..'
                         {...register(`utms.${index}.utm_term` as const, {
                           maxLength: 20,
                         })}
@@ -217,7 +216,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
 
                       <input
                         // onInput={requeirFn}
-                        // placeholder="utm_campaign_content"
+                        placeholder='ex) 1st, 2nd…'
                         {...register(`utms.${index}.utm_content` as const, {
                           maxLength: 20,
                         })}
@@ -228,7 +227,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
 
                       <textarea
                         className={`${styles.active}`}
-                        placeholder='100자까지 가능합니다'
+                        placeholder='ex) 캠페인 코멘트, 세션 수 등의 정보'
                         {...register(`utms.${index}.utm_memo` as const, {
                           maxLength: 100,
                         })}
