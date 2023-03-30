@@ -17,27 +17,6 @@ export const metadata: Metadata = {
   icons: {
     icon: "./favicon.ico",
   },
-  // openGraph: {
-  //   title: '유렉카',
-  //   description: '복잡한 UTM을 빠르게 만들자!',
-  //   url: 'https://utm.works',
-  //   siteName: '유렉카',
-  //   images: [
-  //     {
-  //       url: 'https://utm.works/og.png',
-  //       width: 800,
-  //       height: 600,
-  //     },
-  //     {
-  //       url: 'https://utm.works/og-alt.png',
-  //       width: 1200,
-  //       height: 600,
-  //       alt: 'OG IMAGE',
-  //     },
-  //   ],
-  //   locale: 'ko-kr',
-  //   type: 'website',
-  // },
 }
 export default function RootLayout({
   children,
@@ -50,14 +29,14 @@ export default function RootLayout({
         {/* Google Analytics */}
         <script
           async
-          src={`https://www.googletagmanager.com/gtag/js?id=G-FHG5QTJZLE`}></script>
+          src={`https://www.googletagmanager.com/gtag/js?id=G-N10RX7RLWY`}></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', "G-FHG5QTJZLE");
+              gtag('config', "G-N10RX7RLWY");
             `,
           }}
         />
