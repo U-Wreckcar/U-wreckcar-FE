@@ -22,7 +22,6 @@ type FormData = {
 export default function SignUp() {
   const [emailNum, setEmailNum] = useState(0)
   const [confirmNum, setConfirmNum] = useState("")
-
   const [email, setEmail] = useState("")
   const router = useRouter()
 
@@ -46,6 +45,7 @@ export default function SignUp() {
   // 1. 이메일 인증에 실패했을 경우 -> 중복된 이메일 문구 -> catch문
   const emailConfirm = async () => {
     const emailValue = getValues("email")
+    setEmail(emailValue)
     const emailRegex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}")
     try {
       if (emailRegex.test(emailValue)) {
@@ -81,7 +81,7 @@ export default function SignUp() {
       try {
         const res: any = await signUp({
           data: {
-            email: data.email,
+            email,
             company_name: data.company_name,
             marketing_accept: data.marketing_accept,
             password: data.password,

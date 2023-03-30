@@ -102,6 +102,10 @@ export const confirmEmail =async (data:any) => {
   return res
 }
 
+export const verifyEmailNum =async (data:any) => {
+  const res = await axios.post("users/emailverify", data)
+  return res
+}
 /**
  * * Login
  */
