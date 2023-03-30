@@ -1,5 +1,5 @@
 "use client"
-import { confirmEmail, signUp } from "@/util/async/api"
+import { confirmEmail, signUp, verifyEmailNum } from "@/util/async/api"
 import { getCookie } from "@/util/async/Cookie"
 import { style } from "@mui/system"
 import Link from "next/link"
@@ -50,8 +50,9 @@ export default function SignUp() {
     try {
       if (emailRegex.test(emailValue)) {
         const res = await confirmEmail({ data: { email: emailValue } })
-        setConfirmNum(res.data.verificationCode)
-        setEmailNum(1)
+        if (res.status === 200) {
+          setEmailNum(1)
+        }
       } else {
         setError("email", { message: "이메일 형식을 확인해주세요." })
       }
@@ -64,9 +65,14 @@ export default function SignUp() {
   // 1. 이메일 인증번호와 틀린 경우 -> 이메일 인증 번호 확인 문구 -> if 문
   const confirmEmailNum = async () => {
     const emailNum = getValues("emailNum")
-    if (emailNum === confirmNum) {
-      setEmailNum(2)
-    } else {
+    try {
+      const res = await verifyEmailNum({
+        data: { email, verificationCode: emailNum },
+      })
+      if (res.status === 200) {
+        setEmailNum(2)
+      }
+    } catch (err) {
       setError("emailNum", { message: "이메일 인증번호를 확인해주세요." })
     }
   }
