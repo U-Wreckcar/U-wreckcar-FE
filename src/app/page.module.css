@@ -3,7 +3,7 @@
   overflow: hidden;
 }
 .section_one {
-  background-image: url('../../src/assets/sectionone.png');
+  background-image: url("../../src/assets/sectionone.png");
   background-size: 98% 1000px;
   background-position: center;
   height: 1000px;
@@ -262,7 +262,7 @@
   justify-content: center;
   align-items: center;
   gap: 150px;
-  background-image: url('../../src/assets/sectionsix.png');
+  background-image: url("../../src/assets/sectionsix.png");
   background-size: auto;
   background-position: center;
   width: 100%;
@@ -322,7 +322,7 @@
   justify-content: center;
   text-align: center;
   align-items: center;
-  background-image: url('../../src/assets/sectionseven.png');
+  background-image: url("../../src/assets/sectionseven.png");
   background-size: cover;
   background-position: center;
   width: 100%;
