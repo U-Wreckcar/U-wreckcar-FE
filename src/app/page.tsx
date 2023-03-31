@@ -29,13 +29,13 @@ export default function Home() {
   const [index, setIndex] = useState(0)
   const [alert, setAlert] = useState(true)
 
-  useEffect(() => {
-    const intervalText = setInterval(() => {
-      setIndex((idx) => (idx + 1) % texts.length)
-    }, 850)
+  // useEffect(() => {
+  //   const intervalText = setInterval(() => {
+  //     setIndex((idx) => (idx + 1) % texts.length)
+  //   }, 850)
 
-    return () => clearInterval(intervalText)
-  }, [])
+  //   return () => clearInterval(intervalText)
+  // }, [])
 
   const onClickKakao = () => {
     window.open("https://open.kakao.com/o/sbK3Rfaf", "_blank")
@@ -75,10 +75,10 @@ export default function Home() {
         <RenderModal isOpen={alert} onRequestClose={() => setAlert(false)} />
       )}
       <MediaContextProvider>
-        <Media at="sm">
+        <Media at='sm'>
           <Mobile />
         </Media>
-        <Media greaterThan="sm">
+        <Media greaterThan='sm'>
           {/* <IsRender /> */}
           <div>
             <div className={styles.container}>
@@ -90,13 +90,13 @@ export default function Home() {
                     <p>UTM 업무 1시간? 유렉카에서는 3분이면 OK</p>
                   </div>
                   <Link href={"/login"}>
-                    <button id="free_btn">무료로 시작하기</button>
+                    <button id='free_btn'>무료로 시작하기</button>
                   </Link>
                 </article>
               </section>
               <section className={styles.section_one_two}>
                 <article>
-                  <Image src={section_one_two} alt="Img" />
+                  <Image src={section_one_two} alt='Img' />
                 </article>
               </section>
               <section className={styles.section_two}>
@@ -109,10 +109,10 @@ export default function Home() {
                 </article>
                 <article>
                   <div className={styles.section_two_img}>
-                    <Image src={section_two_right_ns} alt="Left_img" />
+                    <Image src={section_two_right_ns} alt='Left_img' />
                   </div>
                   <div className={styles.section_two_img}>
-                    <Image src={section_two_left_ns} alt="Right_img" />
+                    <Image src={section_two_left_ns} alt='Right_img' />
                   </div>
                 </article>
               </section>
@@ -131,12 +131,12 @@ export default function Home() {
                   </p>
                 </article>
                 <article>
-                  <Image src={create} alt="Gif" />
+                  <Image src={create} alt='Gif' />
                 </article>
               </section>
               <section className={styles.section_four}>
                 <article>
-                  <Image src={f_search} alt="Gif" />
+                  <Image src={f_search} alt='Gif' />
                 </article>
                 <article>
                   <p className={styles.sub_title}>
@@ -171,13 +171,13 @@ export default function Home() {
                   </p>
                 </article>
                 <article>
-                  <Image src={out} alt="Gif" />
+                  <Image src={out} alt='Gif' />
                 </article>
               </section>
               <section className={styles.section_six}>
                 <article>
                   <div className={styles.six_card_item}>
-                    <Image src={six_one} alt="IMG" />
+                    <Image src={six_one} alt='IMG' />
                     <h2>
                       여러개의 UTM을
                       <br />
@@ -187,7 +187,7 @@ export default function Home() {
                     <p>추가하기 버튼 클릭 한 번으로 간편하게 UTM동시 생성!</p>
                   </div>
                   <div className={styles.six_card_item}>
-                    <Image src={six_two} alt="IMG" />
+                    <Image src={six_two} alt='IMG' />
                     <h2>
                       자주 쓰는 파라미터를
                       <br />
@@ -196,7 +196,7 @@ export default function Home() {
                     <p>북마크 기능을 활용하여 간편하고 빠르게 UTM 생성!</p>
                   </div>
                   <div className={styles.six_card_item}>
-                    <Image src={six_three} alt="IMG" />
+                    <Image src={six_three} alt='IMG' />
                     <h2>
                       Shorten UTM기능으로
                       <br />
@@ -213,14 +213,14 @@ export default function Home() {
                   <Image
                     className={styles.seven_first_img}
                     src={seven_img}
-                    alt="Img"
+                    alt='Img'
                   />
                   <Link href={"/login"}>
                     <Image
-                      id="start_btn"
+                      id='start_btn'
                       className={styles.seven_button_img}
                       src={seven_button}
-                      alt="img"
+                      alt='img'
                     />
                   </Link>
                 </article>
@@ -257,7 +257,7 @@ export default function Home() {
                 <div className={styles.e_line}>
                   <Image
                     src={copyright}
-                    alt="copyright"
+                    alt='copyright'
                     width={168}
                     height={15}
                   />
