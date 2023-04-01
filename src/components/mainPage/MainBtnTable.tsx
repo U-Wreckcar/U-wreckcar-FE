@@ -50,6 +50,7 @@ import { useSelector } from "react-redux"
 import { AlertTitle, Alert } from "@mui/material"
 import blackFilterImg from "assets/b_filter.png"
 import ShortenModal from "./ShortenModal"
+import axios from "axios"
 
 export type MainTableProps = {
   setSummary: Dispatch<SetStateAction<boolean>>
@@ -102,7 +103,20 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
     setData(res.data)
   }
 
+  const originAxios = async (resCookie: any) => {
+    console.log("쿠키오나?", resCookie)
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API}utms`, {
+      headers: {
+        "Content-Type": "application/json",
+        "X-Refresh-Token": `Bearer ${resCookie}`,
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+      },
+    })
+    console.log("resTest", res)
+  }
   useEffect(() => {
+    const resCookie = getCookie("token")
+    originAxios(resCookie)
     setTimeout(() => {
       getData()
     }, 500)
