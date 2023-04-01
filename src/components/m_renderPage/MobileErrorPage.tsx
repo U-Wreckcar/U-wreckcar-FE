@@ -1,12 +1,12 @@
 import React from "react"
 import Image from "next/image"
 import styles from "./mobile.module.css"
-
 import msgImg from "assets/m_web.png"
 import video from "assets/video/preview.mp4"
 export default function MobileErrorPage() {
   return (
     <div className={styles.error_container}>
+
       <video
         className={styles.m_video}
         src='https://velog.velcdn.com/images/gcodaily/post/358c37f7-252a-44a6-a65a-374d030436a9/image.mp4'
@@ -27,6 +27,7 @@ export default function MobileErrorPage() {
           웹에서 다시 만나요!
         </p>
       </div>
+
     </div>
   )
 }
