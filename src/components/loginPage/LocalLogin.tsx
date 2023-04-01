@@ -33,8 +33,9 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
   const onSubmit = async (data: LoginFormData) => {
     try {
       const res = await localLogin({ data })
+
       setCookie("refresh_token", res.data.refresh_token)
-      setClientHeaders(res.data.access_token, res.data.refresh_token)
+      setClientHeaders(res.data.refresh_token)
       router.push("/main")
     } catch (err) {
       setError("email", { message: "e-mail을 다시 확인해주세요" })
