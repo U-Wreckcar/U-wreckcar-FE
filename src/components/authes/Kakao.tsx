@@ -25,7 +25,9 @@ const KakaoCallback = () => {
         .then(async (response) => {
           const res = await response.json()
           setCookie("token", res.token)
+          console.log("kakaoToken", res.token)
           setClientHeaders(res.token)
+          console.log("setClientHeaders", res.token)
         })
         .then(() => {
           router.push("/main")
