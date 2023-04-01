@@ -1,8 +1,6 @@
-import React from "react"
-import "./globals.css"
-import { Provider } from "react-redux"
 import localFont from "next/font/local"
 import store from "@/redux/store/store"
+import { Provider } from "react-redux"
 
 /*
  * Type
