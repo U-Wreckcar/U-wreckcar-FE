@@ -17,6 +17,7 @@ import bg_six_one from "assets/render/bg-six-one.png"
 import bg_six_two from "assets/render/bg-six-two.png"
 import bg_six_three from "assets/render/bg-six-three.png"
 
+import seven_sub_img from "assets/render/seven_sub_img.png"
 import seven_img from "assets/render/seven_img.png"
 import seven_button from "assets/render/seven_button.png"
 
@@ -26,7 +27,6 @@ import out from "assets/gif/out.gif"
 
 import copyright from "assets/copyright.png"
 import Link from "next/link"
-import Mobile from "@/components/m_renderPage/Mobile"
 
 import RenderModal from "@/components/renderModal/RenderModal"
 export default function Home() {
@@ -222,6 +222,11 @@ export default function Home() {
               <Image
                 className={styles.seven_first_img}
                 src={seven_img}
+                alt='Img'
+              />
+              <Image
+                className={styles.seven_sub_img}
+                src={seven_sub_img}
                 alt='Img'
               />
               <Link href={"/login"}>
