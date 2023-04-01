@@ -36,8 +36,8 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
 
   const router = useRouter()
   const logOut = () => {
-    removeCookie("access_token")
-    removeCookie("refresh_token")
+    removeCookie("token")
+
     router.push("/")
     setModal(!modal)
   }
