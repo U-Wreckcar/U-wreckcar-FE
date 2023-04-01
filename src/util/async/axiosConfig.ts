@@ -14,6 +14,7 @@ const instance = axios.create({
 
 export const setClientHeaders = (token: string) => {
   instance.interceptors.request.use(async function (config: any) {
+    console.log("setClient", token)
     config.headers["X-Refresh-Token"] = `Bearer ${token}`
     return config
   })
