@@ -33,7 +33,7 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
   const onSubmit = async (data: LoginFormData) => {
     try {
       const res = await localLogin({ data })
-      setCookie("refresh_token", res.data.token)
+      setCookie("token", res.data.token)
       setClientHeaders(res.data.token)
       router.push("/main")
     } catch (err) {
