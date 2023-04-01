@@ -18,7 +18,7 @@ const LoginBox = () => {
   const [noti, setNoti] = useState(true)
 
   useEffect(() => {
-    const cookie = getCookie("access_token")
+    const cookie = getCookie("token")
     if (cookie) {
       redirect("/main")
     }
@@ -71,7 +71,7 @@ const LoginBox = () => {
             U렉카와 함께 쉽고 빠른 업무를 느껴보세요!
           </p>
           {alert && (
-            <Alert className={styles.alert} severity="warning">
+            <Alert className={styles.alert} severity='warning'>
               아직 개발 중입니다...!{" "}
               <strong>카카오로 바로 시작해보세요!</strong>
             </Alert>
@@ -87,7 +87,7 @@ const LoginBox = () => {
                 </button>
               </div>
               <div>
-                <Image src={kakao_login} alt="" width={15} height={15} />
+                <Image src={kakao_login} alt='' width={15} height={15} />
                 <button className={styles.kakao_btn} onClick={onClickKakaoBtn}>
                   카카오로 1초만에 시작하기
                 </button>

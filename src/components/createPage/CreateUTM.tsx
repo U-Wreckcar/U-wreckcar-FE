@@ -110,7 +110,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
    * 로그인 하지 않은 유저 로그인 페이지로 보내기
    */
   useEffect(() => {
-    const cookie = getCookie("access_token")
+    const cookie = getCookie("token")
 
     if (!cookie) {
       redirect("/login")
