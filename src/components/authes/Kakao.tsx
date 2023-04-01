@@ -24,7 +24,7 @@ const KakaoCallback = () => {
       })
         .then(async (response) => {
           const res = await response.json()
-          setCookie("refresh_token", res.token)
+          setCookie("token", res.token)
           setClientHeaders(res.token)
         })
         .then(() => {
