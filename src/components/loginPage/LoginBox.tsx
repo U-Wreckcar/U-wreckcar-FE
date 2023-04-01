@@ -18,7 +18,7 @@ const LoginBox = () => {
   const [noti, setNoti] = useState(true)
 
   useEffect(() => {
-    const cookie = getCookie("token")
+    const cookie = getCookie("access_token")
     if (cookie) {
       redirect("/main")
     }
