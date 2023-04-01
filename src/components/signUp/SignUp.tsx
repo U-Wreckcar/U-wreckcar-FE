@@ -1,5 +1,5 @@
 "use client"
-import { confirmEmail, signUp } from "@/util/async/api"
+import { confirmEmail, signUp, verifyEmailNum } from "@/util/async/api"
 import { getCookie } from "@/util/async/Cookie"
 import { style } from "@mui/system"
 import Link from "next/link"
@@ -22,7 +22,6 @@ type FormData = {
 export default function SignUp() {
   const [emailNum, setEmailNum] = useState(0)
   const [confirmNum, setConfirmNum] = useState("")
-
   const [email, setEmail] = useState("")
   const router = useRouter()
 
@@ -46,12 +45,14 @@ export default function SignUp() {
   // 1. 이메일 인증에 실패했을 경우 -> 중복된 이메일 문구 -> catch문
   const emailConfirm = async () => {
     const emailValue = getValues("email")
+    setEmail(emailValue)
     const emailRegex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}")
     try {
       if (emailRegex.test(emailValue)) {
         const res = await confirmEmail({ data: { email: emailValue } })
-        setConfirmNum(res.data.verificationCode)
-        setEmailNum(1)
+        if (res.status === 200) {
+          setEmailNum(1)
+        }
       } else {
         setError("email", { message: "이메일 형식을 확인해주세요." })
       }
@@ -64,9 +65,14 @@ export default function SignUp() {
   // 1. 이메일 인증번호와 틀린 경우 -> 이메일 인증 번호 확인 문구 -> if 문
   const confirmEmailNum = async () => {
     const emailNum = getValues("emailNum")
-    if (emailNum === confirmNum) {
-      setEmailNum(2)
-    } else {
+    try {
+      const res = await verifyEmailNum({
+        data: { email, verificationCode: emailNum },
+      })
+      if (res.status === 200) {
+        setEmailNum(2)
+      }
+    } catch (err) {
       setError("emailNum", { message: "이메일 인증번호를 확인해주세요." })
     }
   }
@@ -77,12 +83,11 @@ export default function SignUp() {
   const onSubmit = async (data: FormData) => {
     const password = getValues("password")
     const passwordConfirm = getValues("confirmPw")
-    console.log(data)
-    if (password === passwordConfirm) {
+    if (password === passwordConfirm && emailNum === 2) {
       try {
         const res: any = await signUp({
           data: {
-            email: data.email,
+            email,
             company_name: data.company_name,
             marketing_accept: data.marketing_accept,
             password: data.password,
@@ -96,8 +101,12 @@ export default function SignUp() {
       } catch (err) {
         console.log(err)
       }
-    } else {
+    } else if (password !== passwordConfirm) {
       setError("confirmPw", { message: "비밀번호를 동일하게 적어주세요." })
+    } else if (emailNum === 0) {
+      setError("email", { message: "이메일 인증번호발송을 해주세요." })
+    } else if (emailNum === 1) {
+      setError("email", { message: "인증번호를 확인해주세요." })
     }
   }
 

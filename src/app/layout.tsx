@@ -1,12 +1,10 @@
-/* eslint-disable @next/next/next-script-for-ga */
-import "./globals.css"
-import type { Metadata } from "next"
 import { SideNav } from "@/components/sidebar/SideNav"
 import Header from "@/components/header/Header"
 import localFont from "next/font/local"
-import Script from "next/script"
+import type { Metadata } from "next"
 import Providers from "./providers"
-import Head from "next/head"
+import Script from "next/script"
+import "./globals.css"
 
 const myFont = localFont({ src: "./PretendardVariable.woff2" })
 
@@ -42,7 +40,6 @@ export default function RootLayout({
         />
 
         {/* Google Tag Manager */}
-
         <Script
           id='google-analytics'
           dangerouslySetInnerHTML={{
@@ -51,7 +48,7 @@ export default function RootLayout({
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-5C6PX36');
+          })(window,document,'script','dataLayer','GTM-PTJSFK5');
         `,
           }}
         />
@@ -61,7 +58,7 @@ export default function RootLayout({
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
-            src='https://www.googletagmanager.com/ns.html?id=GTM-5C6PX36'
+            src='https://www.googletagmanager.com/ns.html?id=GTM-PTJSFK5'
             height='0'
             width='0'
             style={{ display: "none", visibility: "hidden" }}></iframe>
@@ -70,7 +67,6 @@ export default function RootLayout({
         <SideNav />
         <div>
           <Header />
-
           <Providers> {children}</Providers>
         </div>
       </body>

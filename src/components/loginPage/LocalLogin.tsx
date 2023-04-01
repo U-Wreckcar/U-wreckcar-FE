@@ -1,5 +1,5 @@
 import { localLogin } from "@/util/async/api"
-import { setClientHeaders } from "@/util/async/axiosConfig"
+// import { setClientHeaders } from "@/util/async/axiosConfig"
 import { setCookie } from "@/util/async/Cookie"
 import Link from "next/link"
 import { redirect, useRouter } from "next/navigation"
@@ -33,9 +33,10 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
   const onSubmit = async (data: LoginFormData) => {
     try {
       const res = await localLogin({ data })
-      setCookie("access_token", res.data.access_token)
-      setCookie("refresh_token", res.data.refresh_token)
-      setClientHeaders(res.data.access_token, res.data.refresh_token)
+      setCookie("token", res.data.token)
+      console.log("loginToken", res.data.token)
+      // setClientHeaders(res.data.token)
+      // console.log("setClientHeaders", res.data.token)
       router.push("/main")
     } catch (err) {
       setError("email", { message: "e-mail을 다시 확인해주세요" })
@@ -50,7 +51,7 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
           {errors.email && <h6>{errors.email?.message}</h6>}
           <label>E-mail</label>
           <input
-            placeholder="E-mail을 입력해주세요"
+            placeholder='E-mail을 입력해주세요'
             {...register("email", {
               required: "이메일은 필수 입력입니다.",
               minLength: {
@@ -73,8 +74,8 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
           {errors.password && <h6>{errors.password?.message}</h6>}
           <label className={styles.pw_input}>PW</label>
           <input
-            type="password"
-            placeholder="비밀번호를 입력해주세요"
+            type='password'
+            placeholder='비밀번호를 입력해주세요'
             {...register("password", {
               required: "비밀번호는 필수 입력입니다.",
               minLength: {
@@ -94,7 +95,7 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
           />
         </div>
         <div>
-          <button type="submit" disabled={isSubmitting}>
+          <button type='submit' disabled={isSubmitting}>
             로그인
           </button>
         </div>

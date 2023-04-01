@@ -8,7 +8,7 @@ import Link from "next/link"
 import { myProfile } from "@/util/async/api"
 import { removeCookie } from "@/util/async/Cookie"
 import { useRouter } from "next/navigation"
-import { setClientHeaders } from "@/util/async/axiosConfig"
+// import { setClientHeaders } from "@/util/async/axiosConfig"
 import plus from "assets/plus.png"
 interface UserProfile {
   username: string
@@ -36,8 +36,8 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
 
   const router = useRouter()
   const logOut = () => {
-    removeCookie("access_token")
-    removeCookie("refresh_token")
+    removeCookie("token")
+
     router.push("/")
     setModal(!modal)
   }

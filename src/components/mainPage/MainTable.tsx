@@ -40,11 +40,12 @@ import filterImg from "assets/filter.png"
 import { EditModal } from "./MainMemoModal"
 import { redirect } from "next/navigation"
 import Link from "next/link"
-import { getCookie, removeCookie } from "@/util/async/Cookie"
+import { cookies, getCookie, removeCookie } from "@/util/async/Cookie"
 import BtnAlert from "@/shared/button/Alert"
 import { useSelector } from "react-redux"
 import { AlertTitle, Alert } from "@mui/material"
 import ShortenModal from "./ShortenModal"
+import axios from "axios"
 declare module "@tanstack/table-core" {
   interface FilterFns {
     fuzzy: FilterFn<unknown>
@@ -98,8 +99,21 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     dData = res.data
   }
 
+  const originAxios = async (resCookie: any) => {
+    console.log("쿠키오나?", resCookie)
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API}utms`, {
+      headers: {
+        "Content-Type": "application/json",
+        "X-Refresh-Token": `Bearer ${resCookie}`,
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+      },
+    })
+    console.log("resTest", res)
+  }
   useEffect(() => {
     try {
+      const resCookie = getCookie("token")
+      originAxios(resCookie)
       getData()
     } catch (err) {
       console.log(err)
@@ -122,10 +136,9 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   }, [defaultData.length])
 
   useEffect(() => {
-    const cookie = getCookie("access_token")
+    const cookie = getCookie("token")
     if (!cookie) {
-      removeCookie("refresh_token")
-      removeCookie("access_token")
+      removeCookie("token")
       redirect("/login")
     }
   }, [])
@@ -361,7 +374,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   return (
     <div>
       {warningAlert && (
-        <Alert severity="warning">
+        <Alert severity='warning'>
           <AlertTitle>Warning</AlertTitle>
           선택된 데이터가 없습니다.
           <strong>데이터를 체크해주세요!</strong>
@@ -383,15 +396,13 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
           <div className={styles.buttons_box}>
             <button
               className={styles.data_btn}
-              onClick={() => setSummary(false)}
-            >
+              onClick={() => setSummary(false)}>
               데이터 요약보기
             </button>
             <button
-              id="export_btn"
+              id='export_btn'
               className={styles.button}
-              onClick={onClickPopBtn}
-            >
+              onClick={onClickPopBtn}>
               추출하기
             </button>
             <OutputModal
@@ -412,15 +423,13 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
             />
             <button
               className={styles.plus_button}
-              onClick={() => setFilter(!filter)}
-            >
-              <Image src={filterImg} alt="filter" width={24} height={24} />
+              onClick={() => setFilter(!filter)}>
+              <Image src={filterImg} alt='filter' width={24} height={24} />
             </button>
             <button
               className={styles.plus_button}
-              onClick={() => setPlus(true)}
-            >
-              <Image src={plusImg} alt="plus" width={24} height={24} />
+              onClick={() => setPlus(true)}>
+              <Image src={plusImg} alt='plus' width={24} height={24} />
             </button>
             <AddUtmModal
               isOpen={plus}
@@ -438,17 +447,16 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
           />
         </div>
         <div className={styles.table_scroll}>
-          <div className="h-2" />
-          <div className="h-4" />
-          <div className="overflow-x-auto"></div>
+          <div className='h-2' />
+          <div className='h-4' />
+          <div className='overflow-x-auto'></div>
           <table
             className={styles.table}
             {...{
               style: {
                 width: table.getCenterTotalSize(),
               },
-            }}
-          >
+            }}>
             <thead>
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
@@ -464,8 +472,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 ? 80
                                 : header.getSize(),
                           },
-                        }}
-                      >
+                        }}>
                         {header.isPlaceholder ? null : (
                           <>
                             <div
@@ -482,8 +489,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
                                 onClick:
                                   header.column.getToggleSortingHandler(),
-                              }}
-                            >
+                              }}>
                               {flexRender(
                                 header.column.columnDef.header,
                                 header.getContext()
@@ -493,7 +499,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               <div className={styles.header_filter_box}>
                                 <Image
                                   src={blackFilterImg}
-                                  alt="filter"
+                                  alt='filter'
                                   width={25}
                                   height={25}
                                 />
@@ -506,8 +512,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                   style: {
                                     width: "280px",
                                   },
-                                }}
-                              >
+                                }}>
                                 {header.column.getCanFilter() &&
                                 header.column.id !== "select" ? (
                                   <Filter
@@ -570,8 +575,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                   ? 80
                                   : cell.column.getSize(),
                             },
-                          }}
-                        >
+                          }}>
                           {cell.column.id === "utm_url" && (
                             <Tooltip title={`${cell.getValue()}`}>
                               <div
@@ -583,8 +587,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                     "_blank",
                                     "noopener,noreferrer"
                                   )
-                                }
-                              >{`${cell.getValue()}`}</div>
+                                }>{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
                           {cell.column.id === "utm_memo" && (
@@ -596,8 +599,7 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                   setTarget(e.target?.id)
                                   setShow(true)
                                   setInputValue(`${cell.getValue()}`)
-                                }}
-                              >{`${cell.getValue()}`}</div>
+                                }}>{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
                           {cell.column.id === "select" &&
@@ -612,8 +614,9 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 onClick={() =>
                                   onClickCopyBtn(`${cell.getValue()}`)
                                 }
-                                className={styles.td_box}
-                              >{`${cell.getValue()}`}</div>
+                                className={
+                                  styles.td_box
+                                }>{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
                           {/* {shortenCopy && (
@@ -626,8 +629,9 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                 onClick={() =>
                                   onClickCopyBtn(`${cell.getValue()}`)
                                 }
-                                className={styles.td_box}
-                              >{`${cell.getValue()}`}</div>
+                                className={
+                                  styles.td_box
+                                }>{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
                           {cell.column.id !== "utm_memo" &&
@@ -637,8 +641,9 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             cell.column.id !== "shorten_url" && (
                               <Tooltip title={`${cell.getValue()}`}>
                                 <div
-                                  className={styles.td_box}
-                                >{`${cell.getValue()}`}</div>
+                                  className={
+                                    styles.td_box
+                                  }>{`${cell.getValue()}`}</div>
                               </Tooltip>
                             )}
                         </td>
@@ -716,7 +721,7 @@ function Filter({
             <div className={styles.dialog}>
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <DebouncedInput
-                  type="date"
+                  type='date'
                   value={(columnFilterValue ?? "") as string}
                   onChange={(value) => {
                     setStartDate(value)
@@ -724,29 +729,27 @@ function Filter({
                   list={column.id + "list"}
                 />
                 <DebouncedInput
-                  type="date"
+                  type='date'
                   value={(columnFilterValue ?? "") as string}
                   onChange={(value) => getDatesStartToLast(startDate, value)}
                   list={column.id + "list"}
                 />
                 <button
                   className={styles.dialog_button}
-                  onClick={() => setIsOpen(false)}
-                >
+                  onClick={() => setIsOpen(false)}>
                   X
                 </button>
               </div>
             </div>
           )}
           <input
-            type="text"
+            type='text'
             className={styles.search_input}
-            placeholder="기간 선택"
+            placeholder='기간 선택'
             onFocus={() => {
               setIsOpen(true)
               defaultData = dData
-            }}
-          ></input>
+            }}></input>
         </>
       )}
 
@@ -759,7 +762,7 @@ function Filter({
           </datalist>
           <DebouncedInput
             className={styles.search_input}
-            type="text"
+            type='text'
             value={(columnFilterValue ?? "") as string}
             onChange={(value) => column.setFilterValue(value)}
             placeholder={`검색 (${column.getFacetedUniqueValues().size})`}
@@ -819,7 +822,7 @@ function IndeterminateCheckbox({
 
   return (
     <input
-      type="checkbox"
+      type='checkbox'
       ref={ref}
       className={className + " cursor-pointer"}
       {...rest}
