@@ -103,20 +103,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
     setData(res.data)
   }
 
-  const originAxios = async (resCookie: any) => {
-    console.log("쿠키오나?", resCookie)
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_API}utms`, {
-      headers: {
-        "Content-Type": "application/json",
-        "X-Refresh-Token": `Bearer ${resCookie}`,
-        "Cache-Control": "no-cache, no-store, must-revalidate",
-      },
-    })
-    console.log("resTest", res)
-  }
   useEffect(() => {
-    const resCookie = getCookie("token")
-    originAxios(resCookie)
     setTimeout(() => {
       getData()
     }, 500)
@@ -127,13 +114,11 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   }, [output, show, plus, isOpen])
 
   useEffect(() => {
-    const cookie = getCookie("token")
+    const cookie = getCookie("access_token")
     if (cookie) {
       router.refresh()
     }
     if (!cookie) {
-      removeCookie("token")
-
       redirect("/login")
     }
   }, [])
