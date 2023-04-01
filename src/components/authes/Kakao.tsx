@@ -1,5 +1,5 @@
 "use client"
-import { setClientHeaders } from "@/util/async/axiosConfig"
+// import { setClientHeaders } from "@/util/async/axiosConfig"
 import { setCookie } from "@/util/async/Cookie"
 import axios from "axios"
 import { redirect, useRouter } from "next/navigation"
@@ -26,8 +26,8 @@ const KakaoCallback = () => {
           const res = await response.json()
           setCookie("token", res.token)
           console.log("kakaoToken", res.token)
-          setClientHeaders(res.token)
-          console.log("setClientHeaders", res.token)
+          // setClientHeaders(res.token)
+          // console.log("setClientHeaders", res.token)
         })
         .then(() => {
           router.push("/main")
