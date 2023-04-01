@@ -40,11 +40,12 @@ import filterImg from "assets/filter.png"
 import { EditModal } from "./MainMemoModal"
 import { redirect } from "next/navigation"
 import Link from "next/link"
-import { getCookie, removeCookie } from "@/util/async/Cookie"
+import { cookies, getCookie, removeCookie } from "@/util/async/Cookie"
 import BtnAlert from "@/shared/button/Alert"
 import { useSelector } from "react-redux"
 import { AlertTitle, Alert } from "@mui/material"
 import ShortenModal from "./ShortenModal"
+import axios from "axios"
 declare module "@tanstack/table-core" {
   interface FilterFns {
     fuzzy: FilterFn<unknown>
@@ -98,8 +99,21 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     dData = res.data
   }
 
+  const originAxios = async (resCookie: any) => {
+    console.log("쿠키오나?", resCookie)
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API}utms`, {
+      headers: {
+        "Content-Type": "application/json",
+        "X-Refresh-Token": `Bearer ${resCookie}`,
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+      },
+    })
+    console.log("resTest", res)
+  }
   useEffect(() => {
     try {
+      const resCookie = getCookie("token")
+      originAxios(resCookie)
       getData()
     } catch (err) {
       console.log(err)
