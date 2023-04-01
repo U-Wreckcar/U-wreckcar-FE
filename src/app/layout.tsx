@@ -1,12 +1,10 @@
-/* eslint-disable @next/next/next-script-for-ga */
-import "./globals.css"
-import type { Metadata } from "next"
 import { SideNav } from "@/components/sidebar/SideNav"
 import Header from "@/components/header/Header"
 import localFont from "next/font/local"
-import Script from "next/script"
+import type { Metadata } from "next"
 import Providers from "./providers"
-import Head from "next/head"
+import Script from "next/script"
+import "./globals.css"
 
 const myFont = localFont({ src: "./PretendardVariable.woff2" })
 
@@ -42,7 +40,6 @@ export default function RootLayout({
         />
 
         {/* Google Tag Manager */}
-
         <Script
           id='google-analytics'
           dangerouslySetInnerHTML={{
@@ -70,7 +67,6 @@ export default function RootLayout({
         <SideNav />
         <div>
           <Header />
-
           <Providers> {children}</Providers>
         </div>
       </body>
