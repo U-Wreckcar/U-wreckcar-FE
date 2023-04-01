@@ -35,13 +35,13 @@ export default function Home() {
   const [index, setIndex] = useState(0)
   const [alert, setAlert] = useState(true)
 
-  // useEffect(() => {
-  //   const intervalText = setInterval(() => {
-  //     setIndex((idx) => (idx + 1) % texts.length)
-  //   }, 850)
+  useEffect(() => {
+    const intervalText = setInterval(() => {
+      setIndex((idx) => (idx + 1) % texts.length)
+    }, 850)
 
-  //   return () => clearInterval(intervalText)
-  // }, [])
+    return () => clearInterval(intervalText)
+  }, [])
 
   const onClickKakao = () => {
     window.open("https://open.kakao.com/o/sbK3Rfaf", "_blank")
@@ -90,7 +90,12 @@ export default function Home() {
                 <h1>{text[index]} UTM 관리 </h1>
                 <h1>유렉카로 해결하세요! </h1>
                 <p>UTM 업무 1시간? 유렉카에서는 3분이면 OK</p>
-                <Link href={"/login"}>
+                <Link className={styles.origin_free_btn} href={"/login"}>
+                  <button id='free_btn' className={styles.free_btn}>
+                    무료로 시작하기
+                  </button>
+                </Link>
+                <Link className={styles.m_free_btn} href={"/webonly"}>
                   <button id='free_btn' className={styles.free_btn}>
                     무료로 시작하기
                   </button>
@@ -229,7 +234,15 @@ export default function Home() {
                 src={seven_sub_img}
                 alt='Img'
               />
-              <Link href={"/login"}>
+              <Link className={styles.origin_seven_button} href={"/login"}>
+                <Image
+                  id='start_btn'
+                  className={styles.seven_button_img}
+                  src={seven_button}
+                  alt='img'
+                />
+              </Link>
+              <Link className={styles.m_seven_button} href={"/webonly"}>
                 <Image
                   id='start_btn'
                   className={styles.seven_button_img}
