@@ -587,7 +587,25 @@
     padding: 110px;
   }
 }
+.m_free_btn {
+  display: none;
+}
+.m_seven_button {
+  display: none;
+}
 @media (max-width: 450px) {
+  .origin_free_btn {
+    display: none;
+  }
+  .m_free_btn {
+    display: block;
+  }
+  .origin_seven_button {
+    display: none;
+  }
+  .m_seven_button {
+    display: block;
+  }
   .section_one {
     width: 390px;
     padding: 0 1em;
