@@ -123,9 +123,8 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   }, [defaultData.length])
 
   useEffect(() => {
-    const cookie = getCookie("token")
+    const cookie = getCookie("access_token")
     if (!cookie) {
-      removeCookie("token")
       redirect("/login")
     }
   }, [])
