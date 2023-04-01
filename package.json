@@ -44,6 +44,7 @@
   "devDependencies": {
     "@tanstack/react-query": "^4.24.10",
     "@tanstack/react-query-devtools": "^4.26.0",
-    "@types/gtag.js": "^0.0.12"
+    "@types/gtag.js": "^0.0.12",
+    "file-loader": "^6.2.0"
   }
 }
