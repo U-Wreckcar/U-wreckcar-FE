@@ -1,4 +1,5 @@
 import { localLogin } from "@/util/async/api"
+import { setClientHeaders } from "@/util/async/axiosConfig"
 // import { setClientHeaders } from "@/util/async/axiosConfig"
 import { setCookie } from "@/util/async/Cookie"
 import Link from "next/link"
@@ -33,10 +34,9 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
   const onSubmit = async (data: LoginFormData) => {
     try {
       const res = await localLogin({ data })
-      setCookie("token", res.data.token)
-      console.log("loginToken", res.data.token)
-      // setClientHeaders(res.data.token)
-      // console.log("setClientHeaders", res.data.token)
+      setCookie("access_token", res.data.access_token)
+      setCookie("refresh_token", res.data.refresh_token)
+      setClientHeaders(res.data.access_token, res.data.refresh_token)
       router.push("/main")
     } catch (err) {
       setError("email", { message: "e-mail을 다시 확인해주세요" })
