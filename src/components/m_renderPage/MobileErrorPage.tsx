@@ -1,8 +1,8 @@
-import React from "react";
-import Image from "next/image";
-import styles from "./mobile.module.css";
+import React from "react"
+import Image from "next/image"
+import styles from "./mobile.module.css"
 
-import msgImg from "assets/m_web.png";
+import msgImg from "assets/m_web.png"
 
 export default function MobileErrorPage() {
   return (
@@ -14,6 +14,7 @@ export default function MobileErrorPage() {
         <br></br>
         웹에서 다시 만나요!
       </p>
+      {/* <video src="../../assets/m_video.mp4"></video> */}
     </div>
-  );
+  )
 }
