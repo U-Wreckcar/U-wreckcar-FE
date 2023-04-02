@@ -115,7 +115,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
   useEffect(() => {
     getData()
-  }, [output, show])
+  }, [show])
 
   useEffect(() => {
     const cookie = getCookie("access_token")
