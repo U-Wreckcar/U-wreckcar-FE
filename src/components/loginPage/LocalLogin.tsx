@@ -36,7 +36,8 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
       setCookie("access_token", res.data.access_token)
       setCookie("refresh_token", res.data.refresh_token)
       setClientHeaders(res.data.access_token, res.data.refresh_token)
-      router.push("/main")
+      router.replace("/main")
+      window.location.reload()
     } catch (err) {
       setError("email", { message: "e-mail을 다시 확인해주세요" })
       setError("password", { message: "비밀번호를 다시 확인해주세요" })
