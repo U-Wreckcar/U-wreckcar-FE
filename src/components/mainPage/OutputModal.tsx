@@ -38,7 +38,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
   const onClickPopHandler = async () => {
     if (notion) {
       getUTMSheet(data)
-      // setAlert(true)
+      setAlert(true)
     }
     if (excel) {
       try {
@@ -62,11 +62,9 @@ export const OutputModal: React.FC<OutputModalType> = ({
 
     if (sheet) {
       try {
-        const response = await Axios.post(
-          "utms/tocsv",
-          { data },
-          { responseType: "blob" }
-        )
+        const response = await Axios.post("utms/export/sheet/csv", data, {
+          responseType: "blob",
+        })
         const url = window.URL.createObjectURL(new Blob([response.data]))
         const a = document.createElement("a")
         a.href = url
@@ -74,10 +72,12 @@ export const OutputModal: React.FC<OutputModalType> = ({
         a.download = `${timestamp}.csv`
         a.click()
         window.URL.revokeObjectURL(url)
+        onRequestClose()
       } catch (error) {
         console.error("download error", error)
       }
     }
+
     if (!notion && !excel && !sheet) {
       setAlert(true)
       onRequestClose()
