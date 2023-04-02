@@ -6,18 +6,12 @@ import video from "assets/video/preview.mp4"
 export default function MobileErrorPage() {
   return (
     <div className={styles.error_container}>
-
       <video
         className={styles.m_video}
         src='https://velog.velcdn.com/images/gcodaily/post/358c37f7-252a-44a6-a65a-374d030436a9/image.mp4'
         controls
         width='340'
-        height='300'>
-        {/* <source
-          type='video/mp4'
-          src='https://velog.velcdn.com/images/gcodaily/post/358c37f7-252a-44a6-a65a-374d030436a9/image.mp4'
-        /> */}
-      </video>
+        height='300'></video>
       <div>
         <Image src={msgImg} alt='error' width={320} height={160} />
         <h1>유렉카와 연결되었습니다!</h1>
@@ -27,7 +21,6 @@ export default function MobileErrorPage() {
           웹에서 다시 만나요!
         </p>
       </div>
-
     </div>
   )
 }
