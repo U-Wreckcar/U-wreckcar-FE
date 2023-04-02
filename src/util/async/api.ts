@@ -39,7 +39,7 @@ export const getUTMNotion = async (data: any) => {
   await axios.post("utms/export/pdf", data)
 }
 export const getUTMSheet = async (data: any) => {
-  await axios.get(`utms/export/sheet`, data)
+  await axios.post(`utms/export/sheet/csv`, data)
 }
 export const testUTMSheet = async (data: any) => {
   await axios.post("utms/tocsv", { data })
