@@ -17,6 +17,8 @@ export const setClientHeaders = (
   access_token: string,
   refresh_token: string
 ) => {
+  console.log("어세씬토큰", access_token)
+  console.log("새로고침토큰", refresh_token)
   instance.interceptors.request.use(async function (config: any) {
     config.headers.Authorization = `Bearer ${access_token}`
     config.headers["X-Refresh-Token"] = `Bearer ${refresh_token}`

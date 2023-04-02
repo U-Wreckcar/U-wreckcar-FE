@@ -7,7 +7,7 @@ import store from "@/redux/store/store"
 
 export default function MainPageComponent() {
   const [summary, setSummary] = useState(false)
-  console.log("sdf")
+
   return (
     <>
       <Provider store={store}>
