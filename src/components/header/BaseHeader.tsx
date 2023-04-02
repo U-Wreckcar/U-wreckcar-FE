@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useEffect, useState } from "react"
 import styles from "./styles.module.css"
 import b_noti from "assets/b_noti.png"
@@ -8,8 +7,7 @@ import Link from "next/link"
 import { myProfile } from "@/util/async/api"
 import { removeCookie } from "@/util/async/Cookie"
 import { useRouter } from "next/navigation"
-// import { setClientHeaders } from "@/util/async/axiosConfig"
-import plus from "assets/plus.png"
+import UserModal from "./UserModal"
 interface UserProfile {
   username: string
   email: string
@@ -73,27 +71,6 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
         onClick={() => {
           setModal(!modal)
         }}>
-        {modal && (
-          <dialog>
-            <Link className={styles.links} href={"/userinfo"}>
-              <div
-                className={styles.links_box}
-                onClick={() => {
-                  setModal(!modal)
-                }}>
-                개인정보 관리
-              </div>
-            </Link>
-            <div
-              className={styles.links_box}
-              onClick={() => {
-                logOut()
-              }}>
-              로그아웃
-            </div>
-          </dialog>
-        )}
-
         <Image
           src={userData?.profile_img}
           alt=''
@@ -102,6 +79,7 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
           style={{ borderRadius: "50%", marginRight: "7px" }}
           unoptimized={true}
         />
+        {modal && <UserModal setModal={setModal} modal={modal} />}
         <p className={styles.login_box}>
           <span className={styles.bold_text}>{userData?.username}</span>님
         </p>
