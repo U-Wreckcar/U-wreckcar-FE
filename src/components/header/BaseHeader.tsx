@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styles from "./styles.module.css"
 import b_noti from "assets/b_noti.png"
 import Image from "next/image"
@@ -31,15 +31,6 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
   useEffect(() => {
     fetchUserData()
   }, [pathName])
-
-  const router = useRouter()
-  const logOut = () => {
-    removeCookie("access_token")
-    removeCookie("refresh_token")
-
-    router.push("/")
-    setModal(!modal)
-  }
 
   return (
     <section className={styles.header_container}>
@@ -79,11 +70,11 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
           style={{ borderRadius: "50%", marginRight: "7px" }}
           unoptimized={true}
         />
-        {modal && <UserModal setModal={setModal} modal={modal} />}
         <p className={styles.login_box}>
           <span className={styles.bold_text}>{userData?.username}</span>님
         </p>
       </div>
+      {modal && <UserModal setModal={setModal} modal={modal} />}
     </section>
   )
 }
