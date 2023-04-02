@@ -4,6 +4,9 @@ import styles from "./main.module.css"
 import b_close from "assets/b_close.png"
 import { deleteUTM } from "util/async/api"
 import { useRouter } from "next/navigation"
+import { useDispatch } from "react-redux"
+import { delItem } from "@/redux/slice/addslice"
+
 type OutputModalType = {
   isOpen: boolean
   onRequestClose: any
@@ -19,11 +22,12 @@ export const DeleteModal: React.FC<OutputModalType> = ({
   setRowSelection,
 }) => {
   const router = useRouter()
+  const dispatch = useDispatch()
+
   const onClickDelHandler = () => {
-    // const idList = [];
-    // data.map((datas)=> idList.push(datas.id));
     deleteUTM({ data }).then(() => {
       setRowSelection({})
+      dispatch(delItem(isOpen))
     })
     onRequestClose()
     router.replace("/main")
