@@ -74,7 +74,7 @@ export default function Mobile() {
               <h1>유렉카로 해결하세요! </h1>
               <p>UTM 업무 1시간? 유렉카에서는 3분이면 OK</p>
             </div>
-            <Image alt="main" src={section_one_main} />
+            {/* <Image alt="main" src={section_one_main} /> */}
             <Link href={"/webonly"}>
               <button>무료로 시작하기</button>
             </Link>
@@ -82,7 +82,7 @@ export default function Mobile() {
         </section>
         <section className={styles.section_one_two}>
           <article>
-            <Image src={section_one_two} alt="Img" width={350} />
+            {/* <Image src={section_one_two} alt="Img" width={350} /> */}
           </article>
         </section>
         <section className={styles.section_two}>
@@ -95,10 +95,10 @@ export default function Mobile() {
           </article>
           <article>
             <div className={styles.section_two_img}>
-              <Image src={section_two_right_ns} alt="Left_img" />
+              {/* <Image src={section_two_right_ns} alt="Left_img" /> */}
             </div>
             <div className={styles.section_two_img}>
-              <Image src={section_two_left_ns} alt="Right_img" />
+              {/* <Image src={section_two_left_ns} alt="Right_img" /> */}
             </div>
           </article>
         </section>
@@ -115,14 +115,10 @@ export default function Mobile() {
               예전 데이터까지 유렉카에서 관리 해보세요.
             </p>
           </article>
-          <article>
-            <Image src={create} alt="Gif" />
-          </article>
+          <article>{/* <Image src={create} alt="Gif" /> */}</article>
         </section>
         <section className={styles.section_four}>
-          <article>
-            <Image src={f_search} alt="Gif" />
-          </article>
+          <article>{/* <Image src={f_search} alt="Gif" /> */}</article>
           <article>
             <p className={styles.sub_title}>필요한 UTM만 바로바로 필터링</p>
             <h1>내가 원하는 UTM들만</h1>
@@ -151,14 +147,12 @@ export default function Mobile() {
               선택된 데이터들을 저장하여 바로 팀원과 공유해보세요.
             </p>
           </article>
-          <article>
-            <Image src={out} alt="Gif" />
-          </article>
+          <article>{/* <Image src={out} alt="Gif" /> */}</article>
         </section>
         <section className={styles.section_six}>
           <article>
             <div className={styles.six_card_item}>
-              <Image src={six_one} alt="IMG" />
+              {/* <Image src={six_one} alt="IMG" /> */}
               {/* <h2>
                 여러개의 UTM을
                 <br />
@@ -196,13 +190,13 @@ export default function Mobile() {
             <Image
               className={styles.seven_first_img}
               src={seven_img}
-              alt="Img"
+              alt='Img'
             />
             <Link href={"/webonly"}>
               <Image
                 className={styles.seven_button_img}
                 src={seven_button}
-                alt="img"
+                alt='img'
               />
             </Link>
           </article>
@@ -227,7 +221,7 @@ export default function Mobile() {
             </div>
           </article>
           <div className={styles.e_line}>
-            <Image src={copyright} alt="copyright" width={168} height={15} />
+            {/* <Image src={copyright} alt="copyright" width={168} height={15} /> */}
           </div>
           <article></article>
         </section>
