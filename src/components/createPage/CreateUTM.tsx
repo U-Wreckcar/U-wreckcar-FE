@@ -14,7 +14,6 @@ import Alert from "@/shared/button/Alert"
 import { getCookie } from "@/util/async/Cookie"
 import { redirect } from "next/navigation"
 import { useMutation, useQuery } from "@tanstack/react-query"
-import { Modal } from "@/shared/modal/Modal"
 import Loading from "@/shared/modal/Loading"
 import { Tooltip } from "@mui/material"
 type UTMsType = {
@@ -43,7 +42,34 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
   //   queryFn: postUTMs,
   // })
   const { mutate, isLoading, isError, isSuccess, data } = useMutation(postUTMs)
-
+  const source = [
+    "band",
+    "daum",
+    "facebook",
+    "google",
+    "instagram",
+    "kakaotalk",
+    "line",
+    "naver",
+    "newsletter",
+    "tiktok",
+    "youtube",
+  ]
+  const mediumSelect = [
+    " affiliates",
+    " banner",
+    " blog",
+    " cpc",
+    " cpm",
+    " display",
+    " email",
+    " notification",
+    " paidsearch",
+    " referral",
+    " social",
+    " socialmedia",
+    " sms",
+  ]
   const res = data?.data
   setResUTM(res)
   const {
@@ -150,11 +176,19 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                         ""
                       )} */}
                       </Tooltip>
+                      <datalist id='source'>
+                        {source.map((i, idx) => (
+                          <div key={idx}>
+                            <option value={i} />
+                          </div>
+                        ))}
+                      </datalist>
                       <Tooltip
                         title={
                           "(필수) 유저가 어디에서 인입되는지 출처를 입력해 주세요."
                         }>
                         <input
+                          list='source'
                           placeholder='ex) google, naver, facebook…'
                           // onInput={requeirFn}
                           {...register(`utms.${index}.utm_source` as const, {
@@ -168,12 +202,20 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                           }`}
                         />
                       </Tooltip>
+                      <datalist id='medium'>
+                        {mediumSelect.map((i, idx) => (
+                          <div key={idx}>
+                            <option>{i}</option>
+                          </div>
+                        ))}
+                      </datalist>
                       <Tooltip
                         title={
                           "(필수) 유저가 어떤 방식을 통해 인입되는지 홍보 방법을 입력해 주세요."
                         }>
                         <input
                           // onInput={requeirFn}
+                          list='medium'
                           placeholder='ex) email, display, cpc…'
                           {...register(`utms.${index}.utm_medium` as const, {
                             required: true,
@@ -192,7 +234,6 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
                           "(필수) 어떤 이벤트/캠페인을 진행하고 있는지 홍보 명을 입력해 주세요."
                         }>
                         <input
-                          // onInput={requeirFn}
                           placeholder='ex) close_beta, open_beta, open…'
                           {...register(
                             `utms.${index}.utm_campaign_name` as const,
