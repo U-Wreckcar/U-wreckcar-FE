@@ -1,7 +1,6 @@
 import React from "react"
 import Image from "next/image"
 import styles from "./mobile.module.css"
-
 import msgImg from "assets/m_web.png"
 
 export default function MobileErrorPage() {

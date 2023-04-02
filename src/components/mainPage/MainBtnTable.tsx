@@ -96,6 +96,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const router = useRouter()
   const [warningAlert, setWarningAlert] = useState(false)
   const isOpen = useSelector((state: any) => state.add.isOpen)
+  const isDel = useSelector((state: any) => state.add.del)
 
   const getData = async () => {
     const res = await getUTMs()
@@ -103,14 +104,18 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   }
 
   useEffect(() => {
+    getData()
+  }, [isOpen])
+
+  useEffect(() => {
     setTimeout(() => {
       getData()
     }, 500)
-  }, [del])
+  }, [isDel])
 
   useEffect(() => {
     getData()
-  }, [output, show, plus, isOpen])
+  }, [output, show])
 
   useEffect(() => {
     const cookie = getCookie("access_token")
