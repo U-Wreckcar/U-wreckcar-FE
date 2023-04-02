@@ -1,8 +1,7 @@
 import axios from "axios"
 import { getCookie } from "./Cookie"
-
-console.log("access_token", getCookie("access_token"))
-console.log("refresh_token", getCookie("refresh_token"))
+import { cacheAdapterEnhancer,throttleAdapterEnhancer } from 'axios-extensions';
+import axiosExtensions from 'axios-extensions';
 
 const instance = axios.create({
   withCredentials: true,
@@ -13,7 +12,10 @@ const instance = axios.create({
     "Authorization": `Bearer ${getCookie("access_token")}`,
     "X-Refresh-Token": `Bearer ${getCookie("refresh_token")}`,
     "Cache-Control": "no-cache, no-store, must-revalidate",
+    Pragma: 'no-store',
+    Expires: '0',
   },
+  
 })
 
 export const setClientHeaders = (
