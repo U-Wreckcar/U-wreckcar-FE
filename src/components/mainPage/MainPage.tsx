@@ -1,22 +1,51 @@
 "use client"
-import { MainBtnTable } from "./MainBtnTable"
-import { MainTable } from "./MainTable"
-import { useState } from "react"
+
+import { useEffect, useState, lazy, Suspense } from "react"
 import { Provider } from "react-redux"
 import store from "@/redux/store/store"
+import { useRouter } from "next/navigation"
+import CircularUnderLoad from "../CircularUnderLoad"
+
+const MainBtnTable = lazy(() => import("./MainBtnTable"))
+const MainTable = lazy(() => import("./MainTable"))
 
 export default function MainPageComponent() {
   const [summary, setSummary] = useState(false)
+  const router = useRouter()
+
+  const prefetchOptions = {
+    hydrateOnMount: true,
+  }
+
+  useEffect(() => {
+    router.prefetch("/main")
+  }, [router])
 
   return (
-    <>
+    <div id="root">
       <Provider store={store}>
         {summary ? (
-          <MainTable setSummary={setSummary} />
+          <Suspense
+            fallback={
+              <div>
+                <CircularUnderLoad />
+              </div>
+            }
+          >
+            <MainTable setSummary={setSummary} />
+          </Suspense>
         ) : (
-          <MainBtnTable setSummary={setSummary} />
+          <Suspense
+            fallback={
+              <div>
+                <CircularUnderLoad />
+              </div>
+            }
+          >
+            <MainBtnTable setSummary={setSummary} />
+          </Suspense>
         )}
       </Provider>
-    </>
+    </div>
   )
 }

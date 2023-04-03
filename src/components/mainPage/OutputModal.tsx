@@ -128,7 +128,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
           <div className={styles.col_box}>
             <div>
               <p>{data.length}개의 UTM이 선택되었습니다.</p>
-              <p>UTM 데이터를 보낼 틀을 선택해주세요</p>
+              <p>UTM 데이터를 보낼 툴을 선택해주세요</p>
             </div>
             <div className={styles.img_box}>
               <div className={styles.img_box_img}>

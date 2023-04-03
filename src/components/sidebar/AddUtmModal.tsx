@@ -15,8 +15,8 @@ export type ModalType = {
 
 type AddUTMType = {
   utm_url: string
-  created_at: string
-  memo: string
+  created_at: string | null
+  memo: string | null
 }
 
 export const AddUtmModal: React.FC<ModalType> = ({
@@ -63,7 +63,7 @@ export const AddUtmModal: React.FC<ModalType> = ({
         </div>
 
         <span className={styles.sub_title}>
-          *기존의 UTM을 입력하면 파라미터 값이 분류됩니다
+          *만드신 UTM을 넣으시면 파라미터 값이 분류되어 데이터에 저장됩니다
         </span>
 
         <div className={styles.modal_footer_box}>
@@ -78,7 +78,7 @@ export const AddUtmModal: React.FC<ModalType> = ({
             <p>UTM</p>
             <input
               className={styles.modal_input}
-              placeholder="UTM을 입력하세요."
+              placeholder="(필수 입력) ex) https://www.abcd.com?utm_source=aaa&utm_medium=bbb&utm_campaign=ccc&utm_id=ddd"
               {...register("utm_url", {
                 required: true,
               })}
@@ -99,7 +99,7 @@ export const AddUtmModal: React.FC<ModalType> = ({
               메모
               <input
                 className={styles.modal_input_memo}
-                placeholder="메모를 입력하세요."
+                placeholder="(선택 입력) UTM에 대한 메모를 남길 수 있습니다. 자유롭게 활용하세요."
                 {...register("memo", {
                   required: false,
                   maxLength: 100,

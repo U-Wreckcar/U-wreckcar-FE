@@ -1,3 +1,5 @@
+"use client"
+
 import React, {
   Dispatch,
   SetStateAction,
@@ -77,7 +79,7 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   return itemRank.passed
 }
 
-export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
+const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [rowSelection, setRowSelection] = useState({})
   const [data, setData] = useState<Array<MainTableType>>([])
   const [show, setShow] = useState(false)
@@ -99,14 +101,22 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const isOpen = useSelector((state: any) => state.add.isOpen)
   const isDel = useSelector((state: any) => state.add.del)
 
+  const handleCatch = (error: any) => {
+    const errorDigest = error.digest
+  }
+
   const getData = async () => {
-    const res = await getUTMs()
-    setData(res.data)
+    try {
+      const res = await getUTMs()
+      setData(res.data)
+    } catch (err) {
+      handleCatch(err)
+    }
   }
 
   useEffect(() => {
     getData()
-  }, [isOpen])
+  }, [isOpen, show])
 
   useEffect(() => {
     setTimeout(() => {
@@ -115,14 +125,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
   }, [isDel])
 
   useEffect(() => {
-    getData()
-  }, [output, show])
-
-  useEffect(() => {
     const cookie = getCookie("access_token")
-    if (cookie) {
-      router.refresh()
-    }
     if (!cookie) {
       redirect("/login")
     }
@@ -449,43 +452,23 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             )}
                           </>
                         )}
-
-                        {/* <div
-                          {...{
-                            onMouseDown: header.getResizeHandler(),
-                            onTouchStart: header.getResizeHandler(),
-                            className: `resizer ${
-                              header.column.getIsResizing() ? 'isResizing' : ''
-                            }`,
-                            style: {
-                              transform:
-                                columnResizeMode === 'onEnd' &&
-                                header.column.getIsResizing()
-                                  ? `translateX(${
-                                      table.getState().columnSizingInfo
-                                        .deltaOffset
-                                    }px)`
-                                  : '',
-                            },
-                          }}
-                        /> */}
                       </th>
                     )
                   })}
                 </tr>
               ))}
             </thead>
-            <tbody>
-              {data.length === 0 && (
-                <div className={styles.no_data}>
-                  <div className={styles.slim_no_data_item}>
-                    <p>등록된 UTM이 없어요.</p>
-                    <Link href={"/createutm"}>
-                      <button>UTM 생성하기</button>
-                    </Link>
-                  </div>
+            {data.length === 0 && (
+              <div className={styles.no_data}>
+                <div className={styles.slim_no_data_item}>
+                  <p>등록된 UTM이 없어요.</p>
+                  <Link href={"/createutm"}>
+                    <button>UTM 생성하기</button>
+                  </Link>
                 </div>
-              )}
+              </div>
+            )}
+            <tbody>
               {table.getRowModel().rows.map((row) => {
                 return (
                   <tr key={row.id}>
@@ -508,6 +491,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                           )}
                           {/* {shortenCopy && (
                             <ShortenModal setShortenCopy={setShortenCopy} />
+
                           )} */}
                           {/* <div
                             onClick={() => {
@@ -519,6 +503,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               text={`${cell.getValue()}`}></CopyButton>
                           )}
                           {/* </div> */}
+
 
                           {cell.column.id === "utm_url" && (
                             <Tooltip title={`${cell.getValue()}`}>
@@ -532,7 +517,7 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
                           {cell.column.id === "utm_memo" && (
                             <Tooltip title={"메모 수정하기"}>
-                              <div
+                              <p
                                 id={cell.id}
                                 style={{ cursor: "pointer" }}
                                 className={styles.memo_td}
@@ -540,7 +525,10 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                                   setTarget(e.target?.id)
                                   setShow(true)
                                   setInputValue(`${cell.getValue()}`)
-                                }}>{`${cell.getValue()}`}</div>
+
+                                }}
+                              >{`${cell.getValue()}`}</p>
+
                             </Tooltip>
                           )}
                           {cell.column.id === "select" &&
@@ -554,10 +542,12 @@ export const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             cell.column.id !== "full_url" &&
                             cell.column.id !== "shorten_url" && (
                               <Tooltip title={`${cell.getValue()}`}>
+
                                 <div
                                   className={
                                     styles.td_box
                                   }>{`${cell.getValue()}`}</div>
+
                               </Tooltip>
                             )}
                         </td>
@@ -706,3 +696,5 @@ function IndeterminateCheckbox({
     />
   )
 }
+
+export default MainBtnTable
