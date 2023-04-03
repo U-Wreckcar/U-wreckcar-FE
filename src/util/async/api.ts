@@ -19,9 +19,8 @@ export const postUTMs = async (data: any) => {
  * * GET
  */
 
-
- export const getUTMs = async () => {
-  const res = await axios.get("utms",{ cache: false })
+export const getUTMs = async () => {
+  const res = await axios.get("utms", { cache: false })
 
   return res
 }
