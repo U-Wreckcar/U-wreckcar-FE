@@ -1,10 +1,10 @@
 import React from "react"
 import styles from "./renderModal.module.css"
-import ReactModal from "react-modal"
 import close from "assets/b_close.png"
 import Image from "next/image"
 import Link from "next/link"
 import logo from "assets/renderlogo.png"
+import Modal from "@/app/Modal"
 
 type RenderModalType = {
   isOpen: boolean
@@ -25,7 +25,7 @@ const RenderModal: React.FC<RenderModalType> = ({ isOpen, onRequestClose }) => {
     },
   }
   return (
-    <ReactModal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
+    <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
       <div className={styles.container}>
         {/* <Image
           className={styles.modal_logo_img}
@@ -66,7 +66,7 @@ const RenderModal: React.FC<RenderModalType> = ({ isOpen, onRequestClose }) => {
           </button>
         </Link>
       </div>
-    </ReactModal>
+    </Modal>
   )
 }
 export default RenderModal
