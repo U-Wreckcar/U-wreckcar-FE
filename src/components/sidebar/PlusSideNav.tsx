@@ -133,8 +133,8 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               onClick={() => setModal(!modal)}>
               <Image
                 className={styles.icon}
-                width={24}
-                height={24}
+                width={30}
+                height={30}
                 src={addutm}
                 alt='Add_UTM'
               />
