@@ -129,41 +129,6 @@
   cursor: pointer;
 }
 
-.header_container dialog {
-  width: 180px;
-  height: 85px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  flex-direction: column;
-  text-align: left;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  top: 50px;
-  left: 2%;
-  /* transform: translateX(-50%); */
-  padding: 0;
-}
-
-.header_container dialog div {
-  border-bottom: 1px solid #ddd;
-  width: 130px;
-  padding: 5px;
-  margin: 5px;
-  text-align: center;
-  font-size: 14px;
-  color: #222;
-  cursor: pointer;
-}
-.links_box:hover {
-  font-weight: 700;
-}
-
-.links {
-  text-decoration: none;
-  margin-bottom: 1px;
-}
-
 @media screen and (max-width: 510px) {
   .header_container {
     display: none;

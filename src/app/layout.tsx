@@ -1,12 +1,10 @@
-/* eslint-disable @next/next/next-script-for-ga */
-import "./globals.css"
-import type { Metadata } from "next"
 import { SideNav } from "@/components/sidebar/SideNav"
 import Header from "@/components/header/Header"
 import localFont from "next/font/local"
-import Script from "next/script"
+import type { Metadata } from "next"
 import Providers from "./providers"
-import Head from "next/head"
+import Script from "next/script"
+import "./globals.css"
 
 const myFont = localFont({ src: "./PretendardVariable.woff2" })
 
@@ -17,27 +15,6 @@ export const metadata: Metadata = {
   icons: {
     icon: "./favicon.ico",
   },
-  // openGraph: {
-  //   title: '유렉카',
-  //   description: '복잡한 UTM을 빠르게 만들자!',
-  //   url: 'https://utm.works',
-  //   siteName: '유렉카',
-  //   images: [
-  //     {
-  //       url: 'https://utm.works/og.png',
-  //       width: 800,
-  //       height: 600,
-  //     },
-  //     {
-  //       url: 'https://utm.works/og-alt.png',
-  //       width: 1200,
-  //       height: 600,
-  //       alt: 'OG IMAGE',
-  //     },
-  //   ],
-  //   locale: 'ko-kr',
-  //   type: 'website',
-  // },
 }
 export default function RootLayout({
   children,
@@ -50,20 +27,19 @@ export default function RootLayout({
         {/* Google Analytics */}
         <script
           async
-          src={`https://www.googletagmanager.com/gtag/js?id=G-FHG5QTJZLE`}></script>
+          src={`https://www.googletagmanager.com/gtag/js?id=G-N10RX7RLWY`}></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', "G-FHG5QTJZLE");
+              gtag('config', "G-N10RX7RLWY");
             `,
           }}
         />
 
         {/* Google Tag Manager */}
-
         <Script
           id='google-analytics'
           dangerouslySetInnerHTML={{
@@ -72,7 +48,7 @@ export default function RootLayout({
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-5C6PX36');
+          })(window,document,'script','dataLayer','GTM-PTJSFK5');
         `,
           }}
         />
@@ -82,7 +58,7 @@ export default function RootLayout({
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
-            src='https://www.googletagmanager.com/ns.html?id=GTM-5C6PX36'
+            src='https://www.googletagmanager.com/ns.html?id=GTM-PTJSFK5'
             height='0'
             width='0'
             style={{ display: "none", visibility: "hidden" }}></iframe>
@@ -91,7 +67,6 @@ export default function RootLayout({
         <SideNav />
         <div>
           <Header />
-
           <Providers> {children}</Providers>
         </div>
       </body>

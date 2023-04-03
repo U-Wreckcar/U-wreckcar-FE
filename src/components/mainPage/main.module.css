@@ -1,12 +1,12 @@
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 
 @font-face {
-  font-family: 'Pretendard Variable';
+  font-family: "Pretendard Variable";
   font-weight: 45 920;
   font-style: normal;
   font-display: swap;
-  src: local('Pretendard Variable'),
-    url('../../app/PretendardVariable.woff2') format('woff2-variations');
+  src: local("Pretendard Variable"),
+    url("../../app/PretendardVariable.woff2") format("woff2-variations");
 }
 .container {
   font-family: 'Pretendard Variable';
@@ -23,7 +23,7 @@
   padding-right: 40px;
 }
 .btn_box {
-  font-family: 'Pretendard Variable';
+  font-family: "Pretendard Variable";
 
   width: 100%;
   display: flex;
@@ -159,11 +159,11 @@
   /* padding: 1rem; */
 }
 
-.table th div input[type='checkbox'] {
+.table th div input[type="checkbox"] {
   margin-left: 30px;
 }
 
-.btn_input_Box > input[type='checkbox'] {
+.btn_input_Box > input[type="checkbox"] {
   margin-left: -20px;
 }
 
@@ -225,25 +225,25 @@
   }
 }
 
-.container input[type='checkbox'] {
+.container input[type="checkbox"] {
   width: 18px;
   height: 18px;
   /* margin-left: 20px; */
 }
 
-.container input[type='date'] {
+.container input[type="date"] {
   width: 120px;
   height: 40px;
   border-radius: 4px;
   border: 1px solid #ddd;
   margin: 5px;
 }
-.container input[type='text'] {
+.container input[type="text"] {
   border: 1px solid #ddd;
   border-radius: 4px;
 }
 
-.container input[type='text']:focus {
+.container input[type="text"]:focus {
   outline: none;
 }
 
@@ -523,7 +523,7 @@
   overflow: hidden;
 }
 
-.header_filter_box{
+.header_filter_box {
   display: flex;
   justify-content: center;
   align-items: center;

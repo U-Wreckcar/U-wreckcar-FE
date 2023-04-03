@@ -7,7 +7,6 @@ import axios from "./axiosConfig"
  * * POST
  */
 
-
 export const postUTMs = async (data: any) => {
   const res = await axios.post("utms", data)
   return res
@@ -20,8 +19,10 @@ export const postUTMs = async (data: any) => {
  * * GET
  */
 
+
  export const getUTMs = async () => {
   const res = await axios.get("utms",{ cache: false })
+
   return res
 }
 
@@ -88,22 +89,22 @@ export const patchUTM = async (data: any) => {
  * * SIGNUP
  */
 
-export const signUp = async (data:any) => {
-  try{
-   const res = await axios.post("users/signup", data)
+export const signUp = async (data: any) => {
+  try {
+    const res = await axios.post("users/signup", data)
     return res
-  }catch(err){
+  } catch (err) {
     console.log(err)
     alert("회원가입에 실패하셨습니다.")
   }
 }
 
-export const confirmEmail =async (data:any) => {
+export const confirmEmail = async (data: any) => {
   const res = await axios.post("users/email", data)
   return res
 }
 
-export const verifyEmailNum =async (data:any) => {
+export const verifyEmailNum = async (data: any) => {
   const res = await axios.post("users/emailverify", data)
   return res
 }
@@ -111,7 +112,7 @@ export const verifyEmailNum =async (data:any) => {
  * * Login
  */
 
-export const localLogin = async (data:any) => {
+export const localLogin = async (data: any) => {
   const res = await axios.post("users/login", data)
   return res
 }

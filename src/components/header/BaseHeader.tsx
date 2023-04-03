@@ -1,6 +1,5 @@
 "use client"
-
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styles from "./styles.module.css"
 import b_noti from "assets/b_noti.png"
 import Image from "next/image"
@@ -8,8 +7,7 @@ import Link from "next/link"
 import { myProfile } from "@/util/async/api"
 import { removeCookie } from "@/util/async/Cookie"
 import { useRouter } from "next/navigation"
-import { setClientHeaders } from "@/util/async/axiosConfig"
-import plus from "assets/plus.png"
+import UserModal from "./UserModal"
 interface UserProfile {
   username: string
   email: string
@@ -33,14 +31,6 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
   useEffect(() => {
     fetchUserData()
   }, [pathName])
-
-  const router = useRouter()
-  const logOut = () => {
-    removeCookie("access_token")
-    removeCookie("refresh_token")
-    router.push("/")
-    setModal(!modal)
-  }
 
   return (
     <section className={styles.header_container}>
@@ -72,6 +62,7 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
         className={styles.base_user_box}
         onClick={() => {
           setModal(!modal)
+
         }}
       >
         {modal && (
@@ -109,6 +100,7 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
           <span className={styles.bold_text}>{userData?.username}</span>님
         </p>
       </div>
+      {modal && <UserModal setModal={setModal} modal={modal} />}
     </section>
   )
 }
