@@ -78,21 +78,14 @@ const LoginBox = () => {
           )}
         </div>
         <div>
-          {!local ? (
-            <>
-              <div onClick={() => setLocal(true)}>
-                <Image src={logo} alt={""} width={40} height={15} />
-                <button className={styles.email_btn}>
-                  이메일로 바로 시작하기
-                </button>
-              </div>
-              <div>
-                <Image src={kakao_login} alt='' width={15} height={15} />
-                <button className={styles.kakao_btn} onClick={onClickKakaoBtn}>
-                  카카오로 1초만에 시작하기
-                </button>
-              </div>
-              {/* <div>
+          <>
+            <LocalLogin setLocal={setLocal} />
+            <Image src={kakao_login} alt='' width={15} height={15} />
+            <button className={styles.kakao_btn} onClick={onClickKakaoBtn}>
+              카카오로 1초만에 시작하기
+            </button>
+
+            {/* <div>
                 <Image src={naver_login} alt="" width={15} height={15} />
                 <button className={styles.naver_btn} onClick={onClickNaverBtn}>
                   네이버로 1초만에 시작하기
@@ -107,15 +100,10 @@ const LoginBox = () => {
                   구글로 1초만에 시작하기
                 </button>
               </div> */}
-            </>
-          ) : (
-            <>
-              <LocalLogin setLocal={setLocal} />
-            </>
-          )}
+          </>
         </div>
         <p className={styles.login_decription}>
-          ※ 현재 회원가입 시 전체 동의하기에 체크해야 유렉카 기능을 정상적으로
+          현재 회원가입 시 전체 동의하기에 체크해야 유렉카 기능을 정상적으로
           이용하실 수 있습니다.
         </p>
       </div>
