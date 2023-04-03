@@ -1,6 +1,6 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { DocumentContext } from 'next/document';
-import Script from 'next/script';
+import Document, { Html, Head, Main, NextScript } from "next/document"
+import { DocumentContext } from "next/document"
+import Script from "next/script"
 
 const MyDocument = () => {
   return (
@@ -24,7 +24,7 @@ const MyDocument = () => {
 
         {/* Google Tag Manager */}
         <Script
-          id='google-analytics'
+          id="google-analytics"
           dangerouslySetInnerHTML={{
             __html: `
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -51,12 +51,14 @@ const MyDocument = () => {
         </body>
       </Head>
     </Html>
-  );
-};
+  )
+}
 
 MyDocument.getInitialProps = async (ctx: DocumentContext) => {
-  const initialProps = await Document.getInitialProps(ctx);
-  return { ...initialProps };
-};
+  const initialProps = await Document.getInitialProps(ctx)
 
-export default MyDocument;
+  console.log(initialProps.html)
+  return { ...initialProps }
+}
+
+export default MyDocument

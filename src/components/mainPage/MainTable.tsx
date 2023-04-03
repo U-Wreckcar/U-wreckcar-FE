@@ -19,17 +19,11 @@ import {
   getFacetedRowModel,
   getFacetedUniqueValues,
   getFacetedMinMaxValues,
-  sortingFns,
   getSortedRowModel,
   FilterFn,
-  SortingFn,
 } from "@tanstack/react-table"
 
-import {
-  RankingInfo,
-  rankItem,
-  compareItems,
-} from "@tanstack/match-sorter-utils"
+import { RankingInfo, rankItem } from "@tanstack/match-sorter-utils"
 import styles from "./main.module.css"
 import { OutputModal } from "./OutputModal"
 import { DeleteModal } from "./DeleteModal"
@@ -69,7 +63,7 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
 let defaultData: Array<MainTableType> = []
 let dData: Array<MainTableType> = []
 
-export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
+const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [rowSelection, setRowSelection] = useState({})
   const [data, setData] = useState<Array<MainTableType>>([])
   const [target, setTarget] = useState("")
@@ -92,6 +86,10 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [warningAlert, setWarningAlert] = useState(false)
   const isOpen = useSelector((state: any) => state.add.isOpen)
 
+  const handleCatch = (error: any) => {
+    const errorDigest = error.digest
+  }
+
   const getData = async () => {
     const res = await getUTMs()
     setData(res.data)
@@ -102,9 +100,9 @@ export const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     try {
       getData()
     } catch (err) {
-      console.log(err)
+      handleCatch(err)
     }
-  }, [output, show, plus, isOpen])
+  }, [show, isOpen])
 
   useEffect(() => {
     setTimeout(() => {
@@ -826,3 +824,5 @@ function IndeterminateCheckbox({
     />
   )
 }
+
+export default MainTable

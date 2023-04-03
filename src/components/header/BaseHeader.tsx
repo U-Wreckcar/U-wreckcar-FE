@@ -47,7 +47,7 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
       <div className={styles.title}>
         <Image
           src={b_noti}
-          alt='Noti_img'
+          alt="Noti_img"
           onError={() => {
             console.log("img load fail")
           }}
@@ -60,7 +60,8 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
               href={
                 "https://docs.google.com/forms/d/e/1FAIpQLSc9YT3SIVC6ARWONo5DZSd4CN4TD68E-dXCwAJcAitOWWSnuw/viewform"
               }
-              target='_blank'>
+              target="_blank"
+            >
               [클릭]
             </Link>
           </span>{" "}
@@ -71,7 +72,8 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
         className={styles.base_user_box}
         onClick={() => {
           setModal(!modal)
-        }}>
+        }}
+      >
         {modal && (
           <dialog>
             <Link className={styles.links} href={"/userinfo"}>
@@ -79,7 +81,8 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
                 className={styles.links_box}
                 onClick={() => {
                   setModal(!modal)
-                }}>
+                }}
+              >
                 개인정보 관리
               </div>
             </Link>
@@ -87,7 +90,8 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
               className={styles.links_box}
               onClick={() => {
                 logOut()
-              }}>
+              }}
+            >
               로그아웃
             </div>
           </dialog>
@@ -95,7 +99,7 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
 
         <Image
           src={userData?.profile_img}
-          alt=''
+          alt=""
           width={30}
           height={30}
           style={{ borderRadius: "50%", marginRight: "7px" }}
