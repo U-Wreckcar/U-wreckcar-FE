@@ -23,9 +23,11 @@
 }
 
 .utm_url {
+  font-size: 14px;
   width: 60%;
 }
 .utm_shorten_url {
+  font-size: 14px;
   width: 40%;
 }
 .copy_title {
