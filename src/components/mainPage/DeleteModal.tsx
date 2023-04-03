@@ -1,11 +1,11 @@
 import Image from "next/image"
-import ReactModal from "react-modal"
 import styles from "./main.module.css"
 import b_close from "assets/b_close.png"
 import { deleteUTM } from "util/async/api"
 import { useRouter } from "next/navigation"
 import { useDispatch } from "react-redux"
 import { delItem } from "@/redux/slice/addslice"
+import Modal from "@/app/Modal"
 
 type OutputModalType = {
   isOpen: boolean
@@ -33,7 +33,7 @@ export const DeleteModal: React.FC<OutputModalType> = ({
     router.replace("/main")
   }
   return (
-    <ReactModal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
+    <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
       <div
         className={styles.del_dialogBox}
         {...(isOpen && true ? { open: true } : {})}
@@ -73,6 +73,6 @@ export const DeleteModal: React.FC<OutputModalType> = ({
           </button>
         </div>
       </div>
-    </ReactModal>
+    </Modal>
   )
 }

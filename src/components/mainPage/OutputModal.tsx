@@ -1,5 +1,4 @@
 import Image from "next/image"
-import ReactModal from "react-modal"
 import styles from "./main.module.css"
 
 import not_notion from "assets/notion.png"
@@ -16,6 +15,7 @@ import { getUTMNotion, getUTMSheet } from "@/util/async/api"
 
 import Axios from "util/async/axiosConfig"
 import { Alert, AlertTitle } from "@mui/material"
+import Modal from "@/app/Modal"
 
 type OutputModalType = {
   isOpen: boolean
@@ -108,7 +108,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
   }, [notion, excel, sheet])
 
   return (
-    <ReactModal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
+    <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
       <div
         className={styles.dialogBox}
         {...(isOpen && true ? { open: true } : {})}
@@ -128,7 +128,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
           <div className={styles.col_box}>
             <div>
               <p>{data.length}개의 UTM이 선택되었습니다.</p>
-              <p>UTM 데이터를 보낼 틀을 선택해주세요</p>
+              <p>UTM 데이터를 보낼 툴을 선택해주세요</p>
             </div>
             <div className={styles.img_box}>
               <div className={styles.img_box_img}>
@@ -209,6 +209,6 @@ export const OutputModal: React.FC<OutputModalType> = ({
           </button>
         </div>
       </div>
-    </ReactModal>
+    </Modal>
   )
 }
