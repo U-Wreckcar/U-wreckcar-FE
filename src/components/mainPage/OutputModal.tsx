@@ -1,5 +1,4 @@
 import Image from "next/image"
-import ReactModal from "react-modal"
 import styles from "./main.module.css"
 
 import not_notion from "assets/notion.png"
@@ -16,6 +15,7 @@ import { getUTMNotion, getUTMSheet } from "@/util/async/api"
 
 import Axios from "util/async/axiosConfig"
 import { Alert, AlertTitle } from "@mui/material"
+import Modal from "@/app/Modal"
 
 type OutputModalType = {
   isOpen: boolean
@@ -108,7 +108,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
   }, [notion, excel, sheet])
 
   return (
-    <ReactModal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
+    <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
       <div
         className={styles.dialogBox}
         {...(isOpen && true ? { open: true } : {})}
@@ -209,6 +209,6 @@ export const OutputModal: React.FC<OutputModalType> = ({
           </button>
         </div>
       </div>
-    </ReactModal>
+    </Modal>
   )
 }

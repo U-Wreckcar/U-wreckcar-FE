@@ -1,9 +1,9 @@
 import Image from "next/image"
-import ReactModal from "react-modal"
 import styles from "./main.module.css"
 import b_close from "assets/b_close.png"
 import { useRef } from "react"
 import { patchUTM } from "@/util/async/api"
+import Modal from "@/app/Modal"
 type EditModalType = {
   isOpen: boolean
   onRequestClose: any
@@ -32,7 +32,7 @@ export const EditModal: React.FC<EditModalType> = ({
   }
 
   return (
-    <ReactModal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
+    <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
       <div className={styles.del_dialogBox}>
         <div className={styles.header}>
           <div className={styles.title_box}>
@@ -71,6 +71,6 @@ export const EditModal: React.FC<EditModalType> = ({
           </button>
         </div>
       </div>
-    </ReactModal>
+    </Modal>
   )
 }

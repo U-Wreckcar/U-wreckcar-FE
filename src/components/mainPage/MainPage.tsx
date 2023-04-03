@@ -5,9 +5,12 @@ import { Provider } from "react-redux"
 import store from "@/redux/store/store"
 import { useRouter } from "next/navigation"
 import CircularUnderLoad from "../CircularUnderLoad"
+import dynamic from "next/dynamic"
 
-const MainBtnTable = lazy(() => import("./MainBtnTable"))
-const MainTable = lazy(() => import("./MainTable"))
+// const MainBtnTable = lazy(() => import("./MainBtnTable"))
+// const MainTable = lazy(() => import("./MainTable"))
+const MainBtnTable = dynamic(() => import("./MainBtnTable"), { ssr: false })
+const MainTable = dynamic(() => import("./MainTable"), { ssr: false })
 
 export default function MainPageComponent() {
   const [summary, setSummary] = useState(false)

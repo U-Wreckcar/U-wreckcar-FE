@@ -1,11 +1,11 @@
 "use client"
 import React, { useEffect, useRef } from "react"
-import ReactModal from "react-modal"
 import styles from "./AddUtmModal.module.css"
 import { useForm } from "react-hook-form"
 import { ExternalUTM } from "@/util/async/api"
 import { useDispatch } from "react-redux"
 import { addItem } from "@/redux/slice/addslice"
+import Modal from "@/app/Modal"
 
 export type ModalType = {
   isOpen: boolean
@@ -56,7 +56,7 @@ export const AddUtmModal: React.FC<ModalType> = ({
   }, [isOpen])
 
   return (
-    <ReactModal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
+    <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.add_modal}>
         <div className={styles.title_box}>
           <h1>기존 UTM 추가</h1>
@@ -125,6 +125,6 @@ export const AddUtmModal: React.FC<ModalType> = ({
           </button>
         </div>
       </form>
-    </ReactModal>
+    </Modal>
   )
 }

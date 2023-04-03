@@ -1,6 +1,5 @@
 import CircularUnderLoad from "@/components/CircularUnderLoad"
 import React from "react"
-import ReactModal from "react-modal"
 import styles from "./Loading.module.css"
 import ProgressLoading from "./ProgressLoading"
 type OutputModalType = {
