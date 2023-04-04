@@ -6,14 +6,11 @@
   border-radius: 4px;
   overflow: hidden;
 
-  /* position: relative;
-  top: -100px; */
   display: flex;
   text-align: center;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5px;
 }
 
 .kakao_btn {
@@ -24,20 +21,21 @@
 
   background-color: #fee500;
   text-align: left;
+
+  margin-top: 8px;
 }
 .kakao_btn p {
   text-align: center;
 }
 .kakao_btn span {
   display: inline-block;
-  transform: translateX(-8%);
+  transform: translate(-8%, -7%);
 }
 
 .kakao_img {
-  width: 17px;
-  height: 17px;
-
-  transform: translate(-920%, 10%);
+  width: 15px;
+  height: 15px;
+  transform: translate(-1200%, 8%);
 }
 .naver_btn {
   width: 400px;
@@ -83,14 +81,14 @@
 }
 
 .login_decription {
-  font-family: "Abel";
   font-size: 12px;
   font-weight: 400;
 
+  margin-top: 10px;
   margin-left: 16px;
   line-height: 24px;
 
-  color: red;
+  color: #f13400;
 }
 @media screen and (max-width: 520px) {
   .container {
