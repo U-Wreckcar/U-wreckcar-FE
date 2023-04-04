@@ -1,15 +1,5 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
-
-@font-face {
-  font-family: "Pretendard Variable";
-  font-weight: 45 920;
-  font-style: normal;
-  font-display: swap;
-  src: local("Pretendard Variable"),
-    url("../../app/PretendardVariable.woff2") format("woff2-variations");
-}
 .logo_container {
-  font-family: "Pretendard Variable";
+  font-family: "pretendard";
 
   display: flex;
   justify-content: space-between;
@@ -19,7 +9,7 @@
 }
 
 .plus_container {
-  font-family: "Pretendard Variable";
+  font-family: "pretendard";
 
   display: flex;
   flex-direction: column;
@@ -42,7 +32,7 @@
   margin: 100px 0 0 10px;
 }
 .titleBox h3 {
-  font-family: "Pretendard Variable";
+  font-family: "pretendard";
   margin-bottom: 20px;
 }
 .white_logo {
@@ -60,7 +50,7 @@
   display: flex;
   flex-direction: column;
   width: 246px;
-  font-family: "Pretendard Variable";
+  font-family: "pretendard";
 }
 
 .category_bottom_box {
@@ -69,7 +59,7 @@
   margin-left: 4px;
   width: 246px;
   margin-bottom: 50px;
-  font-family: "Pretendard Variable";
+  font-family: "pretendard";
 }
 
 .active {
@@ -81,7 +71,7 @@
   margin-bottom: 10px;
   border-radius: 4px;
   background-color: #382ade;
-  font-family: "Pretendard Variable";
+  font-family: "pretendard";
 }
 .utm_category_item {
   display: flex;
@@ -93,7 +83,7 @@
   overflow: hidden;
   padding-left: 7px;
   cursor: pointer;
-  font-family: "Pretendard Variable";
+  font-family: "pretendard";
 }
 .utm_category_item:hover {
   background-color: #382ade;
@@ -202,7 +192,6 @@
   margin-bottom: 10px;
 } */
 .link {
-  font-family: "Pretendard Variable";
   font-family: "Pretendard";
   font-size: var(--font-category);
   font-weight: var(--weight-regular);

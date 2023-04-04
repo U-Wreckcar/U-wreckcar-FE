@@ -42,9 +42,8 @@ body {
   overflow-x: hidden;
   box-sizing: border-box;
   background-color: #f5f9fc;
-  font-family: "Pretendard Variable", "Pretendard", "Segoe UI", "Roboto",
-    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Pretendard", "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -60,7 +59,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: "pretendard", "pretendard Variable";
+  font-family: "pretendard";
   list-style: none;
   font-size: inherit;
   color: inherit;
@@ -71,14 +70,14 @@ h5 {
 a {
   text-decoration: none;
   color: inherit;
-  font-family: "pretendard", "pretendard Variable";
+  font-family: "pretendard";
 }
 label {
   cursor: pointer;
 }
 
 button {
-  font-family: "pretendard", "pretendard Variable";
+  font-family: "pretendard";
   background-color: transparent;
   border: none;
   border-radius: 4px;
@@ -86,7 +85,7 @@ button {
 }
 
 input {
-  font-family: "pretendard", "pretendard Variable";
+  font-family: "pretendard";
   margin: 0;
   border-radius: 4px;
   padding: 0 10px;
@@ -98,6 +97,7 @@ input:checked {
   accent-color: #484bff;
 }
 textarea {
+  font-family: "pretendard";
   outline: none;
   vertical-align: middle;
   resize: none;
