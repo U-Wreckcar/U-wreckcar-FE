@@ -19,34 +19,44 @@ export default function TryUtm() {
           <p className={styles.add_utm_text}>
             이미 만들어져 있는 UTM을 추가한다면?
           </p>
-          <textarea
-            className={styles.textarea}
-            value={
-              "https://www.utm.works?utm_source=google&utm_medium=cpc&utm_campaign=uwreker_close_beta&utm_content=1st&utm_term=GA&utm_id=20230312_UCB"
-            }
-          />
-          <BlueButton
-            text={"추가하기"}
-            x={84}
-            y={38}
-            confirmFN={addUTMHandler}
-          />
+          <div className={styles.left_box}>
+            <p className={styles.left_title}>기존 UTM 추가하기</p>
+            <p className={styles.left_content}>
+              추가하기 버튼을 클릭해서 UTM을 저장해보세요!
+            </p>
+            <textarea
+              className={styles.textarea}
+              value={
+                "https://www.utm.works?utm_source=google&utm_medium=cpc&utm_campaign=uwreker_close_beta&utm_content=1st&utm_term=GA&utm_id=20230312_UCB"
+              }
+            />
+            <BlueButton
+              text={"추가하기"}
+              x={84}
+              y={38}
+              confirmFN={addUTMHandler}
+            />
+          </div>
         </div>
-        <div className={styles.get_utm_article}>
-          {show && (
-            <>
-              <p className={styles.get_artcle_title}>
-                파라미터 별로 구분되어 자동으로 저장!
-              </p>
-              {utmdata.map((utm, idx) => (
-                <div key={idx} className={styles.get_utm}>
-                  <p className={styles.item_name}>{utm.itemName}</p>
-                  <div className={styles.items_style}>{utm.item}</div>
-                </div>
-              ))}
-            </>
-          )}
-        </div>
+        {show && (
+          <div className={styles.right_section}>
+            <p className={styles.get_artcle_title}>
+              파라미터 별로 구분되어 자동으로 저장!
+            </p>
+            <div className={styles.right_box}>
+              <div className={styles.list_utm_box}>
+                {utmdata.map((utm, idx) => (
+                  <div key={idx}>
+                    <div className={styles.get_utm}>
+                      <p className={styles.item_name}>{utm.itemName}</p>
+                      <div className={styles.items_style}>{utm.item}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
