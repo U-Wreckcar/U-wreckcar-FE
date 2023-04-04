@@ -18,8 +18,9 @@
 }
 
 .modal_wrap > div {
-    text-align: center;
+    text-align: left;
     margin-top: 24px;
+    padding-left: 50px;
 }
 
 .modal_wrap > div > h2 {
@@ -43,7 +44,10 @@
     color: #F13400;
 }
 .button_box {
-    margin-top: 25px;
+    width: 320px;
+    display: flex;
+    margin: 25px auto;
+
 }
 .button_box > button {
     width: 120px;
