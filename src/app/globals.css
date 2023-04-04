@@ -85,7 +85,7 @@ button {
 }
 
 input {
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable", "Pretendard";
   margin: 0;
   border-radius: 4px;
   padding: 0 10px;
@@ -97,9 +97,12 @@ input:checked {
   accent-color: #484bff;
 }
 textarea {
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable", "Pretendard";
   outline: none;
   vertical-align: middle;
   resize: none;
   padding: 16px;
+}
+div {
+  font-family: "Pretendard Variable", "Pretendard";
 }

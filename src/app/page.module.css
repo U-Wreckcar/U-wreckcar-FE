@@ -37,11 +37,13 @@
   color: #ffffff;
   font-size: 52px;
   margin: 0;
+  font-family: "Pretendard";
 }
 .section_one p {
   color: #ffffff;
   font-weight: 400;
   font-size: 16px;
+  font-family: "Pretendard";
 }
 .section_one button {
   border: none;
@@ -113,11 +115,13 @@
   font-weight: 700;
   font-size: 26px;
   margin-bottom: 38px;
+  font-family: "Pretendard";
 }
 .section_two h2 {
   color: #000000;
   font-weight: 300;
   font-size: 50px;
+  font-family: "Pretendard";
 }
 .section_two h1 {
   color: #000000;
