@@ -29,15 +29,6 @@
   --animation-duration: 370ms;
 }
 
-/* @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
-@font-face {
-  font-family: "Pretendard Variable";
-  font-weight: 45 920;
-  font-style: normal;
-  font-display: swap;
-  src: local("Pretendard Variable"),
-    url("./PretendardVariable.woff2") format("woff2-variations");
-} */
 * {
   margin: 0;
   padding: 0;
@@ -51,9 +42,9 @@ body {
   overflow-x: hidden;
   box-sizing: border-box;
   background-color: #f5f9fc;
-  font-family: Pretendard, BlinkMacSystemFont, "Pretendard Variable",
-    "Pretendard", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
-    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "Pretendard Variable", "Pretendard", "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -109,4 +100,5 @@ textarea {
   outline: none;
   vertical-align: middle;
   resize: none;
+  padding: 16px;
 }
