@@ -100,4 +100,5 @@ textarea {
   outline: none;
   vertical-align: middle;
   resize: none;
+  padding: 16px;
 }
