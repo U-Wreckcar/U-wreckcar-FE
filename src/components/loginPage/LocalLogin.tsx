@@ -49,10 +49,10 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
+        <div className={styles.email_box}>
           <input
-            className={`${styles.input_style}, ${styles.input_style} ${styles.email_input}`}
-            placeholder="이메일을 입력해주세요."
+            className={`${errors.email ? styles.error : styles.input_style}`}
+            placeholder='이메일을 입력해주세요.'
             {...register("email", {
               required: "이메일은 필수 입력입니다.",
               minLength: {
@@ -70,13 +70,15 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
               },
             })}
           />
-          {errors.email && <h6>{errors.email?.message}</h6>}
+          {errors.email && (
+            <p className={styles.error_message}>{errors.email?.message}</p>
+          )}
         </div>
         <div>
           <input
-            className={styles.input_style}
-            type="password"
-            placeholder="비밀번호를 입력해주세요"
+            className={`${errors.password ? styles.error : styles.input_style}`}
+            type='password'
+            placeholder='비밀번호를 입력해주세요'
             {...register("password", {
               required: "비밀번호는 필수 입력입니다.",
               minLength: {
@@ -94,12 +96,14 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
               },
             })}
           />
-          {errors.password && <h6>{errors.password?.message}</h6>}
+          {errors.password && (
+            <p className={styles.error_message}>{errors.password?.message}</p>
+          )}
         </div>
         <div className={styles.option_box_containel}>
           <div className={styles.id_remember_box}>
-            <input id="rememberId" type="checkbox" />
-            <label htmlFor="rememberId">아이디 저장</label>
+            <input id='rememberId' type='checkbox' />
+            <label htmlFor='rememberId'>아이디 저장</label>
           </div>
           <div className={styles.sign_up_password_forget_box}>
             <Link href={"/signup"}>
@@ -116,9 +120,8 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
         <div>
           <button
             className={styles.login_button}
-            type="submit"
-            disabled={isSubmitting}
-          >
+            type='submit'
+            disabled={isSubmitting}>
             로그인
           </button>
         </div>
