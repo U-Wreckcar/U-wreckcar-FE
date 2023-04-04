@@ -25,6 +25,7 @@ const KakaoCallback = () => {
       })
         .then(async (response) => {
           const res = await response.json()
+          console.log(res.success)
           if (res.success == false) {
             throw new Error("kakao")
           } else {
@@ -34,6 +35,7 @@ const KakaoCallback = () => {
           }
         })
         .then(() => {
+          console.log("go main")
           router.push("/main")
         })
 
