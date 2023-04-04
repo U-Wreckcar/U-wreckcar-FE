@@ -53,15 +53,15 @@
     height: 38px;
     border:1px solid #e1e1e1;
     border-radius: 4px;
-    padding-left: 8px;
+    /* padding-left: 8px; */
     margin-top: 12px;
 }
 
 .email_input{
-    width: 407px;
+    width: 385px;
 }
 .signup_input{
-    width: 500px;
+    width: 478px;
 }
 
 .wrap > button {
@@ -78,6 +78,7 @@
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
+    margin-bottom: -20px;
 }
 
 .form > span {

@@ -111,163 +111,172 @@ export default function SignUp() {
   }
 
   return (
-    <div className={styles.container}>
-      <h1>유렉카 회원가입</h1>
-      <h4>반갑습니다! 유렉카의 새로운 회원님!</h4>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.wrap}>
-          <label>E-mail</label>
-          <input
-            type='email'
-            className={styles.email_input}
-            placeholder='사용하실 이메일을 입력해주세요'
-            {...register("email", {
-              required: "이메일은 필수 입력입니다.",
-              minLength: {
-                value: 8,
-                message: "이메일을 8자 이상 작성해주세요",
-              },
-              maxLength: {
-                value: 30,
-                message: "이메일을 30자 이하로 작성해주세요",
-              },
-              pattern: {
-                value:
-                  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/,
-                message: "이메일이 형식에 맞지 않습니다.",
-              },
-              disabled: emailNum !== 0 ? true : false,
-            })}
-          />
-          <button
-            className={styles.confirm_button}
-            type='button'
-            onClick={emailConfirm}>
-            인증 발송
-          </button>
-        </div>
-        {errors.email && <p>{errors.email?.message}</p>}
-        {emailNum === 1 && <span>인증번호 발송에 성공했습니다.</span>}
-        <div className={styles.wrap}>
-          <label>E-mail 인증번호</label>
-          <input
-            type={"text"}
-            className={styles.confirm_input}
-            placeholder='받으신 이메일 인증번호를 입력해주세요'
-            {...register("emailNum", {
-              required: "이메일 인증번호를 입력해주세요.",
-              disabled: emailNum > 1 ? true : false,
-            })}
-          />
-          <button
-            className={styles.confirm_button}
-            type='button'
-            onClick={confirmEmailNum}>
-            인증 확인
-          </button>
-        </div>
-        {errors.emailNum && <p>{errors.emailNum?.message}</p>}
-        {emailNum === 2 && <span>인증번호가 일치합니다.</span>}
-        <div className={styles.wrap}>
-          <label>이름</label>
-          <input
-            type='text'
-            className={styles.signup_input}
-            placeholder='성함을 입력해주세요'
-            {...register("username", {
-              required: "성함을 입력해주세요",
-              minLength: {
-                value: 1,
-                message: "성함을 1자 이상 작성해주세요",
-              },
-              maxLength: {
-                value: 16,
-                message: "성함을 16자 이하로 작성해주세요",
-              },
-            })}
-          />
-        </div>
-        {errors.username && <p>{errors.username?.message}</p>}
-        <div className={styles.wrap}>
-          <label>비밀번호</label>
-          <input
-            className={styles.signup_input}
-            type='password'
-            placeholder='영문,숫자,특수문자 포함 8자 이상 20자 이하'
-            {...register("password", {
-              required: "비밀번호는 필수 입력입니다.",
-              minLength: {
-                value: 8,
-                message: "비밀번호를 8자 이상 작성해주세요",
-              },
-              maxLength: {
-                value: 20,
-                message: "비밀번호를 20자 이하로 작성해주세요",
-              },
-              pattern: {
-                value:
-                  /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/,
-                message: "비밀번호가 형식에 맞지 않습니다.",
-              },
-            })}
-          />
-        </div>
-        {errors.password && <p>{errors.password?.message}</p>}
-        <div className={styles.wrap}>
-          <label>비밀번호 확인</label>
-          <input
-            className={styles.signup_input}
-            type='password'
-            placeholder='비밀번호를 다시 입력해주세요'
-            {...register("confirmPw", {
-              required: "비밀번호 확인을 해주세요",
-            })}
-          />
-        </div>
-        {errors.confirmPw && <p>{errors.confirmPw?.message}</p>}
-        <div className={styles.wrap}>
-          <label>회사이름</label>
-          <input
-            className={styles.signup_input}
-            placeholder='회사이름을 입력해주세요'
-            {...register("company_name", {
-              required: "회사이름을 입력해주세요",
-            })}
-          />
-        </div>
-        {errors.company_name && <p>{errors.company_name?.message}</p>}
-
-        <div className={styles.check_wrap}>
-          <label style={{ cursor: "pointer" }}>
+    <div className={styles.background}>
+      <div className={styles.container}>
+        <h1>회원가입</h1>
+        <h4>반갑습니다! 유렉카의 새로운 회원님!</h4>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.wrap}>
+            <h5>이메일</h5>
             <input
-              className={styles.check_input}
-              type='checkbox'
-              {...register("marketing_accept", {
-                required: "마케팅 활용에 동의 해주세요",
+              type="email"
+              className={styles.email_input}
+              placeholder="사용하실 이메일을 입력해주세요"
+              {...register("email", {
+                required: "이메일은 필수 입력입니다.",
+                minLength: {
+                  value: 8,
+                  message: "이메일을 8자 이상 작성해주세요",
+                },
+                maxLength: {
+                  value: 30,
+                  message: "이메일을 30자 이하로 작성해주세요",
+                },
+                pattern: {
+                  value:
+                    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/,
+                  message: "이메일이 형식에 맞지 않습니다.",
+                },
+                disabled: emailNum !== 0 ? true : false,
               })}
             />
-            유렉카의 개인정보 처리 방침에 동의합니다.
-          </label>
-          <div
-            style={{ cursor: "pointer" }}
-            onClick={() =>
-              window.open(
-                "https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e"
-              )
-            }>
-            (상세보기)
+            <button
+              className={styles.confirm_button}
+              type="button"
+              onClick={emailConfirm}
+            >
+              인증하기
+            </button>
           </div>
-        </div>
-        {errors.marketing_accept && <p>{errors.marketing_accept?.message}</p>}
-        <div className={styles.button_box}>
-          <button
-            className={styles.signup_button}
-            type='submit'
-            disabled={isSubmitting}>
-            회원가입
-          </button>
-        </div>
-      </form>
+          {errors.email && <p>{errors.email?.message}</p>}
+          {emailNum === 1 && <span>인증번호 발송에 성공했습니다.</span>}
+          <div className={styles.wrap}>
+            <h5>인증번호</h5>
+            <input
+              type={"text"}
+              className={styles.confirm_input}
+              placeholder="받으신 이메일 인증번호를 입력해주세요"
+              {...register("emailNum", {
+                required: "이메일 인증번호를 입력해주세요.",
+                disabled: emailNum > 1 ? true : false,
+              })}
+            />
+            <button
+              className={styles.confirm_button}
+              type="button"
+              onClick={confirmEmailNum}
+            >
+              인증확인
+            </button>
+          </div>
+          {errors.emailNum && <p>{errors.emailNum?.message}</p>}
+          {emailNum === 2 && <span>인증번호가 일치합니다.</span>}
+          <div className={styles.wrap}>
+            <h5>이름</h5>
+            <input
+              type="text"
+              className={styles.signup_input}
+              placeholder="성함을 입력해주세요"
+              {...register("username", {
+                required: "성함을 입력해주세요",
+                minLength: {
+                  value: 1,
+                  message: "성함을 1자 이상 작성해주세요",
+                },
+                maxLength: {
+                  value: 16,
+                  message: "성함을 16자 이하로 작성해주세요",
+                },
+              })}
+            />
+          </div>
+          {errors.username && <p>{errors.username?.message}</p>}
+          <div className={styles.wrap}>
+            <h5>비밀번호</h5>
+            <input
+              className={styles.signup_input}
+              type="password"
+              placeholder="영문,숫자,특수문자 포함 8자 이상 20자 이하"
+              {...register("password", {
+                required: "비밀번호는 필수 입력입니다.",
+                minLength: {
+                  value: 8,
+                  message: "비밀번호를 8자 이상 작성해주세요",
+                },
+                maxLength: {
+                  value: 20,
+                  message: "비밀번호를 20자 이하로 작성해주세요",
+                },
+                pattern: {
+                  value:
+                    /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/,
+                  message: "비밀번호가 형식에 맞지 않습니다.",
+                },
+              })}
+            />
+          </div>
+          {errors.password && <p>{errors.password?.message}</p>}
+          <div className={styles.wrap}>
+            <h5>비밀번호 확인</h5>
+            <input
+              className={styles.signup_input}
+              type="password"
+              placeholder="비밀번호를 다시 입력해주세요"
+              {...register("confirmPw", {
+                required: "비밀번호 확인을 해주세요",
+              })}
+            />
+          </div>
+          {errors.confirmPw && <p>{errors.confirmPw?.message}</p>}
+          <div className={styles.wrap}>
+            <h5>회사 이름</h5>
+            <input
+              className={styles.signup_input}
+              placeholder="회사이름을 입력해주세요"
+              {...register("company_name", {
+                required: "회사이름을 입력해주세요",
+              })}
+            />
+          </div>
+          {errors.company_name && <p>{errors.company_name?.message}</p>}
+
+          <div className={styles.check_wrap}>
+            <h5>이용약관 동의</h5>
+            <label
+              className={styles.confirm_label}
+              style={{ cursor: "pointer" }}
+            >
+              <input
+                className={styles.check_input}
+                type="checkbox"
+                {...register("marketing_accept", {
+                  required: "마케팅 활용에 동의 해주세요",
+                })}
+              />
+              유렉카의 개인정보 처리 방침에 동의합니다.
+            </label>
+            <div
+              className={styles.noti}
+              style={{ cursor: "pointer" }}
+              onClick={() =>
+                window.open(
+                  "https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e"
+                )
+              }
+            ></div>
+          </div>
+          {errors.marketing_accept && <p>{errors.marketing_accept?.message}</p>}
+          <div className={styles.button_box}>
+            <button
+              className={styles.signup_button}
+              type="submit"
+              disabled={isSubmitting}
+            >
+              회원가입
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

@@ -405,6 +405,13 @@
   font-size: 16px;
   font-weight: 400;
   color: #222222;
+  margin-bottom: 7px;
+}
+.col_box span {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #484BFF;
 }
 .cancleBtn {
   border: none;
@@ -442,7 +449,7 @@
   border-radius: 4px;
   background-color: #484bff;
   color: #fff;
-  margin-bottom: 70px;
+  margin-bottom: 90px;
   border: none;
 }
 .modal_del_button {
@@ -464,7 +471,7 @@
 }
 
 .img_box_img {
-  margin: 30px 5px 6px 5px;
+  margin: 20px 5px 6px 5px;
 }
 
 .main_area {
