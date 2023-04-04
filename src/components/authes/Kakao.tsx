@@ -26,19 +26,24 @@ const KakaoCallback = () => {
         .then(async (response) => {
           const res = await response.json()
           if (res.success == false) {
-            router.push("/login")
+            throw new Error("kakao")
           } else {
             setCookie("access_token", res.access_token)
             setCookie("refresh_token", res.refresh_token)
             setClientHeaders(res.access_token, res.refresh_token)
           }
         })
-        // .then(() => {
-        //   router.push("/login")
-        // })
+        .then(() => {
+          router.push("/main")
+        })
+
         .catch((error) => {
+          if (error.message == "kakao") {
+            router.push("/login")
+          } else {
+            console.error(error)
+          }
           // 에러 처리
-          console.error(error)
           //   router.push('/error');
         })
     } else {
