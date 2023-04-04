@@ -105,6 +105,7 @@
     width: 299px;
     height: 38px;
     border: 0.7px solid #ddd;
+    transform: translateX(-2px);
 }
 .confirm_input{
     border-radius: 4px;
@@ -127,7 +128,8 @@
     margin-right: 8px;
     transform: translateY(4px);
 }
-
+.email_input:focus,
+.confirm_input:focus,
 .signup_input:focus{
     outline:  0.7px solid #ddd;
 }
