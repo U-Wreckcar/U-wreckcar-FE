@@ -39,9 +39,9 @@ export const EditModal: React.FC<EditModalType> = ({
             <span className={styles.title}>UTM 메모 수정하기</span>
           </div>
           <div className={styles.cancleBtn_box}>
-            <button className={styles.cancleBtn} onClick={onRequestClose}>
+            {/* <button className={styles.cancleBtn} onClick={onRequestClose}>
               <Image src={b_close} alt="close_img" width={24} height={24} />
-            </button>
+            </button> */}
           </div>
         </div>
         <div className={styles.contents}>
@@ -58,15 +58,13 @@ export const EditModal: React.FC<EditModalType> = ({
           <button
             onClick={onRequestClose}
             className={styles.modal_del_button}
-            value="default"
-          >
+            value='default'>
             취소하기
           </button>
           <button
             onClick={onClickEditButton}
             className={styles.modal_button}
-            value="default"
-          >
+            value='default'>
             수정하기
           </button>
         </div>
