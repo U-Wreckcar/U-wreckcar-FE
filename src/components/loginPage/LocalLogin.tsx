@@ -54,6 +54,7 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
     const id = localStorage.getItem("userID")
     if (id) {
       setUserId(id)
+      setRemember(true)
     }
   }, [])
 
