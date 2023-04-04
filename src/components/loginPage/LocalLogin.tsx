@@ -4,7 +4,7 @@ import { setClientHeaders } from "@/util/async/axiosConfig"
 import { setCookie } from "@/util/async/Cookie"
 import Link from "next/link"
 import { redirect, useRouter } from "next/navigation"
-import React, { Dispatch, SetStateAction } from "react"
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import styles from "./LocalLogin.module.css"
 
@@ -19,6 +19,8 @@ type LoginFormData = {
 
 const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
   const router = useRouter()
+  const [remember, setRemember] = useState(false)
+  const [userId, setUserId] = useState("")
 
   const {
     register,
@@ -34,7 +36,9 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
   const onSubmit = async (data: LoginFormData) => {
     try {
       const res = await localLogin({ data })
-
+      if (remember) {
+        localStorage.setItem("userID", data.email)
+      }
       setCookie("access_token", res.data.access_token)
       setCookie("refresh_token", res.data.refresh_token)
       setClientHeaders(res.data.access_token, res.data.refresh_token)
@@ -46,13 +50,22 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
     }
   }
 
+  useEffect(() => {
+    const id = localStorage.getItem("userID")
+    if (id) {
+      setUserId(id)
+      setRemember(true)
+    }
+  }, [])
+
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.email_box}>
           <input
             className={`${errors.email ? styles.error : styles.input_style}`}
-            placeholder='이메일을 입력해주세요.'
+            placeholder="이메일을 입력해주세요."
+            defaultValue={userId}
             {...register("email", {
               required: "이메일은 필수 입력입니다.",
               minLength: {
@@ -77,8 +90,8 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
         <div>
           <input
             className={`${errors.password ? styles.error : styles.input_style}`}
-            type='password'
-            placeholder='비밀번호를 입력해주세요'
+            type="password"
+            placeholder="비밀번호를 입력해주세요"
             {...register("password", {
               required: "비밀번호는 필수 입력입니다.",
               minLength: {
@@ -102,8 +115,13 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
         </div>
         <div className={styles.option_box_containel}>
           <div className={styles.id_remember_box}>
-            <input id='rememberId' type='checkbox' />
-            <label htmlFor='rememberId'>아이디 저장</label>
+            <input
+              id="rememberId"
+              type="checkbox"
+              checked={remember}
+              onChange={() => setRemember(!remember)}
+            />
+            <label htmlFor="rememberId">아이디 저장</label>
           </div>
           <div className={styles.sign_up_password_forget_box}>
             <Link href={"/signup"}>
@@ -120,8 +138,9 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
         <div>
           <button
             className={styles.login_button}
-            type='submit'
-            disabled={isSubmitting}>
+            type="submit"
+            disabled={isSubmitting}
+          >
             로그인
           </button>
         </div>
