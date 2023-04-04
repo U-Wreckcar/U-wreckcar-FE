@@ -117,6 +117,8 @@ export default function Home() {
                 alt='Img'
               />
             </article>
+          </section>
+          <section className={styles.try_section}>
             <article>
               <TryUTM />
             </article>
