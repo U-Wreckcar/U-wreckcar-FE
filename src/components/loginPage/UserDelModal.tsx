@@ -1,11 +1,14 @@
 import Modal from "@/app/Modal"
 import { removeUser } from "@/util/async/api"
+import { removeCookie } from "@/util/async/Cookie"
+import { useRouter } from "next/navigation"
 import { useRef, useState } from "react"
 import styles from "./delModal.module.css"
 
 const UserDelModal = ({ isOpen, onRequestClose }: any) => {
   const [check, setCheck] = useState<string | undefined>("")
   const etc_ref = useRef<HTMLInputElement>(null)
+  const router = useRouter()
 
   const customStyles = {
     content: {
@@ -19,6 +22,15 @@ const UserDelModal = ({ isOpen, onRequestClose }: any) => {
     },
   }
 
+  const onclickCheck = (e: any) => {
+    const checkItem = document.getElementsByName("check")
+
+    Array.prototype.forEach.call(checkItem, function (el) {
+      el.checked = false
+    })
+    e.target.checked = true
+  }
+
   const categoryList = [
     { reason: " 새로운 계정으로 가입하고 싶어요." },
     { reason: "  기록을 삭제하고 싶어요." },
@@ -30,7 +42,10 @@ const UserDelModal = ({ isOpen, onRequestClose }: any) => {
   const removeUserHandler = async () => {
     try {
       await removeUser({ data: { reason: check } })
+      removeCookie("refresh_token")
+      removeCookie("access_token")
       onRequestClose
+      router.replace("/")
     } catch (err) {
       console.log(err)
     }
@@ -59,7 +74,9 @@ const UserDelModal = ({ isOpen, onRequestClose }: any) => {
                   <div key={category.reason} className={styles.input_box}>
                     <label>
                       <input
+                        onClick={(e) => onclickCheck(e)}
                         type="checkbox"
+                        name="check"
                         id={category.reason}
                         onChange={(e) => {
                           setCheck(e.target.id)
@@ -74,11 +91,10 @@ const UserDelModal = ({ isOpen, onRequestClose }: any) => {
               <div className={styles.input_box}>
                 <label>
                   <input
+                    onClick={(e) => onclickCheck(e)}
                     type="checkbox"
+                    name="check"
                     id="기타"
-                    onChange={() => {
-                      setCheck(etc_ref.current?.value)
-                    }}
                   ></input>
                   기타
                 </label>
@@ -87,6 +103,9 @@ const UserDelModal = ({ isOpen, onRequestClose }: any) => {
                   type="text"
                   className={styles.other_input}
                   placeholder="이유를 간단히 입력해주세요."
+                  onBlur={() => {
+                    setCheck(etc_ref.current?.value)
+                  }}
                 ></input>
               </div>
             </div>
