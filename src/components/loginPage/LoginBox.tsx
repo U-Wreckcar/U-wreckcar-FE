@@ -11,6 +11,7 @@ import { Modal } from "@/shared/modal/Modal"
 import LocalLogin from "./LocalLogin"
 import logo from "assets/renderlogo.png"
 import { Alert, AlertTitle } from "@mui/material"
+import LoginModal from "./LoginModal"
 
 const LoginBox = () => {
   const [local, setLocal] = useState(false)
@@ -48,22 +49,24 @@ const LoginBox = () => {
 
   return (
     <div className={styles.container}>
-      {noti && (
+      {/* {noti && (
         <Modal
           x={500}
-          y={250}
+          y={464}
           setNoti={setNoti}
-          modalTitle={"카카오톡 로그인하기"}
+          modalTitle={"안내"}
           context={
-            "현재 회원가입 시 전체 동의하기에 체크해야 유렉카의 \n 모든 기능을 정상적으로 이용하실 수 있습니다"
+            "유렉카의 회원가입 방식을 이메일 회원가입으로 변경함에 따라 \n 현재 카카오톡으로 회원가입은 할 수 없습니다."
           }
           contextSeconde={
-            "*프로필 사진이 제대로 나오지 않거나 기능이 정상적으로 작동하지 않을 시에 가이드를 참고해주세요."
+            "유렉카를 처음 이용하시는 고객께서는\n 이메일 회원가입을 이용해주시면 감사하겠습니다\n다만 기존 고객님들은 카카오로 로그인하기로\n그대로 로그인하여 서비스를 이용하실 수 있습니다."
           }
           confirmButtonName={"확인"}
         />
+      )} */}
+      {noti && (
+        <LoginModal isOpen={noti} onRequestClose={() => setNoti(false)} />
       )}
-
       <div className={styles.container}>
         <div>
           <h1 className={styles.title}>Login</h1>
@@ -71,12 +74,21 @@ const LoginBox = () => {
             U렉카와 함께 쉽고 빠른 업무를 느껴보세요!
           </p>
           {alert && (
-            <Alert className={styles.alert} severity='warning'>
+            <Alert className={styles.alert} severity="warning">
               아직 개발 중입니다...!{" "}
               <strong>카카오로 바로 시작해보세요!</strong>
             </Alert>
           )}
         </div>
+
+        <div>
+          <>
+            <LocalLogin setLocal={setLocal} />
+            <Image src={kakao_login} alt="" width={15} height={15} />
+            <button className={styles.kakao_btn} onClick={onClickKakaoBtn}>
+              카카오로 1초만에 시작하기
+            </button>
+
 
         <>
           <LocalLogin setLocal={setLocal} />
