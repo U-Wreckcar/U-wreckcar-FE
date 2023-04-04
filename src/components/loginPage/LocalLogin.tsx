@@ -66,6 +66,7 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
             className={`${errors.email ? styles.error : styles.input_style}`}
             placeholder="이메일을 입력해주세요."
             defaultValue={userId}
+            autoFocus
             {...register("email", {
               required: "이메일은 필수 입력입니다.",
               minLength: {
