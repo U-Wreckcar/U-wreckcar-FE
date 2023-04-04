@@ -129,6 +129,11 @@ export const OutputModal: React.FC<OutputModalType> = ({
             <div>
               <p>{data.length}개의 UTM이 선택되었습니다.</p>
               <p>UTM 데이터를 보낼 툴을 선택해주세요</p>
+              {sheet && (
+                <span className={styles.noti_span}>
+                  다운로드 되는 csv 파일을 스프레드시트로 열어 주세요
+                </span>
+              )}
             </div>
             <div className={styles.img_box}>
               <div className={styles.img_box_img}>
