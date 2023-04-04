@@ -8,7 +8,7 @@ import bg_one_illust from "assets/render/bg-one-illust.png"
 // Sub
 import bg_sub from "assets/render/bg-one-sub.png"
 import m_section_one_two from "assets/m_section_one_two.png"
-
+import TryUTM from "components/tryUTM/TryUTM"
 // Two
 import bg_two_left from "assets/render/bg-two-left.png"
 import bg_two_right from "assets/render/bg-two-right.png"
@@ -116,6 +116,9 @@ export default function Home() {
                 src={m_section_one_two}
                 alt='Img'
               />
+            </article>
+            <article>
+              <TryUTM />
             </article>
           </section>
           <section className={styles.section_two}>
