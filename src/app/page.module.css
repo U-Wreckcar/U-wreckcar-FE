@@ -60,7 +60,7 @@
 */
 .section_one_two {
   background-color: #f5f9fc;
-
+  min-width: 1400px;
   height: 1400px;
 }
 .web_sub {
@@ -77,13 +77,21 @@
   visibility: hidden;
 }
 
-.section_one_two article {
+.section_one_two article:nth-child(1) {
   display: flex;
   align-items: center;
   justify-content: center;
   max-width: 1608px;
 }
-
+.section_one_two article:nth-child(2) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -150px;
+}
+/* 
+* Section Two
+*/
 .section_two {
   display: flex;
   min-width: 390px;
@@ -452,6 +460,11 @@
   color: #222222;
 }
 @media (max-width: 1300px) {
+  .section_one_two {
+    display: flex;
+    flex-direction: column;
+    height: 1400px;
+  }
   .section_three {
     display: flex;
     flex-direction: column;
@@ -553,7 +566,7 @@
     max-height: 373px;
   }
   .section_one_two {
-    height: 409px;
+    height: 1400px;
   }
   .section_one_two article {
     position: relative;

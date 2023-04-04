@@ -77,15 +77,16 @@ const LoginBox = () => {
             </Alert>
           )}
         </div>
-        <div>
-          <>
-            <LocalLogin setLocal={setLocal} />
-            <Image src={kakao_login} alt='' width={15} height={15} />
-            <button className={styles.kakao_btn} onClick={onClickKakaoBtn}>
-              카카오로 1초만에 시작하기
-            </button>
 
-            {/* <div>
+        <>
+          <LocalLogin setLocal={setLocal} />
+          <button className={styles.kakao_btn} onClick={onClickKakaoBtn}>
+            <p>
+              <Image className={styles.kakao_img} src={kakao_login} alt='' />
+              <span> 카카오로 1초만에 시작하기</span>
+            </p>
+          </button>
+          {/* <div>
                 <Image src={naver_login} alt="" width={15} height={15} />
                 <button className={styles.naver_btn} onClick={onClickNaverBtn}>
                   네이버로 1초만에 시작하기
@@ -100,8 +101,7 @@ const LoginBox = () => {
                   구글로 1초만에 시작하기
                 </button>
               </div> */}
-          </>
-        </div>
+        </>
         <p className={styles.login_decription}>
           현재 회원가입 시 전체 동의하기에 체크해야 유렉카 기능을 정상적으로
           이용하실 수 있습니다.
