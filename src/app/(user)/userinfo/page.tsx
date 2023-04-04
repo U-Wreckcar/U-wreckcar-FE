@@ -7,6 +7,7 @@ import { myProfile } from "@/util/async/api"
 import { useQuery } from "@tanstack/react-query"
 import ProgressLoading from "@/shared/modal/ProgressLoading"
 import Loading from "@/shared/modal/Loading"
+import UserDelModal from "@/components/loginPage/UserDelModal"
 
 interface UserProfile {
   username: string
@@ -19,6 +20,8 @@ interface UserProfile {
 
 export default function UserPage() {
   const [userData, setUserData] = useState<UserProfile | undefined>()
+  const [modal, setModal] = useState(false)
+
   const { data, isError, isLoading, isSuccess } = useQuery({
     queryKey: ["userInfo"],
     queryFn: myProfile,
@@ -37,7 +40,7 @@ export default function UserPage() {
             <Image
               className={styles.img}
               src={data?.data?.profile_img}
-              alt=''
+              alt=""
               width={180}
               height={180}
               unoptimized={true}
@@ -59,6 +62,17 @@ export default function UserPage() {
         </div>
         <button className={styles.edit_save}>변경사항 저장</button> */}
         </article>
+        <div>
+          <button
+            className={styles.delete_button}
+            onClick={() => setModal(true)}
+          >
+            회원탈퇴
+          </button>
+        </div>
+        {modal && (
+          <UserDelModal isOpen={modal} onRequestClose={() => setModal(false)} />
+        )}
       </section>
     </>
   )

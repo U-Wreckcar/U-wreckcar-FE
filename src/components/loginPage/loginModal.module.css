@@ -1,0 +1,75 @@
+.modal_container{
+    width: 500px;
+    height: 464px;
+    color: #222222;
+}
+
+.underLine{
+    width: 500px;
+    height: 64px;
+    border-bottom: 1px solid #E1E1E1;
+    font-style: 700;
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.modal_wrap > div {
+    text-align: left;
+    margin-top: 24px;
+    padding-left: 50px;
+}
+
+.modal_wrap > div > h2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+.modal_wrap > div >p {
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: 400;
+    white-space: pre-wrap;
+}
+
+.modal_wrap > div > span {
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: 400;
+    white-space: pre-wrap;
+    color: #F13400;
+}
+.button_box {
+    width: 320px;
+    display: flex;
+    margin: 25px auto;
+
+}
+.button_box > button {
+    width: 120px;
+    height: 40px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    margin: 8px;
+    color: #fff;
+}
+.noti_button{
+    background-color: #9F9F9F;
+    
+}
+.confirm_button{
+    background-color: #484BFF;
+}
+
+
+
+
+
+

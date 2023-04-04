@@ -86,3 +86,16 @@
 
   border-radius: 4px;
 }
+
+.delete_button {
+  position: absolute;
+  bottom: 30px;
+  right: 98px;
+  width: 87px;
+  height: 38px;
+  padding: 8px 16px;
+  background-color: #9f9f9f;
+  color: #fff;
+  border-radius: 4px;
+
+}

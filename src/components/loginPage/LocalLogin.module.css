@@ -1,0 +1,94 @@
+.container {
+  margin-top: 38px;
+}
+.container p {
+  font-size: 14px;
+  font-weight: 400;
+}
+.container p:hover {
+  font-weight: 700;
+}
+
+.container form {
+  width: 500px;
+}
+.email_box {
+  margin-bottom: 8px;
+}
+
+.input_style {
+  width: 478px;
+  max-width: 500px;
+  height: 38px;
+
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+}
+
+.id_remember_box {
+  display: flex;
+  align-items: center;
+}
+.id_remember_box input {
+  width: 18px;
+  height: 18px;
+}
+.id_remember_box input:checked {
+  width: 18px;
+  height: 18px;
+  accent-color: #484bff;
+}
+.id_remember_box label {
+  font-weight: 400;
+  margin-left: 11px;
+  /* transform: translateY(-40%); */
+}
+.id_remember_box input:checked + label {
+  font-weight: 700;
+}
+.option_box_containel {
+  width: 500px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 21px;
+  gap: 190px;
+}
+
+.sign_up_password_forget_box {
+  display: flex;
+}
+.login_button {
+  background-color: #484bff;
+  border-radius: 4px;
+
+  font-size: 16;
+  font-weight: 700;
+  color: white;
+
+  width: 500px;
+  height: 38px;
+
+  margin-top: 33px;
+
+  cursor: pointer;
+}
+.login_button:active {
+  background-color: #0c1ba6;
+}
+.error_message {
+  text-align: left;
+  margin-top: 7px;
+
+  color: #f13400;
+  font-size: 12px;
+  font-weight: 400;
+}
+.error {
+  width: 478px;
+  max-width: 500px;
+  height: 38px;
+
+  border-radius: 4px;
+  border: 1px solid #ff4205;
+}

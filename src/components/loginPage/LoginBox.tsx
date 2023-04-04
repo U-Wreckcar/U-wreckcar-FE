@@ -11,6 +11,7 @@ import { Modal } from "@/shared/modal/Modal"
 import LocalLogin from "./LocalLogin"
 import logo from "assets/renderlogo.png"
 import { Alert, AlertTitle } from "@mui/material"
+import LoginModal from "./LoginModal"
 
 const LoginBox = () => {
   const [local, setLocal] = useState(false)
@@ -48,23 +49,25 @@ const LoginBox = () => {
 
   return (
     <div className={styles.container}>
-      {noti && (
+      {/* {noti && (
         <Modal
           x={500}
-          y={250}
+          y={464}
           setNoti={setNoti}
-          modalTitle={"카카오톡 로그인하기"}
+          modalTitle={"안내"}
           context={
-            "현재 회원가입 시 전체 동의하기에 체크해야 유렉카의 \n 모든 기능을 정상적으로 이용하실 수 있습니다"
+            "유렉카의 회원가입 방식을 이메일 회원가입으로 변경함에 따라 \n 현재 카카오톡으로 회원가입은 할 수 없습니다."
           }
           contextSeconde={
-            "*프로필 사진이 제대로 나오지 않거나 기능이 정상적으로 작동하지 않을 시에 가이드를 참고해주세요."
+            "유렉카를 처음 이용하시는 고객께서는\n 이메일 회원가입을 이용해주시면 감사하겠습니다\n다만 기존 고객님들은 카카오로 로그인하기로\n그대로 로그인하여 서비스를 이용하실 수 있습니다."
           }
           confirmButtonName={"확인"}
         />
+      )} */}
+      {noti && (
+        <LoginModal isOpen={noti} onRequestClose={() => setNoti(false)} />
       )}
-
-      <div className={styles.container}>
+      <div className={styles.section}>
         <div>
           <h1 className={styles.title}>Login</h1>
           <p className={styles.content}>
@@ -77,22 +80,15 @@ const LoginBox = () => {
             </Alert>
           )}
         </div>
-        <div>
-          {!local ? (
-            <>
-              <div onClick={() => setLocal(true)}>
-                <Image src={logo} alt={""} width={40} height={15} />
-                <button className={styles.email_btn}>
-                  이메일로 바로 시작하기
-                </button>
-              </div>
-              <div>
-                <Image src={kakao_login} alt='' width={15} height={15} />
-                <button className={styles.kakao_btn} onClick={onClickKakaoBtn}>
-                  카카오로 1초만에 시작하기
-                </button>
-              </div>
-              {/* <div>
+
+        <LocalLogin setLocal={setLocal} />
+        <button className={styles.kakao_btn} onClick={onClickKakaoBtn}>
+          <p>
+            <Image className={styles.kakao_img} src={kakao_login} alt='' />
+            <span> 카카오로 시작하기</span>
+          </p>
+        </button>
+        {/* <div>
                 <Image src={naver_login} alt="" width={15} height={15} />
                 <button className={styles.naver_btn} onClick={onClickNaverBtn}>
                   네이버로 1초만에 시작하기
@@ -107,15 +103,9 @@ const LoginBox = () => {
                   구글로 1초만에 시작하기
                 </button>
               </div> */}
-            </>
-          ) : (
-            <>
-              <LocalLogin setLocal={setLocal} />
-            </>
-          )}
-        </div>
+
         <p className={styles.login_decription}>
-          ※ 현재 회원가입 시 전체 동의하기에 체크해야 유렉카 기능을 정상적으로
+          현재 회원가입 시 전체 동의하기에 체크해야 유렉카 기능을 정상적으로
           이용하실 수 있습니다.
         </p>
       </div>
