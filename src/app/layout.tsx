@@ -22,13 +22,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ko" className={myFont.className}>
+    <html lang='ko' className={myFont.className}>
       <head>
+        <link
+          rel='stylesheet'
+          as='style'
+          href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css'
+        />
         {/* Google Analytics */}
         <script
           async
-          src={`https://www.googletagmanager.com/gtag/js?id=G-N10RX7RLWY`}
-        ></script>
+          src={`https://www.googletagmanager.com/gtag/js?id=G-N10RX7RLWY`}></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -42,7 +46,7 @@ export default function RootLayout({
 
         {/* Google Tag Manager */}
         <Script
-          id="google-analytics"
+          id='google-analytics'
           dangerouslySetInnerHTML={{
             __html: `
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -53,21 +57,20 @@ export default function RootLayout({
         `,
           }}
         />
-        <meta property="og:image" content="https://utm.works/api/og1200.png" />
+        <meta property='og:image' content='https://utm.works/api/og1200.png' />
       </head>
       <body>
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-PTJSFK5"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          ></iframe>
+            src='https://www.googletagmanager.com/ns.html?id=GTM-PTJSFK5'
+            height='0'
+            width='0'
+            style={{ display: "none", visibility: "hidden" }}></iframe>
         </noscript>
 
         <SideNav />
-        <div id="__next">
+        <div id='__next'>
           <Header />
           <Providers> {children}</Providers>
         </div>
