@@ -1,0 +1,14 @@
+.try_section {
+  display: flex;
+}
+.add_utm_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.textarea {
+  width: 400px;
+  height: 280px;
+  border: 1px solid #e1e1e1;
+}

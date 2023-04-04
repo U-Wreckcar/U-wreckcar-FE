@@ -13,6 +13,9 @@
   margin-left: 11px;
   /* transform: translateY(-40%); */
 }
+.container form {
+  width: 500px;
+}
 
 .input_style {
   width: 500px;
@@ -46,10 +49,10 @@
 .option_box_containel {
   width: 500px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   margin-top: 21px;
-  margin-left: 11px;
+  gap: 190px;
 }
 
 .sign_up_password_forget_box {
