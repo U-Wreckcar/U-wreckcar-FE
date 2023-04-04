@@ -37,16 +37,15 @@ export const DeleteModal: React.FC<OutputModalType> = ({
       <div
         className={styles.del_dialogBox}
         {...(isOpen && true ? { open: true } : {})}
-        id="favDialog"
-      >
+        id='favDialog'>
         <div className={styles.header}>
           <div className={styles.title_box}>
             <span className={styles.title}>UTM 삭제하기</span>
           </div>
           <div className={styles.cancleBtn_box}>
-            <button className={styles.cancleBtn} onClick={onRequestClose}>
-              <Image src={b_close} alt="close_img" width={24} height={24} />
-            </button>
+            {/* <button className={styles.cancleBtn} onClick={onRequestClose}>
+              <Image src={b_close} alt='close_img' width={24} height={24} />
+            </button> */}
           </div>
         </div>
         <div className={styles.contents}>
@@ -60,15 +59,13 @@ export const DeleteModal: React.FC<OutputModalType> = ({
           <button
             onClick={onRequestClose}
             className={styles.modal_del_button}
-            value="default"
-          >
+            value='default'>
             취소하기
           </button>
           <button
             onClick={onClickDelHandler}
             className={styles.modal_button}
-            value="default"
-          >
+            value='default'>
             삭제하기
           </button>
         </div>

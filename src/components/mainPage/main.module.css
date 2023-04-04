@@ -394,7 +394,7 @@
 }
 .title {
   position: relative;
-  left: 25px;
+
   font-size: 16px;
   font-weight: var(--weight-bold);
 }
@@ -411,7 +411,7 @@
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
-  color: #484BFF;
+  color: #484bff;
 }
 .cancleBtn {
   border: none;
@@ -435,21 +435,20 @@
 .bottom {
   display: flex;
   justify-content: center;
-  height: 120px;
-  align-items: flex-end;
-  margin-top: 26px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 30px;
 }
 .bottom button {
   border: none;
 }
 .modal_button {
-  font-family: "pretendard";
   width: 81px;
   height: 38px;
   border-radius: 4px;
   background-color: #484bff;
   color: #fff;
-  margin-bottom: 90px;
+
   border: none;
 }
 .modal_del_button {
@@ -458,8 +457,8 @@
   border-radius: 4px;
   background-color: #9f9f9f;
   color: #fff;
-  margin-bottom: 70px;
-  margin-right: 20px;
+  /* margin-bottom: 70px;
+  margin-right: 20px; */
 }
 .col_box {
   display: flex;
