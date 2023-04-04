@@ -369,7 +369,7 @@
 
 .del_dialogBox {
   width: 500px;
-  height: 260px;
+  height: 300px;
   justify-items: center;
   align-items: center;
   border-radius: 4px;
@@ -457,8 +457,6 @@
   border-radius: 4px;
   background-color: #9f9f9f;
   color: #fff;
-  /* margin-bottom: 70px;
-  margin-right: 20px; */
 }
 .col_box {
   display: flex;
