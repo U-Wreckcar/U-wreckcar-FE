@@ -67,7 +67,7 @@ export const FindPW = () => {
         setError("email", { message: "이메일 형식을 확인해주세요." })
       }
     } catch (err) {
-      setError("email", { message: "가입하신 이메일과 다릅니다." })
+      setError("email", { message: "존재하지 않는 이메일입니다." })
     }
   }
 
@@ -189,7 +189,9 @@ export const FindPW = () => {
           </div>
           {errors.confirmPw && <p>{errors.confirmPw?.message}</p>}
           <div className={styles.button_box}>
-            <button className={styles.cancel_button}>취소</button>
+            <button type="button" className={styles.cancel_button}>
+              취소
+            </button>
             <button
               className={styles.find_button}
               type="submit"
