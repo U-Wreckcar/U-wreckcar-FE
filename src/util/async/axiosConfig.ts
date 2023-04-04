@@ -1,7 +1,7 @@
 import axios from "axios"
 import { getCookie } from "./Cookie"
-import { cacheAdapterEnhancer,throttleAdapterEnhancer } from 'axios-extensions';
-import axiosExtensions from 'axios-extensions';
+import { cacheAdapterEnhancer, throttleAdapterEnhancer } from "axios-extensions"
+import axiosExtensions from "axios-extensions"
 
 const instance = axios.create({
   withCredentials: true,
@@ -9,21 +9,18 @@ const instance = axios.create({
   timeout: 3000,
   headers: {
     "Content-Type": "application/json",
-    "Authorization": `Bearer ${getCookie("access_token")}`,
+    Authorization: `Bearer ${getCookie("access_token")}`,
     "X-Refresh-Token": `Bearer ${getCookie("refresh_token")}`,
     "Cache-Control": "no-cache, no-store, must-revalidate",
-    Pragma: 'no-store',
-    Expires: '0',
+    Pragma: "no-store",
+    Expires: "0",
   },
-  
 })
 
 export const setClientHeaders = (
   access_token: string,
   refresh_token: string
 ) => {
-  console.log("어세씬토큰", access_token)
-  console.log("새로고침토큰", refresh_token)
   instance.interceptors.request.use(async function (config: any) {
     config.headers.Authorization = `Bearer ${access_token}`
     config.headers["X-Refresh-Token"] = `Bearer ${refresh_token}`
