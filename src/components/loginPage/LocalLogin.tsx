@@ -52,7 +52,7 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
         <div>
           <input
             className={`${styles.input_style}, ${styles.input_style} ${styles.email_input}`}
-            placeholder='이메일을 입력해주세요.'
+            placeholder="이메일을 입력해주세요."
             {...register("email", {
               required: "이메일은 필수 입력입니다.",
               minLength: {
@@ -75,8 +75,8 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
         <div>
           <input
             className={styles.input_style}
-            type='password'
-            placeholder='비밀번호를 입력해주세요'
+            type="password"
+            placeholder="비밀번호를 입력해주세요"
             {...register("password", {
               required: "비밀번호는 필수 입력입니다.",
               minLength: {
@@ -98,15 +98,15 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
         </div>
         <div className={styles.option_box_containel}>
           <div className={styles.id_remember_box}>
-            <input id='rememberId' type='checkbox' />
-            <label htmlFor='rememberId'>아이디 저장</label>
+            <input id="rememberId" type="checkbox" />
+            <label htmlFor="rememberId">아이디 저장</label>
           </div>
           <div className={styles.sign_up_password_forget_box}>
             <Link href={"/signup"}>
               <p className={styles.sign_up_text_style}>회원가입</p>
             </Link>
             <pre> | </pre>
-            <Link href={""}>
+            <Link href={"/find"}>
               <p className={styles.password_text_style}>
                 비밀번호를 잊으셨나요?
               </p>
@@ -116,8 +116,9 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
         <div>
           <button
             className={styles.login_button}
-            type='submit'
-            disabled={isSubmitting}>
+            type="submit"
+            disabled={isSubmitting}
+          >
             로그인
           </button>
         </div>

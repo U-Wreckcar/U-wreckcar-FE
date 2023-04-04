@@ -107,6 +107,21 @@ export const verifyEmailNum = async (data: any) => {
   const res = await axios.post("users/emailverify", data)
   return res
 }
+
+export const removeUser =async (data:any) => {
+  await axios.post("users/userWithdrawal", data)
+}
+
+export const findEmail = async(data:any) => {
+ const res =  await axios.post("users/passwordverify", data)
+ return res
+}
+
+export const newPW =async (data:any) => {
+  const res = await axios.post("users/setnewpassword", data)  
+  return res
+}
+
 /**
  * * Login
  */
