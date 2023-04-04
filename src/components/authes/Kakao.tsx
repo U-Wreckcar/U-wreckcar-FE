@@ -3,7 +3,7 @@ import { setClientHeaders } from "@/util/async/axiosConfig"
 // import { setClientHeaders } from "@/util/async/axiosConfig"
 import { setCookie } from "@/util/async/Cookie"
 import axios from "axios"
-import { redirect, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import CircularUnderLoad from "../CircularUnderLoad"
 import styles from "./Kakao.module.css"
@@ -25,6 +25,7 @@ const KakaoCallback = () => {
       })
         .then(async (response) => {
           const res = await response.json()
+          console.log(res)
           if (res.success == false) {
             throw new Error("kakao")
           } else {
@@ -34,21 +35,16 @@ const KakaoCallback = () => {
           }
         })
         .then(() => {
+          console.log("Go Main")
           router.push("/main")
         })
 
         .catch((error) => {
+          console.error(error)
           if (error.message == "kakao") {
             router.push("/login")
-          } else {
-            console.error(error)
           }
-          // 에러 처리
-          //   router.push('/error');
         })
-    } else {
-      // 에러 처리
-      //   router.push('/error');
     }
   }, [router])
 
