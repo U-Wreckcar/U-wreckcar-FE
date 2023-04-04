@@ -2,9 +2,10 @@
   width: 100vw;
   overflow: hidden;
 }
-/* Section One */
+/* 
+* Section One 
+*/
 .section_one {
-
   background-image: url("../../src/assets/render/bg-one.png");
   background-size: 100vw 100%;
 
@@ -54,7 +55,14 @@
   font-size: 14px;
   font-weight: 700;
 }
+/*
+* Section Sub
+*/
+.section_one_two {
+  background-color: #f5f9fc;
 
+  height: 1400px;
+}
 .web_sub {
   width: 96vw;
   min-width: 1400px;
@@ -69,11 +77,6 @@
   visibility: hidden;
 }
 
-.section_one_two {
-  background-color: #f5f9fc;
-
-  height: 664px;
-}
 .section_one_two article {
   display: flex;
   align-items: center;
@@ -120,6 +123,7 @@
   min-width: 550px;
   height: auto;
   padding: 110px;
+  gap: 140px;
 }
 .section_two_img {
   /* min-width: 350px; */
@@ -212,12 +216,12 @@
 }
 
 .section_four h1 {
-  font-size: 40px;
+  font-size: 52px;
   font-weight: 400;
   /* margin-top: -25px; */
 }
 .section_four h2 {
-  font-size: 40px;
+  font-size: 52px;
   font-weight: 600;
   margin-bottom: 20px;
 }
@@ -350,7 +354,6 @@
   justify-content: center;
   text-align: center;
   align-items: center;
-
 
   background-image: url("../../src/assets/render/bg-seven.png");
   background-size: cover;
@@ -590,6 +593,7 @@
     max-width: 100%;
     height: auto;
     padding: 110px;
+    gap: 0;
   }
 }
 .m_free_btn {
