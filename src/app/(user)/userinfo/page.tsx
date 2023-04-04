@@ -37,7 +37,7 @@ export default function UserPage() {
             <Image
               className={styles.img}
               src={data?.data?.profile_img}
-              alt=''
+              alt=""
               width={180}
               height={180}
               unoptimized={true}
@@ -59,6 +59,9 @@ export default function UserPage() {
         </div>
         <button className={styles.edit_save}>변경사항 저장</button> */}
         </article>
+        <div>
+          <button>회원탈퇴</button>
+        </div>
       </section>
     </>
   )
