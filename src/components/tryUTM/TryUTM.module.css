@@ -7,58 +7,100 @@
   text-align: center;
   margin-bottom: 50px;
 }
-.title_box p {
-  font-size: 28px;
-  font-weight: 700;
-  color: #4c70ff;
-}
-.title_box h1 {
-  font-size: 50px;
-  font-weight: 400;
-}
+
 .try_section {
   display: flex;
   justify-content: center;
-  gap: 150px;
+  gap: 20px;
 }
-.get_utm_article {
+.left_box {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  height: 100%;
+  align-items: center;
+  justify-content: center;
+  width: 710px;
+  height: 350px;
+  border-radius: 4px;
+  background-color: #ffffff;
 }
-.add_utm_text {
-  font-size: 20px;
-  font-weight: 700;
-}
+
 .add_utm_box_article {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 12px;
+}
+.left_title {
+  font-size: 16px;
+  font-weight: 700;
+}
+.left_content {
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 20px;
 }
 .textarea {
-  width: 326px;
-  height: 268px;
+  width: 460px;
+  height: 122px;
   border: 1px solid #e1e1e1;
+  margin-bottom: 30px;
 }
-.get_utm_article {
-  gap: 14px;
+.right_section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.right_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 710px;
+  height: 350px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  gap: 6px;
+}
+.list_utm_box {
+  width: 461px;
+  height: 261px;
+  margin-bottom: 26px;
 }
 .get_utm {
   display: flex;
   justify-content: space-between;
   width: 474px;
+  margin-bottom: 6px;
+}
+.title_box p {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+}
+.title_box h1 {
+  margin-bottom: 40px;
+  font-size: 50px;
+  font-weight: 400;
+  color: #ffffff;
 }
 .get_artcle_title {
   font-size: 20px;
   font-weight: 700;
+  color: #ffffff;
 }
-.item_name p {
+.item_name {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 400;
+  /* color: #ffffff; */
+}
+.add_utm_text {
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 700;
+  color: #ffffff;
 }
 @keyframes duration {
   0% {
@@ -72,7 +114,7 @@
 }
 .items_style {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   width: 345px;
   height: 35px;
@@ -80,8 +122,10 @@
   border: none;
   border: 1px solid #e1e1e1;
   border-radius: 4px;
-  text-align: center;
+  text-align: left;
   animation: duration 3s infinite ease-in-out;
+  color: #000000;
+  padding-left: 5px;
 }
 @media (max-width: 1300px) {
   .containel {
