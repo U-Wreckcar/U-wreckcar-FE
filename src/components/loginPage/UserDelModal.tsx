@@ -103,6 +103,7 @@ const UserDelModal = ({ isOpen, onRequestClose }: any) => {
                   type="text"
                   className={styles.other_input}
                   placeholder="이유를 간단히 입력해주세요."
+                  maxLength={200}
                   onBlur={() => {
                     setCheck(etc_ref.current?.value)
                   }}
