@@ -25,15 +25,17 @@ const KakaoCallback = () => {
       })
         .then(async (response) => {
           const res = await response.json()
-
-          setCookie("access_token", res.access_token)
-          setCookie("refresh_token", res.refresh_token)
-          setClientHeaders(res.access_token, res.refresh_token)
+          if (res.success == false) {
+            router.push("/login")
+          } else {
+            setCookie("access_token", res.access_token)
+            setCookie("refresh_token", res.refresh_token)
+            setClientHeaders(res.access_token, res.refresh_token)
+          }
         })
-
-        .then(() => {
-          router.push("/main")
-        })
+        // .then(() => {
+        //   router.push("/login")
+        // })
         .catch((error) => {
           // 에러 처리
           console.error(error)
