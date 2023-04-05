@@ -35,13 +35,13 @@ export default function Home() {
   const [index, setIndex] = useState(0)
   const [alert, setAlert] = useState(true)
 
-  useEffect(() => {
-    const intervalText = setInterval(() => {
-      setIndex((idx) => (idx + 1) % texts.length)
-    }, 850)
+  // useEffect(() => {
+  //   const intervalText = setInterval(() => {
+  //     setIndex((idx) => (idx + 1) % texts.length)
+  //   }, 850)
 
-    return () => clearInterval(intervalText)
-  }, [])
+  //   return () => clearInterval(intervalText)
+  // }, [])
 
   const onClickKakao = () => {
     window.open("https://open.kakao.com/o/sbK3Rfaf", "_blank")
@@ -84,7 +84,7 @@ export default function Home() {
       {/* <IsRender /> */}
       <div>
         <div className={styles.container}>
-          <section className={styles.section_one}>
+          <section className={styles.l_section_one}>
             <article>
               <div className={styles.text_box}>
                 <h1>{text[index]} UTM 관리 </h1>
@@ -108,7 +108,7 @@ export default function Home() {
               />
             </article>
           </section>
-          <section className={styles.section_one_two}>
+          <section className={styles.l_section_one_two}>
             <article>
               <Image className={styles.web_sub} src={bg_sub} alt='Img' />
               <Image
@@ -127,8 +127,11 @@ export default function Home() {
             <article>
               <div>
                 <p>1분 1초가 아쉬운 마케터 주목!</p>
-                <h2>UTM 업무에 아직도 많은 시간을 낭비하고 있나요?</h2>
-                <h1>유렉카가 여러분의 업무 시간들 줄여드릴게요!</h1>
+                <h1>
+                  UTM 업무에 아직도 많은 시간을 낭비하고 있나요?
+                  <br />
+                  유렉카가 여러분의 업무 시간들 줄여드릴게요!
+                </h1>
               </div>
             </article>
             <article>
@@ -142,10 +145,16 @@ export default function Home() {
           </section>
           <section className={styles.section_three}>
             <article>
-              <p>이미 만들어 둔 UTM을 1초만에 추가</p>
-              <h2>다른 곳에서 생성했던 UTM들도</h2>
-              <h1>유렉카에서 관리해보세요!</h1>
-              <p className={styles.three_context}>
+              <p className={styles.blue_text}>
+                이미 만들어 둔 UTM을 1초만에 추가
+              </p>
+              <h1>
+                다른 곳에서 생성했던 UTM들도
+                <br />
+                유렉카에서 관리해보세요!
+              </h1>
+
+              <p>
                 기존에 가지고 있던 UTM을 입력하면 파라미터 별로 자동 분류됩
                 <br />
                 니다. 생성된 날짜와 간단한 메모를 추가로 기록하여
@@ -163,8 +172,11 @@ export default function Home() {
             </article>
             <article>
               <p className={styles.sub_title}>필요한 UTM만 바로바로 필터링</p>
-              <h1>내가 원하는 UTM들만</h1>
-              <h2>쏙쏙 뽑아보세요!</h2>
+              <h1>
+                내가 원하는 UTM들만
+                <br />
+                쏙쏙 뽑아보세요!
+              </h1>
               <p className={styles.context}>
                 생성 날짜, 파라미터값은 물론 메모까지!
                 <br />
