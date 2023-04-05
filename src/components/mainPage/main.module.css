@@ -458,9 +458,13 @@
   border-radius: 4px;
   background-color: #484bff;
   color: #fff;
-
   border: none;
 }
+
+.modal_button:hover{
+  background: #4C70FF;
+}
+
 .modal_del_button {
   width: 81px;
   height: 38px;
@@ -468,6 +472,10 @@
   background-color: #9f9f9f;
   color: #fff;
 }
+.modal_del_button:hover {
+  background-color: #e1e1e1;
+}
+
 .col_box {
   display: flex;
   flex-direction: column;

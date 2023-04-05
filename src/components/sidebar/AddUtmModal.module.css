@@ -105,6 +105,10 @@
   margin-bottom: 20px;
 }
 
+.add_button:hover{
+  background: #4C70FF;
+}
+
 .border_line {
   height: 40px;
   border-top: 1px solid #ddd;
