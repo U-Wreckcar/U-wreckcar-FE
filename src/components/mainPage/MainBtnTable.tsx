@@ -338,7 +338,7 @@ const MainBtnTable: React.FC<MainTableProps> = ({ setSummary }) => {
               isOpen={output}
               onRequestClose={() => setOutput(false)}
               style={customStyles}
-              data={outputLength}
+              dataList={outputLength}
             />
             <button className={styles.button} onClick={onClickDelBtn}>
               삭제하기

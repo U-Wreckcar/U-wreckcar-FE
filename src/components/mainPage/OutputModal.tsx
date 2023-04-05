@@ -14,39 +14,50 @@ import { useEffect, useState } from "react"
 import { getUTMNotion, getUTMSheet } from "@/util/async/api"
 
 import Axios from "util/async/axiosConfig"
-import { Alert, AlertTitle } from "@mui/material"
+import { Alert, AlertTitle, CircularProgress } from "@mui/material"
 import Modal from "@/app/Modal"
+
+import { useMutation, useQuery } from "@tanstack/react-query"
 
 type OutputModalType = {
   isOpen: boolean
   onRequestClose: any
   style: any
-  data: any
+  dataList: any
 }
 export const OutputModal: React.FC<OutputModalType> = ({
   isOpen,
   onRequestClose,
   style,
-  data,
+  dataList,
 }) => {
-  const [notion, setNotion] = useState(false)
   const [sheet, setSheet] = useState(false)
   const [excel, setExcel] = useState(false)
   const [alert, setAlert] = useState(false)
+  const [loading, setLoading] = useState(false)
 
-  const mapdata = data.map((i: any) => i.utm_id)
-  const onClickPopHandler = async () => {
-    if (notion) {
-      getUTMSheet(data)
-      setAlert(true)
-    }
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["output/excel"],
+    queryFn: getData,
+  })
+
+  async function getData() {
+    const res = await Axios.post(
+      `utms/toxlsx`,
+      { data: dataList },
+      { responseType: "blob" }
+    )
+    return res
+  }
+
+  async function onClickPopHandler() {
     if (excel) {
       try {
-        const response = await Axios.post(
-          "utms/toxlsx",
-          { data },
-          { responseType: "blob" }
-        )
+        setLoading(true)
+        const response = await Axios.post("utms/toxlsx", data, {
+          responseType: "blob",
+        })
+        // const response = await getData()
         const url = window.URL.createObjectURL(new Blob([response.data]))
         const a = document.createElement("a")
         a.href = url
@@ -55,6 +66,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
         a.click()
         window.URL.revokeObjectURL(url)
         onRequestClose()
+        setLoading(false)
       } catch (error) {
         console.error("download error", error)
       }
@@ -62,9 +74,11 @@ export const OutputModal: React.FC<OutputModalType> = ({
 
     if (sheet) {
       try {
+        setLoading(true)
         const response = await Axios.post("utms/export/sheet/csv", data, {
           responseType: "blob",
         })
+        // const response = await getData("export/sheet/csv")
         const url = window.URL.createObjectURL(new Blob([response.data]))
         const a = document.createElement("a")
         a.href = url
@@ -73,17 +87,17 @@ export const OutputModal: React.FC<OutputModalType> = ({
         a.click()
         window.URL.revokeObjectURL(url)
         onRequestClose()
+        setLoading(false)
       } catch (error) {
         console.error("download error", error)
       }
     }
 
-    if (!notion && !excel && !sheet) {
+    if (!excel && !sheet) {
       setAlert(true)
-      onRequestClose()
     }
   }
-  //
+
   useEffect(() => {
     if (alert) {
       setTimeout(() => {
@@ -93,19 +107,13 @@ export const OutputModal: React.FC<OutputModalType> = ({
   }, [alert])
 
   useEffect(() => {
-    if (notion) {
-      setExcel(false)
-      setSheet(false)
-    }
     if (excel) {
-      setNotion(false)
       setSheet(false)
     }
     if (sheet) {
-      setNotion(false)
       setExcel(false)
     }
-  }, [notion, excel, sheet])
+  }, [excel, sheet])
 
   return (
     <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
@@ -127,7 +135,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
         <div className={styles.contents}>
           <div className={styles.col_box}>
             <div>
-              <p>{data.length}개의 UTM이 선택되었습니다.</p>
+              <p>{dataList?.length}개의 UTM이 선택되었습니다.</p>
               <p>UTM 데이터를 보낼 툴을 선택해주세요</p>
               {sheet && (
                 <span className={styles.noti_span}>
@@ -136,25 +144,6 @@ export const OutputModal: React.FC<OutputModalType> = ({
               )}
             </div>
             <div className={styles.img_box}>
-              <div className={styles.img_box_img}>
-                {notion ? (
-                  <Image
-                    width={150}
-                    height={100}
-                    alt="outputmodal"
-                    src={active_notion}
-                    onClick={() => setNotion(!notion)}
-                  />
-                ) : (
-                  <Image
-                    width={150}
-                    height={100}
-                    alt="outputmodal"
-                    src={not_notion}
-                    onClick={() => setNotion(!notion)}
-                  />
-                )}
-              </div>
               <div className={styles.img_box_img}>
                 {sheet ? (
                   <Image
@@ -198,20 +187,20 @@ export const OutputModal: React.FC<OutputModalType> = ({
             </div>
           </div>
         </div>
-        {alert && (
-          <Alert severity="warning">
-            <AlertTitle>Warning</AlertTitle>
-            아직 개발 중입니다...! <strong>엑셀로 추출해보세요!</strong>
-          </Alert>
-        )}
         <div className={styles.bottom}>
-          <button
-            onClick={onClickPopHandler}
-            className={styles.modal_button}
-            value="default"
-          >
-            추출하기
-          </button>
+          {isLoading ? (
+            <button className={styles.modal_button_loading} value="default">
+              <CircularProgress disableShrink size={20} />
+            </button>
+          ) : (
+            <button
+              onClick={onClickPopHandler}
+              className={styles.modal_button}
+              value="default"
+            >
+              추출하기
+            </button>
+          )}
         </div>
       </div>
     </Modal>

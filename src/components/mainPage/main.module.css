@@ -402,7 +402,7 @@
 }
 .title {
   position: relative;
-
+  left: 35px;
   font-size: 16px;
   font-weight: var(--weight-bold);
 }
@@ -449,6 +449,14 @@
 }
 .bottom button {
   border: none;
+}
+.modal_button_loading {
+  width: 81px;
+  height: 38px;
+  border-radius: 4px;
+  background-color: #fff;
+  /* color: #fff; */
+  border: 2px solid #484bff;
 }
 .modal_button {
   width: 81px;
