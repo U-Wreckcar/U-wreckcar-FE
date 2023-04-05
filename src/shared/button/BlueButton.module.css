@@ -1,9 +1,11 @@
 .blue_button_style {
-  background-color: #484bff;
+  background-color: var(--color-blue-500);
   color: white;
-
   padding: 8px 16px;
 }
+.blue_button_style:hover {
+  background-color: var(--color-blue-400);
+}
 .blue_button_style:active {
-  background-color: #0c1ba6;
+  background-color: var(--color-blue-700);
 }
