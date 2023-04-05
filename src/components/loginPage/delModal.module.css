@@ -110,3 +110,10 @@
 .cancel_button{
     background: #484BFF;
 }
+
+.out_button:hover{
+    background: #E1E1E1;
+}
+.cancel_button:hover{
+    background: #4C70FF;
+}
