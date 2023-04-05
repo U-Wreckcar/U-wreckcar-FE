@@ -1,6 +1,10 @@
 .container {
   margin-top: 38px;
 }
+
+.container input:focus {
+  outline: none;
+}
 .container p {
   font-size: 14px;
   font-weight: 400;
@@ -72,6 +76,11 @@
 
   cursor: pointer;
 }
+
+.login_button:hover{
+  background: #4C70FF;
+}
+
 .login_button:active {
   background-color: #0c1ba6;
 }
@@ -82,12 +91,13 @@
   color: #f13400;
   font-size: 12px;
   font-weight: 400;
+  margin-top: 0px;
+  margin-bottom: -3px;
 }
 .error {
   width: 478px;
   max-width: 500px;
   height: 38px;
-
   border-radius: 4px;
   border: 1px solid #ff4205;
 }
