@@ -101,9 +101,9 @@ export const FindPW = () => {
             <input
               type="email"
               className={styles.email_input}
-              placeholder="사용하실 이메일을 입력해주세요"
+              placeholder="가입하실 때 사용하신 이메일을 입력해주세요"
               {...register("email", {
-                required: "이메일은 필수 입력입니다.",
+                required: "이메일을 입력해주세요",
                 minLength: {
                   value: 8,
                   message: "이메일을 8자 이상 작성해주세요",
@@ -132,13 +132,13 @@ export const FindPW = () => {
           {emailNum === 1 && <span>인증번호 발송에 성공했습니다.</span>}
 
           <div className={styles.wrap}>
-            <label>E-mail 인증번호</label>
+            <label>인증번호</label>
             <input
               type={"text"}
               className={styles.email_input}
-              placeholder="받으신 이메일 인증번호를 입력해주세요"
+              placeholder="이메일로 전송된 인증번호를 입력해주세요"
               {...register("emailNum", {
-                required: "이메일 인증번호를 입력해주세요.",
+                required: "이메일로 전송된 인증번호를 입력해주세요.",
                 disabled: emailNum > 1 ? true : false,
               })}
             />
@@ -157,7 +157,7 @@ export const FindPW = () => {
             <input
               className={styles.signup_input}
               type="password"
-              placeholder="영문,숫자,특수문자 포함 8자 이상 20자 이하"
+              placeholder="영문,숫자,특수문자 포함 8자 이상 20자 이하로 입력해주세요"
               {...register("password", {
                 required: "비밀번호는 필수 입력입니다.",
                 minLength: {
@@ -182,7 +182,7 @@ export const FindPW = () => {
             <input
               className={styles.signup_input}
               type="password"
-              placeholder="비밀번호를 다시 입력해주세요"
+              placeholder="새로 사용할 비밀번호를 다시 입력해주세요"
               {...register("confirmPw", {
                 required: "비밀번호 확인을 해주세요",
               })}

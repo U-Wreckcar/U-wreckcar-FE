@@ -17,6 +17,10 @@
     align-items: center;
 }
 
+.container input:focus {
+    outline: none;
+}
+
 .container label {
     display: block;
 }
