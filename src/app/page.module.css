@@ -9,6 +9,7 @@
 
   width: 100%;
   max-width: 1440px;
+  margin: 0 12em;
 }
 
 /* 
@@ -23,27 +24,26 @@
   height: 1000px;
   min-width: 390px;
 }
-.l_section_one h1 {
-  font-size: 2.6rem;
-}
 .l_section_one article {
   display: flex;
-  /* align-items: center; */
+  justify-content: space-between;
+
   color: var(--color-white-100);
 }
-.text_box {
-  width: 100%;
-  min-width: 450px;
-  margin-top: 14em;
+.l_section_one h1 {
+  margin-top: 150px;
 }
+.l_section_one .text_box {
+  width: 50%;
+  min-width: 400px;
+}
+
 .bg_one_illust {
-  /* position: relative;
-  top: 50px;
-  left: 120px; */
-  width: 100%;
-  max-width: 693px;
+  width: 50%;
+  min-width: 693px;
   height: 100%;
   max-height: 373px;
+  margin-top: 150px;
 }
 
 .l_section_one button {
@@ -62,16 +62,29 @@
 * Section Sub
 */
 .l_section_one_two {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   background-color: #f5f9fc;
   height: 640px;
 }
+.l_section_one_two article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .web_sub {
-  width: 96vw;
-  min-width: 1400px;
+  background-position: center;
+  background-size: cover;
+
+  width: 100%;
+  min-width: 1440px;
   height: 100%;
-  position: relative;
-  top: -23rem;
-  left: 1.5rem;
+  min-height: 810px;
+
+  margin-top: -440px;
 }
 .m_sub {
   width: 100px;
@@ -79,11 +92,7 @@
   visibility: hidden;
 }
 
-.section_one_two article:nth-child(1) {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 1608px;
+.l_section_one_two article:nth-child(1) {
 }
 
 /*
@@ -129,7 +138,6 @@
 .section_two h1 {
   color: #000000;
   font-weight: 400;
-  font-size: 2.5rem;
 }
 .section_two article:nth-child(2) {
   display: flex;
@@ -139,7 +147,6 @@
   gap: 140px;
 }
 .section_two_img {
-  /* min-width: 350px; */
   width: 650px;
   margin: 20px;
 }
@@ -452,124 +459,25 @@
 .e_cards {
   color: #222222;
 }
-@media (max-width: 1300px) {
-  .section_one_two article:nth-child(2) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 1608px;
-    margin-top: -260px;
-  }
-  .section_three {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 
-    text-align: center;
-    padding: 0 1em;
-  }
-  .section_three article:nth-child(2) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .section_three article:nth-child(2) img {
-    width: 500px;
-    height: auto;
-    border-radius: 20px;
-    margin-left: 0;
-    margin-top: 90px;
-  }
-  .section_four {
-    display: flex;
-    flex-direction: column-reverse;
-
-    justify-content: center;
-    align-items: center;
-    background-color: #f5f9fc;
-    color: #ffffff;
-    padding: 0 1em;
-    background-color: #484bff;
-    height: 1080px;
-    min-width: 390px;
-    gap: 90px;
-  }
-  .section_four article:nth-child(1) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .section_four article:nth-child(1) img {
-    width: 500px;
-    height: auto;
-    border-radius: 20px;
-  }
-  .section_four article:nth-child(2) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    left: 0;
-    /* margin-top: 120px; */
-  }
-  .section_five {
-    flex-direction: column;
-    padding: 0 1em;
-    gap: 130px;
-  }
-  .section_five article:nth-child(1) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  .section_five article:nth-child(2) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .section_five article:nth-child(2) img {
-    width: 500px;
-    height: auto;
-    position: relative;
-    top: 0;
-    border-radius: 20px;
-  }
-}
 @media (max-width: 768px) {
   .section_one {
     padding: 0 1em;
   }
-  .section_one article {
+  .l_section_one article {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     text-align: center;
-  }
 
-  .bg_one_illust {
-    position: relative;
-
-    left: 0;
-    width: 100%;
-    max-width: 693px;
-    height: 100%;
-    max-height: 373px;
+    gap: 50px;
   }
 
   .section_one_two article {
-    position: relative;
-    top: 460px;
     width: 390px;
   }
   .web_sub {
-    position: relative;
-    top: -35em;
-    left: 620px;
     width: 900px;
     height: 600px;
   }
