@@ -98,6 +98,10 @@
     height: 38px;
     width: 81px;
 }
+
+.confirm_button:hover{
+    background:linear-gradient(180deg, rgba(72,75,255,0.8672316384180792) 0%, rgba(72,75,255,0.9449152542372882) 25%, rgba(72,75,255,1) 100%);
+}
 .email_input{
     border-radius: 4px;
     position: relative;
@@ -145,6 +149,10 @@
     font-size: 16px;
     line-height: 22px;
     margin-top: 41px;
+}
+
+.signup_button:hover{
+    background:linear-gradient(180deg, rgba(72,75,255,0.8672316384180792) 0%, rgba(72,75,255,0.9449152542372882) 25%, rgba(72,75,255,1) 100%);
 }
 
 .button_box{

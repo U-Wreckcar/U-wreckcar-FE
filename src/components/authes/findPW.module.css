@@ -72,7 +72,9 @@
     border-radius: 4px;
     margin-left: 12px;
 }
-
+.wrap > button:hover{
+    background:#4C70FF;
+}
 .form > p {
     color: #F13400;
     font-size: 12px;
@@ -112,4 +114,12 @@
 .find_button{
     width: 392px;
     background-color: #484BFF;
+}
+
+.cancel_button:hover{
+    background:linear-gradient(180deg, rgba(225,225,225,0.8333333333333334) 0%, rgba(225,225,225,0.9110169491525424) 25%, rgba(225,225,225,1) 100%);
+}
+
+.find_button:hover{
+    background:#4C70FF;
 }
