@@ -27,29 +27,42 @@
 .add_utm_box_article {
   display: flex;
   flex-direction: column;
-  align-items: center;
+
   justify-content: center;
+
   gap: 12px;
 }
 .left_title {
-  font-size: 16px;
+  margin-top: 28px;
+  font-size: 0.8rem;
   font-weight: 700;
+  line-height: 22px;
 }
 .left_content {
-  font-size: 14px;
+  font-size: 0.7rem;
   font-weight: 400;
   margin-bottom: 20px;
+  line-height: 22px;
 }
 .textarea {
-  width: 460px;
-  height: 122px;
+  width: 414px;
+  height: 76px;
   border: 1px solid #e1e1e1;
   margin-bottom: 30px;
+  padding: 23px;
+  border-radius: 4px;
+
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #222222;
+  line-height: 20px;
+  letter-spacing: -0.006em;
+  /* overflow: hidden; */
 }
 .right_section {
   display: flex;
   flex-direction: column;
-  align-items: center;
+
   gap: 12px;
 }
 .right_box {
@@ -75,18 +88,18 @@
   margin-bottom: 6px;
 }
 .title_box p {
-  font-size: 28px;
+  font-size: 1rem;
   font-weight: 700;
   color: #ffffff;
 }
 .title_box h1 {
+  font-weight: 700;
+  font-size: 2rem;
   margin-bottom: 40px;
-  font-size: 50px;
-  font-weight: 400;
   color: #ffffff;
 }
 .get_artcle_title {
-  font-size: 20px;
+  font-size: 0.8rem;
   font-weight: 700;
   color: #ffffff;
 }
@@ -98,23 +111,22 @@
   /* color: #ffffff; */
 }
 .add_utm_text {
-  font-size: 20px;
+  font-size: 0.8rem;
   font-weight: 700;
+  text-align: left;
   color: #ffffff;
 }
 @keyframes duration {
   0% {
     opacity: 0;
-    transform: translate3d(0, 0, 100%);
   }
-  to {
+
+  100% {
     opacity: 1;
-    transform: translateZ(0);
   }
 }
 .items_style {
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   width: 345px;
   height: 35px;
@@ -122,10 +134,15 @@
   border: none;
   border: 1px solid #e1e1e1;
   border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 400;
   text-align: left;
-  animation: duration 3s infinite ease-in-out;
-  color: #000000;
+  color: #222222;
+  margin-left: 5px;
   padding-left: 5px;
+}
+.any {
+  animation: duration 3s ease-in-out;
 }
 @media (max-width: 1300px) {
   .containel {

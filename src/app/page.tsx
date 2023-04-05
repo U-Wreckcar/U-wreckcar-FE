@@ -1,12 +1,11 @@
 "use client"
-import React, { useEffect, useState } from "react"
-import { Media, MediaContextProvider } from "./Media"
+import React, { useState } from "react"
 import styles from "./page.module.css"
 import Image from "next/image"
 // One
 import bg_one_illust from "assets/render/bg-one-illust.png"
 // Sub
-import bg_sub from "assets/render/bg-one-sub.png"
+import sub_img from "assets/render/sub-main-img.png"
 import m_section_one_two from "assets/m_section_one_two.png"
 import TryUTM from "components/tryUTM/TryUTM"
 // Two
@@ -87,8 +86,11 @@ export default function Home() {
           <section className={styles.l_section_one}>
             <article>
               <div className={styles.text_box}>
-                <h1>{text[index]} UTM 관리 </h1>
-                <h1>유렉카로 해결하세요! </h1>
+                <h1>
+                  {text[index]} UTM 관리 <br />
+                  유렉카로 해결하세요!
+                </h1>
+
                 <p>UTM 업무 1시간? 유렉카에서는 3분이면 OK</p>
                 <Link className={styles.origin_free_btn} href={"/login"}>
                   <button id='free_btn' className={styles.free_btn}>
@@ -110,7 +112,7 @@ export default function Home() {
           </section>
           <section className={styles.l_section_one_two}>
             <article>
-              <Image className={styles.web_sub} src={bg_sub} alt='Img' />
+              <Image className={styles.web_sub} src={sub_img} alt='Img' />
               <Image
                 className={styles.m_sub}
                 src={m_section_one_two}
