@@ -1,5 +1,6 @@
 "use client"
 import { findEmail, newPW, verifyEmailNum } from "@/util/async/api"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
@@ -189,7 +190,11 @@ export const FindPW = () => {
           </div>
           {errors.confirmPw && <p>{errors.confirmPw?.message}</p>}
           <div className={styles.button_box}>
-            <button type="button" className={styles.cancel_button}>
+            <button
+              onClick={() => (window.location.href = "/login")}
+              type="button"
+              className={styles.cancel_button}
+            >
               취소
             </button>
             <button
