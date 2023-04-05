@@ -64,20 +64,18 @@
 }
 .btn_box h1 {
   text-align: left;
-
   font-style: normal;
   font-weight: 700;
   font-size: 28px;
+  line-height: 40px;
   letter-spacing: -0.006em;
-
   color: #222222;
 }
 .btn_box h4 {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 24px;
-
+  line-height: 30px;
   letter-spacing: -0.006em;
 
   color: #222222;
