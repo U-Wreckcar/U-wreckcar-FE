@@ -64,20 +64,18 @@
 }
 .btn_box h1 {
   text-align: left;
-
   font-style: normal;
   font-weight: 700;
   font-size: 28px;
+  line-height: 40px;
   letter-spacing: -0.006em;
-
   color: #222222;
 }
 .btn_box h4 {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 24px;
-
+  line-height: 30px;
   letter-spacing: -0.006em;
 
   color: #222222;
@@ -265,6 +263,11 @@
 .buttons_box {
   display: flex;
 }
+
+.buttons_box > button:hover {
+  background: #4C70FF;
+}
+
 .plus_button {
   font-family: "pretendard";
   width: 38px;
@@ -336,6 +339,11 @@
   line-height: 18px;
   letter-spacing: -0.006em;
   color: #222222;
+}
+
+.url_button:hover {
+  background-color: #e1e1e1;
+  color: #fff;
 }
 
 .copy_button {
@@ -448,9 +456,13 @@
   border-radius: 4px;
   background-color: #484bff;
   color: #fff;
-
   border: none;
 }
+
+.modal_button:hover{
+  background: #4C70FF;
+}
+
 .modal_del_button {
   width: 81px;
   height: 38px;
@@ -458,6 +470,10 @@
   background-color: #9f9f9f;
   color: #fff;
 }
+.modal_del_button:hover {
+  background-color: #e1e1e1;
+}
+
 .col_box {
   display: flex;
   flex-direction: column;

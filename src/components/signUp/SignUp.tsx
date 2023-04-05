@@ -123,7 +123,7 @@ export default function SignUp() {
               className={styles.email_input}
               placeholder="사용하실 이메일을 입력해주세요"
               {...register("email", {
-                required: "이메일은 필수 입력입니다.",
+                required: "이메일 주소를 입력해주세요.",
                 minLength: {
                   value: 8,
                   message: "이메일을 8자 이상 작성해주세요",
@@ -196,9 +196,9 @@ export default function SignUp() {
             <input
               className={styles.signup_input}
               type="password"
-              placeholder="영문,숫자,특수문자 포함 8자 이상 20자 이하"
+              placeholder="영문,숫자,특수문자 포함 8자 이상 20자 이하로 입력해주세요."
               {...register("password", {
-                required: "비밀번호는 필수 입력입니다.",
+                required: "비밀번호를 입력해주세요",
                 minLength: {
                   value: 8,
                   message: "비밀번호를 8자 이상 작성해주세요",

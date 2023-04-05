@@ -106,6 +106,9 @@ input {
 input:checked {
   accent-color: #484bff;
 }
+input:focus {
+  outline: none;
+}
 textarea {
   font-family: "Pretendard Variable", "Pretendard";
   outline: none;

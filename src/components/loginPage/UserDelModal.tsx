@@ -92,6 +92,7 @@ const UserDelModal = ({ isOpen, onRequestClose }: any) => {
                 <label>
                   <input
                     onClick={(e) => onclickCheck(e)}
+                    checked
                     type="checkbox"
                     name="check"
                     id="기타"
@@ -120,7 +121,8 @@ const UserDelModal = ({ isOpen, onRequestClose }: any) => {
               <br></br>
               삭제된 정보와 데이터는 복구할 수 없으니 신중하게 결정해 주세요.
               <br></br>
-              업무용 계쩡을 탈퇴하신 경우에도 복구 관련하여 책임을지지 않습니다.
+              업무용 계정을 탈퇴하신 경우에도 복구 관련하여 책임을 지지
+              않습니다.
             </span>
           </div>
           <div className={styles.button_box}>
