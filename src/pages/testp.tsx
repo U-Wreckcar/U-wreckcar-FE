@@ -12,7 +12,6 @@ export default function testp() {
       // @ts-ignore
       Array.from(fileDate).forEach((el: any) => {
         formData.append("userfile", el)
-        console.log("1")
       })
       asyncfile(fileDate)
     }
