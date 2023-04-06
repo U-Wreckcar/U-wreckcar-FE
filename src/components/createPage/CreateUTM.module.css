@@ -155,7 +155,7 @@
   width: 50px;
   height: 40px;
 
-  transform: translate(-2px, 10px);
+  transform: translate(-3px, 10px);
   margin-right: 8px;
 }
 .minus_img {
@@ -196,13 +196,13 @@
     align-content: center;
     position: absolute;
     border-radius: 4px;
-    top: 100;
+    /* top: ; */
     right: 1rem;
 
     width: 40px;
     height: 40px;
     padding: 0;
-
+    margin-top: -2px;
     transform: translate(-2px, 10px);
     box-shadow: 3px 3px 13px 1px rgba(0, 0, 0, 0.4);
     background-color: #ffffff;
