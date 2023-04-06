@@ -249,7 +249,7 @@ const MainTable: React.FC = () => {
         minSize: 100,
       },
       {
-        header: "Shorten 클릭 수",
+        header: "클릭 수",
         id: "click_count",
         accessorKey: "click_count",
         cell: (info) => info.getValue(),
@@ -566,11 +566,19 @@ const MainTable: React.FC = () => {
                               text={`${cell.getValue()}`}
                             ></CopyButton>
                           )}
+                          {cell.column.id === "click_count" && (
+                            <Tooltip title="shorten URL 클릭 수입니다.">
+                              <div
+                                className={styles.td_box}
+                              >{`${cell.getValue()}`}</div>
+                            </Tooltip>
+                          )}
                           {cell.column.id !== "utm_memo" &&
                             cell.column.id !== "utm_url" &&
                             cell.column.id !== "select" &&
                             cell.column.id !== "full_url" &&
-                            cell.column.id !== "shorten_url" && (
+                            cell.column.id !== "shorten_url" &&
+                            cell.column.id !== "click_count" && (
                               <Tooltip title={`${cell.getValue()}`}>
                                 <div
                                   className={styles.td_box}
