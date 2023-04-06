@@ -125,15 +125,12 @@ export default function Home() {
               <TryUTM />
             </article>
           </section>
-          <section className={styles.section_two}>
+          <section className={styles.l_section_two}>
             <article>
-              <div>
+              <div className={styles.text_box}>
                 <p>1분 1초가 아쉬운 마케터 주목!</p>
-                <h1>
-                  UTM 업무에 아직도 많은 시간을 낭비하고 있나요?
-                  <br />
-                  유렉카가 여러분의 업무 시간들 줄여드릴게요!
-                </h1>
+                <h1>UTM 업무에 아직도 많은 시간을 낭비하고 있나요?</h1>
+                <h2>유렉카가 여러분의 업무 시간들 줄여드릴게요!</h2>
               </div>
             </article>
             <article>
@@ -147,95 +144,100 @@ export default function Home() {
           </section>
           <section className={styles.section_three}>
             <article>
-              <p className={styles.blue_text}>
-                이미 만들어 둔 UTM을 1초만에 추가
-              </p>
-              <h1>
-                다른 곳에서 생성했던 UTM들도
-                <br />
-                유렉카에서 관리해보세요!
-              </h1>
+              <div className={styles.text_box}>
+                <p className={styles.blue_text}>
+                  이미 만들어 둔 UTM을 1초만에 추가
+                </p>
+                <h1>다른 곳에서 생성했던 UTM들도</h1>
+                <h2> 유렉카에서 관리해보세요!</h2>
 
-              <p>
-                기존에 가지고 있던 UTM을 입력하면 파라미터 별로 자동 분류됩
-                <br />
-                니다. 생성된 날짜와 간단한 메모를 추가로 기록하여
-                <br />
-                예전 데이터까지 유렉카에서 관리 해보세요.
-              </p>
-            </article>
-            <article>
-              <Image src={create} alt='Gif' />
-            </article>
-          </section>
-          <section className={styles.section_four}>
-            <article>
-              <Image src={f_search} alt='Gif' />
-            </article>
-            <article>
-              <p className={styles.sub_title}>필요한 UTM만 바로바로 필터링</p>
-              <h1>
-                내가 원하는 UTM들만
-                <br />
-                쏙쏙 뽑아보세요!
-              </h1>
-              <p className={styles.context}>
-                생성 날짜, 파라미터값은 물론 메모까지!
-                <br />
-                원하는 요소 입력과 동시에 필터링된 데이터가 보여집니다.
-                <br />
-                검색한 UTM 결과를 다양하게 활용해보세요.
-              </p>
+                <p>
+                  기존에 가지고 있던 UTM을 입력하면 파라미터 별로 자동 분류됩
+                  <br />
+                  니다. 생성된 날짜와 간단한 메모를 추가로 기록하여
+                  <br />
+                  예전 데이터까지 유렉카에서 관리 해보세요.
+                </p>
+              </div>
+              <div className={styles.three_img}>
+                <Image src={create} alt='Gif' />
+              </div>
             </article>
           </section>
-          <section className={styles.section_five}>
+          <section className={styles.l_section_four}>
             <article>
-              <p className={styles.sub_title}>즉시 팀원에게 공유할 준비 완료</p>
-              <h1>
-                선택한 UTM만 추출하여
-                <br />
-                <span>저장해보세요</span>
-              </h1>
-
-              <p className={styles.context}>
-                필요한 UTM만 선택하여 내보내기!
-                <br />
-                선택된 데이터들을 저장하여 바로 팀원과 공유해보세요.
-              </p>
-            </article>
-            <article>
-              <Image src={out} alt='Gif' />
+              <div className={styles.four_img}>
+                <Image src={f_search} alt='Gif' />
+              </div>
+              <div className={styles.text_box}>
+                <p className={styles.sub_title}>필요한 UTM만 바로바로 필터링</p>
+                <h1>내가 원하는 UTM들만</h1>
+                <h2>쏙쏙 뽑아보세요!</h2>
+                <p className={styles.context}>
+                  생성 날짜, 파라미터값은 물론 메모까지!
+                  <br />
+                  원하는 요소 입력과 동시에 필터링된 데이터가 보여집니다.
+                  <br />
+                  검색한 UTM 결과를 다양하게 활용해보세요.
+                </p>
+              </div>
             </article>
           </section>
-          <section className={styles.section_six}>
+          <section className={styles.l_section_five}>
+            <article>
+              <div className={styles.text_box}>
+                <p className={styles.sub_title}>
+                  즉시 팀원에게 공유할 준비 완료
+                </p>
+                <h1>선택한 UTM만 추출하여</h1>
+                <h2>저장해보세요</h2>
+                <p className={styles.context}>
+                  필요한 UTM만 선택하여 내보내기!
+                  <br />
+                  선택된 데이터들을 저장하여 바로 팀원과 공유해보세요.
+                </p>
+              </div>
+              <div className={styles.five_img}>
+                <Image src={out} alt='Gif' />
+              </div>
+            </article>
+          </section>
+          <section className={styles.l_section_six}>
             <article>
               <div className={styles.six_card_item}>
                 <Image src={bg_six_one} alt='IMG' />
                 <h2>
                   여러개의 UTM을
-                  <br />
-                  <span>한 번에 만들어보세요</span>
+                  <br />한 번에 만들어보세요
                 </h2>
 
-                <p>추가하기 버튼 클릭 한 번으로 간편하게 UTM동시 생성!</p>
+                <p>
+                  추가하기 버튼 클릭 한 번으로
+                  <br /> 간편하게 UTM동시 생성!
+                </p>
               </div>
               <div className={styles.six_card_item}>
                 <Image src={bg_six_two} alt='IMG' />
                 <h2>
                   자주 쓰는 파라미터를
                   <br />
-                  <span>따로 관리해보세요</span>
+                  따로 관리해보세요
                 </h2>
-                <p>북마크 기능을 활용하여 간편하고 빠르게 UTM 생성!</p>
+                <p>
+                  북마크 기능을 활용하여 <br />
+                  간편하고 빠르게 UTM 생성!
+                </p>
               </div>
               <div className={styles.six_card_item}>
                 <Image src={bg_six_three} alt='IMG' />
                 <h2>
                   Shorten UTM기능으로
-                  <br />
-                  <span>긴 UTM 코드들을 간결하게</span>
+                  <br />긴 UTM 코드들을 간결하게
                 </h2>
-                <p>UTM 코드를 심은 URL을 짧고 간편하게 공유해보세요!</p>
+                <p>
+                  UTM 코드를 심은 URL을 <br />
+                  짧고 간편하게 공유해보세요!
+                </p>
               </div>
             </article>
             <button onClick={onClickGuide}>더 많은 기능 보러가기</button>
@@ -271,17 +273,17 @@ export default function Home() {
               </Link>
             </article>
           </section>
-          <section className={styles.section_eight}>
+          <section className={styles.l_section_eight}>
             <article>
               <div className={styles.e_cards}>
-                <h4>Contact Us</h4>
+                <h1>Contact Us</h1>
                 <p>Uwreckcar@gmail.com</p>
                 <p style={{ cursor: "pointer" }} onClick={onClickKakao}>
                   카카오톡 문의하기
                 </p>
               </div>
               <div className={styles.e_cards}>
-                <h4>About 유렉카</h4>
+                <h1>About 유렉카</h1>
                 <p style={{ cursor: "pointer" }} onClick={onClickNoti}>
                   공지사항
                 </p>
@@ -291,7 +293,7 @@ export default function Home() {
                 <div className={styles.button_box}></div>
               </div>
               <div className={styles.e_cards}>
-                <h4>Privacy & Terms</h4>
+                <h1>Privacy & Terms</h1>
                 <p style={{ cursor: "pointer" }} onClick={onClickLaw}>
                   개인정보처리방침{" "}
                 </p>
@@ -303,7 +305,6 @@ export default function Home() {
             <div className={styles.e_line}>
               <Image src={copyright} alt='copyright' width={168} height={15} />
             </div>
-            <article></article>
           </section>
         </div>
       </div>
