@@ -25,7 +25,7 @@ export default function TryUtm() {
               추가하기 버튼을 클릭해서 UTM을 저장해보세요!
             </p>
 
-         <div className={styles.textarea}>
+            <div className={styles.textarea}>
               {" "}
               https://www.utm.works?utm_source=google&utm_medium=cpc&utm_campaign=u
               <br />
@@ -41,7 +41,6 @@ export default function TryUtm() {
               confirmFN={addUTMHandler}
             />
           </div>
-
         </div>
         <div className={styles.right_section}>
           <p className={styles.get_artcle_title}>
@@ -61,8 +60,7 @@ export default function TryUtm() {
               ))}
             </div>
           </div>
-          </div>
-        )}
+        </div>
       </div>
     </div>
   )
