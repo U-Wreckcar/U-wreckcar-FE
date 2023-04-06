@@ -5,14 +5,15 @@
   /* min-height: 930px; */
 }
 .create_container h1 {
-  font-size: 28px;
+  font-size: 1.4rem;
   font-weight: 700;
   margin-top: 44px;
 }
 .create_container p {
-  font-size: 16px;
+  font-size: 0.8rem;
   font-weight: 400;
-  margin-bottom: 20px;
+  margin-top: 8px;
+  margin-bottom: 15px;
 }
 .hlep_text {
   font-size: 5px;

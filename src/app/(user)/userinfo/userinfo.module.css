@@ -39,7 +39,11 @@
   width: 1200px;
 }
 .title_box h1 {
-  margin: 25px 0;
+  font-size: 1.4rem;
+  margin: 40px 0;
+  font-weight: 700;
+  line-height: 38px;
+  letter-spacing: -0.006em;
 }
 
 .title_box p {
@@ -96,6 +100,7 @@
   padding: 8px 16px;
   background-color: #9f9f9f;
   color: #fff;
+  font-size: 0.7rem;
   border-radius: 4px;
 }
 
