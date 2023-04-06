@@ -74,7 +74,6 @@ const MainTable: React.FC = () => {
   const [del, setDel] = useState(false)
   const [delLength, setDelLength] = useState<Array<MainTableType>>([])
   const [inputValue, setInputValue] = useState("")
-
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   )
@@ -84,6 +83,7 @@ const MainTable: React.FC = () => {
   const [warningAlert, setWarningAlert] = useState(false)
   const isOpen = useSelector((state: any) => state.add.isOpen)
   const router = useRouter()
+  const [title, setTitle] = useState("")
 
   const handleCatch = (error: any) => {
     const errorDigest = error.digest
@@ -299,7 +299,7 @@ const MainTable: React.FC = () => {
 
   //추출하기
   const onClickPopBtn = () => {
-    let id: Array<MainTableType> = []
+    const id: Array<MainTableType> = []
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
     if (id.length === 0) {
       setWarningAlert(true)
@@ -307,22 +307,6 @@ const MainTable: React.FC = () => {
     } else {
       setOutput(true)
       setOutputLength(id)
-    }
-  }
-  //복사하기
-  const onClickCopyBtn = (text: string) => {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(() => {
-        setAlert(true)
-      })
-    }
-  }
-  const [shortenCopy, setShortenCopy] = useState(false)
-  const onShortenCopyBtn = (text: string) => {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(() => {
-        setShortenCopy(!shortenCopy)
-      })
     }
   }
 
@@ -341,6 +325,16 @@ const MainTable: React.FC = () => {
       }, 3000)
     }
   }, [warningAlert])
+
+  useEffect(() => {
+    const id: Array<MainTableType> = []
+    table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
+    if (id.length === 0) {
+      setTitle(`${data?.length}개의 UTM이 쌓여 있어요!`)
+    } else if (id.length !== 0) {
+      setTitle(`${id?.length}개의 UTM이 선택됐어요!`)
+    }
+  }, [rowSelection, data])
 
   return (
     <div>
@@ -362,7 +356,7 @@ const MainTable: React.FC = () => {
         <div className={styles.btn_box}>
           <div className={styles.title_box_d}>
             <h1>내 UTM</h1>
-            <h4>{data?.length}개의 UTM이 쌓여 있어요!</h4>
+            <h4>{title}</h4>
           </div>
           <div className={styles.buttons_box}>
             <button
