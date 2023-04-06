@@ -24,7 +24,7 @@
   padding-left: 12px;
 
   color: rgb(255, 255, 255);
-  font-size: var(--font-title-headline16);
+  font-size: 0.8rem;
   font-weight: var(--weight-regular);
 }
 .titleBox {
@@ -43,7 +43,7 @@
 .linklink {
   text-decoration: none;
   color: #ffffff;
-  font-size: var(--font-title-headline16);
+  font-size: 0.8rem;
   font-weight: var(--weight-regular);
 }
 .category_box {
@@ -193,7 +193,7 @@
 } */
 .link {
   font-family: "Pretendard";
-  font-size: var(--font-category);
+  font-size: 0.8rem;
   font-weight: var(--weight-regular);
   line-height: 24px;
   cursor: pointer;
