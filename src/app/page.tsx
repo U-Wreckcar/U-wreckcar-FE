@@ -117,10 +117,9 @@ export default function Home() {
             </article>
           </section>
           <section className={styles.try_section}>
-            <article>
-              <TryUTM />
-            </article>
+            <TryUTM />
           </section>
+          <article></article>
           <section className={styles.l_section_two}>
             <article>
               <div className={styles.text_box}>
@@ -147,10 +146,10 @@ export default function Home() {
                 <h1>다른 곳에서 생성했던 UTM들도</h1>
                 <h2> 유렉카에서 관리해보세요!</h2>
 
-                <p>
-                  기존에 가지고 있던 UTM을 입력하면 파라미터 별로 자동 분류됩
-                  <br />
-                  니다. 생성된 날짜와 간단한 메모를 추가로 기록하여
+                <p className={styles.content}>
+                  기존에 가지고 있던 UTM을 입력하면 파라미터 별로 자동
+                  분류됩니다.
+                  <br /> 생성된 날짜와 간단한 메모를 추가로 기록하여
                   <br />
                   예전 데이터까지 유렉카에서 관리 해보세요.
                 </p>
