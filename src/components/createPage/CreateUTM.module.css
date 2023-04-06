@@ -34,7 +34,7 @@
 
 .input_style {
   height: 40px;
-  width: 162px;
+  width: 168px;
   border: 1px solid #e1e1e1;
   border-radius: 4px;
   margin-right: 8px;
@@ -65,11 +65,11 @@
   display: flex;
   justify-items: center;
   align-items: center;
-  min-width: 162px;
+  width: 168px;
+  min-width: 168px;
   padding: 0 4px;
   border: 1px solid #e1e1e1;
   height: 40px;
-  width: 162px;
   margin-right: 10px;
   overflow: hidden;
   border-radius: 4px;

@@ -40,7 +40,7 @@ export default function UserPage() {
             <Image
               className={styles.img}
               src={data?.data?.profile_img}
-              alt=""
+              alt=''
               width={180}
               height={180}
               unoptimized={true}
@@ -65,8 +65,7 @@ export default function UserPage() {
         <div>
           <button
             className={styles.delete_button}
-            onClick={() => setModal(true)}
-          >
+            onClick={() => setModal(true)}>
             회원탈퇴
           </button>
         </div>
