@@ -2,10 +2,26 @@
 
 import React, { HTMLProps, useMemo, useEffect, useState, useRef } from "react"
 import { MainTableType } from "./TableData"
+import { useSelector } from "react-redux"
 import { getUTMs } from "util/async/api"
-import Tooltip from "@mui/material/Tooltip"
-import { MainTableProps } from "./MainBtnTable"
+import Link from "next/link"
+
 import blackFilterImg from "assets/b_filter.png"
+import filterImg from "assets/filter.png"
+import Image from "next/image"
+import plusImg from "assets/plus.png"
+
+import { OutputModal } from "./OutputModal"
+import { DeleteModal } from "./DeleteModal"
+import { AddUtmModal } from "../sidebar/AddUtmModal"
+import { EditModal } from "./MainMemoModal"
+import BtnAlert from "@/shared/button/Alert"
+import { CopyButton } from "@/shared/button/CopyButton"
+
+import styles from "./main.module.css"
+import { AlertTitle, Alert } from "@mui/material"
+import Tooltip from "@mui/material/Tooltip"
+import { RankingInfo, rankItem } from "@tanstack/match-sorter-utils"
 import {
   Table,
   Column,
@@ -22,24 +38,8 @@ import {
   getSortedRowModel,
   FilterFn,
 } from "@tanstack/react-table"
-
-import { RankingInfo, rankItem } from "@tanstack/match-sorter-utils"
-import styles from "./main.module.css"
-import { OutputModal } from "./OutputModal"
-import { DeleteModal } from "./DeleteModal"
-import { AddUtmModal } from "../sidebar/AddUtmModal"
-import Image from "next/image"
-import plusImg from "assets/plus.png"
-import filterImg from "assets/filter.png"
-import { EditModal } from "./MainMemoModal"
-import { redirect } from "next/navigation"
-import Link from "next/link"
-import { cookies, getCookie, removeCookie } from "@/util/async/Cookie"
-import BtnAlert from "@/shared/button/Alert"
-import { useSelector } from "react-redux"
-import { AlertTitle, Alert } from "@mui/material"
-import ShortenModal from "./ShortenModal"
-import axios from "axios"
+import { removeCookie } from "@/util/async/Cookie"
+import { useRouter } from "next/navigation"
 declare module "@tanstack/table-core" {
   interface FilterFns {
     fuzzy: FilterFn<unknown>
@@ -64,7 +64,7 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
 let defaultData: Array<MainTableType> = []
 let dData: Array<MainTableType> = []
 
-const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
+const MainTable: React.FC = () => {
   const [rowSelection, setRowSelection] = useState({})
   const [data, setData] = useState<Array<MainTableType>>([])
   const [target, setTarget] = useState("")
@@ -74,10 +74,6 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [del, setDel] = useState(false)
   const [delLength, setDelLength] = useState<Array<MainTableType>>([])
   const [inputValue, setInputValue] = useState("")
-
-  const [columnResizeMode, setColumnResizeMode] =
-    useState<ColumnResizeMode>("onChange")
-
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   )
@@ -86,13 +82,15 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [alert, setAlert] = useState(false)
   const [warningAlert, setWarningAlert] = useState(false)
   const isOpen = useSelector((state: any) => state.add.isOpen)
+  const router = useRouter()
+  const [title, setTitle] = useState("")
 
   const handleCatch = (error: any) => {
     const errorDigest = error.digest
   }
 
   const getData = async () => {
-    const res = await getUTMs()
+    const res: any = await getUTMs()
     setData(res.data)
     dData = res.data
   }
@@ -101,7 +99,7 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     try {
       getData()
     } catch (err) {
-      handleCatch(err)
+      router.replace("/")
     }
   }, [show, isOpen])
 
@@ -119,13 +117,6 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
       setData(defaultData)
     }
   }, [defaultData.length])
-
-  useEffect(() => {
-    const cookie = getCookie("access_token")
-    if (!cookie) {
-      redirect("/login")
-    }
-  }, [])
 
   const customStyles = {
     content: {
@@ -257,14 +248,14 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         footer: (props) => props.column.id,
         minSize: 100,
       },
-      // {
-      //   header: "Shorten Count",
-      //   id: "click_count",
-      //   accessorKey: "click_count",
-      //   cell: (info) => info.getValue(),
-      //   footer: (props) => props.column.id,
-      //   minSize: 120,
-      // },
+      {
+        header: "클릭 수",
+        id: "click_count",
+        accessorKey: "click_count",
+        cell: (info) => info.getValue(),
+        footer: (props) => props.column.id,
+        minSize: 120,
+      },
     ],
     []
   )
@@ -272,7 +263,6 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const table = useReactTable({
     data,
     columns,
-    columnResizeMode,
     state: {
       rowSelection,
       columnFilters,
@@ -309,7 +299,7 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
 
   //추출하기
   const onClickPopBtn = () => {
-    let id: Array<MainTableType> = []
+    const id: Array<MainTableType> = []
     table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
     if (id.length === 0) {
       setWarningAlert(true)
@@ -317,22 +307,6 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
     } else {
       setOutput(true)
       setOutputLength(id)
-    }
-  }
-  //복사하기
-  const onClickCopyBtn = (text: string) => {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(() => {
-        setAlert(true)
-      })
-    }
-  }
-  const [shortenCopy, setShortenCopy] = useState(false)
-  const onShortenCopyBtn = (text: string) => {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(() => {
-        setShortenCopy(!shortenCopy)
-      })
     }
   }
 
@@ -351,6 +325,16 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
       }, 3000)
     }
   }, [warningAlert])
+
+  useEffect(() => {
+    const id: Array<MainTableType> = []
+    table.getSelectedRowModel().flatRows.map((row) => id.push(row?.original))
+    if (id.length === 0) {
+      setTitle(`${data?.length}개의 UTM이 쌓여 있어요!`)
+    } else if (id.length !== 0) {
+      setTitle(`${id?.length}개의 UTM이 선택됐어요!`)
+    }
+  }, [rowSelection, data])
 
   return (
     <div>
@@ -372,15 +356,9 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         <div className={styles.btn_box}>
           <div className={styles.title_box_d}>
             <h1>내 UTM</h1>
-            <h4>{data.length}개의 UTM이 쌓여 있어요!</h4>
+            <h4>{title}</h4>
           </div>
           <div className={styles.buttons_box}>
-            <button
-              className={styles.data_btn}
-              onClick={() => setSummary(false)}
-            >
-              데이터 요약보기
-            </button>
             <button
               id="export_btn"
               className={styles.button}
@@ -392,7 +370,7 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
               isOpen={output}
               onRequestClose={() => setOutput(false)}
               style={customStyles}
-              data={outputLength}
+              dataList={outputLength}
             />
             <button className={styles.button} onClick={onClickDelBtn}>
               삭제하기
@@ -406,7 +384,10 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
             />
             <button
               className={styles.plus_button}
-              onClick={() => setFilter(!filter)}
+              onClick={() => {
+                setFilter(!filter)
+                setRowSelection({})
+              }}
             >
               <Image src={filterImg} alt="filter" width={24} height={24} />
             </button>
@@ -466,14 +447,10 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               className={styles.btn_input_Box}
                               {...{
                                 style: {
-                                  height: "50px",
+                                  height: "30px",
                                   display: "flex",
                                   alignItems: "center",
                                 },
-                                // className: header.column.getCanSort()
-                                //   ? 'cursor-pointer select-none'
-                                //   : '',
-
                                 onClick:
                                   header.column.getToggleSortingHandler(),
                               }}
@@ -513,26 +490,6 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             )}
                           </>
                         )}
-
-                        {/* <div
-                          {...{
-                            onMouseDown: header.getResizeHandler(),
-                            onTouchStart: header.getResizeHandler(),
-                            className: `resizer ${
-                              header.column.getIsResizing() ? 'isResizing' : ''
-                            }`,
-                            style: {
-                              transform:
-                                columnResizeMode === 'onEnd' &&
-                                header.column.getIsResizing()
-                                  ? `translateX(${
-                                      table.getState().columnSizingInfo
-                                        .deltaOffset
-                                    }px)`
-                                  : '',
-                            },
-                          }}
-                        /> */}
                       </th>
                     )
                   })}
@@ -600,26 +557,18 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               cell.getContext()
                             )}
                           {cell.column.id === "full_url" && (
-                            <Tooltip title={`${cell.getValue()}`}>
-                              <div
-                                style={{ cursor: "pointer" }}
-                                onClick={() =>
-                                  onClickCopyBtn(`${cell.getValue()}`)
-                                }
-                                className={styles.td_box}
-                              >{`${cell.getValue()}`}</div>
-                            </Tooltip>
+                            <CopyButton
+                              text={`${cell.getValue()}`}
+                            ></CopyButton>
                           )}
-                          {/* {shortenCopy && (
-                            <ShortenModal setShortenCopy={setShortenCopy} />
-                          )} */}
                           {cell.column.id === "shorten_url" && (
-                            <Tooltip title={`${cell.getValue()}`}>
+                            <CopyButton
+                              text={`${cell.getValue()}`}
+                            ></CopyButton>
+                          )}
+                          {cell.column.id === "click_count" && (
+                            <Tooltip title="shorten URL 클릭 수입니다.">
                               <div
-                                style={{ cursor: "pointer" }}
-                                onClick={() =>
-                                  onClickCopyBtn(`${cell.getValue()}`)
-                                }
                                 className={styles.td_box}
                               >{`${cell.getValue()}`}</div>
                             </Tooltip>
@@ -628,7 +577,8 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             cell.column.id !== "utm_url" &&
                             cell.column.id !== "select" &&
                             cell.column.id !== "full_url" &&
-                            cell.column.id !== "shorten_url" && (
+                            cell.column.id !== "shorten_url" &&
+                            cell.column.id !== "click_count" && (
                               <Tooltip title={`${cell.getValue()}`}>
                                 <div
                                   className={styles.td_box}

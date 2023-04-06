@@ -64,20 +64,18 @@
 }
 .btn_box h1 {
   text-align: left;
-
   font-style: normal;
   font-weight: 700;
   font-size: 28px;
+  line-height: 40px;
   letter-spacing: -0.006em;
-
   color: #222222;
 }
 .btn_box h4 {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 24px;
-
+  line-height: 30px;
   letter-spacing: -0.006em;
 
   color: #222222;
@@ -133,7 +131,7 @@
 /* } */
 
 .container tr {
-  height: 50px;
+  height: 38px;
   overflow: hidden;
   table-layout: fixed;
   border-bottom: 1px solid #ddd;
@@ -146,21 +144,24 @@
 }
 .container th {
   cursor: pointer;
+  font-size: 14px;
 }
 .container th:nth-child(1),
 .container td {
   /* width: 30px; */
-  height: 50px;
+  height: 40px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   padding-right: 20px;
+  font-size: 14px;
   /* box-shadow: inset 0 0 0 1px lightgray; */
   /* padding: 1rem; */
+
 }
 
 .table th div input[type="checkbox"] {
-  margin-left: 30px;
+  margin-left: 32px;
 }
 
 .btn_input_Box > input[type="checkbox"] {
@@ -193,7 +194,7 @@
 
 .container td {
   border-bottom: 1px solid lightgray;
-  height: 30px;
+  height: 50px;
   overflow: hidden;
   table-layout: fixed;
 }
@@ -265,6 +266,11 @@
 .buttons_box {
   display: flex;
 }
+
+.buttons_box > button:hover {
+  background: #4C70FF;
+}
+
 .plus_button {
   font-family: "pretendard";
   width: 38px;
@@ -338,6 +344,11 @@
   color: #222222;
 }
 
+.url_button:hover {
+  background-color: #e1e1e1;
+  color: #fff;
+}
+
 .copy_button {
   font-family: "pretendard";
   width: 68px;
@@ -394,7 +405,7 @@
 }
 .title {
   position: relative;
-
+  left: 35px;
   font-size: 16px;
   font-weight: var(--weight-bold);
 }
@@ -439,18 +450,33 @@
   gap: 8px;
   margin-top: 30px;
 }
-.bottom button {
-  border: none;
+
+.modal_button_loading {
+  width: 81px;
+  height: 38px;
+  border-radius: 4px;
+  /* background-color: #fff; */
+  /* color: #fff; */
+  border: 2px solid #484bff;
 }
+
+/* .bottom button {
+  border: none;
+} */
+
 .modal_button {
   width: 81px;
   height: 38px;
   border-radius: 4px;
   background-color: #484bff;
   color: #fff;
-
   border: none;
 }
+
+.modal_button:hover{
+  background: #4C70FF;
+}
+
 .modal_del_button {
   width: 81px;
   height: 38px;
@@ -458,6 +484,10 @@
   background-color: #9f9f9f;
   color: #fff;
 }
+.modal_del_button:hover {
+  background-color: #e1e1e1;
+}
+
 .col_box {
   display: flex;
   flex-direction: column;

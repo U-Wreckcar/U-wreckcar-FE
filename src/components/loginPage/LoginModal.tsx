@@ -2,7 +2,7 @@ import Modal from "@/app/Modal"
 import styles from "./loginModal.module.css"
 
 const LoginModal = ({ isOpen, onRequestClose }: any) => {
-  const secondContent = `유렉카를 처음 이용하시는 고객께서는\n 이메일 회원가입을 이용해주시면 감사하겠습니다\n다만 기존 고객님들은 카카오로 로그인하기로`
+  const secondContent = `유렉카를 처음 이용하시는 고객께서는\n이메일 회원가입을 이용해주시면 감사하겠습니다\n다만 기존 고객님들은 카카오로 로그인하기로`
   const customStyles = {
     content: {
       top: "55%",

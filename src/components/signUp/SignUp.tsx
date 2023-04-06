@@ -1,4 +1,5 @@
 "use client"
+import { BlueButton } from "@/shared/button/BlueButton"
 import { confirmEmail, signUp, verifyEmailNum } from "@/util/async/api"
 import { getCookie } from "@/util/async/Cookie"
 import { style } from "@mui/system"
@@ -119,11 +120,11 @@ export default function SignUp() {
           <div className={styles.wrap}>
             <h5>이메일</h5>
             <input
-              type="email"
+              type='email'
               className={styles.email_input}
-              placeholder="사용하실 이메일을 입력해주세요"
+              placeholder='사용하실 이메일을 입력해주세요'
               {...register("email", {
-                required: "이메일은 필수 입력입니다.",
+                required: "이메일 주소를 입력해주세요.",
                 minLength: {
                   value: 8,
                   message: "이메일을 8자 이상 작성해주세요",
@@ -140,13 +141,19 @@ export default function SignUp() {
                 disabled: emailNum !== 0 ? true : false,
               })}
             />
-            <button
+            {/* <button
               className={styles.confirm_button}
-              type="button"
-              onClick={emailConfirm}
-            >
+              type='button'
+              onClick={emailConfirm}>
               인증하기
-            </button>
+            </button> */}
+            <BlueButton
+              text={"인증하기"}
+              types={"button"}
+              x={81}
+              y={38}
+              confirmFN={emailConfirm}
+            />
           </div>
           {errors.email && <p>{errors.email?.message}</p>}
           {emailNum === 1 && <span>인증번호 발송에 성공했습니다.</span>}
@@ -155,28 +162,34 @@ export default function SignUp() {
             <input
               type={"text"}
               className={styles.confirm_input}
-              placeholder="받으신 이메일 인증번호를 입력해주세요"
+              placeholder='받으신 이메일 인증번호를 입력해주세요'
               {...register("emailNum", {
                 required: "이메일 인증번호를 입력해주세요.",
                 disabled: emailNum > 1 ? true : false,
               })}
             />
-            <button
+            {/* <button
               className={styles.confirm_button}
-              type="button"
-              onClick={confirmEmailNum}
-            >
+              type='button'
+              onClick={confirmEmailNum}>
               인증확인
-            </button>
+            </button> */}
+            <BlueButton
+              text={"인증하기"}
+              types={"button"}
+              x={81}
+              y={38}
+              confirmFN={confirmEmailNum}
+            />
           </div>
           {errors.emailNum && <p>{errors.emailNum?.message}</p>}
           {emailNum === 2 && <span>인증번호가 일치합니다.</span>}
           <div className={styles.wrap}>
             <h5>이름</h5>
             <input
-              type="text"
+              type='text'
               className={styles.signup_input}
-              placeholder="성함을 입력해주세요"
+              placeholder='성함을 입력해주세요'
               {...register("username", {
                 required: "성함을 입력해주세요",
                 minLength: {
@@ -195,10 +208,10 @@ export default function SignUp() {
             <h5>비밀번호</h5>
             <input
               className={styles.signup_input}
-              type="password"
-              placeholder="영문,숫자,특수문자 포함 8자 이상 20자 이하"
+              type='password'
+              placeholder='영문,숫자,특수문자 포함 8자 이상 20자 이하로 입력해주세요.'
               {...register("password", {
-                required: "비밀번호는 필수 입력입니다.",
+                required: "비밀번호를 입력해주세요",
                 minLength: {
                   value: 8,
                   message: "비밀번호를 8자 이상 작성해주세요",
@@ -220,8 +233,8 @@ export default function SignUp() {
             <h5>비밀번호 확인</h5>
             <input
               className={styles.signup_input}
-              type="password"
-              placeholder="비밀번호를 다시 입력해주세요"
+              type='password'
+              placeholder='비밀번호를 다시 입력해주세요'
               {...register("confirmPw", {
                 required: "비밀번호 확인을 해주세요",
               })}
@@ -232,7 +245,7 @@ export default function SignUp() {
             <h5>회사 이름</h5>
             <input
               className={styles.signup_input}
-              placeholder="회사이름을 입력해주세요"
+              placeholder='회사이름을 입력해주세요'
               {...register("company_name", {
                 required: "회사이름을 입력해주세요",
               })}
@@ -244,11 +257,10 @@ export default function SignUp() {
             <h5>이용약관 동의</h5>
             <label
               className={styles.confirm_label}
-              style={{ cursor: "pointer" }}
-            >
+              style={{ cursor: "pointer" }}>
               <input
                 className={styles.check_input}
-                type="checkbox"
+                type='checkbox'
                 {...register("marketing_accept", {
                   required: "마케팅 활용에 동의 해주세요",
                 })}
@@ -262,18 +274,23 @@ export default function SignUp() {
                 window.open(
                   "https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e"
                 )
-              }
-            ></div>
+              }></div>
           </div>
           {errors.marketing_accept && <p>{errors.marketing_accept?.message}</p>}
           <div className={styles.button_box}>
-            <button
+            {/* <button
               className={styles.signup_button}
-              type="submit"
-              disabled={isSubmitting}
-            >
+              type='submit'
+              disabled={isSubmitting}>
               회원가입
-            </button>
+            </button> */}
+            <BlueButton
+              text={"회원가입"}
+              types={"submit"}
+              x={150}
+              y={46}
+              confirmFN={confirmEmailNum}
+            />
           </div>
         </form>
       </div>
