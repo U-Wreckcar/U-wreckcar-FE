@@ -149,6 +149,9 @@ input:checked {
 input:focus {
   outline: none;
 }
+input::placeholder {
+  font-size: 0.7rem;
+}
 textarea {
   font-family: "Pretendard Variable", "Pretendard";
   outline: none;
