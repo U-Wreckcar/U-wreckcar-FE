@@ -76,10 +76,6 @@ export default function Home() {
 
   return (
     <>
-      {alert && (
-        <RenderModal isOpen={alert} onRequestClose={() => setAlert(false)} />
-      )}
-
       {/* <IsRender /> */}
       <div>
         <div className={styles.container}>
