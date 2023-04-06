@@ -24,7 +24,7 @@ export const getUTMs = async () => {
   try{
     const res = await axios.get("utms", { cache: false })
     return res
-}catch(err){
+  }catch(err){
     console.log("err", err)
     removeCookie("refresh_token")
     removeCookie("access_token")
@@ -87,15 +87,48 @@ export const deleteUTM = async (data: any) => {
  * * PATCH
  */
 
-export const patchUTM = async (data: any) => {
+type EditMemoType = {
+  utm_id : string,
+  utm_memo : string,
+}
+
+export const patchUTM = async (data: EditMemoType) => {
   await axios.patch("utms/memo", data)
 }
 
 /**
  * * SIGNUP
  */
+ type VerifyEmail = {
+  data:{
+    email:string
+  }
+}
+type VerifyEmailNumType = {
+  data:{
+    email:string
+    verificationCode:string
+  }
+}
 
-export const signUp = async (data: any) => {
+type RemoveUserType = {
+  data:{
+    reason:string | ""
+  }
+}
+
+type SignUp = {
+  data:{
+    email: string
+    username : string
+    password : string
+    company_name : string,
+    marketing_accept : boolean
+  }
+}
+
+
+export const signUp = async (data: SignUp) => {
   try {
     const res = await axios.post("users/signup", data)
     return res
@@ -105,26 +138,26 @@ export const signUp = async (data: any) => {
   }
 }
 
-export const confirmEmail = async (data: any) => {
+export const confirmEmail = async (data:VerifyEmail) => {
   const res = await axios.post("users/email", data)
   return res
 }
 
-export const verifyEmailNum = async (data: any) => {
+export const verifyEmailNum = async (data: VerifyEmailNumType) => {
   const res = await axios.post("users/emailverify", data)
   return res
 }
 
-export const removeUser =async (data:any) => {
+export const removeUser =async (data:RemoveUserType) => {
   await axios.post("users/userWithdrawal", data)
 }
 
-export const findEmail = async(data:any) => {
+export const findEmail = async(data:VerifyEmail) => {
  const res =  await axios.post("users/passwordverify", data)
  return res
 }
 
-export const newPW =async (data:any) => {
+export const newPW = async (data:LoginData) => {
   const res = await axios.post("users/setnewpassword", data)  
   return res
 }
@@ -133,7 +166,22 @@ export const newPW =async (data:any) => {
  * * Login
  */
 
-export const localLogin = async (data: any) => {
+type LoginData = {
+  data:{
+    email:string
+    password:string
+  } 
+}
+
+export const localLogin = async (data:LoginData) => {
   const res = await axios.post("users/login", data)
   return res
 }
+
+/**
+ * * file-upload
+ */
+export const upload =async (data:any) => {
+  const res = await axios.post("utms/importdata",data)
+}
+
