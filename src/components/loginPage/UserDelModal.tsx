@@ -40,8 +40,13 @@ const UserDelModal = ({ isOpen, onRequestClose }: any) => {
   ]
 
   const removeUserHandler = async () => {
+    const data = {
+      data: {
+        reason: check,
+      },
+    }
     try {
-      await removeUser({ data: { reason: check } })
+      await removeUser(data)
       removeCookie("refresh_token")
       removeCookie("access_token")
       onRequestClose

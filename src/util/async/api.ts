@@ -92,7 +92,7 @@ type EditMemoType = {
   utm_memo : string,
 }
 
-export const patchUTM = async (data: EditMemoType) => {
+export const patchUTM = async (data: any) => {
   await axios.patch("utms/memo", data)
 }
 
@@ -111,11 +111,11 @@ type VerifyEmailNumType = {
   }
 }
 
-type RemoveUserType = {
-  data:{
-    reason:string | ""
-  }
-}
+// type RemoveUserType = {
+//   data:{
+//     reason:string | ""
+//   }
+// }
 
 type SignUp = {
   data:{
@@ -128,7 +128,7 @@ type SignUp = {
 }
 
 
-export const signUp = async (data: SignUp) => {
+export const signUp = async (data: any) => {
   try {
     const res = await axios.post("users/signup", data)
     return res
@@ -138,26 +138,26 @@ export const signUp = async (data: SignUp) => {
   }
 }
 
-export const confirmEmail = async (data:VerifyEmail) => {
+export const confirmEmail = async (data:any) => {
   const res = await axios.post("users/email", data)
   return res
 }
 
-export const verifyEmailNum = async (data: VerifyEmailNumType) => {
+export const verifyEmailNum = async (data: any) => {
   const res = await axios.post("users/emailverify", data)
   return res
 }
 
-export const removeUser =async (data:RemoveUserType) => {
+export const removeUser =async (data:any) => {
   await axios.post("users/userWithdrawal", data)
 }
 
-export const findEmail = async(data:VerifyEmail) => {
+export const findEmail = async(data:any) => {
  const res =  await axios.post("users/passwordverify", data)
  return res
 }
 
-export const newPW = async (data:LoginData) => {
+export const newPW = async (data:any) => {
   const res = await axios.post("users/setnewpassword", data)  
   return res
 }
@@ -173,7 +173,7 @@ type LoginData = {
   } 
 }
 
-export const localLogin = async (data:LoginData) => {
+export const localLogin = async (data:any) => {
   const res = await axios.post("users/login", data)
   return res
 }
