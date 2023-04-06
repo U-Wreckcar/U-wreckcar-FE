@@ -450,17 +450,20 @@
   gap: 8px;
   margin-top: 30px;
 }
-.bottom button {
-  border: none;
-}
+
 .modal_button_loading {
   width: 81px;
   height: 38px;
   border-radius: 4px;
-  background-color: #fff;
+  /* background-color: #fff; */
   /* color: #fff; */
   border: 2px solid #484bff;
 }
+
+/* .bottom button {
+  border: none;
+} */
+
 .modal_button {
   width: 81px;
   height: 38px;

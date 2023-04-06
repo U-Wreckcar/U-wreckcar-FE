@@ -1,23 +1,20 @@
 import Image from "next/image"
 import styles from "./main.module.css"
 
-import not_notion from "assets/notion.png"
 import not_sheet from "assets/sheet.png"
 import not_excel from "assets/execel.png"
 
-import active_notion from "assets/blue_notion.png"
 import active_sheet from "assets/blue_sheet.png"
 import active_excel from "assets/blue_excel.png"
 
 import b_close from "assets/b_close.png"
 import { useEffect, useState } from "react"
-import { getUTMNotion, getUTMSheet } from "@/util/async/api"
 
 import Axios from "util/async/axiosConfig"
-import { Alert, AlertTitle, CircularProgress } from "@mui/material"
+import { CircularProgress } from "@mui/material"
 import Modal from "@/app/Modal"
 
-import { useMutation, useQuery } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 
 type OutputModalType = {
   isOpen: boolean
@@ -188,9 +185,9 @@ export const OutputModal: React.FC<OutputModalType> = ({
           </div>
         </div>
         <div className={styles.bottom}>
-          {isLoading ? (
+          {loading ? (
             <button className={styles.modal_button_loading} value="default">
-              <CircularProgress disableShrink size={20} />
+              <CircularProgress disableShrink size={15} />
             </button>
           ) : (
             <button
