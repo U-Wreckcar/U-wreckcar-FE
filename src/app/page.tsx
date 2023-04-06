@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styles from "./page.module.css"
 import Image from "next/image"
 // One
@@ -34,13 +34,13 @@ export default function Home() {
   const [index, setIndex] = useState(0)
   const [alert, setAlert] = useState(true)
 
-  // useEffect(() => {
-  //   const intervalText = setInterval(() => {
-  //     setIndex((idx) => (idx + 1) % texts.length)
-  //   }, 850)
+  useEffect(() => {
+    const intervalText = setInterval(() => {
+      setIndex((idx) => (idx + 1) % texts.length)
+    }, 850)
 
-  //   return () => clearInterval(intervalText)
-  // }, [])
+    return () => clearInterval(intervalText)
+  }, [])
 
   const onClickKakao = () => {
     window.open("https://open.kakao.com/o/sbK3Rfaf", "_blank")
@@ -115,7 +115,6 @@ export default function Home() {
                 alt='Img'
               />
             </article>
-
           </section>
           <section className={styles.try_section}>
             <TryUTM />

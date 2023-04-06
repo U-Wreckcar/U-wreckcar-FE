@@ -10,8 +10,11 @@
   align-items: center;
   width: 60px;
   height: 58px;
-  /* background-color: #704d14; */
-  /* margin-right: 20 */
+  font-weight: 700;
+  font-size: 0.7rem;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: -0.006em;
 }
 .scroll_input {
   display: flex;
@@ -23,19 +26,21 @@
   margin-bottom: 8px;
   height: 60px;
   background-color: var(--color-white-100);
-  width: 100%;
   min-width: 1590px;
   /* gap: 2px; */
+  /* gap: 8px; */
   border-radius: 4px;
 }
 
 .input_style {
   height: 40px;
-  width: 178px;
+  width: 162px;
   border: 1px solid #e1e1e1;
   border-radius: 4px;
   margin-right: 8px;
+
   padding: 0 4px;
+  font-size: 0.7rem;
   transform: translateY(8px);
 }
 .input_style:focus {
@@ -60,11 +65,11 @@
   display: flex;
   justify-items: center;
   align-items: center;
-  min-width: 178px;
+  min-width: 162px;
   padding: 0 4px;
   border: 1px solid #e1e1e1;
   height: 40px;
-  width: 178px;
+  width: 162px;
   margin-right: 10px;
   overflow: hidden;
   border-radius: 4px;
