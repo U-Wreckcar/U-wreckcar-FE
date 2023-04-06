@@ -1,6 +1,7 @@
 .container_category {
   display: flex;
   align-items: center;
+  /* justify-content: space-between; */
   margin-bottom: 8px;
 
   height: 40px;
@@ -12,27 +13,29 @@
 }
 .utm_name {
   display: flex;
-  width: 1490px;
-
-  transform: translateX(-0.5%);
+  width: 1590px;
 }
 .item {
-  margin-left: 15px;
+  justify-content: space-between;
+  margin-right: 9px;
+
+  min-width: 172px;
 }
 .category_item {
+  display: flex;
   align-items: center;
-  background-color: aqua;
+  justify-content: center;
 }
 .category_text {
-  width: 100%;
-  min-width: 178px;
-  font-size: 14px;
+  /* width: 100%; */
+  /* min-width: 185px; */
+  font-size: 0.7rem;
 }
 .create_img_box {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 59px;
+  width: 62px;
   height: 40px;
 }
 .b_createutm {
