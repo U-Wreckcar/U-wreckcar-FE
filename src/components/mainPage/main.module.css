@@ -131,7 +131,7 @@
 /* } */
 
 .container tr {
-  height: 50px;
+  height: 30px;
   overflow: hidden;
   table-layout: fixed;
   border-bottom: 1px solid #ddd;
@@ -144,17 +144,20 @@
 }
 .container th {
   cursor: pointer;
+  font-size: 14px;
 }
 .container th:nth-child(1),
 .container td {
   /* width: 30px; */
-  height: 50px;
+  height: 40px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   padding-right: 20px;
+  font-size: 14px;
   /* box-shadow: inset 0 0 0 1px lightgray; */
   /* padding: 1rem; */
+
 }
 
 .table th div input[type="checkbox"] {

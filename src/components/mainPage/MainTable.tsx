@@ -2,10 +2,26 @@
 
 import React, { HTMLProps, useMemo, useEffect, useState, useRef } from "react"
 import { MainTableType } from "./TableData"
+import { useSelector } from "react-redux"
 import { getUTMs } from "util/async/api"
-import Tooltip from "@mui/material/Tooltip"
-import { MainTableProps } from "./MainBtnTable"
+import Link from "next/link"
+
 import blackFilterImg from "assets/b_filter.png"
+import filterImg from "assets/filter.png"
+import Image from "next/image"
+import plusImg from "assets/plus.png"
+
+import { OutputModal } from "./OutputModal"
+import { DeleteModal } from "./DeleteModal"
+import { AddUtmModal } from "../sidebar/AddUtmModal"
+import { EditModal } from "./MainMemoModal"
+import BtnAlert from "@/shared/button/Alert"
+import { CopyButton } from "@/shared/button/CopyButton"
+
+import styles from "./main.module.css"
+import { AlertTitle, Alert } from "@mui/material"
+import Tooltip from "@mui/material/Tooltip"
+import { RankingInfo, rankItem } from "@tanstack/match-sorter-utils"
 import {
   Table,
   Column,
@@ -22,24 +38,6 @@ import {
   getSortedRowModel,
   FilterFn,
 } from "@tanstack/react-table"
-
-import { RankingInfo, rankItem } from "@tanstack/match-sorter-utils"
-import styles from "./main.module.css"
-import { OutputModal } from "./OutputModal"
-import { DeleteModal } from "./DeleteModal"
-import { AddUtmModal } from "../sidebar/AddUtmModal"
-import Image from "next/image"
-import plusImg from "assets/plus.png"
-import filterImg from "assets/filter.png"
-import { EditModal } from "./MainMemoModal"
-import { redirect } from "next/navigation"
-import Link from "next/link"
-import { cookies, getCookie, removeCookie } from "@/util/async/Cookie"
-import BtnAlert from "@/shared/button/Alert"
-import { useSelector } from "react-redux"
-import { AlertTitle, Alert } from "@mui/material"
-import ShortenModal from "./ShortenModal"
-import axios from "axios"
 declare module "@tanstack/table-core" {
   interface FilterFns {
     fuzzy: FilterFn<unknown>
@@ -64,7 +62,7 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
 let defaultData: Array<MainTableType> = []
 let dData: Array<MainTableType> = []
 
-const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
+const MainTable: React.FC = () => {
   const [rowSelection, setRowSelection] = useState({})
   const [data, setData] = useState<Array<MainTableType>>([])
   const [target, setTarget] = useState("")
@@ -74,9 +72,6 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const [del, setDel] = useState(false)
   const [delLength, setDelLength] = useState<Array<MainTableType>>([])
   const [inputValue, setInputValue] = useState("")
-
-  const [columnResizeMode, setColumnResizeMode] =
-    useState<ColumnResizeMode>("onChange")
 
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -119,13 +114,6 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
       setData(defaultData)
     }
   }, [defaultData.length])
-
-  useEffect(() => {
-    const cookie = getCookie("access_token")
-    if (!cookie) {
-      redirect("/login")
-    }
-  }, [])
 
   const customStyles = {
     content: {
@@ -257,14 +245,14 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
         footer: (props) => props.column.id,
         minSize: 100,
       },
-      // {
-      //   header: "Shorten Count",
-      //   id: "click_count",
-      //   accessorKey: "click_count",
-      //   cell: (info) => info.getValue(),
-      //   footer: (props) => props.column.id,
-      //   minSize: 120,
-      // },
+      {
+        header: "Shorten 클릭 수",
+        id: "click_count",
+        accessorKey: "click_count",
+        cell: (info) => info.getValue(),
+        footer: (props) => props.column.id,
+        minSize: 120,
+      },
     ],
     []
   )
@@ -272,7 +260,6 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
   const table = useReactTable({
     data,
     columns,
-    columnResizeMode,
     state: {
       rowSelection,
       columnFilters,
@@ -376,12 +363,6 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
           </div>
           <div className={styles.buttons_box}>
             <button
-              className={styles.data_btn}
-              onClick={() => setSummary(false)}
-            >
-              데이터 요약보기
-            </button>
-            <button
               id="export_btn"
               className={styles.button}
               onClick={onClickPopBtn}
@@ -406,7 +387,10 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
             />
             <button
               className={styles.plus_button}
-              onClick={() => setFilter(!filter)}
+              onClick={() => {
+                setFilter(!filter)
+                setRowSelection({})
+              }}
             >
               <Image src={filterImg} alt="filter" width={24} height={24} />
             </button>
@@ -466,14 +450,10 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               className={styles.btn_input_Box}
                               {...{
                                 style: {
-                                  height: "50px",
+                                  height: "30px",
                                   display: "flex",
                                   alignItems: "center",
                                 },
-                                // className: header.column.getCanSort()
-                                //   ? 'cursor-pointer select-none'
-                                //   : '',
-
                                 onClick:
                                   header.column.getToggleSortingHandler(),
                               }}
@@ -513,26 +493,6 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                             )}
                           </>
                         )}
-
-                        {/* <div
-                          {...{
-                            onMouseDown: header.getResizeHandler(),
-                            onTouchStart: header.getResizeHandler(),
-                            className: `resizer ${
-                              header.column.getIsResizing() ? 'isResizing' : ''
-                            }`,
-                            style: {
-                              transform:
-                                columnResizeMode === 'onEnd' &&
-                                header.column.getIsResizing()
-                                  ? `translateX(${
-                                      table.getState().columnSizingInfo
-                                        .deltaOffset
-                                    }px)`
-                                  : '',
-                            },
-                          }}
-                        /> */}
                       </th>
                     )
                   })}
@@ -600,29 +560,14 @@ const MainTable: React.FC<MainTableProps> = ({ setSummary }) => {
                               cell.getContext()
                             )}
                           {cell.column.id === "full_url" && (
-                            <Tooltip title={`${cell.getValue()}`}>
-                              <div
-                                style={{ cursor: "pointer" }}
-                                onClick={() =>
-                                  onClickCopyBtn(`${cell.getValue()}`)
-                                }
-                                className={styles.td_box}
-                              >{`${cell.getValue()}`}</div>
-                            </Tooltip>
+                            <CopyButton
+                              text={`${cell.getValue()}`}
+                            ></CopyButton>
                           )}
-                          {/* {shortenCopy && (
-                            <ShortenModal setShortenCopy={setShortenCopy} />
-                          )} */}
                           {cell.column.id === "shorten_url" && (
-                            <Tooltip title={`${cell.getValue()}`}>
-                              <div
-                                style={{ cursor: "pointer" }}
-                                onClick={() =>
-                                  onClickCopyBtn(`${cell.getValue()}`)
-                                }
-                                className={styles.td_box}
-                              >{`${cell.getValue()}`}</div>
-                            </Tooltip>
+                            <CopyButton
+                              text={`${cell.getValue()}`}
+                            ></CopyButton>
                           )}
                           {cell.column.id !== "utm_memo" &&
                             cell.column.id !== "utm_url" &&
