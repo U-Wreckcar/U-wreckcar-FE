@@ -7,18 +7,19 @@ type propsType = {
   y: number
   types?: any
   disabled?: boolean
-  confirmFN: () => void
+  confirmFN?: () => void
 }
 
 export const BlueButton: React.FC<propsType> = (props) => {
-  const { text, confirmFN, types, x, y } = props
+  const { text, confirmFN, types, disabled, x, y } = props
 
   return (
     <button
       className={styles.blue_button_style}
       style={{ width: `${x}px`, height: `${y}px` }}
       onClick={confirmFN}
-      type={types}>
+      type={types}
+      disabled={disabled}>
       {text}
     </button>
   )
