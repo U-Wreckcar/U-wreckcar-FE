@@ -161,7 +161,7 @@
 }
 
 .table th div input[type="checkbox"] {
-  margin-left: 30px;
+  margin-left: 32px;
 }
 
 .btn_input_Box > input[type="checkbox"] {
@@ -194,7 +194,7 @@
 
 .container td {
   border-bottom: 1px solid lightgray;
-  height: 30px;
+  height: 50px;
   overflow: hidden;
   table-layout: fixed;
 }
