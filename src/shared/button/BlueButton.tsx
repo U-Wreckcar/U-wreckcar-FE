@@ -7,7 +7,7 @@ type propsType = {
   y: number
   types?: any
   disabled?: boolean
-  confirmFN: () => void
+  confirmFN?: () => void
 }
 
 export const BlueButton: React.FC<propsType> = (props) => {
