@@ -62,7 +62,7 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin-top: 21px;
+  margin-top: 20px;
   gap: 190px;
 }
 
@@ -80,7 +80,7 @@
   width: 500px;
   height: 38px;
 
-  margin-top: 33px;
+  margin-top: 20px;
 
   cursor: pointer;
 }
@@ -94,21 +94,24 @@
 }
 .error_message {
   text-align: left;
-  margin-top: 7px;
 
   font-size: 0.3rem;
   font-weight: 400;
   color: #f13400;
-  margin: 5px 0;
+  margin-top: 3px;
 }
 .error {
   width: 478px;
   max-width: 500px;
   height: 38px;
   border-radius: 4px;
-  font-size: 0.6rem;
+  font-size: 0.3rem;
   border: 1px solid #ff4205;
 }
 .pre_style {
   font-size: 0.7rem;
+}
+.been_box {
+  width: 15px;
+  height: 15px;
 }
