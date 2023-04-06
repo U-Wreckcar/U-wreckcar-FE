@@ -242,7 +242,7 @@ const MainTable: React.FC = () => {
         minSize: 150,
       },
       {
-        header: "Shorten URL",
+        header: "Short URL",
         id: "shorten_url",
         accessorKey: "shorten_url",
         cell: (info) => info.getValue(),
