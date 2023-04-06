@@ -520,7 +520,9 @@ const MainTable: React.FC = () => {
                             <Tooltip title={`${cell.getValue()}`}>
                               <div
                                 className={styles.td_box}
-                                style={{ cursor: "pointer" }}
+                                style={{
+                                  cursor: "pointer",
+                                }}
                                 onClick={() =>
                                   window.open(
                                     `${cell.getValue()}`,
@@ -534,7 +536,10 @@ const MainTable: React.FC = () => {
                             <Tooltip title={"메모 수정하기"}>
                               <div
                                 id={cell.id}
-                                style={{ cursor: "pointer" }}
+                                style={{
+                                  cursor: "pointer",
+                                  fontSize: "0.7rem",
+                                }}
                                 onClick={(e: any) => {
                                   setTarget(e.target?.id)
                                   setShow(true)
