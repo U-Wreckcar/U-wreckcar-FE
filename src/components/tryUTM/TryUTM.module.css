@@ -8,6 +8,7 @@
   margin-bottom: 50px;
   margin-top: -150px;
 }
+
 .title_box p {
   font-size: 1rem;
   font-weight: 700;
@@ -23,6 +24,7 @@
   color: #ffffff;
   line-height: 55px;
 }
+
 .try_section {
   display: flex;
   justify-content: center;
@@ -44,6 +46,7 @@
   flex-direction: column;
   gap: 12px;
   justify-content: center;
+
 }
 .left_title {
   margin-top: 28px;
@@ -88,6 +91,7 @@
   background-color: #ffffff;
   gap: 6px;
 }
+
 .list_utm_box {
   width: 461px;
   height: 261px;
@@ -98,12 +102,26 @@
   justify-content: space-between;
   width: 474px;
   margin-bottom: 6px;
+
+}
+.title_box p {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+}
+.title_box h1 {
+  margin-bottom: 40px;
+  font-size: 50px;
+  font-weight: 400;
+  color: #ffffff;
+
 }
 
 .get_artcle_title {
   font-size: 0.8rem;
   font-weight: 700;
   color: #ffffff;
+
 }
 .item_name {
   display: flex;
@@ -129,6 +147,7 @@
 }
 .items_style {
   display: flex;
+
   align-items: center;
   width: 345px;
   height: 35px;
@@ -145,6 +164,7 @@
 }
 .any {
   animation: duration 3s ease-in-out;
+
 }
 @media (max-width: 1300px) {
   .containel {

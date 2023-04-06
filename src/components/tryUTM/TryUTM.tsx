@@ -24,6 +24,7 @@ export default function TryUtm() {
             <p className={styles.left_content}>
               추가하기 버튼을 클릭해서 UTM을 저장해보세요!
             </p>
+
             <div className={styles.textarea}>
               {" "}
               https://www.utm.works?utm_source=google&utm_medium=cpc&utm_campaign=u
@@ -32,6 +33,7 @@ export default function TryUtm() {
               <br />
               d=20230312_UCB
             </div>
+
             <BlueButton
               text={"추가하기"}
               x={84}
@@ -40,7 +42,6 @@ export default function TryUtm() {
             />
           </div>
         </div>
-
         <div className={styles.right_section}>
           <p className={styles.get_artcle_title}>
             파라미터 별로 구분되어 자동으로 저장!
@@ -51,7 +52,6 @@ export default function TryUtm() {
                 <div key={idx}>
                   <div className={styles.get_utm}>
                     <p className={styles.item_name}>{utm.itemName}</p>
-
                     <div className={styles.items_style}>
                       {show && <p className={styles.any}> {utm.item}</p>}
                     </div>
