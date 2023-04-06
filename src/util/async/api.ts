@@ -1,4 +1,5 @@
 import axios from "./axiosConfig"
+import { removeCookie } from "./Cookie"
 
 /**
  *
@@ -20,9 +21,15 @@ export const postUTMs = async (data: any) => {
  */
 
 export const getUTMs = async () => {
-  const res = await axios.get("utms", { cache: false })
-
-  return res
+  try{
+    const res = await axios.get("utms", { cache: false })
+    return res
+}catch(err){
+    console.log("err", err)
+    removeCookie("refresh_token")
+    removeCookie("access_token")
+    return err
+  }
 }
 
 // export const getUTMs = axios.get('utms');
