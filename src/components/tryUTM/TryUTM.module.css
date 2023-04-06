@@ -6,8 +6,23 @@
 .title_box {
   text-align: center;
   margin-bottom: 50px;
+  margin-top: -150px;
 }
-
+.title_box p {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 30px;
+  letter-spacing: -0.006em;
+  margin-bottom: 12px;
+}
+.title_box h1 {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #ffffff;
+  line-height: 55px;
+}
 .try_section {
   display: flex;
   justify-content: center;
@@ -27,10 +42,8 @@
 .add_utm_box_article {
   display: flex;
   flex-direction: column;
-
-  justify-content: center;
-
   gap: 12px;
+  justify-content: center;
 }
 .left_title {
   margin-top: 28px;
@@ -86,17 +99,7 @@
   width: 474px;
   margin-bottom: 6px;
 }
-.title_box p {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #ffffff;
-}
-.title_box h1 {
-  font-weight: 700;
-  font-size: 2rem;
-  margin-bottom: 40px;
-  color: #ffffff;
-}
+
 .get_artcle_title {
   font-size: 0.8rem;
   font-weight: 700;
