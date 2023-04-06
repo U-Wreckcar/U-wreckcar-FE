@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import { useDispatch } from "react-redux"
 import { delItem } from "@/redux/slice/addslice"
 import Modal from "@/app/Modal"
+import { BlueButton } from "@/shared/button/BlueButton"
 
 type OutputModalType = {
   isOpen: boolean
@@ -62,12 +63,18 @@ export const DeleteModal: React.FC<OutputModalType> = ({
             value='default'>
             취소하기
           </button>
-          <button
+          {/* <button
             onClick={onClickDelHandler}
             className={styles.modal_button}
             value='default'>
             삭제하기
-          </button>
+          </button> */}
+          <BlueButton
+            text={"삭제하기"}
+            x={84}
+            y={38}
+            confirmFN={onClickDelHandler}
+          />
         </div>
       </div>
     </Modal>

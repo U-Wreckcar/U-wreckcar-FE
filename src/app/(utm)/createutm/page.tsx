@@ -17,7 +17,7 @@ export default function CreateUTMPage() {
       {isLoading && (
         <div className={styles.create_container}>
           <h1>새 UTM 생성하기</h1>
-          <p>UTM은 최대 5개까지 생성할 수 있습니다.</p>
+          <p>UTM은 한번에 5개까지 생성할 수 있습니다.</p>
           {/* <div className={styles.hlep_text}>
             ❓ UTM 생성을 어떻게 해야할 지 모르겠다면
             <Link

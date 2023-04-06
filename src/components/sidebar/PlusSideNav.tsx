@@ -106,7 +106,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               alt='My-UTM'
               onError={() => console.log("Image loading failed")}
             />
-            <span className='category_text'>UTM 관리하기</span>
+            <p>UTM 관리하기</p>
           </div>
         </Link>
         <Link className={styles.linklink} href='/createutm'>
@@ -123,12 +123,12 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               src={createutm}
               alt='Create-UTM'
             />
-            <span className='category_text'>새 UTM 생성하기</span>
+            <p>새 UTM 생성하기</p>
           </div>
         </Link>
         <Link className={styles.link} href={"/main"}>
           <span className={styles.link}>
-            <div
+            <p
               className={styles.utm_category_item}
               onClick={() => setModal(!modal)}>
               <Image
@@ -139,7 +139,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
                 alt='Add_UTM'
               />
               기존 UTM 추가하기
-            </div>
+            </p>
           </span>
         </Link>
         <AddUtmModal
@@ -161,7 +161,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               alt='Noti Img'
               onError={() => console.log("Image loading failed")}
             />
-            <span className='category_text'>공지사항</span>
+            <p>공지사항</p>
           </div>
           <div className={styles.utm_category_item} onClick={onClickGuide}>
             <Image
@@ -172,7 +172,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               alt='Guide Img'
               onError={() => console.log("Image loading failed")}
             />
-            <span className='category_text'>가이드</span>
+            <p>가이드</p>
           </div>
           <div className={styles.utm_category_item} onClick={onClickKakao}>
             <Image
@@ -183,7 +183,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               alt='Help Img'
               onError={() => console.log("Image loading failed")}
             />
-            <span className='category_text'>문의하기</span>
+            <p>문의하기</p>
           </div>
         </div>
       </div>

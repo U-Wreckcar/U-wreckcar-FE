@@ -16,6 +16,7 @@ import { redirect } from "next/navigation"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import Loading from "@/shared/modal/Loading"
 import { Tooltip } from "@mui/material"
+import { BlueButton } from "@/shared/button/BlueButton"
 type UTMsType = {
   utms: {
     utm_url?: string
@@ -365,7 +366,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
               />
             )}
             {isLoading && <Loading isOpen={true} />}
-            <input
+            {/* <input
               id='create_btn'
               className={styles.create_button}
               type='submit'
@@ -374,6 +375,13 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
               // onClick={() => {
               //   setAlert(true);
               // }}
+            /> */}
+            <BlueButton
+              x={81}
+              y={38}
+              text={"생성하기"}
+              types={"submit"}
+              disabled={isLoading}
             />
           </div>
         </div>

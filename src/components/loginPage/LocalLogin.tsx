@@ -139,7 +139,7 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
             <Link href={"/signup"}>
               <p className={styles.sign_up_text_style}>회원가입</p>
             </Link>
-            <pre> | </pre>
+            <pre className={styles.pre_style}> | </pre>
             <Link href={"/find"}>
               <p className={styles.password_text_style}>
                 비밀번호를 잊으셨나요?
