@@ -93,9 +93,9 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
               },
             })}
           />
-          {errors.email && (
+          {/* {errors.email && (
             <div className={styles.error_message}>{errors.email?.message}</div>
-          )}
+          )} */}
         </div>
         <div>
           <input
@@ -119,10 +119,12 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
               },
             })}
           />
-          {errors.password && (
+          {errors.password ? (
             <div className={styles.error_message}>
               {errors.password?.message}
             </div>
+          ) : (
+            <div className={styles.been_box} />
           )}
         </div>
         <div className={styles.option_box_containel}>
