@@ -1,3 +1,33 @@
+* {
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+/* @media screen and (max-width: 1700px) {
+  * {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 1500px) {
+  * {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 1400px) {
+  * {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 1300px) {
+  * {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  * {
+    font-size: 10px;
+  }
+} */
 :root {
   /* Color */
   --color-white-100: #ffffff;
@@ -8,7 +38,9 @@
   --color-darkgray: #242424;
   --color-black: #000000;
   --color-background-blue-50: #e2f3ff;
+  --color-blue-400: #4c70ff;
   --color-blue-500: #484bff;
+  --color-blue-700: #0c1ba6;
   --color-blue-900: #0a0d54;
 
   /* Font */
@@ -29,24 +61,21 @@
   --animation-duration: 370ms;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-}
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 
-@font-face {
+/* @font-face {
   font-family: "Pretendard Variable";
   font-weight: 45 920;
   font-style: normal;
   font-display: swap;
   src: local("Pretendard Variable"),
     url("./PretendardVariable.woff2") format("woff2-variations");
-}
+} */
 body {
   margin: 0;
   height: 100vh;
   width: 100vw;
+  min-width: 1440px;
 
   min-height: 100vh;
   overflow-x: hidden;
@@ -76,7 +105,18 @@ h5 {
   margin: 0;
   padding: 0;
 }
-
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+h2 {
+  font-size: 2rem;
+  font-weight: 500;
+}
+p {
+  font-size: 0.8rem;
+  font-weight: 400;
+}
 a {
   text-decoration: none;
   color: inherit;
@@ -106,12 +146,14 @@ input {
 input:checked {
   accent-color: #484bff;
 }
+input:focus {
+  outline: none;
+}
 textarea {
   font-family: "Pretendard Variable", "Pretendard";
   outline: none;
   vertical-align: middle;
   resize: none;
-  padding: 16px;
 }
 div {
   font-family: "Pretendard Variable", "Pretendard";

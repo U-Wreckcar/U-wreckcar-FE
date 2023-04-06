@@ -61,11 +61,17 @@
     color: #fff;
 }
 .noti_button{
-    background-color: #9F9F9F;
-    
+    background-color: #9F9F9F; 
 }
 .confirm_button{
     background-color: #484BFF;
+}
+.confirm_button:hover{
+    background-color: #4C70FF;
+}
+
+.noti_button:hover{
+    background-color: #E1E1E1; 
 }
 
 

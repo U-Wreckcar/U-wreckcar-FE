@@ -4,7 +4,13 @@ import { setClientHeaders } from "@/util/async/axiosConfig"
 import { setCookie } from "@/util/async/Cookie"
 import Link from "next/link"
 import { redirect, useRouter } from "next/navigation"
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react"
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 import { useForm } from "react-hook-form"
 import styles from "./LocalLogin.module.css"
 
@@ -52,9 +58,11 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
 
   useEffect(() => {
     const id = localStorage.getItem("userID")
+    const emailInput = document.getElementById("email")
     if (id) {
       setUserId(id)
       setRemember(true)
+      emailInput?.focus()
     }
   }, [])
 
@@ -63,6 +71,7 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.email_box}>
           <input
+            id="email"
             className={`${errors.email ? styles.error : styles.input_style}`}
             placeholder="이메일을 입력해주세요."
             defaultValue={userId}

@@ -98,6 +98,10 @@
     height: 38px;
     width: 81px;
 }
+
+.confirm_button:hover{
+    background:#4C70FF;
+}
 .email_input{
     border-radius: 4px;
     position: relative;
@@ -105,6 +109,7 @@
     width: 299px;
     height: 38px;
     border: 0.7px solid #ddd;
+    transform: translateX(-2px);
 }
 .confirm_input{
     border-radius: 4px;
@@ -127,7 +132,8 @@
     margin-right: 8px;
     transform: translateY(4px);
 }
-
+.email_input:focus,
+.confirm_input:focus,
 .signup_input:focus{
     outline:  0.7px solid #ddd;
 }
@@ -143,6 +149,10 @@
     font-size: 16px;
     line-height: 22px;
     margin-top: 41px;
+}
+
+.signup_button:hover{
+    background:#4C70FF;
 }
 
 .button_box{
