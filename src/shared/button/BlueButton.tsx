@@ -5,7 +5,7 @@ type propsType = {
   text: string
   x: number
   y: number
-  types?: string
+  types?: any
   disabled?: boolean
   confirmFN: () => void
 }
