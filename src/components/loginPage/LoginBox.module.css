@@ -29,6 +29,7 @@
 }
 .kakao_btn span {
   display: inline-block;
+  font-size: 0.8rem;
   transform: translate(-8%, -7%);
 }
 
@@ -75,7 +76,7 @@
   margin-top: 1px;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 0.8rem;
   line-height: 24px;
   letter-spacing: -0.006em;
 }
