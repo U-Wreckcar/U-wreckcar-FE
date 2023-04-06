@@ -120,7 +120,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
         {...(isOpen && true ? { open: true } : {})}
         id='favDialog'>
         <div className={styles.header}>
-          <div className={styles.title_box}>
+          <div className={styles.title_box_out}>
             <span className={styles.title}>UTM 추출하기</span>
           </div>
           <div className={styles.cancleBtn_box}>

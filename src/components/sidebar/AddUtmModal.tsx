@@ -78,28 +78,27 @@ export const AddUtmModal: React.FC<ModalType> = ({
             <p>UTM</p>
             <input
               className={styles.modal_input}
-              placeholder="(필수 입력) ex) https://www.abcd.com?utm_source=aaa&utm_medium=bbb&utm_campaign=ccc&utm_id=ddd"
+              placeholder='(필수 입력) ex) https://www.abcd.com?utm_source=aaa&utm_medium=bbb&utm_campaign=ccc&utm_id=ddd'
               {...register("utm_url", {
                 required: true,
-              })}
-            ></input>
+              })}></input>
           </div>
           <div className={styles.modal_footer}>
-            <label>
+            <label className={styles.label_text}>
               생성 날짜
               <input
                 className={styles.modal_input_date}
-                type="date"
+                type='date'
                 {...register("created_at", {
                   required: false,
                 })}
               />
             </label>
-            <label className={styles.memo_text}>
+            <label className={styles.label_text}>
               메모
               <input
                 className={styles.modal_input_memo}
-                placeholder="(선택 입력) UTM에 대한 메모를 남길 수 있습니다. 자유롭게 활용하세요."
+                placeholder='(선택 입력) UTM에 대한 메모를 남길 수 있습니다. 자유롭게 활용하세요.'
                 {...register("memo", {
                   required: false,
                   maxLength: 100,
@@ -116,11 +115,10 @@ export const AddUtmModal: React.FC<ModalType> = ({
           </div>
 
           <button
-            id="add_btn"
-            type="submit"
+            id='add_btn'
+            type='submit'
             disabled={isSubmitting}
-            className={styles.add_button}
-          >
+            className={styles.add_button}>
             추가하기
           </button>
         </div>
