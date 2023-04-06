@@ -45,15 +45,14 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
           height={18}
         />
         <p>
-          <span className={styles.event_noti}>
-            <Link
-              href={
-                "https://docs.google.com/forms/d/e/1FAIpQLSc9YT3SIVC6ARWONo5DZSd4CN4TD68E-dXCwAJcAitOWWSnuw/viewform"
-              }
-              target='_blank'>
-              [클릭]
-            </Link>
-          </span>{" "}
+          <Link
+            className={styles.click_text}
+            href={
+              "https://docs.google.com/forms/d/e/1FAIpQLSc9YT3SIVC6ARWONo5DZSd4CN4TD68E-dXCwAJcAitOWWSnuw/viewform"
+            }
+            target='_blank'>
+            [클릭]
+          </Link>
           설문조사 참여하고 백화점 상품권 받으러 가기
         </p>
       </div>

@@ -8,11 +8,11 @@
   padding: 0 24px;
 }
 .header_container p {
-  font-size: 14px;
+  font-size: 0.7rem;
   font-weight: 400;
 }
-.event_noti {
-  font-size: 14px;
+.click_text {
+  font-size: 0.7rem;
   font-weight: 400;
   color: red;
   cursor: pointer;
@@ -118,6 +118,7 @@
 }
 
 .bold_text {
+  font-size: 0.7rem;
   margin-right: 4px;
   font-weight: var(--weight-bold);
   color: #000000;
