@@ -3,6 +3,7 @@ import Axios from "util/async/axiosConfig"
 export default function testp() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const fileRef = useRef<HTMLInputElement>(null)
+
   const tsfn = (e: FormEvent) => {
     e.preventDefault()
     if (fileRef.current) {
@@ -22,7 +23,7 @@ export default function testp() {
   }
   return (
     <form>
-      <input ref={fileRef} type='file' />
+      <input ref={fileRef} type="file" />
       <button onClick={tsfn}>추출하기</button>
     </form>
   )
