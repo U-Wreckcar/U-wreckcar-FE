@@ -52,7 +52,6 @@ export const ExcelAddModal: React.FC<ModalType> = ({
     }
   }
 
-
   async function asyncfile(formdata: any) {
     try {
       const res = await Axios.post("utms/importdata", formdata)
@@ -61,7 +60,6 @@ export const ExcelAddModal: React.FC<ModalType> = ({
     } catch (err) {
       alert("파일을 다시 올려주세요!")
     }
-
   }
   //111
   const onChangeFiles = useCallback(
@@ -121,26 +119,6 @@ export const ExcelAddModal: React.FC<ModalType> = ({
     [onChangeFiles]
   )
 
-  const initDragEvents = useCallback((): void => {
-    dragRef.current?.addEventListener("dragenter", handleDragIn)
-    dragRef.current?.addEventListener("dragleave", handleDragOut)
-    dragRef.current?.addEventListener("dragover", handleDragOver)
-    dragRef.current?.addEventListener("drop", handleDrop)
-  }, [handleDragIn, handleDragOut, handleDragOver, handleDrop])
-
-  const resetDragEvents = useCallback((): void => {
-    dragRef.current?.removeEventListener("dragenter", handleDragIn)
-    dragRef.current?.removeEventListener("dragleave", handleDragOut)
-    dragRef.current?.removeEventListener("dragover", handleDragOver)
-    dragRef.current?.removeEventListener("drop", handleDrop)
-  }, [handleDragIn, handleDragOut, handleDragOver, handleDrop])
-
-  useEffect(() => {
-    initDragEvents()
-
-    return () => resetDragEvents()
-  }, [initDragEvents, resetDragEvents])
-
   useEffect(() => {
     if (files.length > 1) {
       setFiles([])
@@ -153,9 +131,8 @@ export const ExcelAddModal: React.FC<ModalType> = ({
         <label
           ref={dragRef}
           htmlFor="fileUpload"
-          // onDragEnter={(e: any) => handleDragOver(e)}
-          // onDragStart={(e: any) => handleDragIn(e)}
-          // onDrop={(e: any) => handleDrop(e)}
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={(e: any) => handleDrop(e)}
         >
           <div className={styles.title_box}>
             <h1>엑셀파일로 추가하기</h1>
@@ -186,13 +163,13 @@ export const ExcelAddModal: React.FC<ModalType> = ({
           </div>
           <div className={styles.modal_footer_box}>
             <div>
-              {/* <Image src={downloader} alt="" width={86} height={28} /> */}
+              <Image src={downloader} alt="" width={86} height={28} />
             </div>
             <div className={styles.footer_drag_box}>
               <input
                 ref={fileRef}
-                type='file'
-                id='fileUpload'
+                type="file"
+                id="fileUpload"
                 style={{ display: "none" }}
                 multiple={false}
                 onChange={onChangeFiles}
@@ -206,12 +183,12 @@ export const ExcelAddModal: React.FC<ModalType> = ({
 
                   return (
                     <div key={id}>
-                      <Image src={dragBox} alt='' width={730} height={60} />
+                      <Image src={dragBox} alt="" width={730} height={60} />
                       <div className={styles.drag_container}>
                         <Image
                           className={styles.drag_folder}
                           src={folder}
-                          alt=''
+                          alt=""
                           width={24}
                           height={24}
                         />
@@ -221,16 +198,16 @@ export const ExcelAddModal: React.FC<ModalType> = ({
                   )
                 })}
               {files.length === 0 && isDragging && (
-                <Image src={dragging} alt='' width={730} height={60} />
+                <Image src={dragging} alt="" width={730} height={60} />
               )}
               {files.length === 0 && !isDragging && (
                 <>
-                  <Image src={dragBox} alt='' width={730} height={60} />
+                  <Image src={dragBox} alt="" width={730} height={60} />
                   <Image
                     className={styles.footer_drag_box_content}
                     onDoubleClick={onChangeFiles}
                     src={drag}
-                    alt=''
+                    alt=""
                     width={300}
                     height={24}
                   />
