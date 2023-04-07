@@ -123,13 +123,13 @@ export const AddUtmModal: React.FC<ModalType> = ({
                   </span>
                 )}
               </div>
-              {/* <button
+              <button
                 type="button"
                 className={styles.add_excel_button}
                 onClick={() => setExcel(true)}
               >
                 엑셀로 추가하기
-              </button> */}
+              </button>
               <button
                 id="add_btn"
                 type="submit"
