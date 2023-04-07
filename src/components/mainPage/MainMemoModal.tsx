@@ -4,6 +4,7 @@ import b_close from "assets/b_close.png"
 import { useRef } from "react"
 import { patchUTM } from "@/util/async/api"
 import Modal from "@/app/Modal"
+import { BlueButton } from "@/shared/button/BlueButton"
 type EditModalType = {
   isOpen: boolean
   onRequestClose: any
@@ -61,12 +62,18 @@ export const EditModal: React.FC<EditModalType> = ({
             value='default'>
             취소하기
           </button>
-          <button
+          {/* <button
             onClick={onClickEditButton}
             className={styles.modal_button}
             value='default'>
             수정하기
-          </button>
+          </button> */}
+          <BlueButton
+            x={81}
+            y={38}
+            confirmFN={onClickEditButton}
+            text={"수정하기"}
+          />
         </div>
       </div>
     </Modal>
