@@ -19,8 +19,10 @@ import BtnAlert from "@/shared/button/Alert"
 import { CopyButton } from "@/shared/button/CopyButton"
 
 import styles from "./main.module.css"
+import { styled } from "@mui/material/styles"
 import { AlertTitle, Alert } from "@mui/material"
-import Tooltip from "@mui/material/Tooltip"
+import Typography from "@mui/material/Typography"
+import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip"
 import { RankingInfo, rankItem } from "@tanstack/match-sorter-utils"
 import {
   Table,
@@ -340,7 +342,7 @@ const MainTable: React.FC = () => {
   return (
     <div>
       {warningAlert && (
-        <Alert severity='warning'>
+        <Alert severity="warning">
           <AlertTitle>Warning</AlertTitle>
           선택된 데이터가 없습니다.
           <strong>데이터를 체크해주세요!</strong>
@@ -361,9 +363,10 @@ const MainTable: React.FC = () => {
           </div>
           <div className={styles.buttons_box}>
             <button
-              id='export_btn'
+              id="export_btn"
               className={styles.button}
-              onClick={onClickPopBtn}>
+              onClick={onClickPopBtn}
+            >
               추출하기
             </button>
             <OutputModal
@@ -387,13 +390,15 @@ const MainTable: React.FC = () => {
               onClick={() => {
                 setFilter(!filter)
                 setRowSelection({})
-              }}>
-              <Image src={filterImg} alt='filter' width={24} height={24} />
+              }}
+            >
+              <Image src={filterImg} alt="filter" width={24} height={24} />
             </button>
             <button
               className={styles.plus_button}
-              onClick={() => setPlus(true)}>
-              <Image src={plusImg} alt='plus' width={24} height={24} />
+              onClick={() => setPlus(true)}
+            >
+              <Image src={plusImg} alt="plus" width={24} height={24} />
             </button>
             <AddUtmModal
               isOpen={plus}
@@ -411,16 +416,17 @@ const MainTable: React.FC = () => {
           />
         </div>
         <div className={styles.table_scroll}>
-          <div className='h-2' />
-          <div className='h-4' />
-          <div className='overflow-x-auto'></div>
+          <div className="h-2" />
+          <div className="h-4" />
+          <div className="overflow-x-auto"></div>
           <table
             className={styles.table}
             {...{
               style: {
                 width: table.getCenterTotalSize(),
               },
-            }}>
+            }}
+          >
             <thead>
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
@@ -436,7 +442,8 @@ const MainTable: React.FC = () => {
                                 ? 80
                                 : header.getSize(),
                           },
-                        }}>
+                        }}
+                      >
                         {header.isPlaceholder ? null : (
                           <>
                             <div
@@ -449,7 +456,8 @@ const MainTable: React.FC = () => {
                                 },
                                 onClick:
                                   header.column.getToggleSortingHandler(),
-                              }}>
+                              }}
+                            >
                               {flexRender(
                                 header.column.columnDef.header,
                                 header.getContext()
@@ -459,7 +467,7 @@ const MainTable: React.FC = () => {
                               <div className={styles.header_filter_box}>
                                 <Image
                                   src={blackFilterImg}
-                                  alt='filter'
+                                  alt="filter"
                                   width={25}
                                   height={25}
                                 />
@@ -472,7 +480,8 @@ const MainTable: React.FC = () => {
                                   style: {
                                     width: "280px",
                                   },
-                                }}>
+                                }}
+                              >
                                 {header.column.getCanFilter() &&
                                 header.column.id !== "select" ? (
                                   <Filter
@@ -515,7 +524,8 @@ const MainTable: React.FC = () => {
                                   ? 80
                                   : cell.column.getSize(),
                             },
-                          }}>
+                          }}
+                        >
                           {cell.column.id === "utm_url" && (
                             <Tooltip title={`${cell.getValue()}`}>
                               <div
@@ -529,7 +539,8 @@ const MainTable: React.FC = () => {
                                     "_blank",
                                     "noopener,noreferrer"
                                   )
-                                }>{`${cell.getValue()}`}</div>
+                                }
+                              >{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
                           {cell.column.id === "utm_memo" && (
@@ -544,7 +555,8 @@ const MainTable: React.FC = () => {
                                   setTarget(e.target?.id)
                                   setShow(true)
                                   setInputValue(`${cell.getValue()}`)
-                                }}>{`${cell.getValue()}`}</div>
+                                }}
+                              >{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
                           {cell.column.id === "select" &&
@@ -554,18 +566,19 @@ const MainTable: React.FC = () => {
                             )}
                           {cell.column.id === "full_url" && (
                             <CopyButton
-                              text={`${cell.getValue()}`}></CopyButton>
+                              text={`${cell.getValue()}`}
+                            ></CopyButton>
                           )}
                           {cell.column.id === "shorten_url" && (
                             <CopyButton
-                              text={`${cell.getValue()}`}></CopyButton>
+                              text={`${cell.getValue()}`}
+                            ></CopyButton>
                           )}
                           {cell.column.id === "click_count" && (
-                            <Tooltip title='shorten URL 클릭 수입니다.'>
+                            <Tooltip title="shorten URL 클릭 수입니다.">
                               <div
-                                className={
-                                  styles.td_box
-                                }>{`${cell.getValue()}`}</div>
+                                className={styles.td_box}
+                              >{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
                           {cell.column.id !== "utm_memo" &&
@@ -576,9 +589,8 @@ const MainTable: React.FC = () => {
                             cell.column.id !== "click_count" && (
                               <Tooltip title={`${cell.getValue()}`}>
                                 <div
-                                  className={
-                                    styles.td_box
-                                  }>{`${cell.getValue()}`}</div>
+                                  className={styles.td_box}
+                                >{`${cell.getValue()}`}</div>
                               </Tooltip>
                             )}
                         </td>
@@ -656,7 +668,7 @@ function Filter({
             <div className={styles.dialog}>
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <DebouncedInput
-                  type='date'
+                  type="date"
                   value={(columnFilterValue ?? "") as string}
                   onChange={(value) => {
                     setStartDate(value)
@@ -664,27 +676,29 @@ function Filter({
                   list={column.id + "list"}
                 />
                 <DebouncedInput
-                  type='date'
+                  type="date"
                   value={(columnFilterValue ?? "") as string}
                   onChange={(value) => getDatesStartToLast(startDate, value)}
                   list={column.id + "list"}
                 />
                 <button
                   className={styles.dialog_button}
-                  onClick={() => setIsOpen(false)}>
+                  onClick={() => setIsOpen(false)}
+                >
                   X
                 </button>
               </div>
             </div>
           )}
           <input
-            type='text'
+            type="text"
             className={styles.search_input}
-            placeholder='기간 선택'
+            placeholder="기간 선택"
             onFocus={() => {
               setIsOpen(true)
               defaultData = dData
-            }}></input>
+            }}
+          ></input>
         </>
       )}
 
@@ -697,7 +711,7 @@ function Filter({
           </datalist>
           <DebouncedInput
             className={styles.search_input}
-            type='text'
+            type="text"
             value={(columnFilterValue ?? "") as string}
             onChange={(value) => column.setFilterValue(value)}
             placeholder={`검색 (${column.getFacetedUniqueValues().size})`}
@@ -757,7 +771,7 @@ function IndeterminateCheckbox({
 
   return (
     <input
-      type='checkbox'
+      type="checkbox"
       ref={ref}
       className={className + " cursor-pointer"}
       {...rest}
