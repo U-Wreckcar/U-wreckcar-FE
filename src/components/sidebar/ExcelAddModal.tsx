@@ -5,6 +5,7 @@ import React, {
   useRef,
   useState,
   useEffect,
+  FormEvent,
 } from "react"
 import Image from "next/image"
 import { ModalType } from "./AddUtmModal"
@@ -36,7 +37,25 @@ export const ExcelAddModal: React.FC<ModalType> = ({
   const dragRef = useRef<HTMLLabelElement | null>(null)
   const fileId = useRef<number>(0)
   const fileRef = useRef<HTMLInputElement>(null)
-
+  //11
+  const tsfn = (e: FormEvent) => {
+    e.preventDefault()
+    if (fileRef.current) {
+      console.log(fileRef.current.files)
+      const fileDate = fileRef.current.files
+      const formData = new FormData()
+      // @ts-ignore
+      Array.from(fileDate).forEach((el: any) => {
+        formData.append("userfile", el)
+      })
+      asyncfile(fileDate)
+    }
+  }
+  const asyncfile = async (formdata: any) => {
+    const res = await Axios.post("utms/importdata", formdata)
+    console.log(res)
+  }
+  //111
   const onChangeFiles = useCallback(
     (e: ChangeEvent<HTMLInputElement> | any): void => {
       let selectFiles: File[] = []
@@ -208,7 +227,15 @@ export const ExcelAddModal: React.FC<ModalType> = ({
               )}
             </div>
           </label>
-          <BlueButton x={81} y={38} types={"submit"} text={"추가하기"} />
+          <BlueButton
+            x={81}
+            y={38}
+            types={"submit"}
+            text={"추가하기"}
+            typeEvent={(e) => {
+              tsfn(e)
+            }}
+          />
         </div>
       </form>
     </Modal>
