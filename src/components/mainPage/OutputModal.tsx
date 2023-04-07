@@ -52,9 +52,13 @@ export const OutputModal: React.FC<OutputModalType> = ({
     if (excel) {
       try {
         setLoading(true)
-        const response = await Axios.post("utms/toxlsx", data, {
-          responseType: "blob",
-        })
+        const response = await Axios.post(
+          "utms/toxlsx",
+          { data: dataList },
+          {
+            responseType: "blob",
+          }
+        )
         // const response = await getData()
         const url = window.URL.createObjectURL(new Blob([response.data]))
         const a = document.createElement("a")
@@ -75,7 +79,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
     if (sheet) {
       try {
         setLoading(true)
-        const response = await Axios.post("utms/export/sheet/csv", data, {
+        const response = await Axios.post("utms/export/sheet/csv", dataList, {
           responseType: "blob",
         })
         // const response = await getData("export/sheet/csv")
