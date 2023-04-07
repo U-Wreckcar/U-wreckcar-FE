@@ -71,11 +71,9 @@ export const AddUtmModal: React.FC<ModalType> = ({
             <div className={styles.title_box}>
               <h1>기존 UTM 추가</h1>
             </div>
-
             <span className={styles.sub_title}>
               *만드신 UTM을 넣으시면 파라미터 값이 분류되어 데이터에 저장됩니다
             </span>
-
             <div className={styles.modal_footer_box}>
               <div className={styles.error_box}>
                 {errors?.utm_url && (
