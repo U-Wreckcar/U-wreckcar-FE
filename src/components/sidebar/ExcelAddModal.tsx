@@ -137,6 +137,7 @@ export const ExcelAddModal: React.FC<ModalType> = ({
     [onChangeFiles]
   )
 
+
   useEffect(() => {
     if (files.length > 1) {
       setFiles([])
@@ -148,15 +149,17 @@ export const ExcelAddModal: React.FC<ModalType> = ({
       <form className={styles.add_modal}>
         <label
           ref={dragRef}
+
           htmlFor="fileUpload"
           onDragOver={(e) => e.preventDefault()}
           onDrop={(e: any) => handleDrop(e)}
+
         >
           <div className={styles.title_box}>
             <h1>엑셀파일로 추가하기</h1>
             <Image
               src={helpImg}
-              alt=""
+              alt=''
               width={16}
               height={16}
               onMouseEnter={() => setHelpMsg(true)}
@@ -167,7 +170,7 @@ export const ExcelAddModal: React.FC<ModalType> = ({
             <Image
               className={styles.help_msg_img}
               src={helpMsgImg}
-              alt=""
+              alt=''
               width={300}
               height={140}
             />
@@ -245,11 +248,10 @@ export const ExcelAddModal: React.FC<ModalType> = ({
               )}
             </div>
             <button
-              type="button"
-              id="add_btn"
+              type='button'
+              id='add_btn'
               className={styles.add_button}
-              onClick={tsfn}
-            >
+              onClick={tsfn}>
               추가하기
             </button>
           </div>
