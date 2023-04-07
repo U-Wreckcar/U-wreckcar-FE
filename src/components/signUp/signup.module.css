@@ -102,6 +102,7 @@
   background: #4c70ff;
 }
 .email_input {
+  font-size: 0.7rem;
   border-radius: 4px;
   position: relative;
   left: 30px;
@@ -111,6 +112,7 @@
   transform: translateX(-2px);
 }
 .confirm_input {
+  font-size: 0.7rem;
   border-radius: 4px;
   width: 299px;
   height: 38px;
@@ -119,6 +121,7 @@
 }
 
 .signup_input {
+  font-size: 0.7rem;
   border-radius: 4px;
   height: 38px;
   width: 388px;
@@ -135,6 +138,7 @@
 .confirm_input:focus,
 .signup_input:focus {
   outline: 0.7px solid #ddd;
+  font-size: 0.7rem;
 }
 
 .signup_button {

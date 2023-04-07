@@ -78,9 +78,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
+  position: relative;
   background-color: #f5f9fc;
-
   height: 640px;
 }
 .l_section_one_two article {
@@ -110,6 +109,11 @@
 }
 
 .l_section_one_two article:nth-child(1) {
+}
+
+.sub_child{
+  position: absolute;
+  transform: translateX(40px);
 }
 
 /*
