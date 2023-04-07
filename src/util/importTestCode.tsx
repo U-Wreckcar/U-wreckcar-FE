@@ -73,7 +73,7 @@ export default function testp() {
       >
         <button onClick={() => setExcel(true)}>HTML</button>
       </HtmlTooltip> */}
-      <input ref={fileRef} type="file" />
+      <input ref={fileRef} type='file' />
       <button onClick={tsfn}>추출하기</button>
     </form>
   )
