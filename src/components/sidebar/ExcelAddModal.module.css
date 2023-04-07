@@ -1,0 +1,88 @@
+.add_modal {
+    width: 800px;
+    height: 372px;
+    text-align: center;
+  }
+
+
+  .add_modal img {
+    cursor: pointer;
+  }
+  
+  .label_text {
+    font-size: 0.8rem;
+  }
+  .title_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 800px;
+    height: 64px;
+    border-bottom: 1px solid #ddd;
+  }
+  .title_box h1 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22px;
+    margin-right: 8px;
+  }
+  .sub_title {
+    margin: 25px 0 15px 0;
+  }
+  
+  .sub_title > span {
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .footer_drag_box{
+    margin-top: 24px;
+  }
+.footer_drag_box_content{
+transform: translateY(-47px);
+}
+
+
+  .help_msg_img{
+    z-index: 999;
+    position: absolute;
+    top:50px;
+    left: 430px;
+  }
+
+
+.add_button {
+    width: 81px;
+    height: 38px;
+    background: #484bff;
+    border: none;
+    border-radius: 4px;
+    /* font-family: 'Pretendard'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.006em;
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+  
+  .add_button:hover {
+    background: #4c70ff;
+  }
+
+  .drag_container{
+    width: 730px;
+    /* height: 60px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-240px,-47px);
+  }
+  .drag_folder{
+    margin-right: 12px;
+  }
+
+  .drag_name{
+    color:#767676;
+    font-size: 16px;
+  }
