@@ -27,7 +27,7 @@ export default function MainPageComponent() {
     }
   }, [])
   return (
-    <div id="root">
+    <div id='root'>
       <Provider store={store}>
         <MainTable />
       </Provider>

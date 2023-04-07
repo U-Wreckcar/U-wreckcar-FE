@@ -52,7 +52,6 @@ export const ExcelAddModal: React.FC<ModalType> = ({
     }
   }
 
-
   async function asyncfile(formdata: any) {
     try {
       const res = await Axios.post("utms/importdata", formdata)
@@ -61,7 +60,6 @@ export const ExcelAddModal: React.FC<ModalType> = ({
     } catch (err) {
       alert("파일을 다시 올려주세요!")
     }
-
   }
   //111
   const onChangeFiles = useCallback(
@@ -121,25 +119,25 @@ export const ExcelAddModal: React.FC<ModalType> = ({
     [onChangeFiles]
   )
 
-  const initDragEvents = useCallback((): void => {
-    dragRef.current?.addEventListener("dragenter", handleDragIn)
-    dragRef.current?.addEventListener("dragleave", handleDragOut)
-    dragRef.current?.addEventListener("dragover", handleDragOver)
-    dragRef.current?.addEventListener("drop", handleDrop)
-  }, [handleDragIn, handleDragOut, handleDragOver, handleDrop])
+  // const initDragEvents = useCallback((): void => {
+  //   dragRef.current?.addEventListener("dragenter", handleDragIn)
+  //   dragRef.current?.addEventListener("dragleave", handleDragOut)
+  //   dragRef.current?.addEventListener("dragover", handleDragOver)
+  //   dragRef.current?.addEventListener("drop", handleDrop)
+  // }, [handleDragIn, handleDragOut, handleDragOver, handleDrop])
 
-  const resetDragEvents = useCallback((): void => {
-    dragRef.current?.removeEventListener("dragenter", handleDragIn)
-    dragRef.current?.removeEventListener("dragleave", handleDragOut)
-    dragRef.current?.removeEventListener("dragover", handleDragOver)
-    dragRef.current?.removeEventListener("drop", handleDrop)
-  }, [handleDragIn, handleDragOut, handleDragOver, handleDrop])
+  // const resetDragEvents = useCallback((): void => {
+  //   dragRef.current?.removeEventListener("dragenter", handleDragIn)
+  //   dragRef.current?.removeEventListener("dragleave", handleDragOut)
+  //   dragRef.current?.removeEventListener("dragover", handleDragOver)
+  //   dragRef.current?.removeEventListener("drop", handleDrop)
+  // }, [handleDragIn, handleDragOut, handleDragOver, handleDrop])
 
-  useEffect(() => {
-    initDragEvents()
+  // useEffect(() => {
+  //   initDragEvents()
 
-    return () => resetDragEvents()
-  }, [initDragEvents, resetDragEvents])
+  //   return () => resetDragEvents()
+  // }, [initDragEvents, resetDragEvents])
 
   useEffect(() => {
     if (files.length > 1) {
@@ -152,7 +150,7 @@ export const ExcelAddModal: React.FC<ModalType> = ({
       <form className={styles.add_modal}>
         <label
           ref={dragRef}
-          htmlFor="fileUpload"
+          htmlFor='fileUpload'
           // onDragEnter={(e: any) => handleDragOver(e)}
           // onDragStart={(e: any) => handleDragIn(e)}
           // onDrop={(e: any) => handleDrop(e)}
@@ -161,7 +159,7 @@ export const ExcelAddModal: React.FC<ModalType> = ({
             <h1>엑셀파일로 추가하기</h1>
             <Image
               src={helpImg}
-              alt=""
+              alt=''
               width={16}
               height={16}
               onMouseEnter={() => setHelpMsg(true)}
@@ -172,7 +170,7 @@ export const ExcelAddModal: React.FC<ModalType> = ({
             <Image
               className={styles.help_msg_img}
               src={helpMsgImg}
-              alt=""
+              alt=''
               width={300}
               height={140}
             />
@@ -238,11 +236,10 @@ export const ExcelAddModal: React.FC<ModalType> = ({
               )}
             </div>
             <button
-              type="button"
-              id="add_btn"
+              type='button'
+              id='add_btn'
               className={styles.add_button}
-              onClick={tsfn}
-            >
+              onClick={tsfn}>
               추가하기
             </button>
           </div>
