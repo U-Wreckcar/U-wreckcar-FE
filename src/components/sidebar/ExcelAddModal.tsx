@@ -183,7 +183,7 @@ export const ExcelAddModal: React.FC<ModalType> = ({
             <div>
               <a
                 ref={fileDownRef}
-                href=""
+                href="https://velog.velcdn.com/images/mython/post/cbd0ccf9-e0c0-4ffc-9b1b-2462d3200dfb/image.xlsx"
                 download="filename.txt"
                 style={{ display: "none" }}
               ></a>
