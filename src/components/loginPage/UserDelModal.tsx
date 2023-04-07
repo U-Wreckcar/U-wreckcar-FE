@@ -97,7 +97,6 @@ const UserDelModal = ({ isOpen, onRequestClose }: any) => {
                 <label>
                   <input
                     onClick={(e) => onclickCheck(e)}
-                    checked
                     type="checkbox"
                     name="check"
                     id="기타"
