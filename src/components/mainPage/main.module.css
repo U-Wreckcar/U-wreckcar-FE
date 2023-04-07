@@ -13,15 +13,15 @@
   display: flex;
   flex-wrap: wrap;
   min-width: none;
-  /* width:81%; */
   min-height: 70vh;
-  /* overflow:auto; */
-  /* min-height: 80vh; */
   flex-direction: column;
   padding-left: 40px;
   padding-top: 40px;
   padding-right: 40px;
   font-size: 0.7rem;
+  /* width:81%; */
+  /* overflow:auto; */
+  /* min-height: 80vh; */
 }
 
 .btn_box {

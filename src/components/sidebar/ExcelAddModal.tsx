@@ -51,9 +51,15 @@ export const ExcelAddModal: React.FC<ModalType> = ({
       asyncfile(fileDate)
     }
   }
-  const asyncfile = async (formdata: any) => {
-    const res = await Axios.post("utms/importdata", formdata)
-    console.log(res)
+
+  async function asyncfile(formdata: any) {
+    try {
+      const res = await Axios.post("utms/importdata", formdata)
+      console.log(res)
+      onRequestClose()
+    } catch (err) {
+      alert("파일을 다시 올려주세요!")
+    }
   }
   //111
   const onChangeFiles = useCallback(
@@ -61,9 +67,9 @@ export const ExcelAddModal: React.FC<ModalType> = ({
       let selectFiles: File[] = []
       let tempFiles: IFileTypes[] = files
 
-      if (e.type === "drop") {
+      if (e.dataTransfer?.files) {
         selectFiles = e.dataTransfer.files
-      } else {
+      } else if (e.target.files) {
         selectFiles = e.target.files
       }
 
@@ -97,9 +103,9 @@ export const ExcelAddModal: React.FC<ModalType> = ({
     e.preventDefault()
     e.stopPropagation()
 
-    if (e.dataTransfer!.files) {
-      setIsDragging(true)
-    }
+    // if (e.dataTransfer!.files) {
+    setIsDragging(true)
+    // }
   }, [])
 
   const handleDrop = useCallback(
@@ -113,29 +119,6 @@ export const ExcelAddModal: React.FC<ModalType> = ({
     [onChangeFiles]
   )
 
-  const initDragEvents = useCallback((): void => {
-    if (dragRef.current !== null) {
-      dragRef.current.addEventListener("dragenter", handleDragIn)
-      dragRef.current.addEventListener("dragleave", handleDragOut)
-      dragRef.current.addEventListener("dragover", handleDragOver)
-      dragRef.current.addEventListener("drop", handleDrop)
-    }
-  }, [handleDragIn, handleDragOut, handleDragOver, handleDrop])
-
-  const resetDragEvents = useCallback((): void => {
-    if (dragRef.current !== null) {
-      dragRef.current.removeEventListener("dragenter", handleDragIn)
-      dragRef.current.removeEventListener("dragleave", handleDragOut)
-      dragRef.current.removeEventListener("dragover", handleDragOver)
-      dragRef.current.removeEventListener("drop", handleDrop)
-    }
-  }, [handleDragIn, handleDragOut, handleDragOver, handleDrop])
-
-  useEffect(() => {
-    initDragEvents()
-    return () => resetDragEvents()
-  }, [initDragEvents, resetDragEvents])
-
   useEffect(() => {
     if (files.length > 1) {
       setFiles([])
@@ -145,45 +128,50 @@ export const ExcelAddModal: React.FC<ModalType> = ({
   return (
     <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
       <form className={styles.add_modal}>
-        <div className={styles.title_box}>
-          <h1>엑셀파일로 추가하기</h1>
-          <Image
-            src={helpImg}
-            alt=''
-            width={16}
-            height={16}
-            onMouseEnter={() => setHelpMsg(true)}
-            onMouseLeave={() => setHelpMsg(false)}
-          />
-        </div>
-        {helpMsg && (
-          <Image
-            className={styles.help_msg_img}
-            src={helpMsgImg}
-            alt=''
-            width={300}
-            height={140}
-          />
-        )}
-        <div className={styles.sub_title}>
-          <span>
-            유렉카 엑셀 양식에 맞춰 UTM 리스트 파일을 등록하면
-            <br></br>
-            자동으로 파라미터 값이 분류되어 추가됩니다.
-          </span>
-        </div>
-        <div className={styles.modal_footer_box}>
-          <div>
-            <Image src={downloader} alt='' width={86} height={28} />
+        <label
+          ref={dragRef}
+          htmlFor="fileUpload"
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={(e: any) => handleDrop(e)}
+        >
+          <div className={styles.title_box}>
+            <h1>엑셀파일로 추가하기</h1>
+            <Image
+              src={helpImg}
+              alt=""
+              width={16}
+              height={16}
+              onMouseEnter={() => setHelpMsg(true)}
+              onMouseLeave={() => setHelpMsg(false)}
+            />
           </div>
-          <label ref={dragRef} htmlFor='fileUpload'>
+          {helpMsg && (
+            <Image
+              className={styles.help_msg_img}
+              src={helpMsgImg}
+              alt=""
+              width={300}
+              height={140}
+            />
+          )}
+          <div className={styles.sub_title}>
+            <span>
+              유렉카 엑셀 양식에 맞춰 UTM 리스트 파일을 등록하면
+              <br></br>
+              자동으로 파라미터 값이 분류되어 추가됩니다.
+            </span>
+          </div>
+          <div className={styles.modal_footer_box}>
+            <div>
+              <Image src={downloader} alt="" width={86} height={28} />
+            </div>
             <div className={styles.footer_drag_box}>
               <input
                 ref={fileRef}
-                type='file'
-                id='fileUpload'
+                type="file"
+                id="fileUpload"
                 style={{ display: "none" }}
-                multiple={true}
+                multiple={false}
                 onChange={onChangeFiles}
               />
               {files.length !== 0 &&
@@ -195,12 +183,12 @@ export const ExcelAddModal: React.FC<ModalType> = ({
 
                   return (
                     <div key={id}>
-                      <Image src={dragBox} alt='' width={730} height={60} />
+                      <Image src={dragBox} alt="" width={730} height={60} />
                       <div className={styles.drag_container}>
                         <Image
                           className={styles.drag_folder}
                           src={folder}
-                          alt=''
+                          alt=""
                           width={24}
                           height={24}
                         />
@@ -210,33 +198,32 @@ export const ExcelAddModal: React.FC<ModalType> = ({
                   )
                 })}
               {files.length === 0 && isDragging && (
-                <Image src={dragging} alt='' width={730} height={60} />
+                <Image src={dragging} alt="" width={730} height={60} />
               )}
               {files.length === 0 && !isDragging && (
                 <>
-                  <Image src={dragBox} alt='' width={730} height={60} />
+                  <Image src={dragBox} alt="" width={730} height={60} />
                   <Image
                     className={styles.footer_drag_box_content}
                     onDoubleClick={onChangeFiles}
                     src={drag}
-                    alt=''
+                    alt=""
                     width={300}
                     height={24}
                   />
                 </>
               )}
             </div>
-          </label>
-          <BlueButton
-            x={81}
-            y={38}
-            types={"submit"}
-            text={"추가하기"}
-            typeEvent={(e) => {
-              tsfn(e)
-            }}
-          />
-        </div>
+            <button
+              type="button"
+              id="add_btn"
+              className={styles.add_button}
+              onClick={tsfn}
+            >
+              추가하기
+            </button>
+          </div>
+        </label>
       </form>
     </Modal>
   )
