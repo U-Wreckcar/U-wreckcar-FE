@@ -1,27 +1,27 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 
-@font-face {
+/* @font-face {
   font-family: "Pretendard Variable";
   font-weight: 45 920;
   font-style: normal;
   font-display: swap;
   src: local("Pretendard Variable"),
     url("../../app/PretendardVariable.woff2") format("woff2-variations");
-}
+} */
 .container {
   font-family: "pretendard";
   display: flex;
   flex-wrap: wrap;
   min-width: none;
-  /* width:81%; */
   min-height: 70vh;
-  /* overflow:auto; */
-  /* min-height: 80vh; */
   flex-direction: column;
   padding-left: 40px;
   padding-top: 40px;
   padding-right: 40px;
   font-size: 0.7rem;
+  /* width:81%; */
+  /* overflow:auto; */
+  /* min-height: 80vh; */
 }
 
 .btn_box {
