@@ -13,11 +13,12 @@ import Axios from "util/async/axiosConfig"
 import styles from "./ExcelAddModal.module.css"
 import helpImg from "assets/blue_help.png"
 import helpMsgImg from "assets/excel_help.png"
-// import downloader from "assets/e_download.png"
+import downloader from "assets/e_download.png"
 import drag from "assets/e_drag.png"
 import dragBox from "assets/e_drag_box.png"
 import dragging from "assets/e_is_drag.png"
 import folder from "assets/e_icons.png"
+import { BlueButton } from "@/shared/button/BlueButton"
 interface IFileTypes {
   id: number
   object: File
@@ -153,9 +154,9 @@ export const ExcelAddModal: React.FC<ModalType> = ({
           </span>
         </div>
         <div className={styles.modal_footer_box}>
-          {/* <div>
+          <div>
             <Image src={downloader} alt='' width={86} height={28} />
-          </div> */}
+          </div>
           <label ref={dragRef} htmlFor='fileUpload'>
             <div className={styles.footer_drag_box}>
               <input
@@ -207,6 +208,7 @@ export const ExcelAddModal: React.FC<ModalType> = ({
               )}
             </div>
           </label>
+          <BlueButton x={81} y={38} types={"submit"} text={"추가하기"} />
         </div>
       </form>
     </Modal>
