@@ -37,18 +37,37 @@ export const ExcelAddModal: React.FC<ModalType> = ({
   const dragRef = useRef<HTMLLabelElement | null>(null)
   const fileId = useRef<number>(0)
   const fileRef = useRef<HTMLInputElement>(null)
+  const fileDownRef = useRef<HTMLAnchorElement>(null)
+
+  const handleDownload = () => {
+    fileDownRef.current?.click()
+  }
+
   //11
   const tsfn = (e: FormEvent) => {
     e.preventDefault()
-    if (fileRef.current) {
-      console.log(fileRef.current.files)
-      const fileDate = fileRef.current.files
-      const formData = new FormData()
-      // @ts-ignore
-      Array.from(fileDate).forEach((el: any) => {
-        formData.append("userfile", el)
-      })
-      asyncfile(fileDate)
+    const xlsx = files[0]?.object.name.split(".").pop()?.toLowerCase()
+    if (xlsx !== "xlsx") {
+      alert("확장자를 확인해주세요!")
+    } else if (xlsx === "xlsx") {
+      if (fileRef.current?.files?.length !== 0) {
+        const fileDate = fileRef.current?.files
+        const formData = new FormData()
+        // @ts-ignore
+        Array.from(fileDate).forEach((el: any) => {
+          formData.append("userfile", el)
+        })
+        asyncfile(fileDate)
+      } else if (fileRef.current?.files?.length === 0) {
+        alert("드래그 기능은 구현 중입니다...!")
+        // const formData = new FormData()
+        // // @ts-ignore
+        // Array.from(files[0].object).forEach((el: any) => {
+        //   formData.append("userfile", el)
+        // })
+        // console.log(files[0].object)
+        // asyncfile(formData)
+      }
     }
   }
 
@@ -72,7 +91,6 @@ export const ExcelAddModal: React.FC<ModalType> = ({
       } else if (e.target.files) {
         selectFiles = e.target.files
       }
-
       for (const file of selectFiles) {
         tempFiles = [
           ...tempFiles,
@@ -163,7 +181,19 @@ export const ExcelAddModal: React.FC<ModalType> = ({
           </div>
           <div className={styles.modal_footer_box}>
             <div>
-              <Image src={downloader} alt="" width={86} height={28} />
+              <a
+                ref={fileDownRef}
+                href="https://velog.velcdn.com/images/mython/post/cbd0ccf9-e0c0-4ffc-9b1b-2462d3200dfb/image.xlsx"
+                download="filename.txt"
+                style={{ display: "none" }}
+              ></a>
+              <Image
+                onClick={handleDownload}
+                src={downloader}
+                alt=""
+                width={86}
+                height={28}
+              />
             </div>
             <div className={styles.footer_drag_box}>
               <input
