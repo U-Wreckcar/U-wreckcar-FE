@@ -29,33 +29,33 @@ export default function testp() {
     console.log(res)
   }
 
-  const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
-    <Tooltip {...props} classes={{ popper: className }} />
-  ))(({ theme }) => ({
-    [`& .${tooltipClasses.tooltip}`]: {
-      backgroundColor: "#f5f5f9",
-      color: "rgba(0, 0, 0, 0.87)",
-      maxWidth: 220,
-      fontSize: theme.typography.pxToRem(12),
-      border: "1px solid #dadde9",
-    },
-  }))
+  // const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
+  //   <Tooltip {...props} classes={{ popper: className }} />
+  // ))(({ theme }) => ({
+  //   [`& .${tooltipClasses.tooltip}`]: {
+  //     backgroundColor: "#f5f5f9",
+  //     color: "rgba(0, 0, 0, 0.87)",
+  //     maxWidth: 220,
+  //     fontSize: theme.typography.pxToRem(12),
+  //     border: "1px solid #dadde9",
+  //   },
+  // }))
 
-  const customStyles = {
-    content: {
-      top: "55%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      padding: 0,
-    },
-  }
+  // const customStyles = {
+  //   content: {
+  //     top: "55%",
+  //     left: "50%",
+  //     right: "auto",
+  //     bottom: "auto",
+  //     marginRight: "-50%",
+  //     transform: "translate(-50%, -50%)",
+  //     padding: 0,
+  //   },
+  // }
 
   return (
     <form>
-      {excel && (
+      {/* {excel && (
         <ExcelAddModal
           isOpen={excel}
           onRequestClose={() => setExcel(false)}
@@ -72,8 +72,8 @@ export default function testp() {
         }
       >
         <button onClick={() => setExcel(true)}>HTML</button>
-      </HtmlTooltip>
-      <input ref={fileRef} type="file" />
+      </HtmlTooltip> */}
+      <input ref={fileRef} type='file' />
       <button onClick={tsfn}>추출하기</button>
     </form>
   )
