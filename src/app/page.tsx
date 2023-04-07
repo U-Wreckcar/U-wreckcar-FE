@@ -4,6 +4,7 @@ import styles from "./page.module.css"
 import Image from "next/image"
 // One
 import bg_one_illust from "assets/render/bg-one-illust.png"
+import sub_child from "assets/sub_child.png"
 // Sub
 import sub_img from "assets/render/sub-main-img.png"
 import m_section_one_two from "assets/m_section_one_two.png"
@@ -86,15 +87,14 @@ export default function Home() {
                   {text[index]} UTM 관리 <br />
                   유렉카로 해결하세요!
                 </h1>
-
                 <p>UTM 업무 1시간? 유렉카에서는 3분이면 OK</p>
                 <Link className={styles.origin_free_btn} href={"/login"}>
-                  <button id='free_btn' className={styles.free_btn}>
+                  <button id="free_btn" className={styles.free_btn}>
                     무료로 시작하기
                   </button>
                 </Link>
                 <Link className={styles.m_free_btn} href={"/webonly"}>
-                  <button id='free_btn' className={styles.free_btn}>
+                  <button id="free_btn" className={styles.free_btn}>
                     무료로 시작하기
                   </button>
                 </Link>
@@ -102,17 +102,24 @@ export default function Home() {
               <Image
                 className={styles.bg_one_illust}
                 src={bg_one_illust}
-                alt='Img'
+                alt="Img"
               />
             </article>
           </section>
           <section className={styles.l_section_one_two}>
             <article>
-              <Image className={styles.web_sub} src={sub_img} alt='Img' />
+              <Image className={styles.web_sub} src={sub_img} alt="Img" />
               <Image
                 className={styles.m_sub}
                 src={m_section_one_two}
-                alt='Img'
+                alt="Img"
+              />
+              <Image
+                className={styles.sub_child}
+                src={sub_child}
+                alt="Img"
+                width={1608}
+                height={400}
               />
             </article>
           </section>
@@ -130,10 +137,10 @@ export default function Home() {
             </article>
             <article>
               <div className={styles.section_two_img}>
-                <Image src={bg_two_left} alt='Left_img' />
+                <Image src={bg_two_left} alt="Left_img" />
               </div>
               <div className={styles.section_two_img}>
-                <Image src={bg_two_right} alt='Right_img' />
+                <Image src={bg_two_right} alt="Right_img" />
               </div>
             </article>
           </section>
@@ -155,14 +162,14 @@ export default function Home() {
                 </p>
               </div>
               <div className={styles.three_img}>
-                <Image src={create} alt='Gif' />
+                <Image src={create} alt="Gif" />
               </div>
             </article>
           </section>
           <section className={styles.l_section_four}>
             <article>
               <div className={styles.four_img}>
-                <Image src={f_search} alt='Gif' />
+                <Image src={f_search} alt="Gif" />
               </div>
               <div className={styles.text_box}>
                 <p className={styles.sub_title}>필요한 UTM만 바로바로 필터링</p>
@@ -193,14 +200,14 @@ export default function Home() {
                 </p>
               </div>
               <div className={styles.five_img}>
-                <Image src={out} alt='Gif' />
+                <Image src={out} alt="Gif" />
               </div>
             </article>
           </section>
           <section className={styles.l_section_six}>
             <article>
               <div className={styles.six_card_item}>
-                <Image src={bg_six_one} alt='IMG' />
+                <Image src={bg_six_one} alt="IMG" />
                 <h2>
                   여러개의 UTM을
                   <br />한 번에 만들어보세요
@@ -212,7 +219,7 @@ export default function Home() {
                 </p>
               </div>
               <div className={styles.six_card_item}>
-                <Image src={bg_six_two} alt='IMG' />
+                <Image src={bg_six_two} alt="IMG" />
                 <h2>
                   자주 쓰는 파라미터를
                   <br />
@@ -224,7 +231,7 @@ export default function Home() {
                 </p>
               </div>
               <div className={styles.six_card_item}>
-                <Image src={bg_six_three} alt='IMG' />
+                <Image src={bg_six_three} alt="IMG" />
                 <h2>
                   Shorten UTM기능으로
                   <br />긴 UTM 코드들을 간결하게
@@ -243,27 +250,27 @@ export default function Home() {
               <Image
                 className={styles.seven_first_img}
                 src={seven_img}
-                alt='Img'
+                alt="Img"
               />
               <Image
                 className={styles.seven_sub_img}
                 src={seven_sub_img}
-                alt='Img'
+                alt="Img"
               />
               <Link className={styles.origin_seven_button} href={"/login"}>
                 <Image
-                  id='start_btn'
+                  id="start_btn"
                   className={styles.seven_button_img}
                   src={seven_button}
-                  alt='img'
+                  alt="img"
                 />
               </Link>
               <Link className={styles.m_seven_button} href={"/webonly"}>
                 <Image
-                  id='start_btn'
+                  id="start_btn"
                   className={styles.seven_button_img}
                   src={seven_button}
-                  alt='img'
+                  alt="img"
                 />
               </Link>
             </article>
@@ -298,7 +305,7 @@ export default function Home() {
               </div>
             </article>
             <div className={styles.e_line}>
-              <Image src={copyright} alt='copyright' width={168} height={15} />
+              <Image src={copyright} alt="copyright" width={168} height={15} />
             </div>
           </section>
         </div>
