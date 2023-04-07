@@ -383,6 +383,10 @@
   overflow: hidden;
 }
 
+.dialogBox img {
+  cursor: pointer;
+}
+
 .del_dialogBox {
   width: 500px;
   height: 300px;
