@@ -39,29 +39,29 @@ export const ExcelAddModal: React.FC<ModalType> = ({
   /**
    * 추가하기
    * @param e
-   */
-  const tsfn = (e: any) => {
-    e.preventDefault()
-    if (fileRef.current) {
-      console.log(fileRef.current.files)
-      const fileDate = fileRef.current.files
-      const formData = new FormData()
-      // @ts-ignore
-      Array.from(fileDate).forEach((el: any) => {
-        formData.append("userfile", el)
-      })
-      asyncfile(fileDate)
-    }
-  }
+  //  */
+  // const tsfn = (e: any) => {
+  //   e.preventDefault()
+  //   if (fileRef.current) {
+  //     console.log(fileRef.current.files)
+  //     const fileDate = fileRef.current.files
+  //     const formData = new FormData()
+  //     // @ts-ignore
+  //     Array.from(fileDate).forEach((el: any) => {
+  //       formData.append("userfile", el)
+  //     })
+  //     asyncfile(fileDate)
+  //   }
+  // }
 
-  const asyncfile = async (formdata: any) => {
-    try {
-      const res = await Axios.post("utms/importdata", formdata)
-      console.log(res)
-    } catch (err) {
-      alert("파일을 다시 올려주세요!")
-    }
-  }
+  // const asyncfile = async (formdata: any) => {
+  //   try {
+  //     const res = await Axios.post("utms/importdata", formdata)
+  //     console.log(res)
+  //   } catch (err) {
+  //     alert("파일을 다시 올려주세요!")
+  //   }
+  // }
 
   const onChangeFiles = useCallback(
     (e: ChangeEvent<HTMLInputElement> | any): void => {
