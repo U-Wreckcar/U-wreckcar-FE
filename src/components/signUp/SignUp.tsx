@@ -80,7 +80,7 @@ export default function SignUp() {
 
   // 회원가입
   //1. if문으로 비밀번호와 비밀번호 확인 로직 -> 다른 경우 else로 넘어감
-  // 2. 완료 후 로그인페이지로
+  //2. 완료 후 로그인페이지로
   const onSubmit = async (data: FormData) => {
     const password = getValues("password")
     const passwordConfirm = getValues("confirmPw")
@@ -120,9 +120,9 @@ export default function SignUp() {
           <div className={styles.wrap}>
             <h5>이메일</h5>
             <input
-              type='email'
+              type="email"
               className={styles.email_input}
-              placeholder='사용하실 이메일을 입력해주세요'
+              placeholder="사용하실 이메일을 입력해주세요"
               {...register("email", {
                 required: "이메일 주소를 입력해주세요.",
                 minLength: {
@@ -162,10 +162,10 @@ export default function SignUp() {
             <input
               type={"text"}
               className={styles.confirm_input}
-              placeholder='받으신 이메일 인증번호를 입력해주세요'
+              placeholder="받으신 이메일 인증번호를 입력해주세요"
               {...register("emailNum", {
                 required: "이메일 인증번호를 입력해주세요.",
-                disabled: emailNum > 1 ? true : false,
+                disabled: emailNum === 0 || emailNum > 1 ? true : false,
               })}
             />
             {/* <button
@@ -187,9 +187,9 @@ export default function SignUp() {
           <div className={styles.wrap}>
             <h5>이름</h5>
             <input
-              type='text'
+              type="text"
               className={styles.signup_input}
-              placeholder='성함을 입력해주세요'
+              placeholder="성함을 입력해주세요"
               {...register("username", {
                 required: "성함을 입력해주세요",
                 minLength: {
@@ -208,8 +208,8 @@ export default function SignUp() {
             <h5>비밀번호</h5>
             <input
               className={styles.signup_input}
-              type='password'
-              placeholder='영문,숫자,특수문자 포함 8자 이상 20자 이하로 입력해주세요.'
+              type="password"
+              placeholder="영문,숫자,특수문자 포함 8자 이상 20자 이하로 입력해주세요."
               {...register("password", {
                 required: "비밀번호를 입력해주세요",
                 minLength: {
@@ -233,8 +233,8 @@ export default function SignUp() {
             <h5>비밀번호 확인</h5>
             <input
               className={styles.signup_input}
-              type='password'
-              placeholder='비밀번호를 다시 입력해주세요'
+              type="password"
+              placeholder="비밀번호를 다시 입력해주세요"
               {...register("confirmPw", {
                 required: "비밀번호 확인을 해주세요",
               })}
@@ -245,7 +245,7 @@ export default function SignUp() {
             <h5>회사 이름</h5>
             <input
               className={styles.signup_input}
-              placeholder='회사이름을 입력해주세요'
+              placeholder="회사이름을 입력해주세요"
               {...register("company_name", {
                 required: "회사이름을 입력해주세요",
               })}
@@ -257,10 +257,11 @@ export default function SignUp() {
             <h5>이용약관 동의</h5>
             <label
               className={styles.confirm_label}
-              style={{ cursor: "pointer" }}>
+              style={{ cursor: "pointer" }}
+            >
               <input
                 className={styles.check_input}
-                type='checkbox'
+                type="checkbox"
                 {...register("marketing_accept", {
                   required: "마케팅 활용에 동의 해주세요",
                 })}
@@ -274,7 +275,8 @@ export default function SignUp() {
                 window.open(
                   "https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e"
                 )
-              }></div>
+              }
+            ></div>
           </div>
           {errors.marketing_accept && <p>{errors.marketing_accept?.message}</p>}
           <div className={styles.button_box}>
