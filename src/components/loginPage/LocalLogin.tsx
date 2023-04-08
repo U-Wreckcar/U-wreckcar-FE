@@ -4,7 +4,7 @@ import { setClientHeaders } from "@/util/async/axiosConfig"
 import { setCookie } from "@/util/async/Cookie"
 import Link from "next/link"
 import { redirect, useRouter } from "next/navigation"
-import { withRouter } from "next/router"
+import { usePathname } from "next/navigation"
 import React, {
   Dispatch,
   SetStateAction,
@@ -16,9 +16,8 @@ import React, {
 import { useForm } from "react-hook-form"
 import styles from "./LocalLogin.module.css"
 
-type LocalLoginProps = {
+interface LocalLoginProps {
   setLocal: Dispatch<SetStateAction<boolean>>
-  router?: any
 }
 
 type LoginFormData = {
@@ -26,9 +25,9 @@ type LoginFormData = {
   password: string
 }
 
-const LocalLogin: React.FC<LocalLoginProps> = ({ router, setLocal }) => {
-  const routerNavi = useRouter()
-
+const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
+  const router = useRouter()
+  const pathName = usePathname()
   const [remember, setRemember] = useState(false)
   const [userId, setUserId] = useState("")
 
@@ -52,15 +51,15 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ router, setLocal }) => {
       setCookie("access_token", res.data.access_token)
       setCookie("refresh_token", res.data.refresh_token)
       setClientHeaders(res.data.access_token, res.data.refresh_token)
-      routerNavi.replace("/main")
+      router.replace("/main")
       // window.location.reload()
     } catch (err) {
       setError("email", { message: "e-mail을 다시 확인해주세요" })
       setError("password", { message: "비밀번호를 다시 확인해주세요" })
     }
   }
-  console.log(router)
-  useCallback(onSubmit, [remember, routerNavi, setError])
+  console.log(pathName)
+  useCallback(onSubmit, [pathName])
 
   useEffect(() => {
     const id = localStorage.getItem("userID")
