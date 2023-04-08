@@ -16,11 +16,11 @@ import bg_two_right from "assets/render/bg-two-right.png"
 import bg_six_one from "assets/render/bg-six-one.png"
 import bg_six_two from "assets/render/bg-six-two.png"
 import bg_six_three from "assets/render/bg-six-three.png"
-
+import six from "assets/gif/six.gif"
 import seven_sub_img from "assets/render/seven_sub_img.png"
 import seven_img from "assets/render/seven_img.png"
 import seven_button from "assets/render/seven_button.png"
-
+import m_seven_button from "assets/m_seven_button.png"
 import create from "assets/gif/create.gif"
 import f_search from "assets/gif/f_search.gif"
 import out from "assets/gif/out.gif"
@@ -28,7 +28,6 @@ import out from "assets/gif/out.gif"
 import copyright from "assets/copyright.png"
 import Link from "next/link"
 
-import RenderModal from "@/components/renderModal/RenderModal"
 export default function Home() {
   const texts = ["복잡한", "귀찮은", "어려운"]
   const [text, setText] = useState(texts)
@@ -89,12 +88,7 @@ export default function Home() {
                 </h1>
                 <p>UTM 업무 1시간? 유렉카에서는 3분이면 OK</p>
                 <Link className={styles.origin_free_btn} href={"/login"}>
-                  <button id="free_btn" className={styles.free_btn}>
-                    무료로 시작하기
-                  </button>
-                </Link>
-                <Link className={styles.m_free_btn} href={"/webonly"}>
-                  <button id="free_btn" className={styles.free_btn}>
+                  <button id='free_btn' className={styles.free_btn}>
                     무료로 시작하기
                   </button>
                 </Link>
@@ -102,22 +96,27 @@ export default function Home() {
               <Image
                 className={styles.bg_one_illust}
                 src={bg_one_illust}
-                alt="Img"
+                alt='Img'
               />
+              <Link className={styles.m_free_btn} href={"/webonly"}>
+                <button id='free_btn' className={styles.free_btn}>
+                  무료로 시작하기
+                </button>
+              </Link>
             </article>
           </section>
           <section className={styles.l_section_one_two}>
             <article>
-              <Image className={styles.web_sub} src={sub_img} alt="Img" />
+              <Image className={styles.web_sub} src={sub_img} alt='Img' />
               <Image
                 className={styles.m_sub}
                 src={m_section_one_two}
-                alt="Img"
+                alt='Img'
               />
               <Image
                 className={styles.sub_child}
                 src={sub_child}
-                alt="Img"
+                alt='Img'
                 width={1608}
                 height={400}
               />
@@ -126,7 +125,7 @@ export default function Home() {
           <section className={styles.try_section}>
             <TryUTM />
           </section>
-          <article></article>
+
           <section className={styles.l_section_two}>
             <article>
               <div className={styles.text_box}>
@@ -134,13 +133,21 @@ export default function Home() {
                 <h1>UTM 업무에 아직도 많은 시간을 낭비하고 있나요?</h1>
                 <h2>유렉카가 여러분의 업무 시간들 줄여드릴게요!</h2>
               </div>
+              <div className={styles.m_two_text_box}>
+                {/* <p>1분 1초가 아쉬운 마케터 주목!</p> */}
+                <h1>
+                  UTM 업무에 아직도 <br />
+                  많은 시간을 낭비하고 있나요?
+                </h1>
+                <h2>유렉카가 여러분의 업무 시간들 줄여드릴게요!</h2>
+              </div>
             </article>
             <article>
               <div className={styles.section_two_img}>
-                <Image src={bg_two_left} alt="Left_img" />
+                <Image src={bg_two_left} alt='Left_img' />
               </div>
               <div className={styles.section_two_img}>
-                <Image src={bg_two_right} alt="Right_img" />
+                <Image src={bg_two_right} alt='Right_img' />
               </div>
             </article>
           </section>
@@ -162,14 +169,26 @@ export default function Home() {
                 </p>
               </div>
               <div className={styles.three_img}>
-                <Image src={create} alt="Gif" />
+                <Image src={create} alt='Gif' />
               </div>
+              <p className={styles.m_content}>
+                기존에 가지고 있던 UTM을 입력하면 파라미터 별<br />로 자동
+                분류됩니다. 생성된 날짜와 간단한 메모를 <br />
+                추가로 기록하여 예전 데이터까지 유렉카에서 관리 <br />
+                해보세요.
+              </p>
             </article>
           </section>
           <section className={styles.l_section_four}>
             <article>
+              <p className={styles.m_four_context}>
+                생성 날짜, 파라미터값은 물론 메모까지! 원하는 요<br /> 소 입력과
+                동시에 필터링된 데이터가 보여집니다.
+                <br />
+                검색한 UTM 결과를 다양하게 활용해보세요.
+              </p>
               <div className={styles.four_img}>
-                <Image src={f_search} alt="Gif" />
+                <Image src={f_search} alt='Gif' />
               </div>
               <div className={styles.text_box}>
                 <p className={styles.sub_title}>필요한 UTM만 바로바로 필터링</p>
@@ -200,14 +219,22 @@ export default function Home() {
                 </p>
               </div>
               <div className={styles.five_img}>
-                <Image src={out} alt="Gif" />
+                <Image src={out} alt='Gif' />
               </div>
+              <p className={styles.m_five_context}>
+                필요한 UTM만 선택하여 내보내기!
+                <br />
+                선택된 데이터들을 저장하여 바로 팀원과 공유해보세요.
+              </p>
             </article>
           </section>
           <section className={styles.l_section_six}>
             <article>
+              <div className={styles.m_mobile_six}>
+                <Image src={six} alt='IMG' />
+              </div>
               <div className={styles.six_card_item}>
-                <Image src={bg_six_one} alt="IMG" />
+                <Image src={bg_six_one} alt='IMG' />
                 <h2>
                   여러개의 UTM을
                   <br />한 번에 만들어보세요
@@ -219,7 +246,7 @@ export default function Home() {
                 </p>
               </div>
               <div className={styles.six_card_item}>
-                <Image src={bg_six_two} alt="IMG" />
+                <Image src={bg_six_two} alt='IMG' />
                 <h2>
                   자주 쓰는 파라미터를
                   <br />
@@ -231,7 +258,7 @@ export default function Home() {
                 </p>
               </div>
               <div className={styles.six_card_item}>
-                <Image src={bg_six_three} alt="IMG" />
+                <Image src={bg_six_three} alt='IMG' />
                 <h2>
                   Shorten UTM기능으로
                   <br />긴 UTM 코드들을 간결하게
@@ -242,7 +269,9 @@ export default function Home() {
                 </p>
               </div>
             </article>
-            <button onClick={onClickGuide}>더 많은 기능 보러가기</button>
+            <Link href={"/webonly"}>
+              <button>더 많은 기능 보러가기</button>
+            </Link>
           </section>
           <section className={styles.section_seven}>
             <article>
@@ -250,28 +279,25 @@ export default function Home() {
               <Image
                 className={styles.seven_first_img}
                 src={seven_img}
-                alt="Img"
+                alt='Img'
               />
               <Image
                 className={styles.seven_sub_img}
                 src={seven_sub_img}
-                alt="Img"
+                alt='Img'
               />
               <Link className={styles.origin_seven_button} href={"/login"}>
                 <Image
-                  id="start_btn"
+                  id='start_btn'
                   className={styles.seven_button_img}
                   src={seven_button}
-                  alt="img"
+                  alt='img'
                 />
               </Link>
-              <Link className={styles.m_seven_button} href={"/webonly"}>
-                <Image
-                  id="start_btn"
-                  className={styles.seven_button_img}
-                  src={seven_button}
-                  alt="img"
-                />
+              <Link href={"/webonly"}>
+                <button className={styles.m_seven_button}>
+                  더 많은 기능 보러가기
+                </button>
               </Link>
             </article>
           </section>
@@ -305,7 +331,7 @@ export default function Home() {
               </div>
             </article>
             <div className={styles.e_line}>
-              <Image src={copyright} alt="copyright" width={168} height={15} />
+              <Image src={copyright} alt='copyright' width={168} height={15} />
             </div>
           </section>
         </div>
