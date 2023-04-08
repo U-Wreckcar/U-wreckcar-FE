@@ -12,7 +12,11 @@ export default function TryUtm() {
     <div className={styles.containel}>
       <div className={styles.title_box}>
         <p>유렉카 기능 알아보기</p>
-        <h1>유렉카의 놀라운 기능을 미리 체험해보세요!</h1>
+        <h1 className={styles.origin_title}>
+          유렉카의 놀라운 기능을 미리 체험해보세요!
+        </h1>
+        <h1 className={styles.m_title}>유렉카의 놀라운 기능을</h1>
+        <h2 className={styles.m_title_sub}>미리 체험해보세요</h2>
       </div>
       <div className={styles.try_section}>
         <div className={styles.add_utm_box_article}>
@@ -20,6 +24,9 @@ export default function TryUtm() {
             이미 만들어져 있는 UTM을 추가한다면?
           </p>
           <div className={styles.left_box}>
+            <p className={styles.m_text}>
+              이미 만들어져 있는 UTM을 추가한다면?
+            </p>
             <p className={styles.left_title}>기존 UTM 추가하기</p>
             <p className={styles.left_content}>
               추가하기 버튼을 클릭해서 UTM을 저장해보세요!
@@ -47,6 +54,9 @@ export default function TryUtm() {
             파라미터 별로 구분되어 자동으로 저장!
           </p>
           <div className={styles.right_box}>
+            <p className={styles.m_text_right}>
+              파라미터 별로 구분되어 자동으로 저장!
+            </p>
             <div className={styles.list_utm_box}>
               {utmdata.map((utm, idx) => (
                 <div key={idx}>
