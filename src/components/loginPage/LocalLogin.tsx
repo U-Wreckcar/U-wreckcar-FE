@@ -18,7 +18,7 @@ import styles from "./LocalLogin.module.css"
 
 type LocalLoginProps = {
   setLocal: Dispatch<SetStateAction<boolean>>
-  router: any
+  router?: any
 }
 
 type LoginFormData = {
@@ -26,7 +26,7 @@ type LoginFormData = {
   password: string
 }
 
-const LocalLogin: React.FC<LocalLoginProps> = ({ router }) => {
+const LocalLogin: React.FC<LocalLoginProps> = ({ router, setLocal }) => {
   const routerNavi = useRouter()
 
   const [remember, setRemember] = useState(false)
