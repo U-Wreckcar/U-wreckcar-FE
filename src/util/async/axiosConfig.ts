@@ -2,7 +2,7 @@ import axios from "axios"
 import { getCookie } from "./Cookie"
 import { cacheAdapterEnhancer, throttleAdapterEnhancer } from "axios-extensions"
 import axiosExtensions from "axios-extensions"
-
+import React, { useMemo } from "react"
 const instance = axios.create({
   withCredentials: true,
   baseURL: process.env.NEXT_PUBLIC_API,
