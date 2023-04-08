@@ -269,7 +269,9 @@ export default function Home() {
                 </p>
               </div>
             </article>
-            <button onClick={onClickGuide}>더 많은 기능 보러가기</button>
+            <Link href={"/webonly"}>
+              <button>더 많은 기능 보러가기</button>
+            </Link>
           </section>
           <section className={styles.section_seven}>
             <article>
@@ -292,9 +294,11 @@ export default function Home() {
                   alt='img'
                 />
               </Link>
-              <button className={styles.m_seven_button} onClick={onClickGuide}>
-                더 많은 기능 보러가기
-              </button>
+              <Link href={"/webonly"}>
+                <button className={styles.m_seven_button}>
+                  더 많은 기능 보러가기
+                </button>
+              </Link>
             </article>
           </section>
           <section className={styles.l_section_eight}>
