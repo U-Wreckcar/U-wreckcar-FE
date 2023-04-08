@@ -29,13 +29,17 @@ export const RenderHeader = () => {
                 <Image src={whitelogo} alt='LOGO' width={108.15} height={40} />
               </Link>
             </div>
-            <div className={styles.render_nav_left_noti} onClick={onClickNoti}>
-              공지사항
-            </div>
-            <div
-              className={styles.render_nav_left_guide}
-              onClick={onClickGuide}>
-              가이드
+            <div className={styles.noti_box}>
+              <div
+                className={styles.render_nav_left_noti}
+                onClick={onClickNoti}>
+                공지사항
+              </div>
+              <div
+                className={styles.render_nav_left_guide}
+                onClick={onClickGuide}>
+                가이드
+              </div>
             </div>
           </div>
         </div>
