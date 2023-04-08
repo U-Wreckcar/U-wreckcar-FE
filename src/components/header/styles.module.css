@@ -151,6 +151,12 @@
   }
 }
 
+@media (max-width: 1440px) {
+  .render_nav_left_img {
+    margin-left: 40px;
+    overflow: hidden;
+  }
+}
 @media (max-width: 480px) {
   .render_nav_left_img {
     margin-left: 20px;
@@ -165,7 +171,8 @@
   .render_nav {
     /* padding: 10px 10px 10px 20px; */
     /* padding-left: 20px; */
-    width: 390px;
+    min-width: 390px;
+    padding: 0;
   }
   .render_user_box {
     display: none;
