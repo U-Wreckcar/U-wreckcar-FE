@@ -177,6 +177,8 @@
 @media (max-width: 1300px) {
   .containel {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
   }
   .try_section {

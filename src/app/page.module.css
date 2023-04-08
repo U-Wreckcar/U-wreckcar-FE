@@ -524,7 +524,7 @@
   .container article {
     display: flex;
     justify-content: space-evenly;
-    width: 100%;
+    width: 100vw;
     min-width: 390px;
     height: 600px;
   }
@@ -536,7 +536,7 @@
     display: flex;
     justify-content: center;
     height: 760px;
-    width: 100%;
+    width: 100vw;
     min-width: 390px;
   }
   .l_section_one article {
@@ -882,7 +882,7 @@
   .container article {
     display: flex;
     justify-content: space-evenly;
-    width: 100%;
+    width: 100vw;
     min-width: 390px;
     height: 600px;
   }
@@ -894,7 +894,7 @@
     display: flex;
     justify-content: center;
     height: 760px;
-    width: 100%;
+    width: 100vw;
     min-width: 390px;
   }
   .l_section_one article {
@@ -913,7 +913,7 @@
     text-align: center;
     margin-top: 40px;
     width: 50%;
-    min-width: 400px;
+    min-width: 390px;
   }
   .bg_one_illust {
     width: 350px;
