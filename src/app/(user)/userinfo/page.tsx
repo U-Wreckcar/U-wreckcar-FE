@@ -1,12 +1,9 @@
 "use client"
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import styles from "./userinfo.module.css"
-import b_createutm from "assets/b_createutm.png"
 import Image from "next/image"
 import { myProfile } from "@/util/async/api"
 import { useQuery } from "@tanstack/react-query"
-import ProgressLoading from "@/shared/modal/ProgressLoading"
-import Loading from "@/shared/modal/Loading"
 import UserDelModal from "@/components/loginPage/UserDelModal"
 
 interface UserProfile {
@@ -27,7 +24,7 @@ export default function UserPage() {
     queryFn: myProfile,
   })
 
-  const createDate = userData?.created_at.substring(0, 10)
+  // const createDate = userData?.created_at.substring(0, 10)
 
   return (
     <>
