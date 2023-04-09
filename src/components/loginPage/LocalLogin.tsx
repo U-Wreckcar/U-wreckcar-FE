@@ -52,13 +52,6 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
         // if (remember) {
         //   localStorage.setItem("userID", data.email)
         // }
-        console.log("실행?")
-        console.log(
-          "login Token:",
-          res.data.refresh_token,
-          "userName",
-          res.data.userData.username
-        )
 
         setChanged(res.data)
         setCookie("access_token", res.data.access_token)
@@ -89,7 +82,6 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
   useEffect(() => {
     const id = localStorage.getItem("userID")
     const emailInput = document.getElementById("email")
-    myProfile(access_token, refresh_token)
     setClientHeaders(access_token, refresh_token)
     if (id) {
       setUserId(id)

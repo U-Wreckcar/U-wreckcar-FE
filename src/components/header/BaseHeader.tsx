@@ -32,11 +32,7 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
   // const fetchUserData = useCallback(
   //   async (access_token: string, refresh_token: string) => {
   //     const res = await myProfile(access_token, refresh_token)
-  //     console.log("Header res", refresh_token)
-  //     console.log(
-  //       "패스네임패스네임패스네임패스네임패스네임패스네임패스네임패스네임패스네임",
-  //       pathName
-  //     )
+  //
   //     setUserData(res.data)
   //   },
   //   [access_token, refresh_token]
@@ -53,8 +49,7 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
   // }, [access_token, refresh_token])
   // const accessToken = getCookie("access_token")
   // const refreshToken = getCookie("refresh_token")
-  console.log("accessT", access_token)
-  console.log("refreshToken", refresh_token)
+
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${access_token}`,
@@ -70,7 +65,6 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
         timeout: 10000,
       })
       .then((res) => {
-        console.log("UseInfo", res.data)
         setUserData(res.data)
       })
       .catch((error) => {

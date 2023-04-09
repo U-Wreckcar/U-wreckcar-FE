@@ -99,8 +99,7 @@ const MainTable: React.FC = () => {
 
   const accessToken = getCookie("access_token")
   const refreshToken = getCookie("refresh_token")
-  console.log("accessT", accessToken)
-  console.log("refreshToken", refreshToken)
+
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${accessToken}`,
@@ -116,7 +115,6 @@ const MainTable: React.FC = () => {
         timeout: 10000,
       })
       .then((res) => {
-        console.log("resData", res.data)
         setData(res.data)
       })
       .catch((error) => {

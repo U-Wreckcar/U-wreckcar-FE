@@ -51,16 +51,8 @@ export const getUTMSheet = async (data: any) => {
 export const testUTMSheet = async (data: any) => {
   await axios.post("utms/tocsv", { data })
 }
-export const myProfile = async (
-  access_token: string,
-  refresh_token: string
-) => {
-  const res = await axios.get("users/profile", {
-    headers: {
-      Authorization: `Bearer ${access_token}`,
-      "X-Refresh-Token": `Bearer ${refresh_token}`,
-    },
-  })
+export const myProfile = async () => {
+  const res = await axios.get("users/profile")
   return res
 }
 

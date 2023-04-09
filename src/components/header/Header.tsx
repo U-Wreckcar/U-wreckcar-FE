@@ -9,7 +9,6 @@ export default function Header() {
   const [basePath, setBasePath] = useState(false)
   const pathName = usePathname()
   useEffect(() => {
-    console.log("ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㄹ", pathName)
     if (
       pathName === "/main" ||
       pathName === "/createutm" ||
