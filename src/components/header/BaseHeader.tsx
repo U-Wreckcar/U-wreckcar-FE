@@ -1,13 +1,16 @@
-"use client"
-import React, { useEffect, useRef, useState } from "react"
+// "use client"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import styles from "./styles.module.css"
 import b_noti from "assets/b_noti.png"
 import Image from "next/image"
 import Link from "next/link"
 import { myProfile } from "@/util/async/api"
-import { removeCookie } from "@/util/async/Cookie"
-import { useRouter } from "next/navigation"
 import UserModal from "./UserModal"
+import axios from "axios"
+import { setClientHeaders } from "@/util/async/axiosConfig"
+import { getCookie } from "@/util/async/Cookie"
+import { useRouter } from "next/navigation"
+
 interface UserProfile {
   username: string
   email: string
@@ -22,16 +25,55 @@ type BaseHeaderProp = {
 export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
   const [modal, setModal] = useState(false)
   const [userData, setUserData] = useState<UserProfile | undefined>()
+  const access_token = getCookie("access_token")
+  const refresh_token = getCookie("refresh_token")
+  const [pathNameres, setPathName] = useState<string | null>("")
+  const router = useRouter()
+  // const fetchUserData = useCallback(
+  //   async (access_token: string, refresh_token: string) => {
+  //     const res = await myProfile(access_token, refresh_token)
+  //
+  //     setUserData(res.data)
+  //   },
+  //   [access_token, refresh_token]
+  // )
+  // useEffect(() => {
+  //   // console.log("유즈이팩트트트트트트트트트트트트트틑트", pathName)
+  //   // setPathName(pathName)
+  //   setClientHeaders(access_token, refresh_token)
 
-  async function fetchUserData() {
-    const res = await myProfile()
-    setUserData(res.data)
+  //   fetchUserData(access_token, refresh_token).then((i) => {
+  //     console.log("sdfsdfsdf", i)
+  //     router.refresh()
+  //   })
+  // }, [access_token, refresh_token])
+  // const accessToken = getCookie("access_token")
+  // const refreshToken = getCookie("refresh_token")
+
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${access_token}`,
+    "X-Refresh-Token": `Bearer ${refresh_token}`,
+    "Cache-Control": "no-cache, no-store, must-revalidate",
+    Pragma: "no-store",
+    Expires: "0",
   }
-
+  async function fetchUserData() {
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API}users/profile`, {
+        headers,
+        timeout: 10000,
+      })
+      .then((res) => {
+        setUserData(res.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
   useEffect(() => {
     fetchUserData()
-  }, [pathName])
-
+  }, [])
   return (
     <section className={styles.header_container}>
       <div className={styles.title}>
@@ -61,14 +103,14 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
         onClick={() => {
           setModal(!modal)
         }}>
-        <Image
+        {/* <Image
           src={userData?.profile_img}
           alt=''
           width={30}
           height={30}
           style={{ borderRadius: "50%", marginRight: "7px" }}
           unoptimized={true}
-        />
+        /> */}
         <p className={styles.login_box}>
           <span className={styles.bold_text}>{userData?.username}</span>님
         </p>

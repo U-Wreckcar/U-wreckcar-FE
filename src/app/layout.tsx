@@ -6,8 +6,6 @@ import Providers from "./providers"
 import Script from "next/script"
 import "./globals.css"
 
-const myFont = localFont({ src: "./PretendardVariable.woff2" })
-
 export const metadata: Metadata = {
   title: 'UTM 카테고라이징 서비스 "유렉카"',
   description:
@@ -22,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang='ko' className={myFont.className}>
+    <html lang='ko'>
       <head>
         <link
           rel='stylesheet'
