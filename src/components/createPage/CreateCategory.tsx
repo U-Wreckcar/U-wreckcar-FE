@@ -24,9 +24,6 @@ export const CreateCategory = () => {
           className={styles.b_createutm}
           src={b_createutm}
           alt='추가이미지'
-          onError={() => {
-            console.log("추가 이미지가 없습니다.")
-          }}
         />
       </div>
       <div className={styles.utm_name}>

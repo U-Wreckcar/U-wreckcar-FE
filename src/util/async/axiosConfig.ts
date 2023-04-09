@@ -1,20 +1,22 @@
-import axios from "axios"
+import axios, { AxiosInstance, AxiosAdapter } from "axios"
+import { cacheAdapterEnhancer } from "axios-extensions"
 import { getCookie } from "./Cookie"
-import { cacheAdapterEnhancer, throttleAdapterEnhancer } from "axios-extensions"
-import axiosExtensions from "axios-extensions"
-import React, { useMemo } from "react"
+
+const access_token = getCookie("access_token")
+const refresh_token = getCookie("refresh_token")
 const instance = axios.create({
   withCredentials: true,
   baseURL: process.env.NEXT_PUBLIC_API,
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${getCookie("access_token")}`,
-    "X-Refresh-Token": `Bearer ${getCookie("refresh_token")}`,
+    Authorization: `Bearer ${access_token}`,
+    "X-Refresh-Token": `Bearer ${refresh_token}`,
     "Cache-Control": "no-cache, no-store, must-revalidate",
     Pragma: "no-store",
     Expires: "0",
   },
+  adapter: cacheAdapterEnhancer(axios.defaults.adapter as AxiosAdapter),
 })
 
 export const setClientHeaders = (
@@ -22,10 +24,11 @@ export const setClientHeaders = (
   refresh_token: string
 ) => {
   instance.interceptors.request.use(async function (config: any) {
-    config.headers.Authorization = `Bearer ${access_token}`
-    config.headers["X-Refresh-Token"] = `Bearer ${refresh_token}`
+    instance.defaults.headers.common.Authorization = `Bearer ${access_token}`
+    instance.defaults.headers.common[
+      "X-Refresh-Token"
+    ] = `Bearer ${refresh_token}`
     return config
   })
 }
-
 export default instance

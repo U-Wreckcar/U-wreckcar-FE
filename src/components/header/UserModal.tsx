@@ -7,7 +7,7 @@ import { removeCookie } from "@/util/async/Cookie"
 import Image from "next/image"
 import user from "assets/h_user_icon.png"
 import logout from "assets/h_logout_icon.png"
-
+// import { logOut } from "@/util/async/Cookie"
 type propsType = {
   setModal: Dispatch<SetStateAction<boolean>>
   modal: boolean
@@ -30,13 +30,11 @@ const UserModal: React.FC<propsType> = ({ setModal, modal }) => {
         className={styles.containel}
         onClick={() => {
           setModal(false)
-        }}
-      >
+        }}>
         <div className={styles.section}>
           <dialog
             className={styles.dialog_containel}
-            style={{ left: `${windowSize}px` }}
-          >
+            style={{ left: `${windowSize}px` }}>
             <Link className={styles.links} href={"/userinfo"}>
               <div className={styles.links_user}>
                 <Image
@@ -45,7 +43,7 @@ const UserModal: React.FC<propsType> = ({ setModal, modal }) => {
                   }}
                   className={styles.links_user_box}
                   src={user}
-                  alt=""
+                  alt=''
                   width={24}
                   height={24}
                 />
@@ -55,13 +53,14 @@ const UserModal: React.FC<propsType> = ({ setModal, modal }) => {
             <div
               onClick={() => {
                 logOut()
+                // router.push("/")
+                // setModal(!modal)
               }}
-              className={styles.links_logout}
-            >
+              className={styles.links_logout}>
               <Image
                 className={styles.links_logout_box}
                 src={logout}
-                alt=""
+                alt=''
                 width={24}
                 height={24}
               />

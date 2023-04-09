@@ -1,6 +1,7 @@
 import Modal from "@/app/Modal"
 import { removeUser } from "@/util/async/api"
-import { removeCookie } from "@/util/async/Cookie"
+import { setClientHeaders } from "@/util/async/axiosConfig"
+import { getCookie, removeCookie, setCookie } from "@/util/async/Cookie"
 import { useRouter } from "next/navigation"
 import { useRef, useState } from "react"
 import styles from "./delModal.module.css"
@@ -8,6 +9,10 @@ import styles from "./delModal.module.css"
 const UserDelModal = ({ isOpen, onRequestClose }: any) => {
   const [check, setCheck] = useState<string | undefined>("")
   const etc_ref = useRef<HTMLInputElement>(null)
+  const access_token = getCookie("access_token")
+  const refresh_token = getCookie("refresh_token")
+  const asetCookies = setCookie("access_token", access_token)
+  const rsetCookies = setCookie("refresh_token", refresh_token)
   const router = useRouter()
 
   const customStyles = {
@@ -49,6 +54,11 @@ const UserDelModal = ({ isOpen, onRequestClose }: any) => {
       await removeUser(data)
       removeCookie("refresh_token")
       removeCookie("access_token")
+      // asetCookies
+      // rsetCookies
+      // setClientHeaders(`${asetCookies}`, `${rsetCookies}`)
+
+      // console.log("rsetCookies", rsetCookies)
       onRequestClose
       router.replace("/")
     } catch (err) {
@@ -80,13 +90,12 @@ const UserDelModal = ({ isOpen, onRequestClose }: any) => {
                     <label>
                       <input
                         onClick={(e) => onclickCheck(e)}
-                        type="checkbox"
-                        name="check"
+                        type='checkbox'
+                        name='check'
                         id={category.reason}
                         onChange={(e) => {
                           setCheck(e.target.id)
-                        }}
-                      ></input>
+                        }}></input>
                       {category.reason}
                     </label>
                   </div>
@@ -97,22 +106,20 @@ const UserDelModal = ({ isOpen, onRequestClose }: any) => {
                 <label>
                   <input
                     onClick={(e) => onclickCheck(e)}
-                    type="checkbox"
-                    name="check"
-                    id="기타"
-                  ></input>
+                    type='checkbox'
+                    name='check'
+                    id='기타'></input>
                   기타
                 </label>
                 <input
                   ref={etc_ref}
-                  type="text"
+                  type='text'
                   className={styles.other_input}
-                  placeholder="이유를 간단히 입력해주세요."
+                  placeholder='이유를 간단히 입력해주세요.'
                   maxLength={200}
                   onBlur={() => {
                     setCheck(etc_ref.current?.value)
-                  }}
-                ></input>
+                  }}></input>
               </div>
             </div>
           </div>
@@ -132,8 +139,7 @@ const UserDelModal = ({ isOpen, onRequestClose }: any) => {
           <div className={styles.button_box}>
             <button
               className={styles.out_button}
-              onClick={() => removeUserHandler()}
-            >
+              onClick={() => removeUserHandler()}>
               탈퇴하기
             </button>
             <button className={styles.cancel_button} onClick={onRequestClose}>
