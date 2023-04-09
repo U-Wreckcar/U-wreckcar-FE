@@ -1,7 +1,7 @@
-import { localLogin } from "@/util/async/api"
+import { localLogin, myProfile } from "@/util/async/api"
 import { setClientHeaders } from "@/util/async/axiosConfig"
 // import { setClientHeaders } from "@/util/async/axiosConfig"
-import { setCookie } from "@/util/async/Cookie"
+import { getCookie, setCookie } from "@/util/async/Cookie"
 import Link from "next/link"
 import { redirect, useRouter } from "next/navigation"
 import { usePathname } from "next/navigation"
@@ -30,7 +30,9 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
   const pathName = usePathname()
   const [remember, setRemember] = useState(false)
   const [userId, setUserId] = useState("")
-
+  const [change, setChanged] = useState<string | undefined>(undefined)
+  const access_token = getCookie("access_token")
+  const refresh_token = getCookie("refresh_token")
   const {
     register,
     setError,
@@ -42,34 +44,59 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
   //    로그인
   // 완료 후 쿠키에 토큰 값 담기
   // 메인페이지로 이동하기
-  const onSubmit = async (data: LoginFormData) => {
-    try {
-      const res = await localLogin({ data })
-      if (remember) {
-        localStorage.setItem("userID", data.email)
+  const onSubmit =
+    // useCallback(
+    async (data: LoginFormData) => {
+      try {
+        const res = await localLogin({ data })
+        // if (remember) {
+        //   localStorage.setItem("userID", data.email)
+        // }
+        console.log("실행?")
+        console.log(
+          "login Token:",
+          res.data.refresh_token,
+          "userName",
+          res.data.userData.username
+        )
+
+        setChanged(res.data)
+        setCookie("access_token", res.data.access_token)
+        setCookie("refresh_token", res.data.refresh_token)
+        setClientHeaders(res.data.access_token, res.data.refresh_token)
+        router.replace("/main")
+        // window.location.reload()
+      } catch (err) {
+        setError("email", { message: "e-mail을 다시 확인해주세요" })
+        setError("password", { message: "비밀번호를 다시 확인해주세요" })
       }
-      setCookie("access_token", res.data.access_token)
-      setCookie("refresh_token", res.data.refresh_token)
-      setClientHeaders(res.data.access_token, res.data.refresh_token)
-      router.replace("/main")
-      // window.location.reload()
-    } catch (err) {
-      setError("email", { message: "e-mail을 다시 확인해주세요" })
-      setError("password", { message: "비밀번호를 다시 확인해주세요" })
     }
-  }
-  console.log(pathName)
-  useCallback(onSubmit, [pathName])
+  //   ,
+  //   [
+  //     pathName,
+  //     remember,
+  //     router,
+  //     setError,
+  //     setCookie,
+  //     setClientHeaders,
+  //     localLogin,
+  //     change,
+  //   ]
+  // )
+  // console.log(pathName)
+  // useCallback(onSubmit, [usePathname])
 
   useEffect(() => {
     const id = localStorage.getItem("userID")
     const emailInput = document.getElementById("email")
+    myProfile(access_token, refresh_token)
+    setClientHeaders(access_token, refresh_token)
     if (id) {
       setUserId(id)
       setRemember(true)
       emailInput?.focus()
     }
-  }, [])
+  }, [access_token, change])
 
   return (
     <div className={styles.container}>

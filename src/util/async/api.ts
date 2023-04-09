@@ -21,10 +21,10 @@ export const postUTMs = async (data: any) => {
  */
 
 export const getUTMs = async () => {
-  try{
+  try {
     const res = await axios.get("utms", { cache: false })
     return res
-  }catch(err){
+  } catch (err) {
     console.log("err", err)
     removeCookie("refresh_token")
     removeCookie("access_token")
@@ -51,8 +51,16 @@ export const getUTMSheet = async (data: any) => {
 export const testUTMSheet = async (data: any) => {
   await axios.post("utms/tocsv", { data })
 }
-export const myProfile = async () => {
-  const res = await axios.get("users/profile")
+export const myProfile = async (
+  access_token: string,
+  refresh_token: string
+) => {
+  const res = await axios.get("users/profile", {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+      "X-Refresh-Token": `Bearer ${refresh_token}`,
+    },
+  })
   return res
 }
 
@@ -88,8 +96,8 @@ export const deleteUTM = async (data: any) => {
  */
 
 type EditMemoType = {
-  utm_id : string,
-  utm_memo : string,
+  utm_id: string
+  utm_memo: string
 }
 
 export const patchUTM = async (data: any) => {
@@ -99,15 +107,15 @@ export const patchUTM = async (data: any) => {
 /**
  * * SIGNUP
  */
- type VerifyEmail = {
-  data:{
-    email:string
+type VerifyEmail = {
+  data: {
+    email: string
   }
 }
 type VerifyEmailNumType = {
-  data:{
-    email:string
-    verificationCode:string
+  data: {
+    email: string
+    verificationCode: string
   }
 }
 
@@ -118,15 +126,14 @@ type VerifyEmailNumType = {
 // }
 
 type SignUp = {
-  data:{
+  data: {
     email: string
-    username : string
-    password : string
-    company_name : string,
-    marketing_accept : boolean
+    username: string
+    password: string
+    company_name: string
+    marketing_accept: boolean
   }
 }
-
 
 export const signUp = async (data: any) => {
   try {
@@ -138,7 +145,7 @@ export const signUp = async (data: any) => {
   }
 }
 
-export const confirmEmail = async (data:any) => {
+export const confirmEmail = async (data: any) => {
   const res = await axios.post("users/email", data)
   return res
 }
@@ -148,17 +155,17 @@ export const verifyEmailNum = async (data: any) => {
   return res
 }
 
-export const removeUser =async (data:any) => {
+export const removeUser = async (data: any) => {
   await axios.post("users/userWithdrawal", data)
 }
 
-export const findEmail = async(data:any) => {
- const res =  await axios.post("users/passwordverify", data)
- return res
+export const findEmail = async (data: any) => {
+  const res = await axios.post("users/passwordverify", data)
+  return res
 }
 
-export const newPW = async (data:any) => {
-  const res = await axios.post("users/setnewpassword", data)  
+export const newPW = async (data: any) => {
+  const res = await axios.post("users/setnewpassword", data)
   return res
 }
 
@@ -167,13 +174,13 @@ export const newPW = async (data:any) => {
  */
 
 type LoginData = {
-  data:{
-    email:string
-    password:string
-  } 
+  data: {
+    email: string
+    password: string
+  }
 }
 
-export const localLogin = async (data:any) => {
+export const localLogin = async (data: any) => {
   const res = await axios.post("users/login", data)
   return res
 }
@@ -181,7 +188,6 @@ export const localLogin = async (data:any) => {
 /**
  * * file-upload
  */
-export const upload =async (data:any) => {
-  const res = await axios.post("utms/importdata",data)
+export const upload = async (data: any) => {
+  const res = await axios.post("utms/importdata", data)
 }
-
