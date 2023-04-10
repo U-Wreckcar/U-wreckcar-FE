@@ -24,7 +24,7 @@ const MyDocument = () => {
 
         {/* Google Tag Manager */}
         <Script
-          id='google-analytics'
+          id="google-analytics"
           dangerouslySetInnerHTML={{
             __html: `
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
