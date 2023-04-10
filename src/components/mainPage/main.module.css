@@ -1,15 +1,14 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+/* @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"); */
 
-@font-face {
+/* @font-face {
   font-family: "Pretendard Variable";
   font-weight: 45 920;
   font-style: normal;
   font-display: swap;
   src: local("Pretendard Variable"),
     url("../../app/PretendardVariable.woff2") format("woff2-variations");
-}
+} */
 .container {
-  font-family: "pretendard";
   display: flex;
   flex-wrap: wrap;
   min-width: none;
@@ -25,8 +24,6 @@
 }
 
 .btn_box {
-  font-family: "pretendard";
-
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -256,7 +253,6 @@
 }
 
 .button {
-  font-family: "pretendard";
   width: 84px;
   height: 38px;
   padding: 8px 16px;
@@ -323,7 +319,7 @@
   font-size: 0.8rem;
 }
 .dialog_button:hover {
-  background-color: #ddd
+  background-color: #ddd;
 }
 .dialog {
   background-color: #fff;
@@ -361,7 +357,6 @@
 }
 
 .copy_button {
-  font-family: "pretendard";
   width: 68px;
   height: 28px;
   padding: 5px 12px;
@@ -485,10 +480,6 @@
   border: 2px solid #484bff;
 }
 
-/* .bottom button {
-  border: none;
-} */
-
 .modal_button {
   width: 81px;
   height: 38px;
@@ -566,7 +557,6 @@
   padding: 8px;
 }
 .no_data_item {
-  /* background-color: #222222; */
   position: relative;
   top: -180px;
   left: -180px;
