@@ -32,7 +32,6 @@ export const getUTMs = async () => {
   }
 }
 
-// export const getUTMs = axios.get('utms');
 type DataType = { data: string[] }
 
 export const getUTMExcell = async (data: any) => {

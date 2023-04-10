@@ -27,8 +27,6 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
   const [userData, setUserData] = useState<UserProfile | undefined>()
   const access_token = getCookie("access_token")
   const refresh_token = getCookie("refresh_token")
-  const [pathNameres, setPathName] = useState<string | null>("")
-  const router = useRouter()
   // const fetchUserData = useCallback(
   //   async (access_token: string, refresh_token: string) => {
   //     const res = await myProfile(access_token, refresh_token)
@@ -38,8 +36,7 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
   //   [access_token, refresh_token]
   // )
   // useEffect(() => {
-  //   // console.log("유즈이팩트트트트트트트트트트트트트틑트", pathName)
-  //   // setPathName(pathName)
+
   //   setClientHeaders(access_token, refresh_token)
 
   //   fetchUserData(access_token, refresh_token).then((i) => {
@@ -103,14 +100,14 @@ export const BaseHeader: React.FC<BaseHeaderProp> = ({ pathName }) => {
         onClick={() => {
           setModal(!modal)
         }}>
-        {/* <Image
+        <Image
           src={userData?.profile_img}
           alt=''
           width={30}
           height={30}
           style={{ borderRadius: "50%", marginRight: "7px" }}
           unoptimized={true}
-        /> */}
+        />
         <p className={styles.login_box}>
           <span className={styles.bold_text}>{userData?.username}</span>님
         </p>
