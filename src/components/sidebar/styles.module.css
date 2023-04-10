@@ -1,6 +1,4 @@
 .logo_container {
-  font-family: "Pretendard";
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,8 +7,6 @@
 }
 
 .plus_container {
-  font-family: "Pretendard";
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -32,7 +28,6 @@
   margin: 100px 0 0 10px;
 }
 .titleBox h3 {
-  font-family: "Pretendard";
   margin-bottom: 20px;
 }
 .white_logo {
@@ -50,7 +45,6 @@
   display: flex;
   flex-direction: column;
   width: 246px;
-  font-family: "Pretendard";
 }
 
 .category_bottom_box {
@@ -59,7 +53,6 @@
   margin-left: 4px;
   width: 246px;
   margin-bottom: 50px;
-  font-family: "Pretendard";
 }
 
 .active {
@@ -71,7 +64,6 @@
   margin-bottom: 10px;
   border-radius: 4px;
   background-color: #382ade;
-  font-family: "Pretendard";
 }
 .utm_category_item {
   display: flex;
@@ -83,7 +75,6 @@
   overflow: hidden;
   padding-left: 7px;
   cursor: pointer;
-  font-family: "Pretendard";
 }
 .utm_category_item:hover {
   background-color: #382ade;
@@ -192,7 +183,6 @@
   margin-bottom: 10px;
 } */
 .link {
-  font-family: "Pretendard";
   font-size: 0.8rem;
   font-weight: var(--weight-regular);
   line-height: 24px;
@@ -211,7 +201,6 @@
   cursor: pointer;
 }
 .addbtnstyle:hover {
-  /* margin: auto; */
   display: flex;
   align-items: center;
   justify-content: center;
