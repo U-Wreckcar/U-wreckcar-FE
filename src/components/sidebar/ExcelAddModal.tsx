@@ -59,14 +59,12 @@ export const ExcelAddModal: React.FC<ModalType> = ({
         })
         asyncfile(fileDate)
       } else if (fileRef.current?.files?.length === 0) {
-        alert("드래그 기능은 구현 중입니다...!")
-        // const formData = new FormData()
-        // // @ts-ignore
-        // Array.from(files[0].object).forEach((el: any) => {
-        //   formData.append("userfile", el)
-        // })
-        // console.log(files[0].object)
-        // asyncfile(formData)
+        const formData = new FormData()
+        // @ts-ignore
+        console.log(files[0])
+        formData.append("userfile", files[0].object)
+
+        asyncfile(formData)
       }
     }
   }
@@ -148,14 +146,16 @@ export const ExcelAddModal: React.FC<ModalType> = ({
       <form className={styles.add_modal}>
         <label
           ref={dragRef}
-          htmlFor='fileUpload'
+
+          htmlFor="fileUpload"
           onDragOver={(e) => e.preventDefault()}
-          onDrop={(e: any) => handleDrop(e)}>
+          onDrop={(e: any) => handleDrop(e)}
+        >
           <div className={styles.title_box}>
             <h1>엑셀파일로 추가하기</h1>
             <Image
               src={helpImg}
-              alt=''
+              alt=""
               width={16}
               height={16}
               onMouseEnter={() => setHelpMsg(true)}
@@ -166,7 +166,7 @@ export const ExcelAddModal: React.FC<ModalType> = ({
             <Image
               className={styles.help_msg_img}
               src={helpMsgImg}
-              alt=''
+              alt=""
               width={300}
               height={140}
             />
@@ -243,10 +243,11 @@ export const ExcelAddModal: React.FC<ModalType> = ({
               )}
             </div>
             <button
-              type='button'
-              id='add_btn'
+              type="button"
+              id="add_btn"
               className={styles.add_button}
-              onClick={tsfn}>
+              onClick={tsfn}
+            >
               추가하기
             </button>
           </div>
