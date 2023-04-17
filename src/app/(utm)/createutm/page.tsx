@@ -1,11 +1,10 @@
 "use client"
 import React, { useEffect, useState } from "react"
-import { CreateUTM } from "components/createPage/CreateUTM"
-import { CreateCopyBox } from "components/createPage/CreateCopyBox"
+import { CreateUTM } from "src/components/createPage/CreateUTM"
+import { CreateCopyBox } from "src/components/createPage/CreateCopyBox"
 import styles from "./createutm.module.css"
-import Link from "next/link"
 import Image from "next/image"
-import blue_help from "assets/blue_help.png"
+import blue_help from "public/assets/blue_help.png"
 
 export default function CreateUTMPage() {
   const [resUTM, setResUTM] = useState([])

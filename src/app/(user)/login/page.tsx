@@ -1,5 +1,5 @@
 "use client"
-import LoginBox from "@/components/loginPage/LoginBox"
+import LoginBox from "src/components/loginPage/LoginBox"
 import styles from "./login.module.css"
 
 import { useEffect } from "react"

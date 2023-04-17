@@ -1,14 +1,14 @@
 // "use client"
 import React, { useCallback, useEffect, useRef, useState } from "react"
 import styles from "./styles.module.css"
-import b_noti from "assets/b_noti.png"
+import b_noti from "public/assets/b_noti.png"
 import Image from "next/image"
 import Link from "next/link"
-import { myProfile } from "@/util/async/api"
+import { myProfile } from "src/util/async/api"
 import UserModal from "./UserModal"
 import axios from "axios"
-import { setClientHeaders } from "@/util/async/axiosConfig"
-import { getCookie } from "@/util/async/Cookie"
+import { setClientHeaders } from "src/util/async/axiosConfig"
+import { getCookie } from "src/util/async/Cookie"
 import { useRouter } from "next/navigation"
 
 interface UserProfile {

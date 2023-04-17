@@ -3,7 +3,7 @@ import styles from "./styles.module.css"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import Image from "next/image"
-import whitelogo from "assets/whitelogo.png"
+import whitelogo from "public/assets/whitelogo.png"
 export const RenderHeader = () => {
   const onClickNoti = () => {
     window.open(

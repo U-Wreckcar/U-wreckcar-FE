@@ -1,4 +1,4 @@
-import CircularUnderLoad from "@/components/CircularUnderLoad"
+import CircularUnderLoad from "src/components/CircularUnderLoad"
 import React from "react"
 import styles from "./Loading.module.css"
 import ProgressLoading from "./ProgressLoading"
