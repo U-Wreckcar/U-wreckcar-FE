@@ -1,15 +1,15 @@
 import Image from "next/image"
 import styles from "./LoginBox.module.css"
-import kakao_login from "assets/kakao_login.png"
+import kakao_login from "public/assets/kakao_login.png"
 
-import { getCookie } from "@/util/async/Cookie"
+import { getCookie } from "src/util/async/Cookie"
 import { useEffect, useState } from "react"
 import { redirect } from "next/navigation"
-import { Modal } from "@/shared/modal/Modal"
+import { Modal } from "src/shared/modal/Modal"
 
 import LocalLogin from "./LocalLogin"
-import logo from "assets/renderlogo.png"
-import { Alert, AlertTitle } from "@mui/material"
+import logo from "public/assets/renderlogo.png"
+import { Alert } from "@mui/material"
 import LoginModal from "./LoginModal"
 const LoginBox = ({ router }: any) => {
   const [local, setLocal] = useState(false)

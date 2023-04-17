@@ -9,14 +9,14 @@ import Link from "next/link"
 /**
  * Image
  */
-import whitelogo from "assets/whitelogo.png"
-import myutm from "../../assets/myutm.png"
-import addutm from "../../assets/addutm.png"
-import createutm from "../../assets/createutm.png"
-import slim from "../../assets/slim.png"
-import help from "../../assets/help.png"
-import noti from "assets/noti.png"
-import guide from "assets/guide.png"
+import whitelogo from "public/assets/whitelogo.png"
+import myutm from "public//assets/myutm.png"
+import addutm from "public//assets/addutm.png"
+import createutm from "public//assets/createutm.png"
+import slim from "public//assets/slim.png"
+import help from "public//assets/help.png"
+import noti from "public/assets/noti.png"
+import guide from "public/assets/guide.png"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 

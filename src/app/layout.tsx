@@ -1,10 +1,11 @@
-import { SideNav } from "@/components/sidebar/SideNav"
-import Header from "@/components/header/Header"
+import { SideNav } from "src/components/sidebar/SideNav"
+import Header from "src/components/header/Header"
 import localFont from "next/font/local"
 import type { Metadata } from "next"
 import Providers from "./providers"
 import Script from "next/script"
 import "./globals.css"
+// import "./globals.sass"
 
 export const metadata: Metadata = {
   title: 'UTM 카테고라이징 서비스 "유렉카"',

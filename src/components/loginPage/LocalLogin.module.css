@@ -25,7 +25,7 @@
 
 .input_style {
   width: 478px;
-  max-width: 500px;
+  /* max-width: 500px; */
   height: 38px;
   border: 1px solid #e1e1e1;
   border-radius: 4px;
@@ -52,7 +52,6 @@
   font-weight: 400;
   margin-left: 11px;
   font-size: 0.7rem;
-  /* transform: translateY(-40%); */
 }
 .id_remember_box input:checked + label {
   font-weight: 700;

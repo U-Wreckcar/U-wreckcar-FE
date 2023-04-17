@@ -1,5 +1,5 @@
 "use client"
-import { BlueButton } from "@/shared/button/BlueButton"
+import { BlueButton } from "src/shared/button/BlueButton"
 import React, { useState } from "react"
 import styles from "./TryUTM.module.css"
 import { utmdata } from "./tryUTMData"

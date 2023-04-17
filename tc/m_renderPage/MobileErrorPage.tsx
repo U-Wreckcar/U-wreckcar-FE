@@ -1,8 +1,7 @@
 import React from "react"
 import Image from "next/image"
 import styles from "./mobile.module.css"
-import msgImg from "assets/m_web.png"
-import video from "assets/video/preview.mp4"
+import msgImg from "public/assets/m_web.png"
 export default function MobileErrorPage() {
   return (
     <div className={styles.error_container}>

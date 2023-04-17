@@ -176,7 +176,7 @@
 }
 
 .noti {
-  background-image: url("../../assets/signup_noti.png");
+  background-image: url("../../../public/assets/signup_noti.png");
   background-position: center;
   background-size: cover;
   width: 68px;

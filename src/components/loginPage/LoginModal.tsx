@@ -1,4 +1,4 @@
-import Modal from "@/app/Modal"
+import Modal from "src/util/type/Modal"
 import styles from "./loginModal.module.css"
 
 const LoginModal = ({ isOpen, onRequestClose }: any) => {
