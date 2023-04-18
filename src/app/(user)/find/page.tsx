@@ -1,11 +1,11 @@
-import { FindPW } from "@/components/authes/FindPW"
+import { FindPW } from "src/components/authes/FindPW"
 import React from "react"
 
 const FindPage = () => {
   return (
-    <div>
+    <>
       <FindPW />
-    </div>
+    </>
   )
 }
 

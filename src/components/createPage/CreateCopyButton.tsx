@@ -1,8 +1,8 @@
 "use client"
 import React, { useState } from "react"
 import Image from "next/image"
-import b_close from "assets/b_close.png"
-import check from "assets/icons.png"
+import b_close from "public/assets/b_close.png"
+import check from "public/assets/icons.png"
 import styles from "./createCopyButton.module.css"
 type PropsType = {
   text: string

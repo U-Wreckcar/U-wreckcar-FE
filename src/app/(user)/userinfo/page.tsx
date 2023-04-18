@@ -2,9 +2,9 @@
 import React, { useState } from "react"
 import styles from "./userinfo.module.css"
 import Image from "next/image"
-import { myProfile } from "@/util/async/api"
+import { myProfile } from "src/util/async/api"
 import { useQuery } from "@tanstack/react-query"
-import UserDelModal from "@/components/loginPage/UserDelModal"
+import UserDelModal from "src/components/loginPage/UserDelModal"
 
 interface UserProfile {
   username: string

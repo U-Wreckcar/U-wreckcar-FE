@@ -2,10 +2,10 @@
 
 import { useEffect, useState, lazy, Suspense } from "react"
 import { Provider } from "react-redux"
-import store from "@/redux/store/store"
+import store from "src/redux/store/store"
 import { useRouter } from "next/navigation"
 import dynamic from "next/dynamic"
-import { getCookie } from "@/util/async/Cookie"
+import { getCookie } from "src/util/async/Cookie"
 
 const MainTable = dynamic(() => import("./MainTable"), { ssr: false })
 

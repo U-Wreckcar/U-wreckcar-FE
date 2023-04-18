@@ -1,9 +1,9 @@
-import { localLogin, myProfile } from "@/util/async/api"
-import { setClientHeaders } from "@/util/async/axiosConfig"
+import { localLogin, myProfile } from "src/util/async/api"
+import { setClientHeaders } from "src/util/async/axiosConfig"
 // import { setClientHeaders } from "@/util/async/axiosConfig"
-import { getCookie, setCookie } from "@/util/async/Cookie"
+import { getCookie, setCookie } from "src/util/async/Cookie"
 import Link from "next/link"
-import { redirect, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { usePathname } from "next/navigation"
 import React, {
   Dispatch,

@@ -1,5 +1,5 @@
 .container {
-  background-image: url('../assets/notfoundback.png');
+  background-image: url("../../public/assets/notfoundback.png");
   background-size: 98% 1200px;
   background-position: center;
   background-color: #0a0d54;
