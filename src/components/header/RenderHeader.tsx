@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import Image from "next/image"
 import whitelogo from "public/assets/whitelogo.png"
+import { BlueTest } from "@/src/common/button/blue_button/BlueTest"
 export const RenderHeader = () => {
   const onClickNoti = () => {
     window.open(
@@ -28,6 +29,7 @@ export const RenderHeader = () => {
               <Link href={"/"}>
                 <Image src={whitelogo} alt='LOGO' width={108.15} height={40} />
               </Link>
+              <BlueTest text={"테스트"} size={"sm"} types={"button"} />
             </div>
             <div className={styles.noti_box}>
               <div

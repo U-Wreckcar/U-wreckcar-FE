@@ -1,4 +1,4 @@
-import Modal from "@/src/util/type/Modal"
+import Modal from "@/src/common/type/Modal"
 import React, {
   ChangeEvent,
   useCallback,
@@ -19,7 +19,7 @@ import drag from "public/assets/e_drag.png"
 import dragBox from "public/assets/e_drag_box.png"
 import dragging from "public/assets/e_is_drag.png"
 import folder from "public/assets/e_icons.png"
-import { BlueButton } from "src/shared/button/BlueButton"
+import { BlueButton } from "@/src/common/button/blue_button/BlueButton"
 interface IFileTypes {
   id: number
   object: File
@@ -146,16 +146,14 @@ export const ExcelAddModal: React.FC<ModalType> = ({
       <form className={styles.add_modal}>
         <label
           ref={dragRef}
-
-          htmlFor="fileUpload"
+          htmlFor='fileUpload'
           onDragOver={(e) => e.preventDefault()}
-          onDrop={(e: any) => handleDrop(e)}
-        >
+          onDrop={(e: any) => handleDrop(e)}>
           <div className={styles.title_box}>
             <h1>엑셀파일로 추가하기</h1>
             <Image
               src={helpImg}
-              alt=""
+              alt=''
               width={16}
               height={16}
               onMouseEnter={() => setHelpMsg(true)}
@@ -166,7 +164,7 @@ export const ExcelAddModal: React.FC<ModalType> = ({
             <Image
               className={styles.help_msg_img}
               src={helpMsgImg}
-              alt=""
+              alt=''
               width={300}
               height={140}
             />
@@ -243,11 +241,10 @@ export const ExcelAddModal: React.FC<ModalType> = ({
               )}
             </div>
             <button
-              type="button"
-              id="add_btn"
+              type='button'
+              id='add_btn'
               className={styles.add_button}
-              onClick={tsfn}
-            >
+              onClick={tsfn}>
               추가하기
             </button>
           </div>

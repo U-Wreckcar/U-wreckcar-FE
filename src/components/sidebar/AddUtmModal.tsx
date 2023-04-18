@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import { ExternalUTM } from "src/util/async/api"
 import { useDispatch } from "react-redux"
 import { addItem } from "src/redux/slice/addslice"
-import Modal from "src/util/type/Modal"
+import Modal from "@/src/common/type/Modal"
 import { ExcelAddModal } from "./ExcelAddModal"
 
 export type ModalType = {

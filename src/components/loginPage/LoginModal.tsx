@@ -1,4 +1,4 @@
-import Modal from "src/util/type/Modal"
+import Modal from "@/src/common/type/Modal"
 import styles from "./loginModal.module.css"
 export const customStyles = {
   content: {
