@@ -23,6 +23,7 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
   const [modal, setModal] = useState(false)
   const pathName = usePathname()
 
+
   const openModal = () => {
     setModal(true)
   }
@@ -57,7 +58,7 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
             height={24}
             className={styles.menu_button}
             src={menu}
-            alt="Menu"
+            alt='Menu'
             onError={() => console.log("Image loading failed")}
           />
         </div>
@@ -74,7 +75,7 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
                 width={24}
                 height={24}
                 src={myutm}
-                alt="My-UTM"
+                alt='My-UTM'
                 onError={() => console.log("Image loading failed")}
               />
             </Link>
@@ -91,7 +92,7 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
                 width={24}
                 height={24}
                 src={createutm}
-                alt="Menu"
+                alt='Menu'
                 onError={() => console.log("Image loading failed")}
               />
             </Link>
@@ -102,7 +103,7 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
                 width={24}
                 height={24}
                 src={addutm}
-                alt="addutm"
+                alt='addutm'
                 onError={() => console.log("Image loading failed")}
               />
             </div>
@@ -121,7 +122,7 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
             width={24}
             height={24}
             src={noti}
-            alt="Noti Img"
+            alt='Noti Img'
             onError={() => console.log("Image loading failed")}
           />
         </div>
@@ -131,7 +132,7 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
             width={24}
             height={24}
             src={guide}
-            alt="Guide Img"
+            alt='Guide Img'
             onError={() => console.log("Image loading failed")}
           />
         </div>
@@ -141,7 +142,7 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
             width={24}
             height={24}
             src={help}
-            alt="Help Img"
+            alt='Help Img'
             onError={() => console.log("Image loading failed")}
           />
         </div>

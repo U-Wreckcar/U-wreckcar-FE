@@ -47,7 +47,6 @@
   border: none;
   outline: none;
   border: 1px solid #484bff;
-  /* border: 1px solid #704d14; */
 }
 .error {
   height: 40px;
@@ -83,9 +82,6 @@
 .areast {
   display: inline-block;
   vertical-align: middle;
-
-  /* top: 50%;
-  transform: translateY(-50%); */
 }
 
 .active:focus {

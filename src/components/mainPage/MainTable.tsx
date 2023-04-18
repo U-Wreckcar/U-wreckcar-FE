@@ -3,25 +3,25 @@
 import React, { useEffect, useState } from "react"
 import { columns, MainTableType } from "./TableData"
 import { useSelector } from "react-redux"
-import { getUTMs } from "util/async/api"
+import { getUTMs } from "src/util/async/api"
 import Link from "next/link"
 
-import blackFilterImg from "assets/b_filter.png"
-import filterImg from "assets/filter.png"
+import blackFilterImg from "public/assets/b_filter.png"
+import filterImg from "public/assets/filter.png"
+import plusImg from "public/assets/plus.png"
 import Image from "next/image"
-import plusImg from "assets/plus.png"
 
 import { OutputModal } from "./OutputModal"
 import { DeleteModal } from "./DeleteModal"
 import { AddUtmModal } from "../sidebar/AddUtmModal"
 import { EditModal } from "./MainMemoModal"
-import BtnAlert from "@/shared/button/Alert"
-import { CopyButton } from "@/shared/button/CopyButton"
+import BtnAlert from "src/shared/button/Alert"
+import { CopyButton } from "src/shared/button/CopyButton"
 import axios from "axios"
 import styles from "./main.module.css"
 import { AlertTitle, Alert } from "@mui/material"
 import Tooltip from "@mui/material/Tooltip"
-import { rankItem } from "@tanstack/match-sorter-utils"
+import { RankingInfo, rankItem } from "@tanstack/match-sorter-utils"
 import {
   flexRender,
   getCoreRowModel,
@@ -34,7 +34,7 @@ import {
   getSortedRowModel,
   FilterFn,
 } from "@tanstack/react-table"
-import { getCookie, removeCookie } from "@/util/async/Cookie"
+import { getCookie } from "src/util/async/Cookie"
 import { useRouter } from "next/navigation"
 import { customStyles } from "../loginPage/LoginModal"
 import { DebouncedInput } from "./MainTableFunction"

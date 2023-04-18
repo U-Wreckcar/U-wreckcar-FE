@@ -2,7 +2,7 @@
  * Styles
  */
 import styles from "./CreateCategory.module.css"
-import b_createutm from "assets/b_createutm.png"
+import b_createutm from "public/assets/b_createutm.png"
 import Image from "next/image"
 
 export const CreateCategory = () => {

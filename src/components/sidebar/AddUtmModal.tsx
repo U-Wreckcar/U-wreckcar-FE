@@ -2,10 +2,10 @@
 import React, { useEffect, useRef, useState } from "react"
 import styles from "./AddUtmModal.module.css"
 import { useForm } from "react-hook-form"
-import { ExternalUTM } from "@/util/async/api"
+import { ExternalUTM } from "src/util/async/api"
 import { useDispatch } from "react-redux"
-import { addItem } from "@/redux/slice/addslice"
-import Modal from "@/app/Modal"
+import { addItem } from "src/redux/slice/addslice"
+import Modal from "src/util/type/Modal"
 import { ExcelAddModal } from "./ExcelAddModal"
 
 export type ModalType = {
