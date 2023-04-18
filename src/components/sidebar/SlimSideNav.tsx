@@ -8,30 +8,22 @@ import { setSideProps } from "./PlusSideNav"
 /**
  * Image
  */
-import menu from "public/assets/menu.png"
-import myutm from "public/assets/myutm.png"
-import addutm from "public/assets/addutm.png"
-import createutm from "public/assets/createutm.png"
-import help from "public/assets/help.png"
-import noti from "public/assets/noti.png"
-import guide from "public/assets/guide.png"
+import menu from "assets/menu.png"
+import myutm from "assets/myutm.png"
+import addutm from "assets/addutm.png"
+import createutm from "assets/createutm.png"
+import help from "assets/help.png"
+import noti from "assets/noti.png"
+import guide from "assets/guide.png"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { customStyles } from "../loginPage/LoginModal"
 export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
   const [modal, setModal] = useState(false)
   const pathName = usePathname()
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      padding: 0,
-    },
-  }
+
+
   const openModal = () => {
     setModal(true)
   }
@@ -76,8 +68,9 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               pathName === "/main"
                 ? styles.slim_active
                 : styles.slim_utm_category_item
-            } `}>
-            <Link href='/main'>
+            } `}
+          >
+            <Link href="/main">
               <Image
                 width={24}
                 height={24}
@@ -92,8 +85,9 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               pathName === "/createutm"
                 ? styles.slim_active
                 : styles.slim_utm_category_item
-            } `}>
-            <Link href='/createutm'>
+            } `}
+          >
+            <Link href="/createutm">
               <Image
                 width={24}
                 height={24}
