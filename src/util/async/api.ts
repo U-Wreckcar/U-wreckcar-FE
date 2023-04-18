@@ -30,26 +30,26 @@ export const getUTMs = async () => {
 
 type DataType = { data: string[] }
 
-export const getUTMExcell = async (data: any) => {
+export const getUTMExcell = async (data: DataType) => {
   await axios.post("utms/export/excell", data)
 }
-export const testExcell = async (data: any) => {
+export const testExcell = async (data: DataType) => {
   await axios.post("utms/toxlsx", { data })
 }
-export const getUTMNotion = async (data: any) => {
-  await axios.post("utms/export/pdf", data)
-}
-export const getUTMSheet = async (data: any) => {
+
+export const getUTMSheet = async (data: DataType) => {
   await axios.post(`utms/export/sheet/csv`, data)
 }
-export const testUTMSheet = async (data: any) => {
+export const testUTMSheet = async (data: DataType) => {
   await axios.post("utms/tocsv", { data })
 }
 export const myProfile = async () => {
   const res = await axios.get("users/profile")
   return res
 }
-
+// export const getUTMNotion = async (data:DataType ) => {
+//   await axios.post("utms/export/pdf", data)
+// }
 /**
  * * POST
  */
@@ -83,10 +83,10 @@ export const deleteUTM = async (data: any) => {
 
 type EditMemoType = {
   utm_id: string
-  utm_memo: string
+  utm_memo?: string
 }
 
-export const patchUTM = async (data: any) => {
+export const patchUTM = async (data: EditMemoType) => {
   await axios.patch("utms/memo", data)
 }
 
@@ -166,7 +166,7 @@ type LoginData = {
   }
 }
 
-export const localLogin = async (data: any) => {
+export const localLogin = async (data: LoginData) => {
   const res = await axios.post("users/login", data)
   return res
 }
