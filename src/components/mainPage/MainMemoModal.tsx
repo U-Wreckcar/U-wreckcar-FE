@@ -2,8 +2,8 @@ import Image from "next/image"
 import styles from "./main.module.css"
 import { useRef } from "react"
 import { patchUTM } from "src/util/async/api"
-import Modal from "src/util/type/Modal"
-import { BlueButton } from "src/shared/button/BlueButton"
+import Modal from "@/src/common/type/Modal"
+import { BlueButton } from "@/src/common/button/blue_button/BlueButton"
 type EditModalType = {
   isOpen: boolean
   onRequestClose: any
@@ -68,10 +68,11 @@ export const EditModal: React.FC<EditModalType> = ({
             수정하기
           </button> */}
           <BlueButton
-            x={81}
-            y={38}
+            size={"sm"}
+            color={"full"}
             confirmFN={onClickEditButton}
             text={"수정하기"}
+            types={"button"}
           />
         </div>
       </div>

@@ -10,13 +10,13 @@ import minus from "public/assets/minus.png"
 import Image from "next/image"
 import { CreateCategory } from "./CreateCategory"
 import { postUTMs } from "src/util/async/api"
-import Alert from "src/shared/button/Alert"
+import Alert from "@/src/common/button/Alert"
 import { getCookie } from "src/util/async/Cookie"
 import { redirect } from "next/navigation"
 import { useMutation } from "@tanstack/react-query"
-import Loading from "src/shared/modal/Loading"
+import Loading from "@/src/common/modal/Loading"
 import { Tooltip } from "@mui/material"
-import { BlueButton } from "src/shared/button/BlueButton"
+import { BlueButton } from "@/src/common/button/blue_button/BlueButton"
 type UTMsType = {
   utms: {
     utm_url?: string
@@ -377,8 +377,8 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
               // }}
             /> */}
             <BlueButton
-              x={81}
-              y={38}
+              size={"sm"}
+              color={"full"}
               text={"생성하기"}
               types={"submit"}
               disabled={isLoading}

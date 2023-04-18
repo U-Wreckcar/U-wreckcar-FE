@@ -1,33 +1,23 @@
 .blue_button_style {
-  background-color: var(--color-blue-500);
   padding: 8px 16px;
   font-size: 14px;
   color: white;
 }
-.blue_button_style:hover {
-  background-color: var(--color-blue-400);
-}
-.blue_button_style:active {
-  background-color: var(--color-blue-700);
-}
-/* 테스트 */
-/* Test button */
+
 /* Size */
 .sm {
-  width: 20px;
-  height: 50px;
+  width: 81px;
+  height: 38px;
 }
 .md {
-  width: 100px;
-  height: 50px;
+  width: 120px;
+  height: 44px;
 }
 .login {
   width: 500px;
-  height: 10px;
+  height: 38px;
 }
-.email {
-  width: 70px;
-}
+
 /* Color */
 .tp {
   background-color: transparent;
@@ -36,4 +26,15 @@
 .tp:hover {
   color: var(--color-white-100);
   background-color: #484bff;
+}
+
+.full {
+  color: var(--color-white-100);
+  background-color: #484bff;
+}
+.full:hover {
+  background-color: var(--color-blue-400);
+}
+.full:active {
+  background-color: var(--color-blue-700);
 }

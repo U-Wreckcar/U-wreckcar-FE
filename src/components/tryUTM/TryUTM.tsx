@@ -43,9 +43,10 @@ export default function TryUtm() {
 
             <BlueButton
               text={"추가하기"}
-              x={84}
-              y={38}
               confirmFN={addUTMHandler}
+              size={"sm"}
+              color={"full"}
+              types={"button"}
             />
           </div>
         </div>

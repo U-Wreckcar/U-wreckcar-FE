@@ -1,23 +1,25 @@
-import React from "react"
+import React, { Attributes } from "react"
 import styles from "./BlueButton.module.css"
 
-type propsType = {
+type ButtonSize = "sm" | "md" | "login" | "email"
+type ButtonType = "button" | "submit" | "reset"
+type ButtonColor = "tp" | "full"
+interface PropsType {
   text: string
-  x: number
-  y: number
-  types?: any
+  color: ButtonColor
+  size: ButtonSize
+  types: ButtonType
   disabled?: boolean
   confirmFN?: () => void
   typeEvent?: (e: any) => void
 }
 
-export const BlueButton: React.FC<propsType> = (props) => {
-  const { text, confirmFN, typeEvent, types, disabled, x, y } = props
+export const BlueButton: React.FC<PropsType> = (props) => {
+  const { text, confirmFN, typeEvent, types, disabled, size, color } = props
 
   return (
     <button
-      className={styles.blue_button_style}
-      style={{ width: `${x}px`, height: `${y}px` }}
+      className={`${styles.blue_button_style} ${styles[size]} ${styles[color]}`}
       onClick={confirmFN ? confirmFN : typeEvent}
       type={types}
       disabled={disabled}>

@@ -29,7 +29,6 @@ export const RenderHeader = () => {
               <Link href={"/"}>
                 <Image src={whitelogo} alt='LOGO' width={108.15} height={40} />
               </Link>
-              <BlueTest text={"테스트"} size={"sm"} types={"button"} />
             </div>
             <div className={styles.noti_box}>
               <div
