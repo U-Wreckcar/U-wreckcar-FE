@@ -3,8 +3,7 @@ import styles from "./renderModal.module.css"
 import close from "assets/b_close.png"
 import Image from "next/image"
 import Link from "next/link"
-import logo from "assets/renderlogo.png"
-import Modal from "@/app/Modal"
+import Modal from "src/util/type/Modal"
 
 type RenderModalType = {
   isOpen: boolean
@@ -35,7 +34,7 @@ const RenderModal: React.FC<RenderModalType> = ({ isOpen, onRequestClose }) => {
           height={40}
         /> */}
         <button className={styles.close_button} onClick={onRequestClose}>
-          <Image src={close} alt="close" width={32} height={32} />
+          <Image src={close} alt='close' width={32} height={32} />
         </button>
         <h1>
           설문조사 참여하고 <br></br> 백화점 상품권 받아가세요!
@@ -59,8 +58,7 @@ const RenderModal: React.FC<RenderModalType> = ({ isOpen, onRequestClose }) => {
         <Link
           href={
             "https://docs.google.com/forms/d/e/1FAIpQLSc9YT3SIVC6ARWONo5DZSd4CN4TD68E-dXCwAJcAitOWWSnuw/viewform"
-          }
-        >
+          }>
           <button className={styles.modal_link_button}>
             설문조사 참여하러 가기
           </button>

@@ -1,21 +1,20 @@
 import Image from "next/image"
 import styles from "./main.module.css"
 
-import not_sheet from "assets/sheet.png"
-import not_excel from "assets/execel.png"
+import not_sheet from "public/assets/sheet.png"
+import not_excel from "public/assets/execel.png"
 
-import active_sheet from "assets/blue_sheet.png"
-import active_excel from "assets/blue_excel.png"
+import active_sheet from "public/assets/blue_sheet.png"
+import active_excel from "public/assets/blue_excel.png"
 
-import b_close from "assets/b_close.png"
+import b_close from "public/assets/b_close.png"
 import { useEffect, useState } from "react"
 
-import Axios from "util/async/axiosConfig"
+import Axios from "src/util/async/axiosConfig"
 import { Alert, AlertTitle, CircularProgress } from "@mui/material"
-import Modal from "@/app/Modal"
+import Modal from "src/util/type/Modal"
 
-import { useQuery } from "@tanstack/react-query"
-import { BlueButton } from "@/shared/button/BlueButton"
+import { BlueButton } from "src/shared/button/BlueButton"
 
 type OutputModalType = {
   isOpen: boolean

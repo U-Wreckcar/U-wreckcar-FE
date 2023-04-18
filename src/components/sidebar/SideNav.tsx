@@ -5,7 +5,7 @@ import { SlimSideNav } from "./SlimSideNav"
 import styles from "./styles.module.css"
 import { usePathname } from "next/navigation"
 import { Provider } from "react-redux"
-import store from "@/redux/store/store"
+import store from "src/redux/store/store"
 
 export const SideNav = () => {
   const [plusSide, setPlusSide] = useState(true)

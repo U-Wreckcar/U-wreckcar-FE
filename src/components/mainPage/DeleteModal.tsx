@@ -1,12 +1,12 @@
 import Image from "next/image"
 import styles from "./main.module.css"
 import b_close from "assets/b_close.png"
-import { deleteUTM } from "util/async/api"
+import { deleteUTM } from "src/util/async/api"
 import { useRouter } from "next/navigation"
 import { useDispatch } from "react-redux"
-import { delItem } from "@/redux/slice/addslice"
-import Modal from "@/app/Modal"
-import { BlueButton } from "@/shared/button/BlueButton"
+import { delItem } from "src/redux/slice/addslice"
+import Modal from "src/util/type/Modal"
+import { BlueButton } from "src/shared/button/BlueButton"
 
 type OutputModalType = {
   isOpen: boolean

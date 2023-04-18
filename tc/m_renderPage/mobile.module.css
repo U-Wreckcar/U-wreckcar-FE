@@ -3,7 +3,7 @@
   overflow: hidden;
 }
 .section_one {
-  /* background-image: url('../../assets/m_section_one.png'); */
+  /* background-image: url("../..public/assets/m_section_one.png"); */
   background-size: 98% 844px;
   background-position: center;
   height: 844px;
@@ -428,7 +428,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-image: url("../../assets/m_error.png");
+  background-image: url("../../public/assets/m_error.png");
   background-size: cover;
   background-position: center;
   width: 100%;

@@ -17,7 +17,7 @@
 * Section One 
 */
 .l_section_one {
-  background-image: url("../../src/assets/render/bg-one.png");
+  background-image: url("../../public/assets/render/bg-one.png");
   background-size: 100vw 100%;
   background-position: center;
   /* background-repeat: no-repeat; */
@@ -214,9 +214,7 @@
   color: #000000;
   font-weight: 500;
   font-size: 2rem;
-  /* margin-bottom: 30px; */
   line-height: 55px;
-
   letter-spacing: -0.006em;
 }
 .section_three h2 {
@@ -282,7 +280,7 @@
 .l_section_four .context {
   font-size: 20px;
   font-weight: 400;
-  /* margin-top: 32px; */
+
   line-height: 30px;
 
   letter-spacing: -0.006em;
@@ -357,7 +355,7 @@
   align-items: center;
   gap: 150px;
 
-  background-image: url("../../src/assets/render/bg-six.png");
+  background-image: url("../../public/assets/render/bg-six.png");
   background-size: auto;
   background-position: center;
   width: 100%;
@@ -420,7 +418,7 @@
   text-align: center;
   align-items: center;
 
-  background-image: url("../../src/assets/render/bg-seven.png");
+  background-image: url("../../public/assets/render/bg-seven.png");
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -529,7 +527,7 @@
     height: 600px;
   }
   .l_section_one {
-    background-image: url("../../src/assets/render/bg-one.png");
+    background-image: url("../../public/assets/render/bg-one.png");
     background-size: 100vw 100%;
     background-position: center;
     /* background-repeat: no-repeat; */
@@ -828,7 +826,7 @@
     align-items: center;
     gap: 0;
 
-    background-image: url("../../src/assets/render/bg-six.png");
+    background-image: url("../../public/assets/render/bg-six.png");
     background-size: auto;
     background-position: center;
     width: 100%;
@@ -887,7 +885,7 @@
     height: 600px;
   }
   .l_section_one {
-    background-image: url("../../src/assets/render/bg-one.png");
+    background-image: url("../../public/assets/render/bg-one.png");
     background-size: 100vw 100%;
     background-position: center;
     /* background-repeat: no-repeat; */
@@ -1186,7 +1184,7 @@
     align-items: center;
     gap: 0;
 
-    background-image: url("../../src/assets/render/bg-six.png");
+    background-image: url("../../public/assets/render/bg-six.png");
     background-size: auto;
     background-position: center;
     width: 100%;

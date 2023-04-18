@@ -87,7 +87,6 @@
   text-align: left;
   width: 100vw;
   min-width: 530px;
-  /* min-width: 540px; */
   font-weight: 400;
   font-size: 0.7rem;
   line-height: 22px;
@@ -103,7 +102,6 @@
   align-items: center;
   text-align: center;
   margin-left: 20px;
-  /* padding: 0 5px; */
   overflow: hidden;
 }
 
@@ -133,7 +131,6 @@
 .link_img_box img {
   width: 20px;
   height: 20px;
-  /* margin: 0 10px 0 10px; */
 }
 @media screen and (max-width: 1910px) {
   .container_copy_box {

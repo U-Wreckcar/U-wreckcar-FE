@@ -1,5 +1,5 @@
 "use client"
-import { findEmail, newPW, verifyEmailNum } from "@/util/async/api"
+import { findEmail, newPW, verifyEmailNum } from "src/util/async/api"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import React, { useState } from "react"
@@ -99,9 +99,9 @@ export const FindPW = () => {
           <div className={styles.wrap}>
             <label>이메일</label>
             <input
-              type="email"
+              type='email'
               className={styles.email_input}
-              placeholder="가입하실 때 사용하신 이메일을 입력해주세요"
+              placeholder='가입하실 때 사용하신 이메일을 입력해주세요'
               {...register("email", {
                 required: "이메일을 입력해주세요",
                 minLength: {
@@ -122,9 +122,8 @@ export const FindPW = () => {
             />
             <button
               className={styles.confirm_button}
-              type="button"
-              onClick={emailConfirm}
-            >
+              type='button'
+              onClick={emailConfirm}>
               인증하기
             </button>
           </div>
@@ -136,7 +135,7 @@ export const FindPW = () => {
             <input
               type={"text"}
               className={styles.email_input}
-              placeholder="이메일로 전송된 인증번호를 입력해주세요"
+              placeholder='이메일로 전송된 인증번호를 입력해주세요'
               {...register("emailNum", {
                 required: "이메일로 전송된 인증번호를 입력해주세요.",
                 disabled: emailNum > 1 ? true : false,
@@ -144,9 +143,8 @@ export const FindPW = () => {
             />
             <button
               className={styles.confirm_button}
-              type="button"
-              onClick={confirmEmailNum}
-            >
+              type='button'
+              onClick={confirmEmailNum}>
               인증확인
             </button>
           </div>
@@ -156,8 +154,8 @@ export const FindPW = () => {
             <label>새 비밀번호</label>
             <input
               className={styles.signup_input}
-              type="password"
-              placeholder="영문,숫자,특수문자 포함 8자 이상 20자 이하로 입력해주세요"
+              type='password'
+              placeholder='영문,숫자,특수문자 포함 8자 이상 20자 이하로 입력해주세요'
               {...register("password", {
                 required: "비밀번호는 필수 입력입니다.",
                 minLength: {
@@ -181,8 +179,8 @@ export const FindPW = () => {
             <label>새 비밀번호 확인</label>
             <input
               className={styles.signup_input}
-              type="password"
-              placeholder="새로 사용할 비밀번호를 다시 입력해주세요"
+              type='password'
+              placeholder='새로 사용할 비밀번호를 다시 입력해주세요'
               {...register("confirmPw", {
                 required: "비밀번호 확인을 해주세요",
               })}
@@ -192,16 +190,14 @@ export const FindPW = () => {
           <div className={styles.button_box}>
             <button
               onClick={() => (window.location.href = "/login")}
-              type="button"
-              className={styles.cancel_button}
-            >
+              type='button'
+              className={styles.cancel_button}>
               취소
             </button>
             <button
               className={styles.find_button}
-              type="submit"
-              disabled={isSubmitting}
-            >
+              type='submit'
+              disabled={isSubmitting}>
               비밀번호 재설정
             </button>
           </div>
