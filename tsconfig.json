@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "target": "es5",
-    "types": ["@types/gtag.js"],
+    // "types": ["@types/gtag.js"],
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -31,7 +31,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/loading.js"
-, "src/components/mainPage/TableData.tsc"  ],
+    "app/loading.js",
+    "src/components/mainPage/TableData.tsc"
+  ],
   "exclude": ["node_modules"]
 }

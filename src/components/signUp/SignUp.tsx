@@ -1,5 +1,5 @@
 "use client"
-import { BlueButton } from "src/shared/button/BlueButton"
+import { BlueButton } from "@/src/common/button/blue_button/BlueButton"
 import { confirmEmail, signUp, verifyEmailNum } from "src/util/async/api"
 
 import { useRouter } from "next/navigation"
