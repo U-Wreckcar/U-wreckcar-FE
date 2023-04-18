@@ -5,18 +5,18 @@ import { useFieldArray, useForm } from "react-hook-form"
  * Style, Image
  */
 import styles from "./CreateUTM.module.css"
-import plus from "assets/plus.png"
-import minus from "assets/minus.png"
+import plus from "public/assets/plus.png"
+import minus from "public/assets/minus.png"
 import Image from "next/image"
 import { CreateCategory } from "./CreateCategory"
-import { postUTMs } from "@/util/async/api"
-import Alert from "@/shared/button/Alert"
-import { getCookie } from "@/util/async/Cookie"
+import { postUTMs } from "src/util/async/api"
+import Alert from "src/shared/button/Alert"
+import { getCookie } from "src/util/async/Cookie"
 import { redirect } from "next/navigation"
-import { useMutation, useQuery } from "@tanstack/react-query"
-import Loading from "@/shared/modal/Loading"
+import { useMutation } from "@tanstack/react-query"
+import Loading from "src/shared/modal/Loading"
 import { Tooltip } from "@mui/material"
-import { BlueButton } from "@/shared/button/BlueButton"
+import { BlueButton } from "src/shared/button/BlueButton"
 type UTMsType = {
   utms: {
     utm_url?: string
@@ -33,7 +33,7 @@ type PropsType = {
   setResUTM: any
   resUTM: any
 }
-export const CreateUTM: React.FC<PropsType> = ({ setResUTM, resUTM }) => {
+export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
   const [memoText, setMemoText] = useState("")
   const [alert, setAlert] = useState(false)
   const [errorAlert, setErrorAlert] = useState(false)

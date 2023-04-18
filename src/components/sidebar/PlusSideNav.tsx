@@ -9,16 +9,17 @@ import Link from "next/link"
 /**
  * Image
  */
-import whitelogo from "assets/whitelogo.png"
-import myutm from "../../assets/myutm.png"
-import addutm from "../../assets/addutm.png"
-import createutm from "../../assets/createutm.png"
-import slim from "../../assets/slim.png"
-import help from "../../assets/help.png"
-import noti from "assets/noti.png"
-import guide from "assets/guide.png"
+import whitelogo from "public/assets/whitelogo.png"
+import myutm from "public//assets/myutm.png"
+import addutm from "public//assets/addutm.png"
+import createutm from "public//assets/createutm.png"
+import slim from "public//assets/slim.png"
+import help from "public//assets/help.png"
+import noti from "public/assets/noti.png"
+import guide from "public/assets/guide.png"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
+import { customStyles } from "../loginPage/LoginModal"
 
 export type setSideProps = {
   setSide: Dispatch<SetStateAction<boolean>>
@@ -30,17 +31,6 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
   const [login, setLogin] = useState(false)
   const pathName = usePathname()
 
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      padding: 0,
-    },
-  }
   const openModal = () => {
     setModal(true)
   }
@@ -74,7 +64,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
             <Image
               className={styles.white_logo}
               src={whitelogo}
-              alt='Logo'
+              alt="Logo"
               width={81.11}
               height={30}
             />
@@ -85,7 +75,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
             height={30}
             className={styles.slim_button}
             src={slim}
-            alt='Slim Button'
+            alt="Slim Button"
             onError={() => console.log("Image loading failed")}
           />
         </div>
@@ -93,35 +83,37 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
           <h3>MY UTM</h3>
         </div>
 
-        <Link className={styles.linklink} href='/main'>
+        <Link className={styles.linklink} href="/main">
           <div
             className={` ${
               pathName === "/main" ? styles.active : styles.utm_category_item
-            } `}>
+            } `}
+          >
             <Image
               className={styles.icon}
               width={30}
               height={30}
               src={myutm}
-              alt='My-UTM'
+              alt="My-UTM"
               onError={() => console.log("Image loading failed")}
             />
             <p>UTM 관리하기</p>
           </div>
         </Link>
-        <Link className={styles.linklink} href='/createutm'>
+        <Link className={styles.linklink} href="/createutm">
           <div
             className={`${
               pathName === "/createutm"
                 ? styles.active
                 : styles.utm_category_item
-            }`}>
+            }`}
+          >
             <Image
               className={styles.icon}
               width={30}
               height={30}
               src={createutm}
-              alt='Create-UTM'
+              alt="Create-UTM"
             />
             <p>새 UTM 생성하기</p>
           </div>
@@ -130,13 +122,14 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
           <span className={styles.link}>
             <p
               className={styles.utm_category_item}
-              onClick={() => setModal(!modal)}>
+              onClick={() => setModal(!modal)}
+            >
               <Image
                 className={styles.icon}
                 width={30}
                 height={30}
                 src={addutm}
-                alt='Add_UTM'
+                alt="Add_UTM"
               />
               기존 UTM 추가하기
             </p>
@@ -158,7 +151,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               width={24}
               height={24}
               src={noti}
-              alt='Noti Img'
+              alt="Noti Img"
               onError={() => console.log("Image loading failed")}
             />
             <p>공지사항</p>
@@ -169,7 +162,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               width={24}
               height={24}
               src={guide}
-              alt='Guide Img'
+              alt="Guide Img"
               onError={() => console.log("Image loading failed")}
             />
             <p>가이드</p>
@@ -180,7 +173,7 @@ export const PlusSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
               width={24}
               height={24}
               src={help}
-              alt='Help Img'
+              alt="Help Img"
               onError={() => console.log("Image loading failed")}
             />
             <p>문의하기</p>

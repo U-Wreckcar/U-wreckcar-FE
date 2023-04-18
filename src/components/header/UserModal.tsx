@@ -1,12 +1,11 @@
 import React, { useRef, Dispatch, SetStateAction, use, useEffect } from "react"
 import styles from "./UserModal.module.css"
 import Link from "next/link"
-import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { removeCookie } from "@/util/async/Cookie"
+import { removeCookie } from "src/util/async/Cookie"
 import Image from "next/image"
-import user from "assets/h_user_icon.png"
-import logout from "assets/h_logout_icon.png"
+import user from "public/assets/h_user_icon.png"
+import logout from "public/assets/h_logout_icon.png"
 // import { logOut } from "@/util/async/Cookie"
 type propsType = {
   setModal: Dispatch<SetStateAction<boolean>>

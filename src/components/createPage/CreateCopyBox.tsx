@@ -1,8 +1,8 @@
 "use client"
 import React from "react"
-import { CopyButton } from "shared/button/CopyButton"
 import styles from "./CreateCopyBox.module.css"
-import b_link from "assets/b_link.png"
+// import b_link from ".public/assets/b_link.png"
+import b_link from "public/assets/b_link.png"
 import Image from "next/image"
 import { CreateCopyButton } from "./CreateCopyButton"
 

@@ -1,10 +1,9 @@
 import Image from "next/image"
 import styles from "./main.module.css"
-import b_close from "assets/b_close.png"
 import { useRef } from "react"
-import { patchUTM } from "@/util/async/api"
-import Modal from "@/app/Modal"
-import { BlueButton } from "@/shared/button/BlueButton"
+import { patchUTM } from "src/util/async/api"
+import Modal from "src/util/type/Modal"
+import { BlueButton } from "src/shared/button/BlueButton"
 type EditModalType = {
   isOpen: boolean
   onRequestClose: any

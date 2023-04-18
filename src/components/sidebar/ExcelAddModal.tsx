@@ -1,4 +1,4 @@
-import Modal from "@/app/Modal"
+import Modal from "@/src/util/type/Modal"
 import React, {
   ChangeEvent,
   useCallback,
@@ -9,17 +9,17 @@ import React, {
 } from "react"
 import Image from "next/image"
 import { ModalType } from "./AddUtmModal"
-import Axios from "util/async/axiosConfig"
+import Axios from "src/util/async/axiosConfig"
 
 import styles from "./ExcelAddModal.module.css"
-import helpImg from "assets/blue_help.png"
-import helpMsgImg from "assets/excel_help.png"
-import downloader from "assets/e_download.png"
-import drag from "assets/e_drag.png"
-import dragBox from "assets/e_drag_box.png"
-import dragging from "assets/e_is_drag.png"
-import folder from "assets/e_icons.png"
-import { BlueButton } from "@/shared/button/BlueButton"
+import helpImg from "public/assets/blue_help.png"
+import helpMsgImg from "public/assets/excel_help.png"
+import downloader from "public/assets/e_download.png"
+import drag from "public/assets/e_drag.png"
+import dragBox from "public/assets/e_drag_box.png"
+import dragging from "public/assets/e_is_drag.png"
+import folder from "public/assets/e_icons.png"
+import { BlueButton } from "src/shared/button/BlueButton"
 interface IFileTypes {
   id: number
   object: File
@@ -59,14 +59,12 @@ export const ExcelAddModal: React.FC<ModalType> = ({
         })
         asyncfile(fileDate)
       } else if (fileRef.current?.files?.length === 0) {
-        alert("드래그 기능은 구현 중입니다...!")
-        // const formData = new FormData()
-        // // @ts-ignore
-        // Array.from(files[0].object).forEach((el: any) => {
-        //   formData.append("userfile", el)
-        // })
-        // console.log(files[0].object)
-        // asyncfile(formData)
+        const formData = new FormData()
+        // @ts-ignore
+        console.log(files[0])
+        formData.append("userfile", files[0].object)
+
+        asyncfile(formData)
       }
     }
   }
@@ -137,7 +135,6 @@ export const ExcelAddModal: React.FC<ModalType> = ({
     [onChangeFiles]
   )
 
-
   useEffect(() => {
     if (files.length > 1) {
       setFiles([])
@@ -153,13 +150,12 @@ export const ExcelAddModal: React.FC<ModalType> = ({
           htmlFor="fileUpload"
           onDragOver={(e) => e.preventDefault()}
           onDrop={(e: any) => handleDrop(e)}
-
         >
           <div className={styles.title_box}>
             <h1>엑셀파일로 추가하기</h1>
             <Image
               src={helpImg}
-              alt=''
+              alt=""
               width={16}
               height={16}
               onMouseEnter={() => setHelpMsg(true)}
@@ -170,7 +166,7 @@ export const ExcelAddModal: React.FC<ModalType> = ({
             <Image
               className={styles.help_msg_img}
               src={helpMsgImg}
-              alt=''
+              alt=""
               width={300}
               height={140}
             />
@@ -186,14 +182,13 @@ export const ExcelAddModal: React.FC<ModalType> = ({
             <div>
               <a
                 ref={fileDownRef}
-                href="https://velog.velcdn.com/images/mython/post/cbd0ccf9-e0c0-4ffc-9b1b-2462d3200dfb/image.xlsx"
-                download="filename.txt"
-                style={{ display: "none" }}
-              ></a>
+                href='https://velog.velcdn.com/images/mython/post/cbd0ccf9-e0c0-4ffc-9b1b-2462d3200dfb/image.xlsx'
+                download='filename.txt'
+                style={{ display: "none" }}></a>
               <Image
                 onClick={handleDownload}
                 src={downloader}
-                alt=""
+                alt=''
                 width={86}
                 height={28}
               />
@@ -201,8 +196,8 @@ export const ExcelAddModal: React.FC<ModalType> = ({
             <div className={styles.footer_drag_box}>
               <input
                 ref={fileRef}
-                type="file"
-                id="fileUpload"
+                type='file'
+                id='fileUpload'
                 style={{ display: "none" }}
                 multiple={false}
                 onChange={onChangeFiles}
@@ -216,12 +211,12 @@ export const ExcelAddModal: React.FC<ModalType> = ({
 
                   return (
                     <div key={id}>
-                      <Image src={dragBox} alt="" width={730} height={60} />
+                      <Image src={dragBox} alt='' width={730} height={60} />
                       <div className={styles.drag_container}>
                         <Image
                           className={styles.drag_folder}
                           src={folder}
-                          alt=""
+                          alt=''
                           width={24}
                           height={24}
                         />
@@ -231,16 +226,16 @@ export const ExcelAddModal: React.FC<ModalType> = ({
                   )
                 })}
               {files.length === 0 && isDragging && (
-                <Image src={dragging} alt="" width={730} height={60} />
+                <Image src={dragging} alt='' width={730} height={60} />
               )}
               {files.length === 0 && !isDragging && (
                 <>
-                  <Image src={dragBox} alt="" width={730} height={60} />
+                  <Image src={dragBox} alt='' width={730} height={60} />
                   <Image
                     className={styles.footer_drag_box_content}
                     onDoubleClick={onChangeFiles}
                     src={drag}
-                    alt=""
+                    alt=''
                     width={300}
                     height={24}
                   />
@@ -248,10 +243,11 @@ export const ExcelAddModal: React.FC<ModalType> = ({
               )}
             </div>
             <button
-              type='button'
-              id='add_btn'
+              type="button"
+              id="add_btn"
               className={styles.add_button}
-              onClick={tsfn}>
+              onClick={tsfn}
+            >
               추가하기
             </button>
           </div>

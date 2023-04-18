@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosAdapter } from "axios"
+import axios, { AxiosAdapter } from "axios"
 import { cacheAdapterEnhancer } from "axios-extensions"
 import { getCookie } from "./Cookie"
 

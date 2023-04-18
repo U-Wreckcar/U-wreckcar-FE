@@ -120,6 +120,7 @@ input {
   border-radius: 4px;
   padding: 0 10px;
   accent-color: #484bff;
+  /* box-sizing: border-box; */
 }
 /* input::placeholder {
 } */
