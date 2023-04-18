@@ -28,7 +28,7 @@ import {
   ColumnDef,
   Table,
 } from "@tanstack/react-table"
-import { getCookie } from "src/util/async/Cookie"
+import { getCookie, removeCookie } from "src/util/async/Cookie"
 import { useRouter } from "next/navigation"
 import { DebouncedInput, IndeterminateCheckbox } from "./MainTableFunction"
 import { addTable, dataTable, selectTable } from "@/src/redux/slice/addslice"
@@ -50,23 +50,24 @@ let defaultData: Array<MainTableType> = []
 let dData: Array<MainTableType> = []
 type MainTableProps = {
   setTable: Dispatch<SetStateAction<Table<MainTableType> | null>>
+  del: boolean
+  filter: boolean
 }
 
-const MainTable: React.FC<MainTableProps> = ({ setTable }) => {
+const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
   const [rowSelection, setRowSelection] = useState({})
   const [data, setData] = useState<Array<MainTableType>>([])
-  const [target, setTarget] = useState("")
   const [show, setShow] = useState(false)
-  const [del, setDel] = useState(false)
+  const [target, setTarget] = useState("")
+  // const [del, setDel] = useState(false)
   const [inputValue, setInputValue] = useState("")
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   )
-  const [filter, setFilter] = useState(false)
   const isOpen = useSelector((state: any) => state.add.isOpen)
   const router = useRouter()
   const dispatch = useDispatch()
-
+  const select = useSelector((state: any) => state.add.select)
   // const getData = async () => {
   //   const res: any = await getUTMs()
   //   setData(res.data)
@@ -95,6 +96,9 @@ const MainTable: React.FC<MainTableProps> = ({ setTable }) => {
         dispatch(dataTable(res.data))
       })
       .catch((error) => {
+        removeCookie("access_token")
+        removeCookie("refresh_token")
+        router.push("/login")
         console.log(error)
       })
   }
@@ -279,6 +283,10 @@ const MainTable: React.FC<MainTableProps> = ({ setTable }) => {
   useEffect(() => {
     dispatch(selectTable(rowSelection))
   }, [rowSelection])
+
+  useEffect(() => {
+    setRowSelection(select)
+  }, [select])
 
   return (
     <div>

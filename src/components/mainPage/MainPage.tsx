@@ -37,6 +37,7 @@ export default function MainPageComponent() {
   const [show, setShow] = useState(false)
   const [target, setTarget] = useState("")
   const [inputValue, setInputValue] = useState("")
+
   const data = useSelector((state: any) => state.add.data)
   const rowSelection = useSelector((state: any) => state.add.select)
   const dispatch = useDispatch()
@@ -63,6 +64,7 @@ export default function MainPageComponent() {
     table
       ?.getSelectedRowModel()
       .flatRows.map((row: any) => id.push(row?.original))
+    dispatch(delSelectTable())
     // setRowSelection({})
     if (id.length === 0) {
       setWarningAlert(true)
@@ -195,7 +197,7 @@ export default function MainPageComponent() {
             index={target}
           />
         </div>
-        <MainTable setTable={setTable} />
+        <MainTable setTable={setTable} del={del} filter={filter} />
       </div>
       {/* </Provider> */}
     </div>
