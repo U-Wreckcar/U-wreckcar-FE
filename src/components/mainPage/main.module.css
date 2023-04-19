@@ -23,6 +23,7 @@
   /* min-height: 80vh; */
 }
 
+
 .btn_box {
   width: 100%;
   display: flex;
@@ -115,7 +116,7 @@
   /* width: fit-content; */
 }
 .table_scroll {
-  width: 100%;
+  width: 80%;
   height: 575px;
   overflow: scroll;
 }
@@ -499,7 +500,8 @@
   border-radius: 4px;
   background-color: #9f9f9f;
   color: #fff;
-  font-size: 0.7rem;
+  /* font-size: 0.7rem; */
+  font-size: 14px;
 }
 .modal_del_button:hover {
   background-color: #e1e1e1;

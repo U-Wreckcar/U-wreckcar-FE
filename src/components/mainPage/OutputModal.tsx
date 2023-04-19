@@ -12,9 +12,11 @@ import { useEffect, useState } from "react"
 
 import Axios from "src/util/async/axiosConfig"
 import { Alert, AlertTitle, CircularProgress } from "@mui/material"
-import Modal from "src/util/type/Modal"
+import Modal from "@/src/common/type/Modal"
 
-import { BlueButton } from "src/shared/button/BlueButton"
+import { BlueButton } from "@/src/common/button/blue_button/BlueButton"
+import { useDispatch } from "react-redux"
+import { delSelectTable } from "@/src/redux/slice/addslice"
 
 type OutputModalType = {
   isOpen: boolean
@@ -32,6 +34,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
   const [excel, setExcel] = useState(false)
   const [alert, setAlert] = useState(false)
   const [loading, setLoading] = useState(false)
+  const dispatch = useDispatch()
 
   // const { isLoading, error, data } = useQuery({
   //   queryKey: ["output/excel"],
@@ -68,6 +71,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
         window.URL.revokeObjectURL(url)
         onRequestClose()
         setLoading(false)
+        dispatch(delSelectTable())
       } catch (error) {
         setLoading(false)
         setAlert(true)
@@ -91,6 +95,7 @@ export const OutputModal: React.FC<OutputModalType> = ({
         window.URL.revokeObjectURL(url)
         onRequestClose()
         setLoading(false)
+        dispatch(delSelectTable())
       } catch (error) {
         setLoading(false)
         setAlert(true)
@@ -199,18 +204,12 @@ export const OutputModal: React.FC<OutputModalType> = ({
               <CircularProgress disableShrink size={15} />
             </button>
           ) : (
-            // <button
-            //   onClick={onClickPopHandler}
-            //   className={styles.modal_button}
-            //   value="default"
-            // >
-            //   추출하기
-            // </button>
             <BlueButton
               text={"추출하기"}
-              x={84}
-              y={38}
-              confirmFN={onClickPopHandler}
+              clickEvent={onClickPopHandler}
+              size={"sm"}
+              color={"full"}
+              types={"button"}
             />
           )}
         </div>

@@ -1,95 +1,45 @@
-"use client"
-import React, { useEffect, useState } from "react"
-import styles from "./page.module.css"
-import Image from "next/image"
+import React from 'react';
+import styles from './page.module.css';
+import Image from 'next/image';
 // One
-import bg_one_illust from "public/assets/render/bg-one-illust.png"
-// import illust from
+import bg_one_illust from 'public/assets/render/bg-one-illust.png';
 
-import sub_child from "public/assets/sub_child.png"
+import sub_child from 'public/assets/sub_child.png';
 // Sub
-import sub_img from "public/assets/render/sub-main-img.png"
-import m_section_one_two from "public/assets/m_section_one_two.png"
-import TryUTM from "../components/tryUTM/TryUTM"
+import sub_img from 'public/assets/render/sub-main-img.png';
+import m_section_one_two from 'public/assets/m_section_one_two.png';
+import TryUTM from '../components/tryUTM/TryUTM';
 // Two
-import bg_two_left from "public/assets/render/bg-two-left.png"
-import bg_two_right from "public/assets/render/bg-two-right.png"
+import bg_two_left from 'public/assets/render/bg-two-left.png';
+import bg_two_right from 'public/assets/render/bg-two-right.png';
 
-import bg_six_one from "public/assets/render/bg-six-one.png"
-import bg_six_two from "public/assets/render/bg-six-two.png"
-import bg_six_three from "public/assets/render/bg-six-three.png"
-import six from "public/assets/gif/six.gif"
-import seven_sub_img from "public/assets/render/seven_sub_img.png"
-import seven_img from "public/assets/render/seven_img.png"
-import seven_button from "public/assets/render/seven_button.png"
-import create from "public/assets/gif/create.gif"
-import f_search from "public/assets/gif/f_search.gif"
-import out from "public/assets/gif/out.gif"
+import bg_six_one from 'public/assets/render/bg-six-one.png';
+import bg_six_two from 'public/assets/render/bg-six-two.png';
+import bg_six_three from 'public/assets/render/bg-six-three.png';
+import six from 'public/assets/gif/six.gif';
+import seven_sub_img from 'public/assets/render/seven_sub_img.png';
+import seven_img from 'public/assets/render/seven_img.png';
+import seven_button from 'public/assets/render/seven_button.png';
+import create from 'public/assets/gif/create.gif';
+import f_search from 'public/assets/gif/f_search.gif';
+import out from 'public/assets/gif/out.gif';
 
-import copyright from "public/assets/copyright.png"
-import Link from "next/link"
+import copyright from 'public/assets/copyright.png';
+import Link from 'next/link';
+import ChangeText from '../components/render/ChangeText';
 
 export default function Home() {
-  const texts = ["복잡한", "귀찮은", "어려운"]
-  const [text, setText] = useState(texts)
-  const [index, setIndex] = useState(0)
-  const [alert, setAlert] = useState(true)
-
-  useEffect(() => {
-    const intervalText = setInterval(() => {
-      setIndex((idx) => (idx + 1) % texts.length)
-    }, 850)
-
-    return () => clearInterval(intervalText)
-  }, [])
-
-  const onClickKakao = () => {
-    window.open("https://open.kakao.com/o/sbK3Rfaf", "_blank")
-  }
-
-  const onClickLaw = () => {
-    window.open(
-      "https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e",
-      "_blank"
-    )
-  }
-
-  const onClickUse = () => {
-    window.open(
-      "https://unexpected-ceder-0b7.notion.site/c83db210e0574b3b90329f5cc46caf28",
-      "_blank"
-    )
-  }
-
-  const onClickNoti = () => {
-    window.open(
-      " https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492",
-      "_blank"
-    )
-  }
-
-  const onClickGuide = () => {
-    window.open(
-      "https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3",
-      "_blank"
-    )
-  }
-
   return (
     <>
-      {/* <IsRender /> */}
       <div>
         <div className={styles.container}>
           <section className={styles.l_section_one}>
             <article>
               <div className={styles.text_box}>
-                <h1>
-                  {text[index]} UTM 관리 <br />
-                  유렉카로 해결하세요!
-                </h1>
+                <ChangeText />
                 <p>UTM 업무 1시간? 유렉카에서는 3분이면 OK</p>
-                <Link className={styles.origin_free_btn} href={"/login"}>
-                  <button id='free_btn' className={styles.free_btn}>
+                <Link className={styles.origin_free_btn} href={'/login'}>
+                  <button id="free_btn" className={styles.free_btn}>
                     무료로 시작하기
                   </button>
                 </Link>
@@ -97,10 +47,10 @@ export default function Home() {
               <Image
                 className={styles.bg_one_illust}
                 src={bg_one_illust}
-                alt='Img'
+                alt="Img"
               />
-              <Link className={styles.m_free_btn} href={"/webonly"}>
-                <button id='free_btn' className={styles.free_btn}>
+              <Link className={styles.m_free_btn} href={'/webonly'}>
+                <button id="free_btn" className={styles.free_btn}>
                   무료로 시작하기
                 </button>
               </Link>
@@ -108,16 +58,16 @@ export default function Home() {
           </section>
           <section className={styles.l_section_one_two}>
             <article>
-              <Image className={styles.web_sub} src={sub_img} alt='Img' />
+              <Image className={styles.web_sub} src={sub_img} alt="Img" />
               <Image
                 className={styles.m_sub}
                 src={m_section_one_two}
-                alt='Img'
+                alt="Img"
               />
               <Image
                 className={styles.sub_child}
                 src={sub_child}
-                alt='Img'
+                alt="Img"
                 width={1608}
                 height={400}
               />
@@ -145,10 +95,10 @@ export default function Home() {
             </article>
             <article>
               <div className={styles.section_two_img}>
-                <Image src={bg_two_left} alt='Left_img' />
+                <Image src={bg_two_left} alt="Left_img" />
               </div>
               <div className={styles.section_two_img}>
-                <Image src={bg_two_right} alt='Right_img' />
+                <Image src={bg_two_right} alt="Right_img" />
               </div>
             </article>
           </section>
@@ -170,7 +120,7 @@ export default function Home() {
                 </p>
               </div>
               <div className={styles.three_img}>
-                <Image src={create} alt='Gif' />
+                <Image src={create} alt="Gif" />
               </div>
               <p className={styles.m_content}>
                 기존에 가지고 있던 UTM을 입력하면 파라미터 별<br />로 자동
@@ -189,7 +139,7 @@ export default function Home() {
                 검색한 UTM 결과를 다양하게 활용해보세요.
               </p>
               <div className={styles.four_img}>
-                <Image src={f_search} alt='Gif' />
+                <Image src={f_search} alt="Gif" />
               </div>
               <div className={styles.text_box}>
                 <p className={styles.sub_title}>필요한 UTM만 바로바로 필터링</p>
@@ -220,7 +170,7 @@ export default function Home() {
                 </p>
               </div>
               <div className={styles.five_img}>
-                <Image src={out} alt='Gif' />
+                <Image src={out} alt="Gif" />
               </div>
               <p className={styles.m_five_context}>
                 필요한 UTM만 선택하여 내보내기!
@@ -232,10 +182,10 @@ export default function Home() {
           <section className={styles.l_section_six}>
             <article>
               <div className={styles.m_mobile_six}>
-                <Image src={six} alt='IMG' />
+                <Image src={six} alt="IMG" />
               </div>
               <div className={styles.six_card_item}>
-                <Image src={bg_six_one} alt='IMG' />
+                <Image src={bg_six_one} alt="IMG" />
                 <h2>
                   여러개의 UTM을
                   <br />한 번에 만들어보세요
@@ -247,7 +197,7 @@ export default function Home() {
                 </p>
               </div>
               <div className={styles.six_card_item}>
-                <Image src={bg_six_two} alt='IMG' />
+                <Image src={bg_six_two} alt="IMG" />
                 <h2>
                   자주 쓰는 파라미터를
                   <br />
@@ -259,7 +209,7 @@ export default function Home() {
                 </p>
               </div>
               <div className={styles.six_card_item}>
-                <Image src={bg_six_three} alt='IMG' />
+                <Image src={bg_six_three} alt="IMG" />
                 <h2>
                   Shorten UTM기능으로
                   <br />긴 UTM 코드들을 간결하게
@@ -270,7 +220,7 @@ export default function Home() {
                 </p>
               </div>
             </article>
-            <Link href={"/webonly"}>
+            <Link href={'/webonly'}>
               <button>더 많은 기능 보러가기</button>
             </Link>
           </section>
@@ -280,22 +230,22 @@ export default function Home() {
               <Image
                 className={styles.seven_first_img}
                 src={seven_img}
-                alt='Img'
+                alt="Img"
               />
               <Image
                 className={styles.seven_sub_img}
                 src={seven_sub_img}
-                alt='Img'
+                alt="Img"
               />
-              <Link className={styles.origin_seven_button} href={"/login"}>
+              <Link className={styles.origin_seven_button} href={'/login'}>
                 <Image
-                  id='start_btn'
+                  id="start_btn"
                   className={styles.seven_button_img}
                   src={seven_button}
-                  alt='img'
+                  alt="img"
                 />
               </Link>
-              <Link href={"/webonly"}>
+              <Link href={'/webonly'}>
                 <button className={styles.m_seven_button}>
                   더 많은 기능 보러가기
                 </button>
@@ -307,36 +257,49 @@ export default function Home() {
               <div className={styles.e_cards}>
                 <h1>Contact Us</h1>
                 <p>Uwreckcar@gmail.com</p>
-                <p style={{ cursor: "pointer" }} onClick={onClickKakao}>
+                <Link href="https://open.kakao.com/o/sbK3Rfaf" target="_blank">
                   카카오톡 문의하기
-                </p>
+                </Link>
               </div>
               <div className={styles.e_cards}>
                 <h1>About 유렉카</h1>
-                <p style={{ cursor: "pointer" }} onClick={onClickNoti}>
+                <Link
+                  href="https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492"
+                  target="_blank"
+                >
                   공지사항
-                </p>
-                <p style={{ cursor: "pointer" }} onClick={onClickGuide}>
+                </Link>
+                <Link
+                  href="https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3"
+                  target="_blank"
+                >
                   이용 가이드
-                </p>
+                </Link>
                 <div className={styles.button_box}></div>
               </div>
               <div className={styles.e_cards}>
                 <h1>Privacy & Terms</h1>
-                <p style={{ cursor: "pointer" }} onClick={onClickLaw}>
-                  개인정보처리방침{" "}
-                </p>
-                <p style={{ cursor: "pointer" }} onClick={onClickUse}>
+                <Link
+                  href="https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e"
+                  target="_blank"
+                >
+                  개인정보처리방침{' '}
+                </Link>
+
+                <Link
+                  href="https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e"
+                  target="_blank"
+                >
                   이용약관
-                </p>
+                </Link>
               </div>
             </article>
             <div className={styles.e_line}>
-              <Image src={copyright} alt='copyright' width={168} height={15} />
+              <Image src={copyright} alt="copyright" width={168} height={15} />
             </div>
           </section>
         </div>
       </div>
     </>
-  )
+  );
 }

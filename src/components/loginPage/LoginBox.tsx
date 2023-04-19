@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import styles from "./LoginBox.module.css"
 import kakao_login from "public/assets/kakao_login.png"
@@ -5,7 +7,7 @@ import kakao_login from "public/assets/kakao_login.png"
 import { getCookie } from "src/util/async/Cookie"
 import { useEffect, useState } from "react"
 import { redirect } from "next/navigation"
-import { Modal } from "src/shared/modal/Modal"
+import { Modal } from "src/common/modal/Modal"
 
 import LocalLogin from "./LocalLogin"
 import logo from "public/assets/renderlogo.png"
@@ -71,7 +73,7 @@ const LoginBox = ({ router }: any) => {
         U렉카와 함께 쉽고 빠른 업무를 느껴보세요!
       </p>
       {alert && (
-        <Alert className={styles.alert} severity='warning'>
+        <Alert className={styles.alert} severity="warning">
           아직 개발 중입니다...! <strong>카카오로 바로 시작해보세요!</strong>
         </Alert>
       )}
@@ -79,7 +81,7 @@ const LoginBox = ({ router }: any) => {
       <LocalLogin setLocal={setLocal} />
       <button className={styles.kakao_btn} onClick={onClickKakaoBtn}>
         <p>
-          <Image className={styles.kakao_img} src={kakao_login} alt='' />
+          <Image className={styles.kakao_img} src={kakao_login} alt="" />
           <span> 카카오로 시작하기</span>
         </p>
       </button>
