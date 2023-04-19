@@ -8,27 +8,26 @@ import { delItem } from "src/redux/slice/addslice"
 import Modal from "@/src/common/type/Modal"
 import { BlueButton } from "@/src/common/button/blue_button/BlueButton"
 
+
 type OutputModalType = {
   isOpen: boolean
   onRequestClose: any
   style: any
   data: any
-  setRowSelection: any
 }
 export const DeleteModal: React.FC<OutputModalType> = ({
   isOpen,
   onRequestClose,
   style,
   data,
-  setRowSelection,
 }) => {
   const router = useRouter()
   const dispatch = useDispatch()
 
   const onClickDelHandler = () => {
     deleteUTM({ data }).then(() => {
-      setRowSelection({})
-      dispatch(delItem(isOpen))
+      dispatch(delSelectTable())
+      dispatch(selectTable({}))
     })
     onRequestClose()
     router.replace("/main")
@@ -38,7 +37,8 @@ export const DeleteModal: React.FC<OutputModalType> = ({
       <div
         className={styles.del_dialogBox}
         {...(isOpen && true ? { open: true } : {})}
-        id='favDialog'>
+        id="favDialog"
+      >
         <div className={styles.header}>
           <div className={styles.title_box}>
             <span className={styles.title}>UTM 삭제하기</span>
@@ -60,7 +60,8 @@ export const DeleteModal: React.FC<OutputModalType> = ({
           <button
             onClick={onRequestClose}
             className={styles.modal_del_button}
-            value='default'>
+            value="default"
+          >
             취소하기
           </button>
           {/* <button
