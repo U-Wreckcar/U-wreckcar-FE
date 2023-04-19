@@ -36,7 +36,6 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
   const {
     register,
     setError,
-    getValues,
     formState: { errors, isSubmitting },
     handleSubmit,
   } = useForm<LoginFormData>({ criteriaMode: "all", mode: "onChange" })
@@ -49,9 +48,9 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
     async (data: LoginFormData) => {
       try {
         const res = await localLogin({ data })
-        // if (remember) {
-        //   localStorage.setItem("userID", data.email)
-        // }
+        if (remember) {
+          localStorage.setItem("userID", data.email)
+        }
 
         setChanged(res.data)
         setCookie("access_token", res.data.access_token)
