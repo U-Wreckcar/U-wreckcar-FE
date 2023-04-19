@@ -1,32 +1,33 @@
-import React from 'react';
-import styles from './page.module.css';
-import Image from 'next/image';
+"use client"
+import React from "react"
+import styles from "./page.module.css"
+import Image from "next/image"
 // One
-import bg_one_illust from 'public/assets/render/bg-one-illust.png';
+import bg_one_illust from "public/assets/render/bg-one-illust.png"
 
-import sub_child from 'public/assets/sub_child.png';
+import sub_child from "public/assets/sub_child.png"
 // Sub
-import sub_img from 'public/assets/render/sub-main-img.png';
-import m_section_one_two from 'public/assets/m_section_one_two.png';
-import TryUTM from '../components/tryUTM/TryUTM';
+import sub_img from "public/assets/render/sub-main-img.png"
+import m_section_one_two from "public/assets/m_section_one_two.png"
+import TryUTM from "../components/tryUTM/TryUTM"
 // Two
-import bg_two_left from 'public/assets/render/bg-two-left.png';
-import bg_two_right from 'public/assets/render/bg-two-right.png';
+import bg_two_left from "public/assets/render/bg-two-left.png"
+import bg_two_right from "public/assets/render/bg-two-right.png"
 
-import bg_six_one from 'public/assets/render/bg-six-one.png';
-import bg_six_two from 'public/assets/render/bg-six-two.png';
-import bg_six_three from 'public/assets/render/bg-six-three.png';
-import six from 'public/assets/gif/six.gif';
-import seven_sub_img from 'public/assets/render/seven_sub_img.png';
-import seven_img from 'public/assets/render/seven_img.png';
-import seven_button from 'public/assets/render/seven_button.png';
-import create from 'public/assets/gif/create.gif';
-import f_search from 'public/assets/gif/f_search.gif';
-import out from 'public/assets/gif/out.gif';
+import bg_six_one from "public/assets/render/bg-six-one.png"
+import bg_six_two from "public/assets/render/bg-six-two.png"
+import bg_six_three from "public/assets/render/bg-six-three.png"
+import six from "public/assets/gif/six.gif"
+import seven_sub_img from "public/assets/render/seven_sub_img.png"
+import seven_img from "public/assets/render/seven_img.png"
+import seven_button from "public/assets/render/seven_button.png"
+import create from "public/assets/gif/create.gif"
+import f_search from "public/assets/gif/f_search.gif"
+import out from "public/assets/gif/out.gif"
 
-import copyright from 'public/assets/copyright.png';
-import Link from 'next/link';
-import ChangeText from '../components/render/ChangeText';
+import copyright from "public/assets/copyright.png"
+import Link from "next/link"
+import ChangeText from "../components/render/ChangeText"
 
 export default function Home() {
   return (
@@ -38,7 +39,7 @@ export default function Home() {
               <div className={styles.text_box}>
                 <ChangeText />
                 <p>UTM 업무 1시간? 유렉카에서는 3분이면 OK</p>
-                <Link className={styles.origin_free_btn} href={'/login'}>
+                <Link className={styles.origin_free_btn} href={"/login"}>
                   <button id="free_btn" className={styles.free_btn}>
                     무료로 시작하기
                   </button>
@@ -49,7 +50,7 @@ export default function Home() {
                 src={bg_one_illust}
                 alt="Img"
               />
-              <Link className={styles.m_free_btn} href={'/webonly'}>
+              <Link className={styles.m_free_btn} href={"/webonly"}>
                 <button id="free_btn" className={styles.free_btn}>
                   무료로 시작하기
                 </button>
@@ -220,7 +221,7 @@ export default function Home() {
                 </p>
               </div>
             </article>
-            <Link href={'/webonly'}>
+            <Link href={"/webonly"}>
               <button>더 많은 기능 보러가기</button>
             </Link>
           </section>
@@ -237,7 +238,7 @@ export default function Home() {
                 src={seven_sub_img}
                 alt="Img"
               />
-              <Link className={styles.origin_seven_button} href={'/login'}>
+              <Link className={styles.origin_seven_button} href={"/login"}>
                 <Image
                   id="start_btn"
                   className={styles.seven_button_img}
@@ -245,7 +246,7 @@ export default function Home() {
                   alt="img"
                 />
               </Link>
-              <Link href={'/webonly'}>
+              <Link href={"/webonly"}>
                 <button className={styles.m_seven_button}>
                   더 많은 기능 보러가기
                 </button>
@@ -283,7 +284,7 @@ export default function Home() {
                   href="https://unexpected-ceder-0b7.notion.site/567d742a0cac4441991e88ac540c659e"
                   target="_blank"
                 >
-                  개인정보처리방침{' '}
+                  개인정보처리방침{" "}
                 </Link>
 
                 <Link
@@ -301,5 +302,5 @@ export default function Home() {
         </div>
       </div>
     </>
-  );
+  )
 }
