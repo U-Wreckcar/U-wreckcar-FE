@@ -144,7 +144,7 @@ export default function SignUp() {
               color={"full"}
               text={"인증하기"}
               types={"button"}
-              confirmFN={emailConfirm}
+              clickEvent={emailConfirm}
             />
           </div>
           {errors.email && <p>{errors.email?.message}</p>}
@@ -160,18 +160,13 @@ export default function SignUp() {
                 disabled: emailNum === 0 || emailNum > 1 ? true : false,
               })}
             />
-            {/* <button
-              className={styles.confirm_button}
-              type='button'
-              onClick={confirmEmailNum}>
-              인증확인
-            </button> */}
+
             <BlueButton
               text={"인증하기"}
               types={"button"}
               color={"full"}
               size={"sm"}
-              confirmFN={confirmEmailNum}
+              clickEvent={confirmEmailNum}
             />
           </div>
           {errors.emailNum && <p>{errors.emailNum?.message}</p>}
@@ -270,18 +265,12 @@ export default function SignUp() {
           </div>
           {errors.marketing_accept && <p>{errors.marketing_accept?.message}</p>}
           <div className={styles.button_box}>
-            {/* <button
-              className={styles.signup_button}
-              type='submit'
-              disabled={isSubmitting}>
-              회원가입
-            </button> */}
             <BlueButton
               text={"회원가입"}
               types={"submit"}
               size={"md"}
               color={"full"}
-              confirmFN={confirmEmailNum}
+              clickEvent={confirmEmailNum}
             />
           </div>
         </form>
