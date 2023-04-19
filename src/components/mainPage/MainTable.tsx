@@ -58,7 +58,7 @@ type MainTableProps = {
   setTable: Dispatch<SetStateAction<Table<MainTableType> | null>>
   del: boolean
   filter: boolean
-
+}
 const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
   const [rowSelection, setRowSelection] = useState({})
   const [data, setData] = useState<Array<MainTableType>>([])
@@ -359,7 +359,6 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
                             style: {
                               width: "280px",
                             },
-
                           }}
                         >
                           {header.column.getCanFilter() &&
@@ -460,12 +459,11 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
                           cell.column.id !== "click_count" && (
                             <Tooltip title={`${cell.getValue()}`}>
                               <div
-                                className={
-                                  styles.td_box
-                                }>{`${cell.getValue()}`}</div>
+                                className={styles.td_box}
+                              >{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
-                    </td>
+                      </td>
                     )
                   })}
                 </tr>
@@ -533,7 +531,7 @@ const Filter = ({ column, table }: any) => {
             <div className={styles.dialog}>
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <DebouncedInput
-                  type='date'
+                  type="date"
                   value={(columnFilterValue ?? "") as string}
                   onChange={(value) => {
                     setStartDate(value)
@@ -541,27 +539,29 @@ const Filter = ({ column, table }: any) => {
                   list={column.id + "list"}
                 />
                 <DebouncedInput
-                  type='date'
+                  type="date"
                   value={(columnFilterValue ?? "") as string}
                   onChange={(value) => getDatesStartToLast(startDate, value)}
                   list={column.id + "list"}
                 />
                 <button
                   className={styles.dialog_button}
-                  onClick={() => setIsOpen(false)}>
+                  onClick={() => setIsOpen(false)}
+                >
                   X
                 </button>
               </div>
             </div>
           )}
           <input
-            type='text'
+            type="text"
             className={styles.search_input}
-            placeholder='기간 선택'
+            placeholder="기간 선택"
             onFocus={() => {
               setIsOpen(true)
               defaultData = dData
-            }}></input>
+            }}
+          ></input>
         </>
       )}
 
@@ -574,7 +574,7 @@ const Filter = ({ column, table }: any) => {
           </datalist>
           <DebouncedInput
             className={styles.search_input}
-            type='text'
+            type="text"
             value={(columnFilterValue ?? "") as string}
             onChange={(value) => column.setFilterValue(value)}
             placeholder={`검색 (${column.getFacetedUniqueValues().size})`}

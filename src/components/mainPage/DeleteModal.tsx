@@ -4,10 +4,9 @@ import b_close from "assets/b_close.png"
 import { deleteUTM } from "src/util/async/api"
 import { useRouter } from "next/navigation"
 import { useDispatch } from "react-redux"
-import { delItem } from "src/redux/slice/addslice"
+import { delItem, delSelectTable, selectTable } from "src/redux/slice/addslice"
 import Modal from "@/src/common/type/Modal"
 import { BlueButton } from "@/src/common/button/blue_button/BlueButton"
-
 
 type OutputModalType = {
   isOpen: boolean
@@ -64,18 +63,19 @@ export const DeleteModal: React.FC<OutputModalType> = ({
           >
             취소하기
           </button>
-          {/* <button
+          <button
             onClick={onClickDelHandler}
             className={styles.modal_button}
-            value='default'>
+            value="default"
+          >
             삭제하기
-          </button> */}
-          <BlueButton
+          </button>
+          {/* <BlueButton
             text={"삭제하기"}
             x={84}
             y={38}
             confirmFN={onClickDelHandler}
-          />
+          /> */}
         </div>
       </div>
     </Modal>
