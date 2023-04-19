@@ -63,19 +63,20 @@ export const DeleteModal: React.FC<OutputModalType> = ({
           >
             취소하기
           </button>
-          <button
+          {/* <button
             onClick={onClickDelHandler}
             className={styles.modal_button}
             value="default"
           >
             삭제하기
-          </button>
-          {/* <BlueButton
+          </button> */}
+          <BlueButton
             text={"삭제하기"}
-            x={84}
-            y={38}
-            confirmFN={onClickDelHandler}
-          /> */}
+            size={"sm"}
+            clickEvent={onClickDelHandler}
+            color={"full"}
+            types={"button"}
+          />
         </div>
       </div>
     </Modal>

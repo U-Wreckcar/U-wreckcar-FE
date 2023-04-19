@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import styles from "./LoginBox.module.css"
 import kakao_login from "public/assets/kakao_login.png"
