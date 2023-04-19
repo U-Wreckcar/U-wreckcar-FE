@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import Image from "next/image"
 import whitelogo from "public/assets/whitelogo.png"
+import { BlueTest } from "@/src/common/button/blue_button/BlueTest"
 export const RenderHeader = () => {
   const onClickNoti = () => {
     window.open(

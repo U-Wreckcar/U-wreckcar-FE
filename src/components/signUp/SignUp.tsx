@@ -1,5 +1,5 @@
 "use client"
-import { BlueButton } from "src/shared/button/BlueButton"
+import { BlueButton } from "@/src/common/button/blue_button/BlueButton"
 import { confirmEmail, signUp, verifyEmailNum } from "src/util/async/api"
 
 import { useRouter } from "next/navigation"
@@ -139,17 +139,11 @@ export default function SignUp() {
                 disabled: emailNum !== 0 ? true : false,
               })}
             />
-            {/* <button
-              className={styles.confirm_button}
-              type='button'
-              onClick={emailConfirm}>
-              인증하기
-            </button> */}
             <BlueButton
+              size={"sm"}
+              color={"full"}
               text={"인증하기"}
               types={"button"}
-              x={81}
-              y={38}
               confirmFN={emailConfirm}
             />
           </div>
@@ -175,8 +169,8 @@ export default function SignUp() {
             <BlueButton
               text={"인증하기"}
               types={"button"}
-              x={81}
-              y={38}
+              color={"full"}
+              size={"sm"}
               confirmFN={confirmEmailNum}
             />
           </div>
@@ -285,8 +279,8 @@ export default function SignUp() {
             <BlueButton
               text={"회원가입"}
               types={"submit"}
-              x={150}
-              y={46}
+              size={"md"}
+              color={"full"}
               confirmFN={confirmEmailNum}
             />
           </div>

@@ -12,9 +12,9 @@ import { useEffect, useState } from "react"
 
 import Axios from "src/util/async/axiosConfig"
 import { Alert, AlertTitle, CircularProgress } from "@mui/material"
-import Modal from "src/util/type/Modal"
+import Modal from "@/src/common/type/Modal"
 
-import { BlueButton } from "src/shared/button/BlueButton"
+import { BlueButton } from "@/src/common/button/blue_button/BlueButton"
 import { useDispatch } from "react-redux"
 import { delSelectTable } from "@/src/redux/slice/addslice"
 
@@ -215,9 +215,10 @@ export const OutputModal: React.FC<OutputModalType> = ({
             // </button>
             <BlueButton
               text={"추출하기"}
-              x={84}
-              y={38}
               confirmFN={onClickPopHandler}
+              size={"sm"}
+              color={"full"}
+              types={"button"}
             />
           )}
         </div>

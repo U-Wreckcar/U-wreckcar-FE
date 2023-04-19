@@ -1,4 +1,4 @@
-import Modal from "src/util/type/Modal"
+import Modal from "@/src/common/type/Modal"
 import { removeUser } from "src/util/async/api"
 import { setClientHeaders } from "src/util/async/axiosConfig"
 import { getCookie, removeCookie, setCookie } from "src/util/async/Cookie"
@@ -79,13 +79,12 @@ const UserDelModal = ({ isOpen, onRequestClose }: any) => {
                     <label>
                       <input
                         onClick={(e) => onclickCheck(e)}
-                        type="checkbox"
-                        name="check"
+                        type='checkbox'
+                        name='check'
                         id={category.reason}
                         onChange={(e) => {
                           setCheck(e.target.id)
-                        }}
-                      ></input>
+                        }}></input>
                       {category.reason}
                     </label>
                   </div>
@@ -96,22 +95,20 @@ const UserDelModal = ({ isOpen, onRequestClose }: any) => {
                 <label>
                   <input
                     onClick={(e) => onclickCheck(e)}
-                    type="checkbox"
-                    name="check"
-                    id="기타"
-                  ></input>
+                    type='checkbox'
+                    name='check'
+                    id='기타'></input>
                   기타
                 </label>
                 <input
                   ref={etc_ref}
-                  type="text"
+                  type='text'
                   className={styles.other_input}
-                  placeholder="이유를 간단히 입력해주세요."
+                  placeholder='이유를 간단히 입력해주세요.'
                   maxLength={200}
                   onBlur={() => {
                     setCheck(etc_ref.current?.value)
-                  }}
-                ></input>
+                  }}></input>
               </div>
             </div>
           </div>
@@ -131,8 +128,7 @@ const UserDelModal = ({ isOpen, onRequestClose }: any) => {
           <div className={styles.button_box}>
             <button
               className={styles.out_button}
-              onClick={() => removeUserHandler()}
-            >
+              onClick={() => removeUserHandler()}>
               탈퇴하기
             </button>
             <button className={styles.cancel_button} onClick={onRequestClose}>
