@@ -10,17 +10,17 @@ interface PropsType {
   size: ButtonSize
   types: ButtonType
   disabled?: boolean
-  confirmFN?: () => void
+  clickEvent?: () => void
   typeEvent?: (e: any) => void
 }
 
 export const BlueButton: React.FC<PropsType> = (props) => {
-  const { text, confirmFN, typeEvent, types, disabled, size, color } = props
+  const { text, clickEvent, typeEvent, types, disabled, size, color } = props
 
   return (
     <button
       className={`${styles.blue_button_style} ${styles[size]} ${styles[color]}`}
-      onClick={confirmFN ? confirmFN : typeEvent}
+      onClick={clickEvent ? clickEvent : typeEvent}
       type={types}
       disabled={disabled}>
       {text}

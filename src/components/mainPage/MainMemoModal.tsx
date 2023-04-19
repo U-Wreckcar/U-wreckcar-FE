@@ -70,7 +70,7 @@ export const EditModal: React.FC<EditModalType> = ({
           <BlueButton
             size={"sm"}
             color={"full"}
-            confirmFN={onClickEditButton}
+            clickEvent={onClickEditButton}
             text={"수정하기"}
             types={"button"}
           />

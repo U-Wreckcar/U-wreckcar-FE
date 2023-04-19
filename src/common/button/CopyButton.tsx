@@ -4,6 +4,7 @@ import Image from "next/image"
 import check from "assets/icons.png"
 import styles from "./copy.module.css"
 import Alert from "./Alert"
+import { BlueButton } from "./blue_button/BlueButton"
 
 type CopyButtonProps = {
   text: string
@@ -38,13 +39,18 @@ export const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
           onClickEvent={setAlert}
         />
       )}
-      <button
-        id="copy_btn"
+      {/* <button
+        id='copy_btn'
         className={styles.copy_button}
-        onClick={onClickCopyBtn}
-      >
+        onClick={onClickCopyBtn}>
         복사하기
-      </button>
+      </button> */}
+      <BlueButton
+        text={"복사하기"}
+        types={"button"}
+        color={"tp"}
+        size={"sm"}
+        clickEvent={onClickCopyBtn}></BlueButton>
     </>
   )
 }
