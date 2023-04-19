@@ -1,4 +1,4 @@
-import React, { HTMLProps } from "react"
+import React, { HTMLProps } from 'react';
 
 // A debounced input react component
 export function DebouncedInput({
@@ -7,23 +7,23 @@ export function DebouncedInput({
   debounce = 500,
   ...props
 }: {
-  value: string | number
-  onChange: (value: string | number) => void
-  debounce?: number
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange">) {
-  const [value, setValue] = React.useState(initialValue)
+  value: string | number;
+  onChange: (value: string | number) => void;
+  debounce?: number;
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>) {
+  const [value, setValue] = React.useState(initialValue);
 
   React.useEffect(() => {
-    setValue(initialValue)
-  }, [initialValue])
+    setValue(initialValue);
+  }, [initialValue]);
 
   React.useEffect(() => {
     const timeout = setTimeout(() => {
-      onChange(value)
-    }, debounce)
+      onChange(value);
+    }, debounce);
 
-    return () => clearTimeout(timeout)
-  }, [value])
+    return () => clearTimeout(timeout);
+  }, [value]);
 
   return (
     <input
@@ -31,27 +31,27 @@ export function DebouncedInput({
       value={value}
       onChange={(e) => setValue(e.target.value)}
     />
-  )
+  );
 }
 export function IndeterminateCheckbox({
   indeterminate,
-  className = "",
+  className = '',
   ...rest
 }: { indeterminate?: boolean } & HTMLProps<HTMLInputElement>) {
-  const ref = React.useRef<HTMLInputElement>(null!)
+  const ref = React.useRef<HTMLInputElement>(null!);
 
   React.useEffect(() => {
-    if (typeof indeterminate === "boolean") {
-      ref.current.indeterminate = !rest.checked && indeterminate
+    if (typeof indeterminate === 'boolean') {
+      ref.current.indeterminate = !rest.checked && indeterminate;
     }
-  }, [ref, indeterminate])
+  }, [ref, indeterminate]);
 
   return (
     <input
       type="checkbox"
       ref={ref}
-      className={className + " cursor-pointer"}
+      className={className + ' cursor-pointer'}
       {...rest}
     />
-  )
+  );
 }

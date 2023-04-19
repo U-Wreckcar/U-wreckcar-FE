@@ -17,7 +17,7 @@
 * Section One 
 */
 .l_section_one {
-  background-image: url("../../public/assets/render/bg-one.png");
+  background-image: url('../../public/assets/render/bg-one.png');
   background-size: 100vw 100%;
   background-position: center;
   /* background-repeat: no-repeat; */
@@ -355,7 +355,7 @@
   align-items: center;
   gap: 150px;
 
-  background-image: url("../../public/assets/render/bg-six.png");
+  background-image: url('../../public/assets/render/bg-six.png');
   background-size: auto;
   background-position: center;
   width: 100%;
@@ -418,7 +418,7 @@
   text-align: center;
   align-items: center;
 
-  background-image: url("../../public/assets/render/bg-seven.png");
+  background-image: url('../../public/assets/render/bg-seven.png');
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -474,7 +474,7 @@
 .l_section_eight article:nth-child(1) {
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
+  margin-top: 55px;
   width: 1111px;
   height: 165px;
 }
@@ -491,13 +491,19 @@
   height: 24px;
 }
 .l_section_eight h1 {
+  margin-bottom: 15px;
   font-size: 0.7rem;
 }
 .l_section_eight p {
   font-size: 0.7rem;
   font-weight: 400;
   color: #626262;
-  margin-top: 15px;
+  margin-bottom: 5px;
+}
+.l_section_eight a {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #626262;
 }
 .button_box img {
   margin-top: 10px;
@@ -527,7 +533,7 @@
     height: 600px;
   }
   .l_section_one {
-    background-image: url("../../public/assets/render/bg-one.png");
+    background-image: url('../../public/assets/render/bg-one.png');
     background-size: 100vw 100%;
     background-position: center;
     /* background-repeat: no-repeat; */
@@ -826,7 +832,7 @@
     align-items: center;
     gap: 0;
 
-    background-image: url("../../public/assets/render/bg-six.png");
+    background-image: url('../../public/assets/render/bg-six.png');
     background-size: auto;
     background-position: center;
     width: 100%;
@@ -885,7 +891,7 @@
     height: 600px;
   }
   .l_section_one {
-    background-image: url("../../public/assets/render/bg-one.png");
+    background-image: url('../../public/assets/render/bg-one.png');
     background-size: 100vw 100%;
     background-position: center;
     /* background-repeat: no-repeat; */
@@ -1184,7 +1190,7 @@
     align-items: center;
     gap: 0;
 
-    background-image: url("../../public/assets/render/bg-six.png");
+    background-image: url('../../public/assets/render/bg-six.png');
     background-size: auto;
     background-position: center;
     width: 100%;
