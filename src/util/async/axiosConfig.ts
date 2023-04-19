@@ -23,7 +23,6 @@ export const setClientHeaders = (
   access_token: string,
   refresh_token: string
 ) => {
-  console.log("hi")
   instance.interceptors.request.use(async function (config: any) {
     instance.defaults.headers.common.Authorization = `Bearer ${access_token}`
     instance.defaults.headers.common[
