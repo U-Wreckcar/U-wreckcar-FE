@@ -22,10 +22,15 @@
 .tp {
   background-color: transparent;
   border: 1px solid var(--color-blue-500);
+  color: var(--color-blue-500);
+  font-size: 12px;
 }
 .tp:hover {
   color: var(--color-white-100);
   background-color: #484bff;
+}
+.tp:active {
+  background-color: var(--color-blue-700);
 }
 
 .full {
