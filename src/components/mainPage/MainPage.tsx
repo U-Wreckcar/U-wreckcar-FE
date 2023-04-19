@@ -2,7 +2,6 @@
 
 import { useEffect, useState, lazy, Suspense } from "react"
 import { Provider, useDispatch, useSelector } from "react-redux"
-import store from "src/redux/store/store"
 import { useRouter } from "next/navigation"
 import dynamic from "next/dynamic"
 import { getCookie } from "src/util/async/Cookie"
@@ -15,11 +14,12 @@ import { DeleteModal } from "./DeleteModal"
 import { AddUtmModal } from "../sidebar/AddUtmModal"
 import { EditModal } from "./MainMemoModal"
 import { customStyles } from "../loginPage/LoginModal"
+import { delSelectTable } from "@/src/redux/slice/addslice"
+import { Table } from "@tanstack/react-table"
+
 import filterImg from "public/assets/filter.png"
 import plusImg from "public/assets/plus.png"
 import Image from "next/image"
-import { delSelectTable } from "@/src/redux/slice/addslice"
-import { Table } from "@tanstack/react-table"
 
 const MainTable = dynamic(() => import("./MainTable"), { ssr: false })
 
@@ -122,7 +122,6 @@ export default function MainPageComponent() {
 
   return (
     <div id="root">
-      {/* <Provider store={store}> */}
       {warningAlert && (
         <Alert severity="warning">
           <AlertTitle>Warning</AlertTitle>
@@ -199,7 +198,6 @@ export default function MainPageComponent() {
         </div>
         <MainTable setTable={setTable} del={del} filter={filter} />
       </div>
-      {/* </Provider> */}
     </div>
   )
 }
