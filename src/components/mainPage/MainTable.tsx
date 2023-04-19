@@ -289,11 +289,8 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
   }, [select])
 
   return (
-    <div>
+    <div className={styles.main_wrap}>
       <div className={styles.table_scroll}>
-        <div className="h-2" />
-        <div className="h-4" />
-        <div className="overflow-x-auto"></div>
         <table
           className={styles.table}
           {...{
@@ -470,7 +467,6 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
         </table>
       </div>
     </div>
-    // </div>
   )
 }
 
