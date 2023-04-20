@@ -1,28 +1,31 @@
-"use client"
-import React, { useState } from "react"
-import styles from "./userinfo.module.css"
-import Image from "next/image"
-import { myProfile } from "src/util/async/api"
-import { useQuery } from "@tanstack/react-query"
-import UserDelModal from "src/components/loginPage/UserDelModal"
+'use client';
+import React, { useState } from 'react';
+import styles from './userinfo.module.css';
+import Image from 'next/image';
+import { myProfile } from 'src/util/async/api';
+import { useQuery } from '@tanstack/react-query';
+import UserDelModal from 'src/components/loginPage/UserDelModal';
+import { getCookie } from '@/src/util/async/Cookie';
 
 interface UserProfile {
-  username: string
-  email: string
-  age: number
-  profile_img: any
-  created_at: string
+  username: string;
+  email: string;
+  age: number;
+  profile_img: any;
+  created_at: string;
   // Add more properties as needed
 }
 
 export default function UserPage() {
-  const [userData, setUserData] = useState<UserProfile | undefined>()
-  const [modal, setModal] = useState(false)
+  const access_token = getCookie('access_token');
+  const refresh_token = getCookie('refresh_token');
+  const [userData, setUserData] = useState<UserProfile | undefined>();
+  const [modal, setModal] = useState(false);
 
   const { data, isError, isLoading, isSuccess } = useQuery({
-    queryKey: ["userInfo"],
-    queryFn: myProfile,
-  })
+    queryKey: ['userInfo'],
+    queryFn: () => myProfile(access_token, refresh_token),
+  });
 
   // const createDate = userData?.created_at.substring(0, 10)
 
@@ -37,7 +40,7 @@ export default function UserPage() {
             <Image
               className={styles.img}
               src={data?.data?.profile_img}
-              alt=''
+              alt=""
               width={180}
               height={180}
               unoptimized={true}
@@ -62,7 +65,8 @@ export default function UserPage() {
         <div>
           <button
             className={styles.delete_button}
-            onClick={() => setModal(true)}>
+            onClick={() => setModal(true)}
+          >
             회원탈퇴
           </button>
         </div>
@@ -71,5 +75,5 @@ export default function UserPage() {
         )}
       </section>
     </>
-  )
+  );
 }
