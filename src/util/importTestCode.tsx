@@ -1,29 +1,29 @@
-import React, { FormEvent, useRef, useState } from "react"
-import Axios from "src/util/async/axiosConfig"
+import React, { FormEvent, useRef, useState } from 'react';
+import Axios from 'src/util/async/intercepter';
 
 export default function testp() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [excel, setExcel] = useState(false)
+  const [excel, setExcel] = useState(false);
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const fileRef = useRef<HTMLInputElement>(null)
+  const fileRef = useRef<HTMLInputElement>(null);
 
   const tsfn = (e: FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (fileRef.current) {
-      console.log(fileRef.current.files)
-      const fileDate = fileRef.current.files
-      const formData = new FormData()
+      console.log(fileRef.current.files);
+      const fileDate = fileRef.current.files;
+      const formData = new FormData();
       // @ts-ignore
       Array.from(fileDate).forEach((el: any) => {
-        formData.append("userfile", el)
-      })
-      asyncfile(fileDate)
+        formData.append('userfile', el);
+      });
+      asyncfile(fileDate);
     }
-  }
+  };
   const asyncfile = async (formdata: any) => {
-    const res = await Axios.post("utms/importdata", formdata)
-    console.log(res)
-  }
+    const res = await Axios.post('utms/importdata', formdata);
+    console.log(res);
+  };
 
   // const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
   //   <Tooltip {...props} classes={{ popper: className }} />
@@ -69,8 +69,8 @@ export default function testp() {
       >
         <button onClick={() => setExcel(true)}>HTML</button>
       </HtmlTooltip> */}
-      <input ref={fileRef} type='file' />
+      <input ref={fileRef} type="file" />
       <button onClick={tsfn}>추출하기</button>
     </form>
-  )
+  );
 }
