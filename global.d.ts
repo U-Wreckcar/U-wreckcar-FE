@@ -1,16 +1,17 @@
 declare module "*.css" {
-  const content: { [className: string]: string }
-  export = content
+   const content: { [className: string]: string };
+   export = content;
 }
-// declare module "*.sass" {
-//   const content: { [className: string]: string }
-//   export = content
-// }
+
 declare module "*.png" {
-  const value: any
-  export default value
+   const value: any;
+   export default value;
 }
 declare module "*.mp4" {
-  const value: any
-  export default value
+   const value: any;
+   export default value;
+}
+declare module "*.ttf" {
+   const value: string;
+   export default value;
 }

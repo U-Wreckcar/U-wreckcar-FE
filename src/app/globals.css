@@ -1,65 +1,59 @@
 * {
-  font-size: 20px;
-  margin: 0;
-  padding: 0;
+   font-size: 20px;
+   margin: 0;
+   padding: 0;
 }
 @media screen and (max-width: 480px) {
-  * {
-    font-size: 14px;
-  }
+   * {
+      font-size: 14px;
+   }
 }
 
 :root {
-  /* Color */
-  --color-white-100: #ffffff;
-  --color-white-200: #f7f7f7;
-  --color-white-300: #dfdfdf;
-  --color-white-400: #cecece;
-  --color-gray: #a5a5a5;
-  --color-darkgray: #242424;
-  --color-black: #000000;
-  --color-background-blue-50: #e2f3ff;
-  --color-blue-400: #4c70ff;
-  --color-blue-500: #484bff;
-  --color-blue-700: #0c1ba6;
-  --color-blue-900: #0a0d54;
+   /* Color */
+   --color-white-100: #ffffff;
+   --color-white-200: #f7f7f7;
+   --color-white-300: #dfdfdf;
+   --color-white-400: #cecece;
+   --color-gray: #a5a5a5;
+   --color-darkgray: #242424;
+   --color-black: #000000;
+   --color-background-blue-50: #e2f3ff;
+   --color-blue-400: #4c70ff;
+   --color-blue-500: #484bff;
+   --color-blue-700: #0c1ba6;
+   --color-blue-900: #0a0d54;
 
-  /* Font */
-  --font-title-headline28: 28px;
-  --font-title-subhaed20: 20px;
-  --font-title-headline16: 16px;
-  --font-title-headline14: 14px;
-  --font-category: 16px;
-  --font-body: 14px;
-  --font-ception: 12px;
+   /* Font */
+   --font-title-headline28: 28px;
+   --font-title-subhaed20: 20px;
+   --font-title-headline16: 16px;
+   --font-title-headline14: 14px;
+   --font-category: 16px;
+   --font-body: 14px;
+   --font-ception: 12px;
 
-  /* Font-weight */
-  --weight-bold: 700;
-  --weight-semi-bold: 600;
-  --weight-regular: 400;
+   /* Font-weight */
+   --weight-bold: 700;
+   --weight-semi-bold: 600;
+   --weight-regular: 400;
 
-  /* Animation */
-  --animation-duration: 370ms;
+   /* Animation */
+   --animation-duration: 370ms;
 }
-
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
 body {
-  margin: 0;
-  height: 100vh;
-  width: 100vw;
+   margin: 0;
+   height: 100vh;
+   width: 100vw;
 
-  min-height: 100vh;
-  overflow-x: hidden;
-  box-sizing: border-box;
-  background-color: #f5f9fc;
-  font-family: 'Pretendard Variable', Pretendard, -apple-system,
-    BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
-    'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+   min-height: 100vh;
+   overflow-x: hidden;
+   box-sizing: border-box;
+   background-color: #f5f9fc;
 }
 .CircularUnderLoad-root {
-  size: 100px;
+   size: 100px;
 }
 ul,
 ol,
@@ -70,67 +64,67 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Pretendard';
-  list-style: none;
-  font-size: inherit;
-  color: inherit;
-  margin: 0;
-  padding: 0;
+   /* font-family: "Pretendard"; */
+   list-style: none;
+   font-size: inherit;
+   color: inherit;
+   margin: 0;
+   padding: 0;
 }
 h1 {
-  font-size: 2rem;
-  font-weight: 700;
+   font-size: 2rem;
+   font-weight: 700;
 }
 h2 {
-  font-size: 2rem;
-  font-weight: 500;
+   font-size: 2rem;
+   font-weight: 500;
 }
 p {
-  font-size: 0.8rem;
-  font-weight: 400;
+   font-size: 0.8rem;
+   font-weight: 400;
 }
 a {
-  text-decoration: none;
-  color: inherit;
-  font-family: 'Pretendard';
+   text-decoration: none;
+   color: inherit;
+   /* font-family: "Pretendard"; */
 }
 label {
-  cursor: pointer;
+   cursor: pointer;
 }
 
 button {
-  font-family: 'Pretendard';
-  background-color: transparent;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+   /* font-family: "Pretendard"; */
+   background-color: transparent;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
 }
 
 input {
-  font-family: 'Pretendard Variable', 'Pretendard';
-  margin: 0;
-  border-radius: 4px;
-  padding: 0 10px;
-  accent-color: #484bff;
-  /* box-sizing: border-box; */
+   /* font-family: "Pretendard Variable", "Pretendard"; */
+   margin: 0;
+   border-radius: 4px;
+   padding: 0 10px;
+   accent-color: #484bff;
+   /* box-sizing: border-box; */
 }
 /* input::placeholder {
 } */
 input:checked {
-  accent-color: #484bff;
+   accent-color: #484bff;
 }
 input:focus {
-  outline: none;
+   outline: none;
 }
 input::placeholder {
-  font-size: 0.7rem;
+   font-size: 0.7rem;
 }
 textarea {
-  font-family: 'Pretendard Variable', 'Pretendard';
-  outline: none;
-  vertical-align: middle;
-  resize: none;
+   /* font-family: "Pretendard Variable", "Pretendard"; */
+   outline: none;
+   vertical-align: middle;
+   resize: none;
 }
 div {
-  font-family: 'Pretendard Variable', 'Pretendard';
+   /* font-family: "Pretendard Variable", "Pretendard"; */
 }
