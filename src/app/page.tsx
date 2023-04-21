@@ -1,28 +1,25 @@
-"use client"
-import React from "react"
-import styles from "./page.module.css"
-import Image from "next/image"
-import Link from "next/link"
-import bg_one_illust from "public/assets/render/bg-one-illust.png"
-import sub_child from "public/assets/sub_child.png"
-import sub_img from "public/assets/render/sub-main-img.png"
-import m_section_one_two from "public/assets/m_section_one_two.png"
-import TryUTM from "../components/tryUTM/TryUTM"
-import bg_two_left from "public/assets/render/bg-two-left.png"
-import bg_two_right from "public/assets/render/bg-two-right.png"
-import bg_six_one from "public/assets/render/bg-six-one.png"
-import bg_six_two from "public/assets/render/bg-six-two.png"
-import bg_six_three from "public/assets/render/bg-six-three.png"
-import six from "public/assets/gif/six.gif"
-import seven_sub_img from "public/assets/render/seven_sub_img.png"
-import seven_img from "public/assets/render/seven_img.png"
-import seven_button from "public/assets/render/seven_button.png"
-import create from "public/assets/gif/create.gif"
-import f_search from "public/assets/gif/f_search.gif"
-import out from "public/assets/gif/out.gif"
+"use client";
+import React from "react";
+import styles from "./page.module.css";
+import Image from "next/image";
+import Link from "next/link";
+import TryUTM from "../components/tryUTM/TryUTM";
+import ChangeText from "../components/render/ChangeText";
+import { m_section_one_two, sub_child, copyright } from "public/assets";
+import { six, create, f_search, out } from "public/assets/gif";
+import {
+   sub_img,
+   seven_img,
+   bg_six_one,
+   bg_six_two,
+   bg_two_left,
+   bg_two_right,
+   bg_six_three,
+   seven_sub_img,
+   bg_one_illust,
+   seven_button,
+} from "public/assets/render/index";
 
-import copyright from "public/assets/copyright.png"
-import ChangeText from "../components/render/ChangeText"
 export default function Home() {
    return (
       <>
@@ -51,13 +48,7 @@ export default function Home() {
                   <article>
                      <Image className={styles.web_sub} src={sub_img} alt="Img" />
                      <Image className={styles.m_sub} src={m_section_one_two} alt="Img" />
-                     <Image
-                        className={styles.sub_child}
-                        src={sub_child}
-                        alt="Img"
-                        width={1608}
-                        height={400}
-                     />
+                     <Image className={styles.sub_child} src={sub_child} alt="Img" width={1608} height={400} />
                   </article>
                </section>
                <section className={styles.try_section}>
@@ -212,12 +203,7 @@ export default function Home() {
                      <Image className={styles.seven_first_img} src={seven_img} alt="Img" />
                      <Image className={styles.seven_sub_img} src={seven_sub_img} alt="Img" />
                      <Link className={styles.origin_seven_button} href={"/login"}>
-                        <Image
-                           id="start_btn"
-                           className={styles.seven_button_img}
-                           src={seven_button}
-                           alt="img"
-                        />
+                        <Image id="start_btn" className={styles.seven_button_img} src={seven_button} alt="img" />
                      </Link>
                      <Link href={"/webonly"}>
                         <button className={styles.m_seven_button}>더 많은 기능 보러가기</button>
@@ -273,5 +259,5 @@ export default function Home() {
             </div>
          </div>
       </>
-   )
+   );
 }
