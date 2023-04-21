@@ -1,90 +1,90 @@
-import Image from 'next/image';
-import styles from './main.module.css';
+import Image from "next/image"
+import styles from "./main.module.css"
 
-import not_sheet from 'public/assets/sheet.png';
-import not_excel from 'public/assets/execel.png';
+import not_sheet from "public/assets/sheet.png"
+import not_excel from "public/assets/execel.png"
 
-import active_sheet from 'public/assets/blue_sheet.png';
-import active_excel from 'public/assets/blue_excel.png';
+import active_sheet from "public/assets/blue_sheet.png"
+import active_excel from "public/assets/blue_excel.png"
 
-import b_close from 'public/assets/b_close.png';
-import { useEffect, useState } from 'react';
+import b_close from "public/assets/b_close.png"
+import { useEffect, useState } from "react"
 
-import Axios from 'src/util/async/intercepter';
-import { Alert, AlertTitle, CircularProgress } from '@mui/material';
-import Modal from '@/src/common/type/Modal';
+import Axios from "src/util/async/intercepter"
+import { Alert, AlertTitle, CircularProgress } from "@mui/material"
+import Modal from "@/src/common/type/Modal"
 
-import { BlueButton } from '@/src/common/button/blue_button/BlueButton';
-import { useDispatch } from 'react-redux';
-import { delSelectTable } from '@/src/redux/slice/addslice';
+import { BlueButton } from "@/src/common/button/blue_button/BlueButton"
+import { delSelectTable } from "@/src/redux/slice/addslice"
+import { useAppDispatch } from "@/src/util/reduxType/type"
 
 type OutputModalType = {
-  isOpen: boolean;
-  onRequestClose: any;
-  style: any;
-  dataList: any;
-};
+  isOpen: boolean
+  onRequestClose: any
+  style: any
+  dataList: any
+}
 export const OutputModal: React.FC<OutputModalType> = ({
   isOpen,
   onRequestClose,
   style,
   dataList,
 }) => {
-  const [sheet, setSheet] = useState(false);
-  const [excel, setExcel] = useState(false);
-  const [alert, setAlert] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
+  const [sheet, setSheet] = useState(false)
+  const [excel, setExcel] = useState(false)
+  const [alert, setAlert] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const dispatch = useAppDispatch()
 
   async function onClickPopHandler() {
     if (excel) {
       try {
-        setLoading(true);
+        setLoading(true)
         const response = await Axios.post(
-          'utms/toxlsx',
+          "utms/toxlsx",
           { data: dataList },
           {
-            responseType: 'blob',
+            responseType: "blob",
           }
-        );
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const a = document.createElement('a');
-        a.href = url;
-        const timestamp = new Date(Date.now()).toISOString().slice(0, 10);
-        a.download = `${timestamp}.xlsx`;
-        a.click();
-        window.URL.revokeObjectURL(url);
-        onRequestClose();
-        setLoading(false);
-        dispatch(delSelectTable());
+        )
+        const url = window.URL.createObjectURL(new Blob([response.data]))
+        const a = document.createElement("a")
+        a.href = url
+        const timestamp = new Date(Date.now()).toISOString().slice(0, 10)
+        a.download = `${timestamp}.xlsx`
+        a.click()
+        window.URL.revokeObjectURL(url)
+        onRequestClose()
+        setLoading(false)
+        dispatch(delSelectTable())
       } catch (error) {
-        setLoading(false);
-        setAlert(true);
-        console.error('download error', error);
+        setLoading(false)
+        setAlert(true)
+        console.error("download error", error)
       }
     }
 
     if (sheet) {
       try {
-        setLoading(true);
-        const response = await Axios.post('utms/export/sheet/csv', dataList, {
-          responseType: 'blob',
-        });
+        setLoading(true)
+        const response = await Axios.post("utms/export/sheet/csv", dataList, {
+          responseType: "blob",
+        })
         // const response = await getData("export/sheet/csv")
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const a = document.createElement('a');
-        a.href = url;
-        const timestamp = new Date(Date.now()).toISOString().slice(0, 10);
-        a.download = `${timestamp}.csv`;
-        a.click();
-        window.URL.revokeObjectURL(url);
-        onRequestClose();
-        setLoading(false);
-        dispatch(delSelectTable());
+        const url = window.URL.createObjectURL(new Blob([response.data]))
+        const a = document.createElement("a")
+        a.href = url
+        const timestamp = new Date(Date.now()).toISOString().slice(0, 10)
+        a.download = `${timestamp}.csv`
+        a.click()
+        window.URL.revokeObjectURL(url)
+        onRequestClose()
+        setLoading(false)
+        dispatch(delSelectTable())
       } catch (error) {
-        setLoading(false);
-        setAlert(true);
-        console.error('download error', error);
+        setLoading(false)
+        setAlert(true)
+        console.error("download error", error)
       }
     }
   }
@@ -92,19 +92,19 @@ export const OutputModal: React.FC<OutputModalType> = ({
   useEffect(() => {
     if (alert) {
       setTimeout(() => {
-        setAlert(false);
-      }, 3000);
+        setAlert(false)
+      }, 3000)
     }
-  }, [alert]);
+  }, [alert])
 
   useEffect(() => {
     if (excel) {
-      setSheet(false);
+      setSheet(false)
     }
     if (sheet) {
-      setExcel(false);
+      setExcel(false)
     }
-  }, [excel, sheet]);
+  }, [excel, sheet])
 
   return (
     <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
@@ -192,15 +192,15 @@ export const OutputModal: React.FC<OutputModalType> = ({
             </button>
           ) : (
             <BlueButton
-              text={'추출하기'}
+              text={"추출하기"}
               clickEvent={onClickPopHandler}
-              size={'sm'}
-              color={'full'}
-              types={'button'}
+              size={"sm"}
+              color={"full"}
+              types={"button"}
             />
           )}
         </div>
       </div>
     </Modal>
-  );
-};
+  )
+}

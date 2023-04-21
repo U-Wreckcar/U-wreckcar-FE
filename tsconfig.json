@@ -32,7 +32,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/loading.js",
-    "src/components/mainPage/TableData.tsc"
   ],
   "exclude": ["node_modules"]
 }
