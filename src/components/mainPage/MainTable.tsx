@@ -66,8 +66,8 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   )
-  const isOpen = useAppSelector((state: any) => state.add.isOpen)
-  const select = useAppSelector((state: any) => state.add.select)
+  const isOpen = useAppSelector((state) => state.add.isOpen)
+  const select = useAppSelector((state) => state.add.select)
 
   /** Get 요청 */
   const getData = async () => {

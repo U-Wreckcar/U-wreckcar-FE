@@ -38,8 +38,8 @@ export default function MainPageComponent() {
   const [target, setTarget] = useState("")
   const [inputValue, setInputValue] = useState("")
 
-  const data = useAppSelector((state: any) => state.add.data)
-  const rowSelection = useAppSelector((state: any) => state.add.select)
+  const data = useAppSelector((state) => state.add.data)
+  const rowSelection = useAppSelector((state) => state.add.select)
   const dispatch = useAppDispatch()
   const router = useRouter()
 
