@@ -3,10 +3,10 @@ import styles from "./main.module.css"
 import b_close from "assets/b_close.png"
 import { deleteUTM } from "src/util/async/api"
 import { useRouter } from "next/navigation"
-import { useDispatch } from "react-redux"
 import { delItem, delSelectTable, selectTable } from "src/redux/slice/addslice"
 import Modal from "@/src/common/type/Modal"
 import { BlueButton } from "@/src/common/button/blue_button/BlueButton"
+import { useAppDispatch } from "@/src/util/reduxType/type"
 
 type OutputModalType = {
   isOpen: boolean
@@ -21,7 +21,7 @@ export const DeleteModal: React.FC<OutputModalType> = ({
   data,
 }) => {
   const router = useRouter()
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onClickDelHandler = () => {
     deleteUTM({ data }).then(() => {
