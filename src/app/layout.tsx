@@ -7,6 +7,7 @@ import Script from "next/script";
 import "./globals.css";
 const pretendard = localFont({
    src: "../../public/assets/font/Pretendard-Regular.ttf",
+   variable: "--font-pretendard",
    display: "swap",
 });
 export const metadata: Metadata = {
