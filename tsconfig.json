@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "es5",
-    // "types": ["@types/gtag.js"],
+    "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
+    "removeComments": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -31,7 +31,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/loading.js",
+    "app/loading.js"
   ],
   "exclude": ["node_modules"]
 }

@@ -21,6 +21,7 @@ import plusImg from "public/assets/plus.png"
 import Image from "next/image"
 import { useAppDispatch, useAppSelector } from "@/src/util/reduxType/type"
 
+
 const MainTable = dynamic(() => import("./MainTable"), { ssr: false })
 
 export default function MainPageComponent() {
@@ -199,4 +200,5 @@ export default function MainPageComponent() {
       </div>
     </div>
   )
+
 }

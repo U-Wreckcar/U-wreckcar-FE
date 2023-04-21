@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react"
@@ -47,9 +48,11 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   return itemRank.passed
 }
 
+
 let defaultData: Array<MainTableType> = []
 let dData: Array<MainTableType> = []
 type MainTableProps = {
+
   setTable: Dispatch<SetStateAction<Table<MainTableType> | null>>
   del: boolean
   filter: boolean
@@ -426,5 +429,6 @@ const Filter = ({ column, table }: any) => {
     </div>
   )
 }
+
 
 export default MainTable
