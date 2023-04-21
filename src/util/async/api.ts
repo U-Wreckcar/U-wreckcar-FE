@@ -125,7 +125,7 @@ export const deleteUTM = async (data: any) => {
 /** PATCH */
 
 type EditMemoType = {
-  utm_id: string;
+  utm_id: number | undefined;
   utm_memo?: string;
 };
 
