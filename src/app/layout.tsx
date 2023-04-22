@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
    return (
-      <html lang="ko" className={pretendard.className}>
+      <html lang="ko" className={pretendard.variable}>
          <head>
             <link
                rel="stylesheet"

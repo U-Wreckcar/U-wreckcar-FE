@@ -14,16 +14,16 @@ interface PropsType {
    clickEvent?: () => void;
    typeEvent?: (e: any) => void;
 }
-const pretendard = localFont({
-   src: "../../../../public/assets/font/Pretendard-Regular.ttf",
-   display: "swap",
-});
+// const pretendard = localFont({
+//    src: "../../../../public/assets/font/Pretendard-Regular.ttf",
+//    display: "swap",
+// });
 export const BlueButton: React.FC<PropsType> = (props) => {
    const { text, clickEvent, typeEvent, types, disabled, size, color } = props;
 
    return (
       <button
-         className={`${styles.blue_button_style} ${styles[size]} ${styles[color]} ${pretendard.className}`}
+         className={`${styles.blue_button_style} ${styles[size]} ${styles[color]} `}
          onClick={clickEvent ? clickEvent : typeEvent}
          type={types}
          disabled={disabled}
