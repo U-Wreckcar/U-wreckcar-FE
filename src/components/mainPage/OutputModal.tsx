@@ -1,13 +1,14 @@
 import Image from "next/image";
 import styles from "./main.module.css";
 
-import not_sheet from "public/assets/img/sheet.png";
-import not_excel from "public/assets/img/execel.png";
 
-import active_sheet from "public/assets/img/blue_sheet.png";
-import active_excel from "public/assets/img/blue_excel.png";
+import not_sheet from "public/assets/sheet.png";
+import not_excel from "public/assets/execel.png";
 
-import b_close from "public/assets/img/b_close.png";
+import active_sheet from "public/assets/blue_sheet.png";
+import active_excel from "public/assets/blue_excel.png";
+
+import b_close from "public/assets/b_close.png";
 import { useEffect, useState } from "react";
 
 import Axios from "src/util/async/intercepter";
@@ -15,21 +16,24 @@ import { Alert, AlertTitle, CircularProgress } from "@mui/material";
 import Modal from "@/src/common/type/Modal";
 
 import { BlueButton } from "@/src/common/button/blue_button/BlueButton";
-import { useDispatch } from "react-redux";
+
 import { delSelectTable } from "@/src/redux/slice/addslice";
+import { useAppDispatch } from "@/src/util/reduxType/type";
+import { CustomStyles, MainTableType } from "./TableData";
 
 type OutputModalType = {
    isOpen: boolean;
-   onRequestClose: any;
-   style: any;
-   dataList: any;
+   onRequestClose: () => void;
+   style: CustomStyles;
+   dataList: MainTableType[];
 };
 export const OutputModal: React.FC<OutputModalType> = ({ isOpen, onRequestClose, style, dataList }) => {
    const [sheet, setSheet] = useState(false);
    const [excel, setExcel] = useState(false);
    const [alert, setAlert] = useState(false);
    const [loading, setLoading] = useState(false);
-   const dispatch = useDispatch();
+
+   const dispatch = useAppDispatch();
 
    async function onClickPopHandler() {
       if (excel) {

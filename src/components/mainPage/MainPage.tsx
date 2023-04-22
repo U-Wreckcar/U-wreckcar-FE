@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Provider, useDispatch, useSelector } from "react-redux";
+
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { getCookie } from "src/util/async/Cookie";
@@ -17,9 +17,11 @@ import { customStyles } from "../loginPage/LoginModal";
 import { delSelectTable } from "@/src/redux/slice/addslice";
 import { Table } from "@tanstack/react-table";
 
-import filterImg from "public/assets/img/filter.png";
-import plusImg from "public/assets/img/plus.png";
+
+import filterImg from "public/assets/filter.png";
+import plusImg from "public/assets/plus.png";
 import Image from "next/image";
+import { useAppDispatch, useAppSelector } from "@/src/util/reduxType/type";
 
 const MainTable = dynamic(() => import("./MainTable"), { ssr: false });
 
@@ -38,9 +40,10 @@ export default function MainPageComponent() {
    const [target, setTarget] = useState("");
    const [inputValue, setInputValue] = useState("");
 
-   const data = useSelector((state: any) => state.add.data);
-   const rowSelection = useSelector((state: any) => state.add.select);
-   const dispatch = useDispatch();
+
+   const data = useAppSelector((state) => state.add.data);
+   const rowSelection = useAppSelector((state) => state.add.select);
+   const dispatch = useAppDispatch();
    const router = useRouter();
 
    const prefetchOptions = {

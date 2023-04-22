@@ -2,7 +2,6 @@
 
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { columns, MainTableType } from "./TableData";
-import { useDispatch, useSelector } from "react-redux";
 import { getUTMs } from "src/util/async/api";
 import Link from "next/link";
 
@@ -25,11 +24,14 @@ import {
    getFacetedMinMaxValues,
    getSortedRowModel,
    FilterFn,
+   ColumnDef,
    Table,
+   createColumnHelper,
 } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
 import { DebouncedInput } from "./MainTableFunction";
 import { selectTable } from "@/src/redux/slice/addslice";
+import { useAppDispatch, useAppSelector } from "@/src/util/reduxType/type";
 
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
    // Rank the item
@@ -54,15 +56,15 @@ type MainTableProps = {
 
 const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
    const router = useRouter();
-   const dispatch = useDispatch();
+   const dispatch = useAppDispatch();
    const [show, setShow] = useState(false);
    const [target, setTarget] = useState("");
    const [inputValue, setInputValue] = useState("");
    const [rowSelection, setRowSelection] = useState({});
    const [data, setData] = useState<MainTableType[]>([]);
    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-   const isOpen = useSelector((state: any) => state.add.isOpen);
-   const select = useSelector((state: any) => state.add.select);
+   const isOpen = useAppSelector((state) => state.add.isOpen);
+   const select = useAppSelector((state) => state.add.select);
 
    /** Get 요청 */
    const getData = async () => {
@@ -290,7 +292,7 @@ const Filter = ({ column, table }: any) => {
    const firstValue = table.getPreFilteredRowModel().flatRows[0]?.getValue(column.id);
 
    const columnFilterValue = column.getFilterValue();
-   const [startDate, setStartDate] = React.useState<string | number>();
+   const [startDate, setStartDate] = React.useState<string | number>("");
    const [isOpen, setIsOpen] = React.useState(false);
 
    React.useEffect(() => {
@@ -301,25 +303,25 @@ const Filter = ({ column, table }: any) => {
    }, [isOpen]);
 
    //날짜 두 개 받아서 사이 값 구하기
-   function getDatesStartToLast(startDate: any, lastDate: any) {
+   function getDatesStartToLast(startDate: string | number, lastDate: string | number) {
       const regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
+      if (typeof startDate === "string" && typeof lastDate === "string") {
+         if (!(regex.test(startDate) && regex.test(lastDate))) return "Not Date Format";
 
-      if (!(regex.test(startDate) && regex.test(lastDate))) return "Not Date Format";
+         let result: (string | number | Date)[] = [];
 
-      let result: (string | number | Date)[] = [];
+         const curDate = new Date(startDate);
 
-      const curDate = new Date(startDate);
+         while (curDate <= new Date(lastDate)) {
+            result.push(curDate.toISOString().split("T")[0].toString());
+            curDate.setDate(curDate.getDate() + 1);
+         }
 
-      while (curDate <= new Date(lastDate)) {
-         result.push(curDate.toISOString().split("T")[0].toString());
-         curDate.setDate(curDate.getDate() + 1);
+         defaultData = dData.filter((date) => result.includes(date.created_at_filter));
+
+         column.setFilterValue((old: Array<string>) => console.log(old));
       }
-
-      defaultData = dData.filter((date) => result.includes(date.created_at_filter));
-
-      column.setFilterValue((old: Array<string>) => console.log(old));
    }
-
    const sortedUniqueValues = React.useMemo(
       () => (typeof firstValue === "number" ? [] : Array.from(column.getFacetedUniqueValues().keys()).sort()),
       [column.getFacetedUniqueValues()]
