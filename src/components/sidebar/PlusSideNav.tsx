@@ -1,22 +1,21 @@
 "use client";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 
 import styles from "./styles.module.css";
-import Modal from "react-modal";
 import { AddUtmModal } from "./AddUtmModal";
 import Link from "next/link";
 
 /**
  * Image
  */
-import whitelogo from "public/assets/whitelogo.png";
-import myutm from "public//assets/myutm.png";
-import addutm from "public//assets/addutm.png";
-import createutm from "public//assets/createutm.png";
-import slim from "public//assets/slim.png";
-import help from "public//assets/help.png";
-import noti from "public/assets/noti.png";
-import guide from "public/assets/guide.png";
+import whitelogo from "public/assets/img/whitelogo.png";
+import myutm from "public/assets/img/myutm.png";
+import addutm from "public/assets/img/addutm.png";
+import createutm from "public/assets/img/createutm.png";
+import slim from "public/assets/img/slim.png";
+import help from "public/assets/img/help.png";
+import noti from "public/assets/img/noti.png";
+import guide from "public/assets/img/guide.png";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { customStyles } from "../loginPage/LoginModal";
