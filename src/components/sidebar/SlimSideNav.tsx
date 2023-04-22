@@ -1,46 +1,46 @@
-"use client"
-import React, { useState } from "react"
-import styles from "./styles.module.css"
-import Modal from "react-modal"
-import { AddUtmModal } from "./AddUtmModal"
-import { setSideProps } from "./PlusSideNav"
+"use client";
+import React, { useState } from "react";
+import styles from "./styles.module.css";
+import Modal from "react-modal";
+import { AddUtmModal } from "./AddUtmModal";
+import { setSideProps } from "./PlusSideNav";
 
 /**
  * Image
  */
-import menu from "../../../public/assets/menu.png"
-import myutm from "../../../public/assets/myutm.png"
-import addutm from "../../../public/assets/addutm.png"
-import createutm from "../../../public/assets/createutm.png"
-import help from "../../../public/assets/help.png"
-import noti from "../../../public/assets/noti.png"
-import guide from "../../../public/assets/guide.png"
-import Image from "next/image"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { customStyles } from "../loginPage/LoginModal"
+import menu from "public/assets/img/menu.png";
+import myutm from "public/assets/img/myutm.png";
+import addutm from "public/assets/img/addutm.png";
+import createutm from "public/assets/img/createutm.png";
+import help from "public/assets/img/help.png";
+import noti from "public/assets/img/noti.png";
+import guide from "public/assets/img/guide.png";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { customStyles } from "../loginPage/LoginModal";
 export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
-   const [modal, setModal] = useState(false)
-   const pathName = usePathname()
+   const [modal, setModal] = useState(false);
+   const pathName = usePathname();
 
    const openModal = () => {
-      setModal(true)
-   }
+      setModal(true);
+   };
    const closeModal = () => {
-      setModal(false)
-   }
+      setModal(false);
+   };
 
    const onClickNoti = () => {
-      window.open("https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492", "_blank")
-   }
+      window.open("https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492", "_blank");
+   };
 
    const onClickGuide = () => {
-      window.open("https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3", "_blank")
-   }
+      window.open("https://unexpected-ceder-0b7.notion.site/0a3db0d8103f4be2855a23186fc1b5e3", "_blank");
+   };
 
    const onClickKakao = () => {
-      window.open("https://open.kakao.com/o/sbK3Rfaf", "_blank")
-   }
+      window.open("https://open.kakao.com/o/sbK3Rfaf", "_blank");
+   };
    return (
       <div className={styles.slim_container}>
          <div>
@@ -125,5 +125,5 @@ export const SlimSideNav: React.FC<setSideProps> = ({ setSide, side }) => {
             </div>
          </div>
       </div>
-   )
-}
+   );
+};

@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import TryUTM from "../components/tryUTM/TryUTM";
 import ChangeText from "../components/render/ChangeText";
-import { m_section_one_two, sub_child, copyright } from "public/assets";
+import { m_section_one_two, sub_child, copyright } from "public/assets/img";
 import { six, create, f_search, out } from "public/assets/gif";
 import {
    sub_img,

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./main.module.css";
 
+
 import not_sheet from "public/assets/sheet.png";
 import not_excel from "public/assets/execel.png";
 
@@ -15,6 +16,7 @@ import { Alert, AlertTitle, CircularProgress } from "@mui/material";
 import Modal from "@/src/common/type/Modal";
 
 import { BlueButton } from "@/src/common/button/blue_button/BlueButton";
+
 import { delSelectTable } from "@/src/redux/slice/addslice";
 import { useAppDispatch } from "@/src/util/reduxType/type";
 import { CustomStyles, MainTableType } from "./TableData";
@@ -30,6 +32,7 @@ export const OutputModal: React.FC<OutputModalType> = ({ isOpen, onRequestClose,
    const [excel, setExcel] = useState(false);
    const [alert, setAlert] = useState(false);
    const [loading, setLoading] = useState(false);
+
    const dispatch = useAppDispatch();
 
    async function onClickPopHandler() {

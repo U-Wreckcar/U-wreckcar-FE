@@ -51,6 +51,7 @@ body {
    overflow-x: hidden;
    box-sizing: border-box;
    background-color: #f5f9fc;
+   font-family: var(--font-pretendard);
 }
 .CircularUnderLoad-root {
    size: 100px;
@@ -70,14 +71,7 @@ h5 {
    margin: 0;
    padding: 0;
 }
-h1 {
-   font-size: 2rem;
-   font-weight: 700;
-}
-h2 {
-   font-size: 2rem;
-   font-weight: 500;
-}
+
 p {
    font-size: 0.8rem;
    font-weight: 400;

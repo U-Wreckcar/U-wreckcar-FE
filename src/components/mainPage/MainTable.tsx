@@ -5,7 +5,7 @@ import { columns, MainTableType } from "./TableData";
 import { getUTMs } from "src/util/async/api";
 import Link from "next/link";
 
-import blackFilterImg from "public/assets/b_filter.png";
+import blackFilterImg from "public/assets/img/b_filter.png";
 import Image from "next/image";
 
 import { CopyButton } from "@/src/common/button/CopyButton";
