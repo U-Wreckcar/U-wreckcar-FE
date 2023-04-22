@@ -6,7 +6,7 @@ import Providers from "./providers";
 import Script from "next/script";
 import "./globals.css";
 const pretendard = localFont({
-   src: "../../public/assets/font/Pretendard-Regular.ttf",
+   src: "../../public/assets/font/Pretendard-Regular.woff2",
    variable: "--font-pretendard",
    display: "swap",
 });

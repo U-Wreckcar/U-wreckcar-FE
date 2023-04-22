@@ -14,10 +14,6 @@ interface PropsType {
    clickEvent?: () => void;
    typeEvent?: (e: any) => void;
 }
-// const pretendard = localFont({
-//    src: "../../../../public/assets/font/Pretendard-Regular.ttf",
-//    display: "swap",
-// });
 export const BlueButton: React.FC<PropsType> = (props) => {
    const { text, clickEvent, typeEvent, types, disabled, size, color } = props;
 
