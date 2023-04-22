@@ -51,6 +51,7 @@ body {
    overflow-x: hidden;
    box-sizing: border-box;
    background-color: #f5f9fc;
+   font-family: var(--font-pretendard);
 }
 .CircularUnderLoad-root {
    size: 100px;
