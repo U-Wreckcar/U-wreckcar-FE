@@ -54,7 +54,6 @@ export default function Home() {
                <section className={styles.try_section}>
                   <TryUTM />
                </section>
-
                <section className={styles.l_section_two}>
                   <article>
                      <div className={styles.text_box}>
