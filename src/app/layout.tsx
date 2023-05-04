@@ -2,9 +2,10 @@ import { SideNav } from "src/components/sidebar/SideNav";
 import Header from "src/components/header/Header";
 import localFont from "next/font/local";
 import type { Metadata } from "next";
-import Providers from "./providers";
+import QueryProviders from "./providers";
 import Script from "next/script";
-
+import { Provider } from "react-redux";
+import store from "src/redux/store/store";
 import "./globals.css";
 export const metadata: Metadata = {
   title: 'UTM 카테고라이징 서비스 "유렉카"',
@@ -70,9 +71,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SideNav />
         <div id="__next">
           <Header />
-          <Providers>
+          <QueryProviders>
             <main>{children}</main>
-          </Providers>
+          </QueryProviders>
         </div>
       </body>
     </html>
