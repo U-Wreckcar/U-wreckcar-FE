@@ -1,21 +1,3 @@
-/* Layout */
-.container {
-  width: 100vw;
-
-  overflow: hidden;
-}
-.container section {
-}
-.container article {
-  display: flex;
-  justify-content: center;
-  width: 1440px;
-  min-width: 1440px;
-}
-
-/* 
-* Section One 
-*/
 .l_section_one {
   background-image: url("../../public/assets/render/bg-one.png");
   background-size: 100vw 100%;

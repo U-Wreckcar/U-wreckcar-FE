@@ -7,8 +7,9 @@
 .container section {
 }
 .container article {
-  width: 1440px;
-  min-width: 1440px;
+  /* width: 1440px; */
+  padding: 0 140px;
+  /* min-width: 1440px; */
   margin: 0 auto;
 }
 
@@ -90,6 +91,7 @@
 .web_sub {
   background-position: center;
   background-size: cover;
+  object-fit: contain;
 
   width: 100%;
   min-width: none;
@@ -105,6 +107,9 @@
 }
 
 .sub_child {
+  display: flex;
+  flex-shrink: 0;
+
   position: absolute;
   transform: translateX(40px);
 }
