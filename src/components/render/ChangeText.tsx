@@ -1,8 +1,8 @@
-'use client';
-import React, { useEffect, useState } from 'react';
+"use client";
+import React, { useEffect, useState } from "react";
 
 export default function ChangeText() {
-  const texts = ['복잡한', '귀찮은', '어려운'];
+  const texts = ["복잡한", "귀찮은", "어려운"];
   const [text, setText] = useState(texts);
   const [index, setIndex] = useState(0);
   useEffect(() => {

@@ -2,7 +2,7 @@ import { SideNav } from "src/components/sidebar/SideNav";
 import Header from "src/components/header/Header";
 import localFont from "next/font/local";
 import type { Metadata } from "next";
-import QueryProviders from "./providers";
+import QueryProviders from "../util/query/providers";
 import Script from "next/script";
 import { Provider } from "react-redux";
 import store from "src/redux/store/store";
