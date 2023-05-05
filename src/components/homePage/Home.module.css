@@ -8,7 +8,8 @@
 }
 .container article {
   /* width: 1440px; */
-  padding: 0 140px;
+  width: 100vw;
+  /* padding: 0 140em; */
   /* min-width: 1440px; */
   margin: 0 auto;
 }
@@ -357,7 +358,7 @@
   align-items: center;
   gap: 150px;
 
-  /* background-image: url("../../public/assets/render/bg-six.png"); */
+  background-image: url("../../../public/assets/render/bg-six.png");
   background-size: auto;
   background-position: center;
   width: 100%;
@@ -420,7 +421,7 @@
   text-align: center;
   align-items: center;
 
-  /* background-image: url("../../public/assets/render/bg-seven.png"); */
+  background-image: url("../../../public/assets/render/bg-seven.png");
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -535,7 +536,7 @@
     height: 600px;
   }
   .l_section_one {
-    /* background-image: url("../../public/assets/render/bg-one.png"); */
+    background-image: url("../../../public/assets/render/bg-one.png");
     background-size: 100vw 100%;
     background-position: center;
     /* background-repeat: no-repeat; */
@@ -834,7 +835,7 @@
     align-items: center;
     gap: 0;
 
-    /* background-image: url("../../public/assets/render/bg-six.png"); */
+    background-image: url("../../../public/assets/render/bg-six.png");
     background-size: auto;
     background-position: center;
     width: 100%;
@@ -845,6 +846,7 @@
     height: 500px;
     margin-top: -2px;
   }
+
   .seven_first_img {
     display: none;
   }
@@ -893,7 +895,7 @@
     height: 600px;
   }
   .l_section_one {
-    /* background-image: url("../../public/assets/render/bg-one.png"); */
+    background-image: url("../../../public/assets/render/bg-one.png");
     background-size: 100vw 100%;
     background-position: center;
     /* background-repeat: no-repeat; */
@@ -1192,7 +1194,7 @@
     align-items: center;
     gap: 0;
 
-    /* background-image: url("../../public/assets/render/bg-six.png"); */
+    background-image: url("../../../public/assets/render/bg-six.png");
     background-size: auto;
     background-position: center;
     width: 100%;

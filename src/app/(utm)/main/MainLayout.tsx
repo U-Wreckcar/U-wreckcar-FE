@@ -5,8 +5,8 @@ import { Provider } from "react-redux";
 import store from "@/src/redux/store/store";
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div>
+    <>
       <Provider store={store}>{children}</Provider>
-    </div>
+    </>
   );
 }
