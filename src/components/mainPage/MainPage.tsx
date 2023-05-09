@@ -21,8 +21,8 @@ import filterImg from "public/assets/img/filter.png";
 import plusImg from "public/assets/img/plus.png";
 import Image from "next/image";
 import { useAppDispatch, useAppSelector } from "@/src/util/reduxType/type";
-
-const MainTable = dynamic(() => import("./MainTable"), { ssr: false });
+import MainTable from "./MainTable";
+// const MainTable = dynamic(() => import("./MainTable"), { ssr: false });
 
 export default function MainPageComponent() {
   const [output, setOutput] = useState(false);

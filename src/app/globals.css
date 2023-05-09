@@ -119,7 +119,8 @@ div {
 }
 
 main {
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   /* background-color: blue; */
+
   max-height: 800px;
 }

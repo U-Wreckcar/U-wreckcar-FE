@@ -1,8 +1,8 @@
-'use client';
-import React, { useEffect, useState } from 'react';
+"use client";
+import React, { useEffect, useState } from "react";
 
 export default function ChangeText() {
-  const texts = ['복잡한', '귀찮은', '어려운'];
+  const texts = ["복잡한", "귀찮은", "어려운"];
   const [text, setText] = useState(texts);
   const [index, setIndex] = useState(0);
   useEffect(() => {
@@ -10,7 +10,7 @@ export default function ChangeText() {
       setIndex((idx) => (idx + 1) % texts.length);
     }, 850);
     return () => clearInterval(intervalText);
-  }, []);
+  }, [texts.length]);
   return (
     <div>
       <h1>
