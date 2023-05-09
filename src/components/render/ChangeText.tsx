@@ -10,7 +10,7 @@ export default function ChangeText() {
       setIndex((idx) => (idx + 1) % texts.length);
     }, 850);
     return () => clearInterval(intervalText);
-  }, []);
+  }, [texts.length]);
   return (
     <div>
       <h1>

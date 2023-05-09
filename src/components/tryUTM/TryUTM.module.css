@@ -110,7 +110,7 @@
   margin-bottom: 6px;
 }
 .title_box p {
-  font-size: 28px;
+  font-size: 1.2rem;
   font-weight: 700;
   color: #ffffff;
 }
@@ -174,7 +174,7 @@
 .any {
   animation: duration 3s ease-in-out;
 }
-@media (max-width: 1300px) {
+@media (max-width: 1000px) {
   .containel {
     display: flex;
     justify-content: center;
