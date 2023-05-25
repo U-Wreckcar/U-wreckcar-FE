@@ -1,7 +1,6 @@
 "use client";
 import { AxiosResponse } from "axios";
 import { removeCookie } from "./Cookie";
-import createAxiosInstance from "./axiosConfig";
 import axios from "./intercepter";
 import { MainTableType } from "@/src/components/mainPage/TableData";
 /** Init Get */
@@ -9,8 +8,8 @@ import { MainTableType } from "@/src/components/mainPage/TableData";
 export const myProfile = async (access_token: string, refresh_token: string) => {
   console.log();
   try {
-    const instance = createAxiosInstance(access_token, refresh_token);
-    const res = await instance.get(`users/profile`, {
+    // const instance = createAxiosInstance(access_token, refresh_token);
+    const res = await axios.get(`users/profile`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${access_token}`,
