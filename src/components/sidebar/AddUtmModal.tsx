@@ -3,10 +3,10 @@ import React, { useEffect, useRef, useState } from "react"
 import styles from "./AddUtmModal.module.css"
 import { useForm } from "react-hook-form"
 import { ExternalUTM } from "src/util/async/api"
-import { useDispatch } from "react-redux"
 import { addItem } from "src/redux/slice/addslice"
 import Modal from "@/src/common/type/Modal"
 import { ExcelAddModal } from "./ExcelAddModal"
+import { useAppDispatch } from "@/src/util/reduxType/type"
 
 export type ModalType = {
   isOpen: boolean
@@ -33,7 +33,7 @@ export const AddUtmModal: React.FC<ModalType> = ({
     setValue,
   } = useForm({ criteriaMode: "all", mode: "onChange" })
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const [excel, setExcel] = useState(false)
   const onSubmit = async (data: any) => {
     try {
@@ -86,17 +86,18 @@ export const AddUtmModal: React.FC<ModalType> = ({
                 <p>UTM</p>
                 <input
                   className={styles.modal_input}
-                  placeholder='(필수 입력) ex) https://www.abcd.com?utm_source=aaa&utm_medium=bbb&utm_campaign=ccc&utm_id=ddd'
+                  placeholder="(필수 입력) ex) https://www.abcd.com?utm_source=aaa&utm_medium=bbb&utm_campaign=ccc&utm_id=ddd"
                   {...register("utm_url", {
                     required: true,
-                  })}></input>
+                  })}
+                ></input>
               </div>
               <div className={styles.modal_footer}>
                 <label className={styles.label_text}>
                   생성 날짜
                   <input
                     className={styles.modal_input_date}
-                    type='date'
+                    type="date"
                     {...register("created_at", {
                       required: false,
                     })}
@@ -106,7 +107,7 @@ export const AddUtmModal: React.FC<ModalType> = ({
                   메모
                   <input
                     className={styles.modal_input_memo}
-                    placeholder='(선택 입력) UTM에 대한 메모를 남길 수 있습니다. 자유롭게 활용하세요.'
+                    placeholder="(선택 입력) UTM에 대한 메모를 남길 수 있습니다. 자유롭게 활용하세요."
                     {...register("memo", {
                       required: false,
                       maxLength: 100,
@@ -122,16 +123,18 @@ export const AddUtmModal: React.FC<ModalType> = ({
                 )}
               </div>
               <button
-                type='button'
+                type="button"
                 className={styles.add_excel_button}
-                onClick={() => setExcel(true)}>
+                onClick={() => setExcel(true)}
+              >
                 엑셀로 추가하기
               </button>
               <button
-                id='add_btn'
-                type='submit'
+                id="add_btn"
+                type="submit"
                 disabled={isSubmitting}
-                className={styles.add_button}>
+                className={styles.add_button}
+              >
                 추가하기
               </button>
             </div>

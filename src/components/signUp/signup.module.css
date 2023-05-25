@@ -1,184 +1,184 @@
 .background {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  background-color: #0a0d54;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+   width: 100vw;
+   height: 100vh;
+   overflow: hidden;
+   background-color: #0a0d54;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  width: 800px;
-  height: 670px;
-  margin: 30px auto;
-  border-radius: 4px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   background-color: #fff;
+   width: 800px;
+   height: 670px;
+   margin: 30px auto;
+   border-radius: 4px;
 }
 
 .container > h1 {
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 38px;
+   font-size: 28px;
+   font-weight: 700;
+   line-height: 38px;
 }
 
 .container > h4 {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
+   font-size: 16px;
+   font-weight: 400;
+   line-height: 24px;
 }
 
 .container h5 {
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 20px;
+   font-size: 14px;
+   font-weight: 700;
+   line-height: 20px;
 }
 
 .container form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  margin-top: 41px;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   justify-content: center;
+   margin-top: 41px;
 }
 
 .container p {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
-  color: #f13400;
-  text-align: left;
-  transform: translateX(103px);
+   display: inline-block;
+   font-size: 12px;
+   font-weight: 400;
+   line-height: 18px;
+   color: #f13400;
+   text-align: left;
+   transform: translateX(103px);
 }
 
 .container span {
-  display: inline-block;
-  color: #484bff;
-  font-size: 12px;
-  text-align: left;
-  transform: translateX(122px);
+   display: inline-block;
+   color: #484bff;
+   font-size: 12px;
+   text-align: left;
+   transform: translateX(122px);
 }
 
 .wrap {
-  margin-top: 12px;
-  width: 510px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+   margin-top: 12px;
+   width: 510px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
 }
 
 .login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 80px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   margin-top: 80px;
 }
 
 .check_wrap {
-  width: 510px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 12px;
+   width: 510px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-top: 12px;
 }
 
 .confirm_button {
-  background-color: #484bff;
-  color: #fff;
-  padding: 10px 16px;
-  border-radius: 4px;
-  border: none;
-  height: 38px;
-  width: 81px;
+   background-color: #484bff;
+   color: #fff;
+   padding: 10px 16px;
+   border-radius: 4px;
+   border: none;
+   height: 38px;
+   width: 81px;
 }
 
 .confirm_button:hover {
-  background: #4c70ff;
+   background: #4c70ff;
 }
 .email_input {
-  font-size: 0.7rem;
-  border-radius: 4px;
-  position: relative;
-  left: 30px;
-  width: 299px;
-  height: 38px;
-  border: 0.7px solid #ddd;
-  transform: translateX(-2px);
+   font-size: 0.7rem;
+   border-radius: 4px;
+   position: relative;
+   left: 30px;
+   width: 299px;
+   height: 38px;
+   border: 0.7px solid #ddd;
+   transform: translateX(-2px);
 }
 .confirm_input {
-  font-size: 0.7rem;
-  border-radius: 4px;
-  width: 299px;
-  height: 38px;
-  border: 0.7px solid #ddd;
-  transform: translateX(22px);
+   font-size: 0.7rem;
+   border-radius: 4px;
+   width: 299px;
+   height: 38px;
+   border: 0.7px solid #ddd;
+   transform: translateX(22px);
 }
 
 .signup_input {
-  font-size: 0.7rem;
-  border-radius: 4px;
-  height: 38px;
-  width: 388px;
-  border: 0.7px solid #ddd;
+   font-size: 0.7rem;
+   border-radius: 4px;
+   height: 38px;
+   width: 388px;
+   border: 0.7px solid #ddd;
 }
 
 .check_input {
-  width: 18px;
-  height: 18px;
-  margin-right: 8px;
-  transform: translateY(4px);
+   width: 18px;
+   height: 18px;
+   margin-right: 8px;
+   transform: translateY(4px);
 }
 .email_input:focus,
 .confirm_input:focus,
 .signup_input:focus {
-  outline: 0.7px solid #ddd;
-  font-size: 0.7rem;
+   outline: 0.7px solid #ddd;
+   font-size: 0.7rem;
 }
 
 .signup_button {
-  width: 150px;
-  height: 46px;
-  border-radius: 4px;
-  border: none;
-  background-color: #484bff;
-  color: #fff;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 22px;
-  margin-top: 41px;
+   width: 150px;
+   height: 46px;
+   border-radius: 4px;
+   border: none;
+   background-color: #484bff;
+   color: #fff;
+   font-weight: 700;
+   font-size: 16px;
+   line-height: 22px;
+   margin-top: 41px;
 }
 
 .signup_button:hover {
-  background: #4c70ff;
+   background: #4c70ff;
 }
 
 .button_box {
-  width: 510px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 35px;
+   width: 510px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-top: 35px;
 }
 
 .confirm_label {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 22px;
-  text-align: left;
-  transform: translateX(-28px);
-  /* margin-bottom: 30px; */
+   font-size: 14px;
+   font-weight: 400;
+   line-height: 22px;
+   text-align: left;
+   transform: translateX(-28px);
+   /* margin-bottom: 30px; */
 }
 
 .noti {
-  background-image: url("../../../public/assets/signup_noti.png");
-  background-position: center;
-  background-size: cover;
-  width: 68px;
-  height: 22px;
+   background-image: url("../../../public/assets/img/signup_noti.png");
+   background-position: center;
+   background-size: cover;
+   width: 68px;
+   height: 22px;
 }

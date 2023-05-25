@@ -1,25 +1,18 @@
-"use client"
+"use client";
 
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react"
-import { columns, MainTableType } from "./TableData"
-import { useDispatch, useSelector } from "react-redux"
-import { getUTMs } from "src/util/async/api"
-import Link from "next/link"
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { columns, MainTableType } from "./TableData";
+import { getUTMs } from "src/util/async/api";
+import Link from "next/link";
 
-import blackFilterImg from "public/assets/b_filter.png"
-import Image from "next/image"
+import blackFilterImg from "public/assets/img/b_filter.png";
+import Image from "next/image";
 
-import { OutputModal } from "./OutputModal"
-import { DeleteModal } from "./DeleteModal"
-import { AddUtmModal } from "../sidebar/AddUtmModal"
-import { EditModal } from "./MainMemoModal"
-import BtnAlert from "@/src/common/button/Alert"
-import { CopyButton } from "@/src/common/button/CopyButton"
+import { CopyButton } from "@/src/common/button/CopyButton";
 
-import axios from "axios"
-import styles from "./main.module.css"
-import Tooltip from "@mui/material/Tooltip"
-import { rankItem } from "@tanstack/match-sorter-utils"
+import styles from "./main.module.css";
+import Tooltip from "@mui/material/Tooltip";
+import { rankItem } from "@tanstack/match-sorter-utils";
 import {
   flexRender,
   getCoreRowModel,
@@ -34,102 +27,74 @@ import {
   ColumnDef,
   Table,
   createColumnHelper,
-} from "@tanstack/react-table"
-import { getCookie, removeCookie } from "src/util/async/Cookie"
-import { useRouter } from "next/navigation"
-import { DebouncedInput, IndeterminateCheckbox } from "./MainTableFunction"
-import { addTable, dataTable, selectTable } from "@/src/redux/slice/addslice"
+} from "@tanstack/react-table";
+import { useRouter } from "next/navigation";
+import { DebouncedInput } from "./MainTableFunction";
+import { selectTable } from "@/src/redux/slice/addslice";
+import { useAppDispatch, useAppSelector } from "@/src/util/reduxType/type";
 
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   // Rank the item
-  const itemRank = rankItem(row.getValue(columnId), value)
+  const itemRank = rankItem(row.getValue(columnId), value);
 
   // Store the itemRank info
   addMeta({
     itemRank,
-  })
+  });
 
   // Return if the item should be filtered in/out
-  return itemRank.passed
-}
+  return itemRank.passed;
+};
 
-let defaultData: Array<MainTableType> = []
-let dData: Array<MainTableType> = []
+let defaultData: Array<MainTableType> = [];
+let dData: Array<MainTableType> = [];
 type MainTableProps = {
-  setTable: Dispatch<SetStateAction<Table<MainTableType> | null>>
-  del: boolean
-  filter: boolean
-}
+  setTable: Dispatch<SetStateAction<Table<MainTableType> | null>>;
+  del: boolean;
+  filter: boolean;
+};
+
 const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
-  const [rowSelection, setRowSelection] = useState({})
-  const [data, setData] = useState<Array<MainTableType>>([])
-  const [show, setShow] = useState(false)
-  const [target, setTarget] = useState("")
-  // const [del, setDel] = useState(false)
-  const [inputValue, setInputValue] = useState("")
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  )
-  const isOpen = useSelector((state: any) => state.add.isOpen)
-  const router = useRouter()
-  const dispatch = useDispatch()
-  const select = useSelector((state: any) => state.add.select)
-  // const getData = async () => {
-  //   const res: any = await getUTMs()
-  //   setData(res.data)
-  //   dData = res.data
-  // }
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const [show, setShow] = useState(false);
+  const [target, setTarget] = useState("");
+  const [inputValue, setInputValue] = useState("");
+  const [rowSelection, setRowSelection] = useState({});
+  const [data, setData] = useState<MainTableType[]>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const isOpen = useAppSelector((state) => state.add.isOpen);
+  const select = useAppSelector((state) => state.add.select);
 
-  const accessToken = getCookie("access_token")
-  const refreshToken = getCookie("refresh_token")
-
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${accessToken}`,
-    "X-Refresh-Token": `Bearer ${refreshToken}`,
-    "Cache-Control": "no-cache, no-store, must-revalidate",
-    Pragma: "no-store",
-    Expires: "0",
-  }
+  /** Get 요청 */
   const getData = async () => {
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}utms`, {
-        headers,
-        timeout: 10000,
-      })
-      .then((res) => {
-        setData(res.data)
-        dispatch(dataTable(res.data))
-      })
-      .catch((error) => {
-        removeCookie("access_token")
-        removeCookie("refresh_token")
-        router.push("/login")
-        console.log(error)
-      })
-  }
-  useEffect(() => {
     try {
-      getData()
+      const res = await getUTMs();
+      setData(res.data);
+      dData = res.data;
     } catch (err) {
-      router.replace("/")
+      router.replace("/");
     }
-  }, [show, isOpen])
+  };
+
+  useEffect(() => {
+    getData();
+  }, [show, isOpen]);
 
   useEffect(() => {
     setTimeout(() => {
-      getData()
-    }, 500)
-  }, [del])
+      getData();
+    }, 500);
+  }, [del]);
 
   useEffect(() => {
     if (defaultData.length === 0 || !defaultData) {
-      setData([])
+      setData([]);
     }
     if (defaultData.length !== 0) {
-      setData(defaultData)
+      setData(defaultData);
     }
-  }, [defaultData.length])
+  }, [defaultData.length]);
 
   const table = useReactTable({
     data,
@@ -150,21 +115,21 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
     getFacetedMinMaxValues: getFacetedMinMaxValues(),
-  })
+  });
 
   useEffect(() => {
     if (table !== null) {
-      setTable(table)
+      setTable(table);
     }
-  }, [table])
+  }, [table]);
 
   useEffect(() => {
-    dispatch(selectTable(rowSelection))
-  }, [rowSelection])
+    dispatch(selectTable(rowSelection));
+  }, [rowSelection]);
 
   useEffect(() => {
-    setRowSelection(select)
-  }, [select])
+    setRowSelection(select);
+  }, [select]);
 
   return (
     <div className={styles.main_wrap}>
@@ -187,10 +152,7 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
                       {...{
                         colSpan: header.colSpan,
                         style: {
-                          width:
-                            header.column.id === "select"
-                              ? 80
-                              : header.getSize(),
+                          width: header.column.id === "select" ? 80 : header.getSize(),
                         },
                       }}
                     >
@@ -208,19 +170,11 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
                               onClick: header.column.getToggleSortingHandler(),
                             }}
                           >
-                            {flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
+                            {flexRender(header.column.columnDef.header, header.getContext())}
                           </div>
                           {filter && header.column.id === "select" && (
                             <div className={styles.header_filter_box}>
-                              <Image
-                                src={blackFilterImg}
-                                alt="filter"
-                                width={25}
-                                height={25}
-                              />
+                              <Image src={blackFilterImg} alt="filter" width={25} height={25} />
                             </div>
                           )}
                         </>
@@ -234,19 +188,18 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
                             },
                           }}
                         >
-                          {header.column.getCanFilter() &&
-                          header.column.id !== "select" ? (
+                          {header.column.getCanFilter() && header.column.id !== "select" ? (
                             <Filter column={header.column} table={table} />
                           ) : null}
                         </div>
                       )}
                     </th>
-                  )
+                  );
                 })}
               </tr>
             ))}
           </thead>
-          {data.length === 0 && (
+          {data?.length === 0 && (
             <div className={styles.no_data}>
               <div className={styles.no_data_item}>
                 <p>등록된 UTM이 없어요.</p>
@@ -266,10 +219,7 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
                         key={cell.id}
                         {...{
                           style: {
-                            width:
-                              cell.column.id === "select"
-                                ? 80
-                                : cell.column.getSize(),
+                            width: cell.column.id === "select" ? 80 : cell.column.getSize(),
                           },
                         }}
                       >
@@ -280,13 +230,7 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
                               style={{
                                 cursor: "pointer",
                               }}
-                              onClick={() =>
-                                window.open(
-                                  `${cell.getValue()}`,
-                                  "_blank",
-                                  "noopener,noreferrer"
-                                )
-                              }
+                              onClick={() => window.open(`${cell.getValue()}`, "_blank", "noopener,noreferrer")}
                             >{`${cell.getValue()}`}</div>
                           </Tooltip>
                         )}
@@ -299,29 +243,19 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
                                 fontSize: "0.7rem",
                               }}
                               onClick={(e: any) => {
-                                setTarget(e.target?.id)
-                                setShow(true)
-                                setInputValue(`${cell.getValue()}`)
+                                setTarget(e.target?.id);
+                                setShow(true);
+                                setInputValue(`${cell.getValue()}`);
                               }}
                             >{`${cell.getValue()}`}</div>
                           </Tooltip>
                         )}
-                        {cell.column.id === "select" &&
-                          flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )}
-                        {cell.column.id === "full_url" && (
-                          <CopyButton text={`${cell.getValue()}`}></CopyButton>
-                        )}
-                        {cell.column.id === "shorten_url" && (
-                          <CopyButton text={`${cell.getValue()}`}></CopyButton>
-                        )}
+                        {cell.column.id === "select" && flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        {cell.column.id === "full_url" && <CopyButton text={`${cell.getValue()}`}></CopyButton>}
+                        {cell.column.id === "shorten_url" && <CopyButton text={`${cell.getValue()}`}></CopyButton>}
                         {cell.column.id === "click_count" && (
                           <Tooltip title="shorten URL 클릭 수입니다.">
-                            <div
-                              className={styles.td_box}
-                            >{`${cell.getValue()}`}</div>
+                            <div className={styles.td_box}>{`${cell.getValue()}`}</div>
                           </Tooltip>
                         )}
                         {cell.column.id !== "utm_memo" &&
@@ -331,70 +265,60 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
                           cell.column.id !== "shorten_url" &&
                           cell.column.id !== "click_count" && (
                             <Tooltip title={`${cell.getValue()}`}>
-                              <div
-                                className={styles.td_box}
-                              >{`${cell.getValue()}`}</div>
+                              <div className={styles.td_box}>{`${cell.getValue()}`}</div>
                             </Tooltip>
                           )}
                       </td>
-                    )
+                    );
                   })}
                 </tr>
-              )
+              );
             })}
           </tbody>
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const Filter = ({ column, table }: any) => {
-  const firstValue = table
-    .getPreFilteredRowModel()
-    .flatRows[0]?.getValue(column.id)
+  const firstValue = table.getPreFilteredRowModel().flatRows[0]?.getValue(column.id);
 
-  const columnFilterValue = column.getFilterValue()
-  const [startDate, setStartDate] = React.useState<string | number>()
-  const [isOpen, setIsOpen] = React.useState(false)
+  const columnFilterValue = column.getFilterValue();
+  const [startDate, setStartDate] = React.useState<string | number>("");
+  const [isOpen, setIsOpen] = React.useState(false);
 
   React.useEffect(() => {
     if (isOpen) {
-      defaultData = dData
-      column.setFilterValue((old: Array<string>) => console.log(old))
+      defaultData = dData;
+      column.setFilterValue((old: Array<string>) => console.log(old));
     }
-  }, [isOpen])
+  }, [isOpen]);
 
   //날짜 두 개 받아서 사이 값 구하기
-  function getDatesStartToLast(startDate: any, lastDate: any) {
-    const regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/)
+  function getDatesStartToLast(startDate: string | number, lastDate: string | number) {
+    const regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
+    if (typeof startDate === "string" && typeof lastDate === "string") {
+      if (!(regex.test(startDate) && regex.test(lastDate))) return "Not Date Format";
 
-    if (!(regex.test(startDate) && regex.test(lastDate)))
-      return "Not Date Format"
+      let result: (string | number | Date)[] = [];
 
-    let result: (string | number | Date)[] = []
+      const curDate = new Date(startDate);
 
-    const curDate = new Date(startDate)
+      while (curDate <= new Date(lastDate)) {
+        result.push(curDate.toISOString().split("T")[0].toString());
+        curDate.setDate(curDate.getDate() + 1);
+      }
 
-    while (curDate <= new Date(lastDate)) {
-      result.push(curDate.toISOString().split("T")[0].toString())
-      curDate.setDate(curDate.getDate() + 1)
+      defaultData = dData.filter((date) => result.includes(date.created_at_filter));
+
+      column.setFilterValue((old: Array<string>) => console.log(old));
     }
-
-    defaultData = dData.filter((date) =>
-      result.includes(date.created_at_filter)
-    )
-
-    column.setFilterValue((old: Array<string>) => console.log(old))
   }
-
   const sortedUniqueValues = React.useMemo(
-    () =>
-      typeof firstValue === "number"
-        ? []
-        : Array.from(column.getFacetedUniqueValues().keys()).sort(),
+    () => (typeof firstValue === "number" ? [] : Array.from(column.getFacetedUniqueValues().keys()).sort()),
     [column.getFacetedUniqueValues()]
-  )
+  );
 
   return (
     <div>
@@ -407,7 +331,7 @@ const Filter = ({ column, table }: any) => {
                   type="date"
                   value={(columnFilterValue ?? "") as string}
                   onChange={(value) => {
-                    setStartDate(value)
+                    setStartDate(value);
                   }}
                   list={column.id + "list"}
                 />
@@ -417,10 +341,7 @@ const Filter = ({ column, table }: any) => {
                   onChange={(value) => getDatesStartToLast(startDate, value)}
                   list={column.id + "list"}
                 />
-                <button
-                  className={styles.dialog_button}
-                  onClick={() => setIsOpen(false)}
-                >
+                <button className={styles.dialog_button} onClick={() => setIsOpen(false)}>
                   X
                 </button>
               </div>
@@ -431,8 +352,8 @@ const Filter = ({ column, table }: any) => {
             className={styles.search_input}
             placeholder="기간 선택"
             onFocus={() => {
-              setIsOpen(true)
-              defaultData = dData
+              setIsOpen(true);
+              defaultData = dData;
             }}
           ></input>
         </>
@@ -456,7 +377,7 @@ const Filter = ({ column, table }: any) => {
         </>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default MainTable
+export default MainTable;

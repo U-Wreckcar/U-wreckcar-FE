@@ -1,37 +1,36 @@
-import { SideNav } from "src/components/sidebar/SideNav"
-import Header from "src/components/header/Header"
-import localFont from "next/font/local"
-import type { Metadata } from "next"
-import Providers from "./providers"
-import Script from "next/script"
-import "./globals.css"
-// import "./globals.sass"
-
+import { SideNav } from "src/components/sidebar/SideNav";
+import Header from "src/components/header/Header";
+import localFont from "next/font/local";
+import type { Metadata } from "next";
+import QueryProviders from "../util/query/providers";
+import Script from "next/script";
+import { Provider } from "react-redux";
+import store from "src/redux/store/store";
+import "./globals.css";
 export const metadata: Metadata = {
   title: 'UTM 카테고라이징 서비스 "유렉카"',
   description:
     "유렉카는 구글 애널리틱스 마케팅 캠페인 효과 추적을 위해 UTM을 파라미터 별로 생성, 관리, 추출까지! GA를 쓰는 마케터들의 효율적인 업무 관리 툴입니다.",
   icons: {
-    icon: "./favicon.ico",
+    icon: "../../public/favicon.ico",
   },
-}
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+};
+const pretendard = localFont({
+  src: "../../public/assets/font/PretendardVariable.woff2",
+  variable: "--font-pretendard",
+  display: "swap",
+});
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang='ko'>
+    <html lang="ko" className={pretendard.variable}>
       <head>
         <link
-          rel='stylesheet'
-          as='style'
-          href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css'
+          rel="stylesheet"
+          as="style"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css"
         />
         {/* Google Analytics */}
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=G-N10RX7RLWY`}></script>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=G-N10RX7RLWY`}></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -45,7 +44,7 @@ export default function RootLayout({
 
         {/* Google Tag Manager */}
         <Script
-          id='google-analytics'
+          id="google-analytics"
           dangerouslySetInnerHTML={{
             __html: `
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -56,24 +55,26 @@ export default function RootLayout({
         `,
           }}
         />
-        <meta property='og:image' content='https://utm.works/api/og1200.png' />
+        <meta property="og:image" content="https://utm.works/api/og1200.png" />
       </head>
       <body>
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
-            src='https://www.googletagmanager.com/ns.html?id=GTM-PTJSFK5'
-            height='0'
-            width='0'
-            style={{ display: "none", visibility: "hidden" }}></iframe>
+            src="https://www.googletagmanager.com/ns.html?id=GTM-PTJSFK5"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
         </noscript>
-
         <SideNav />
-        <div id='__next'>
+        <div id="__next">
           <Header />
-          <Providers> {children}</Providers>
+          <QueryProviders>
+            <main>{children}</main>
+          </QueryProviders>
         </div>
       </body>
     </html>
-  )
+  );
 }

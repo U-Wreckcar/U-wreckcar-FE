@@ -1,116 +1,115 @@
 .container {
-  margin-top: 38px;
+   margin-top: 38px;
 }
 
 .container input:focus {
-  font-size: 0.7rem;
+   font-size: 0.7rem;
 }
 .container input {
-  font-size: 0.7rem;
+   font-size: 0.7rem;
 }
 .container p {
-  font-weight: 400;
-  font-size: 0.7rem;
+   font-weight: 400;
+   font-size: 0.7rem;
 }
 .container p:hover {
-  font-weight: 700;
+   font-weight: 700;
 }
 
 .container form {
-  width: 500px;
+   width: 500px;
 }
 .email_box {
-  margin-bottom: 8px;
+   margin-bottom: 8px;
 }
 
 .input_style {
-  width: 478px;
-  /* max-width: 500px; */
-  height: 38px;
-  border: 1px solid #e1e1e1;
-  border-radius: 4px;
+   width: 478px;
+   /* max-width: 500px; */
+   height: 38px;
+   border: 1px solid #e1e1e1;
+   border-radius: 4px;
 }
 .input_style::placeholder {
-  font-size: 0.7rem;
-  color: #e1e1e1;
+   font-size: 0.7rem;
+   color: #e1e1e1;
 }
 
 .id_remember_box {
-  display: flex;
-  align-items: center;
+   display: flex;
+   align-items: center;
 }
 .id_remember_box input {
-  width: 18px;
-  height: 18px;
+   width: 18px;
+   height: 18px;
 }
 .id_remember_box input:checked {
-  width: 18px;
-  height: 18px;
-  accent-color: #484bff;
+   width: 18px;
+   height: 18px;
+   accent-color: #484bff;
 }
 .id_remember_box label {
-  font-weight: 400;
-  margin-left: 11px;
-  font-size: 0.7rem;
+   font-weight: 400;
+   margin-left: 11px;
+   font-size: 0.7rem;
 }
 .id_remember_box input:checked + label {
-  font-weight: 700;
+   font-weight: 700;
 }
 .option_box_containel {
-  width: 500px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-top: 20px;
-  gap: 190px;
+   width: 500px;
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+   margin-top: 20px;
+   gap: 190px;
 }
 
 .sign_up_password_forget_box {
-  display: flex;
+   display: flex;
 }
 .login_button {
-  background-color: #484bff;
-  border-radius: 4px;
+   background-color: #484bff;
 
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: white;
+   font-size: 0.8rem;
+   font-weight: 700;
+   color: white;
 
-  width: 500px;
-  height: 38px;
+   width: 500px;
+   height: 38px;
 
-  margin-top: 20px;
+   margin-top: 20px;
 
-  cursor: pointer;
+   cursor: pointer;
 }
 
 .login_button:hover {
-  background: #4c70ff;
+   background: #4c70ff;
 }
 
 .login_button:active {
-  background-color: #0c1ba6;
+   background-color: #0c1ba6;
 }
 .error_message {
-  text-align: left;
+   text-align: left;
 
-  font-size: 0.3rem;
-  font-weight: 400;
-  color: #f13400;
-  margin-top: 3px;
+   font-size: 0.3rem;
+   font-weight: 400;
+   color: #f13400;
+   margin-top: 3px;
 }
 .error {
-  width: 478px;
-  max-width: 500px;
-  height: 38px;
-  border-radius: 4px;
-  font-size: 0.3rem;
-  border: 1px solid #ff4205;
+   width: 478px;
+   max-width: 500px;
+   height: 38px;
+   border-radius: 4px;
+   font-size: 0.3rem;
+   border: 1px solid #ff4205;
 }
 .pre_style {
-  font-size: 0.7rem;
+   font-size: 0.7rem;
 }
 .been_box {
-  width: 15px;
-  height: 15px;
+   width: 15px;
+   height: 15px;
 }

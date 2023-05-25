@@ -42,8 +42,6 @@
   --animation-duration: 370ms;
 }
 
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-
 body {
   margin: 0;
   height: 100vh;
@@ -53,10 +51,7 @@ body {
   overflow-x: hidden;
   box-sizing: border-box;
   background-color: #f5f9fc;
-  font-family: 'Pretendard Variable', Pretendard, -apple-system,
-    BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
-    'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+  font-family: var(--font-pretendard);
 }
 .CircularUnderLoad-root {
   size: 100px;
@@ -70,21 +65,13 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Pretendard';
   list-style: none;
   font-size: inherit;
   color: inherit;
   margin: 0;
   padding: 0;
 }
-h1 {
-  font-size: 2rem;
-  font-weight: 700;
-}
-h2 {
-  font-size: 2rem;
-  font-weight: 500;
-}
+
 p {
   font-size: 0.8rem;
   font-weight: 400;
@@ -92,22 +79,20 @@ p {
 a {
   text-decoration: none;
   color: inherit;
-  font-family: 'Pretendard';
 }
 label {
   cursor: pointer;
 }
 
 button {
-  font-family: 'Pretendard';
   background-color: transparent;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-family: var(--font-pretendard);
 }
 
 input {
-  font-family: 'Pretendard Variable', 'Pretendard';
   margin: 0;
   border-radius: 4px;
   padding: 0 10px;
@@ -126,11 +111,16 @@ input::placeholder {
   font-size: 0.7rem;
 }
 textarea {
-  font-family: 'Pretendard Variable', 'Pretendard';
   outline: none;
   vertical-align: middle;
   resize: none;
 }
 div {
-  font-family: 'Pretendard Variable', 'Pretendard';
+}
+
+main {
+  /* overflow-y: scroll; */
+  /* background-color: blue; */
+
+  max-height: 800px;
 }

@@ -1,179 +1,222 @@
-import axios from "./axiosConfig"
-import { removeCookie } from "./Cookie"
+"use client";
+import { AxiosResponse } from "axios";
+import { removeCookie } from "./Cookie";
+import axios from "./intercepter";
+import { MainTableType } from "@/src/components/mainPage/TableData";
+/** Init Get */
 
-/**
- * Server
- * * POST
- */
-
-export const postUTMs = async (data: any) => {
-  const res = await axios.post("utms", data)
-  return res
-}
-
-/**
- * Server
- * * GET
- */
-
-export const getUTMs = async () => {
+export const myProfile = async (access_token: string, refresh_token: string) => {
+  console.log();
   try {
-    const res = await axios.get("utms", { cache: false })
-    return res
-  } catch (err) {
-    console.log("err", err)
-    removeCookie("refresh_token")
-    removeCookie("access_token")
-    return err
+    // const instance = createAxiosInstance(access_token, refresh_token);
+    const res = await axios.get(`users/profile`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${access_token}`,
+        "X-Refresh-Token": `Bearer ${refresh_token}`,
+        // "Cache-Control": "no-store",
+        // Expires: "0",
+      },
+    });
+    return res;
+  } catch (e) {
+    console.log("Get Profile Error");
   }
-}
+};
 
-type DataType = { data: string[] }
+/** GET */
+
+export const getUTMs = async (): Promise<AxiosResponse<MainTableType[]>> => {
+  try {
+    const res: AxiosResponse<MainTableType[]> = await axios.get("utms");
+    return res;
+  } catch (err: any) {
+    console.log("err", err);
+    removeCookie("refresh_token");
+    removeCookie("access_token");
+    return err;
+  }
+};
+
+type DataType = { data: string[] };
 
 export const getUTMExcell = async (data: DataType) => {
-  await axios.post("utms/export/excell", data)
-}
+  try {
+    await axios.post("utms/export/excell", data);
+  } catch (e) {
+    console.log(e);
+  }
+};
 export const testExcell = async (data: DataType) => {
-  await axios.post("utms/toxlsx", { data })
-}
+  try {
+    await axios.post("utms/toxlsx", { data });
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 export const getUTMSheet = async (data: DataType) => {
-  await axios.post(`utms/export/sheet/csv`, data)
-}
+  try {
+    await axios.post(`utms/export/sheet/csv`, data);
+  } catch (e) {
+    console.log(e);
+  }
+};
 export const testUTMSheet = async (data: DataType) => {
-  await axios.post("utms/tocsv", { data })
-}
-export const myProfile = async () => {
-  const res = await axios.get("users/profile")
-  return res
-}
-// export const getUTMNotion = async (data:DataType ) => {
-//   await axios.post("utms/export/pdf", data)
-// }
-/**
- * * POST
- */
-
-// export const postFilterUTM = async () => {
-//     await axios.post('utms', { params: { q: query } });
-// };
-
-//  export const postCreateUTMs = async (data) => {
-//     await axios.post('utms', data);
-//   };
+  try {
+    await axios.post("utms/tocsv", { data });
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 /**
- * @param data {utm_url: string, memo:string}
+ * POST
  */
+
+// Login
+type LoginData = {
+  data: {
+    email: string;
+    password: string;
+  };
+};
+
+export const localLogin = async (data: LoginData) => {
+  try {
+    const res = await axios.post("users/login", data);
+    return res;
+  } catch (e) {
+    console.log("로그인 실패");
+  }
+};
+export const postUTMs = async (data: any) => {
+  try {
+    const res = await axios.post("utms", data);
+    return res;
+  } catch (e) {
+    console.log("Post UTM Error:", e);
+  }
+};
+
 export const ExternalUTM = async (data: any) => {
-  await axios.post("utms/external", data)
-}
+  try {
+    await axios.post("utms/external", data);
+  } catch (e) {
+    console.log(e);
+  }
+};
 
-/**
- * * DELETE
- */
+/** DELETE */
 
 export const deleteUTM = async (data: any) => {
-  await axios.post(`utms/delete`, data)
-}
+  try {
+    await axios.post(`utms/delete`, data);
+  } catch (e) {
+    console.log(e);
+  }
+};
 
-/**
- * * PATCH
- */
+/** PATCH */
 
 type EditMemoType = {
-  utm_id: string
-  utm_memo?: string
-}
+  utm_id: number | undefined;
+  utm_memo?: string;
+};
 
 export const patchUTM = async (data: EditMemoType) => {
-  await axios.patch("utms/memo", data)
-}
+  try {
+    await axios.patch("utms/memo", data);
+  } catch (e) {
+    console.log(e);
+  }
+};
 
-/**
- * * SIGNUP
- */
+/** SIGNUP */
+
 type VerifyEmail = {
   data: {
-    email: string
-  }
-}
+    email: string;
+  };
+};
 type VerifyEmailNumType = {
   data: {
-    email: string
-    verificationCode: string
-  }
-}
-
-// type RemoveUserType = {
-//   data:{
-//     reason:string | ""
-//   }
-// }
+    email: string;
+    verificationCode: string;
+  };
+};
 
 type SignUp = {
   data: {
-    email: string
-    username: string
-    password: string
-    company_name: string
-    marketing_accept: boolean
-  }
-}
+    email: string;
+    username: string;
+    password: string;
+    company_name: string;
+    marketing_accept: boolean;
+  };
+};
 
 export const signUp = async (data: any) => {
   try {
-    const res = await axios.post("users/signup", data)
-    return res
+    const res = await axios.post("users/signup", data);
+    return res;
   } catch (err) {
-    console.log(err)
-    alert("회원가입에 실패하셨습니다.")
+    console.log(err);
+    alert("회원가입에 실패하셨습니다.");
   }
-}
+};
 
 export const confirmEmail = async (data: any) => {
-  const res = await axios.post("users/email", data)
-  return res
-}
+  try {
+    const res = await axios.post("users/email", data);
+    return res;
+  } catch (e) {
+    console.log("email 중복확인 실패");
+  }
+};
 
 export const verifyEmailNum = async (data: any) => {
-  const res = await axios.post("users/emailverify", data)
-  return res
-}
+  try {
+    const res = await axios.post("users/emailverify", data);
+    return res;
+  } catch (e) {
+    console.log("인증요청 실패");
+  }
+};
 
 export const removeUser = async (data: any) => {
-  await axios.post("users/userWithdrawal", data)
-}
+  try {
+    await axios.post("users/userWithdrawal", data);
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 export const findEmail = async (data: any) => {
-  const res = await axios.post("users/passwordverify", data)
-  return res
-}
+  try {
+    const res = await axios.post("users/passwordverify", data);
+    return res;
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 export const newPW = async (data: any) => {
-  const res = await axios.post("users/setnewpassword", data)
-  return res
-}
-
-/**
- * * Login
- */
-
-type LoginData = {
-  data: {
-    email: string
-    password: string
+  try {
+    const res = await axios.post("users/setnewpassword", data);
+    return res;
+  } catch (e) {
+    console.log(e);
   }
-}
+};
 
-export const localLogin = async (data: LoginData) => {
-  const res = await axios.post("users/login", data)
-  return res
-}
+/** File Upload */
 
-/**
- * * file-upload
- */
 export const upload = async (data: any) => {
-  const res = await axios.post("utms/importdata", data)
-}
+  try {
+    const res = await axios.post("utms/importdata", data);
+    return res;
+  } catch (e) {
+    console.log(e);
+  }
+};
