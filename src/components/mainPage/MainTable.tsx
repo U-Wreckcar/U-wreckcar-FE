@@ -69,9 +69,9 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
   /** Get 요청 */
   const getData = async () => {
     try {
-      const res = await getUTMs();
-      setData(res.data);
-      dData = res.data;
+      const res: any = await getUTMs();
+      setData(res.data.data);
+      dData = res.data.data;
     } catch (err) {
       router.replace("/");
     }
