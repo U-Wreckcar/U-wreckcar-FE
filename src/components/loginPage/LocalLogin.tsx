@@ -23,7 +23,6 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
   const [remember, setRemember] = useState(false);
   const [userId, setUserId] = useState("");
   const [change, setChanged] = useState<string | undefined>(undefined);
-  // const access_token = getCookie('access_token');
   const refresh_token = getCookie("refresh_token");
   const {
     register,
@@ -41,6 +40,7 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
   const onSubmit = async (data: any) => {
     try {
       const res = await localLogin({ data });
+      console.log(res);
       if (remember) {
         localStorage.setItem("userID", data.email);
       }
@@ -49,6 +49,7 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
       setChanged(res?.data.data.userData);
       // setCookie('access_token', res?.data.access_token);
       setCookie("refresh_token", res?.data.data.token);
+
       router.replace("/main");
     } catch (err) {
       setError("email", { message: "e-mail을 다시 확인해주세요" });
