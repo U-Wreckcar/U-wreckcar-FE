@@ -5,14 +5,12 @@ import axios from "./intercepter";
 import { MainTableType } from "@/src/components/mainPage/TableData";
 /** Init Get */
 
-export const myProfile = async (access_token: string, refresh_token: string) => {
-  console.log();
+export const myProfile = async (refresh_token: string) => {
   try {
     // const instance = createAxiosInstance(access_token, refresh_token);
-    const res = await axios.get(`users/profile`, {
+    const res = await axios.get(`users`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${access_token}`,
         "X-Refresh-Token": `Bearer ${refresh_token}`,
         // "Cache-Control": "no-store",
         // Expires: "0",
@@ -32,8 +30,8 @@ export const getUTMs = async (): Promise<AxiosResponse<MainTableType[]>> => {
     return res;
   } catch (err: any) {
     console.log("err", err);
-    removeCookie("refresh_token");
-    removeCookie("access_token");
+    // removeCookie("refresh_token");
+    // removeCookie("access_token");
     return err;
   }
 };
