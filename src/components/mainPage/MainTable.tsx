@@ -310,7 +310,7 @@ const Filter = ({ column, table }: any) => {
         curDate.setDate(curDate.getDate() + 1);
       }
 
-      defaultData = dData.filter((date) => result.includes(date.created_at_filter));
+      defaultData = dData.filter((date) => result.includes(date.createdAt));
 
       column.setFilterValue((old: Array<string>) => console.log(old));
     }
