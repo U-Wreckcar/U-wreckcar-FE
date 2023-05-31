@@ -23,7 +23,6 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
   const [remember, setRemember] = useState(false);
   const [userId, setUserId] = useState("");
   const [change, setChanged] = useState<string | undefined>(undefined);
-  const access_token = getCookie("access_token");
   const refresh_token = getCookie("refresh_token");
   const {
     register,
@@ -38,7 +37,7 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
    * 1. 성공 후 쿠키에 토큰 넣기
    * 2. 메인페이지 이동
    */
-  const onSubmit = async (data: LoginFormData) => {
+  const onSubmit = async (data: any) => {
     try {
       const res = await localLogin({ data });
       console.log(res);
@@ -46,9 +45,11 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
         localStorage.setItem("userID", data.email);
       }
 
-      setChanged(res?.data);
-      setCookie("access_token", res?.data.access_token);
-      setCookie("refresh_token", res?.data.refresh_token);
+      console.log(res);
+      setChanged(res?.data.data.userData);
+      // setCookie('access_token', res?.data.access_token);
+      setCookie("refresh_token", res?.data.data.token);
+
       router.replace("/main");
     } catch (err) {
       setError("email", { message: "e-mail을 다시 확인해주세요" });
@@ -64,7 +65,7 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
       setRemember(true);
       emailInput?.focus();
     }
-  }, [access_token, change]);
+  }, [change]);
 
   return (
     <div className={styles.container}>
