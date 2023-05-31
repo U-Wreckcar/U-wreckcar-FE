@@ -16,7 +16,7 @@ instance.interceptors.request.use(
     }
     // config.headers['Content-Type'] = 'application/json';
     // config.headers['Cache-Control'] = 'no-store';
-    config.headers.Expires = "0";
+    // config.headers.Expires = "0";
     return config;
   },
   (error) => Promise.reject(error)
