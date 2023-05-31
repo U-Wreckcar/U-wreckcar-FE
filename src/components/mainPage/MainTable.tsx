@@ -46,10 +46,10 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   return itemRank.passed;
 };
 
-let defaultData: Array<MainTableType> = [];
-let dData: Array<MainTableType> = [];
+let defaultData: Array<any> = [];
+let dData: Array<any> = [];
 type MainTableProps = {
-  setTable: Dispatch<SetStateAction<Table<MainTableType> | null>>;
+  setTable: Dispatch<SetStateAction<Table<any> | null>>;
   del: boolean;
   filter: boolean;
 };
@@ -61,7 +61,7 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
   const [target, setTarget] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [rowSelection, setRowSelection] = useState({});
-  const [data, setData] = useState<MainTableType[]>([]);
+  const [data, setData] = useState<any[]>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const isOpen = useAppSelector((state) => state.add.isOpen);
   const select = useAppSelector((state) => state.add.select);
@@ -69,9 +69,9 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
   /** Get 요청 */
   const getData = async () => {
     try {
-      const res = await getUTMs();
-      setData(res.data);
-      dData = res.data;
+      const res: any = await getUTMs();
+      setData(res.data.data);
+      dData = res.data.data;
     } catch (err) {
       router.replace("/");
     }
