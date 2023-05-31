@@ -6,11 +6,11 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    const access_token = getCookie("access_token");
+    // const access_token = getCookie("access_token");
     const refresh_token = getCookie("refresh_token");
-    if (access_token) {
-      config.headers.Authorization = `Bearer ${access_token}`;
-    }
+    // if (access_token) {
+    //   config.headers.Authorization = `Bearer ${access_token}`;
+    // }
     if (refresh_token) {
       config.headers["X-Refresh-Token"] = `Bearer ${refresh_token}`;
     }

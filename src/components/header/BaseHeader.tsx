@@ -9,23 +9,22 @@ import UserModal from "./UserModal";
 import { getCookie } from "src/util/async/Cookie";
 
 interface UserProfile {
-  username: string;
+  name: string;
   email: string;
-  age: number;
-  profile_img: any;
+  profileImg: any;
   // Add more properties as needed
 }
 
 export const BaseHeader = () => {
   const [modal, setModal] = useState(false);
   const [userData, setUserData] = useState<UserProfile | undefined>();
-  const access_token = getCookie("access_token");
   const refresh_token = getCookie("refresh_token");
 
   const fetchUserData = useCallback(async () => {
-    const res = await myProfile(access_token, refresh_token);
-    setUserData(res?.data);
-  }, [access_token, refresh_token]);
+    const res = await myProfile(refresh_token);
+    console.log("user", res);
+    setUserData(res?.data.data);
+  }, [refresh_token]);
 
   useEffect(() => {
     fetchUserData();
@@ -61,7 +60,7 @@ export const BaseHeader = () => {
         }}
       >
         <Image
-          src={userData?.profile_img}
+          src={userData?.profileImg}
           alt=""
           width={30}
           height={30}
@@ -69,7 +68,7 @@ export const BaseHeader = () => {
           unoptimized={true}
         />
         <p className={styles.login_box}>
-          <span className={styles.bold_text}>{userData?.username}</span>님
+          <span className={styles.bold_text}>{userData?.name}</span>님
         </p>
       </div>
       {modal && <UserModal setModal={setModal} modal={modal} />}
