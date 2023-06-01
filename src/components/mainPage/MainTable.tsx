@@ -52,6 +52,7 @@ type MainTableProps = {
   setTable: any;
   del: any;
   filter: any;
+
 };
 
 const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
@@ -61,16 +62,14 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
   const [target, setTarget] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [rowSelection, setRowSelection] = useState({});
-  const [data, setData] = useState<MainTableType[]>([]);
+  const [data, setData] = useState<any[]>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const isOpen = useAppSelector((state) => state.add.isOpen);
   const select = useAppSelector((state) => state.add.select);
 
   /** Get 요청 */
   const getData = async () => {
-    try {
-      const res = await getUTMs();
-      console.log("sing", res);
+      const res: any = await getUTMs();
       setData(res.data.data);
       dData = res.data.data;
     } catch (err) {

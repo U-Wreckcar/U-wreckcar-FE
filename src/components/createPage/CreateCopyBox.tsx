@@ -25,6 +25,7 @@ export const CreateCopyBox: React.FC<PropsType> = ({ resUTM }) => {
       <div>
         <div className={styles.list_container}>
           {resUTM?.data.map((i: any, idx: number) => (
+          {resUTM?.map((i: any, idx: number) => (
             <div key={i.utm_id}>
               <div className={styles.list_box}>
                 <div className={styles.copy_box_number}>{idx + 1}</div>
@@ -33,7 +34,7 @@ export const CreateCopyBox: React.FC<PropsType> = ({ resUTM }) => {
                     <div className={styles.full_utm}>
                       <div className={styles.text_full}>{i.fullUrl}</div>
                     </div>
-                    <CreateCopyButton text={i.full_url} />
+                    <CreateCopyButton text={i.fullUrl} />
                   </div>
                 </div>
                 <div className={styles.short_box}>
@@ -41,7 +42,7 @@ export const CreateCopyBox: React.FC<PropsType> = ({ resUTM }) => {
                     <div className={styles.short_utm}>
                       <div className={styles.text_full}>{i.shortenUrl}</div>
                     </div>
-                    <CreateCopyButton text={i.shorten_url} />
+                    <CreateCopyButton text={i.shortenUrl} />
                   </div>
                 </div>
               </div>

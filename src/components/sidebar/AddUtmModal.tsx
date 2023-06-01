@@ -1,93 +1,75 @@
-"use client"
-import React, { useEffect, useRef, useState } from "react"
-import styles from "./AddUtmModal.module.css"
-import { useForm } from "react-hook-form"
-import { ExternalUTM } from "src/util/async/api"
-import { addItem } from "src/redux/slice/addslice"
-import Modal from "@/src/common/type/Modal"
-import { ExcelAddModal } from "./ExcelAddModal"
-import { useAppDispatch } from "@/src/util/reduxType/type"
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+import styles from "./AddUtmModal.module.css";
+import { useForm } from "react-hook-form";
+import { ExternalUTM } from "src/util/async/api";
+import { addItem } from "src/redux/slice/addslice";
+import Modal from "@/src/common/type/Modal";
+import { ExcelAddModal } from "./ExcelAddModal";
+import { useAppDispatch } from "@/src/util/reduxType/type";
 
 export type ModalType = {
-  isOpen: boolean
-  onRequestClose: any
-  style: any
-}
+  isOpen: any;
+  onRequestClose: any;
+  style: any;
+};
 
 type AddUTMType = {
-  utm_url: string
-  created_at: string | null
-  memo: string | null
-}
+  url: string;
+  createdAt: string | null;
+  memo: string | null;
+};
 
-export const AddUtmModal: React.FC<ModalType> = ({
-  isOpen,
-  onRequestClose,
-  style,
-}) => {
+export const AddUtmModal: React.FC<ModalType> = ({ isOpen, onRequestClose, style }) => {
   const {
     register,
     formState: { errors, isDirty, isSubmitting },
     handleSubmit,
     setError,
     setValue,
-  } = useForm({ criteriaMode: "all", mode: "onChange" })
+  } = useForm({ criteriaMode: "all", mode: "onChange" });
 
-  const dispatch = useAppDispatch()
-  const [excel, setExcel] = useState(false)
+  const dispatch = useAppDispatch();
+  const [excel, setExcel] = useState(false);
   const onSubmit = async (data: any) => {
     try {
-      const res = await ExternalUTM(data)
-      onRequestClose()
-      dispatch(addItem(isOpen))
+      const res = await ExternalUTM({ data });
+      onRequestClose();
+      dispatch(addItem(isOpen));
     } catch (err) {
-      setError(
-        "utm_url",
-        { message: "UTM을 확인해주세요" },
-        { shouldFocus: true }
-      )
+      setError("utm_url", { message: "UTM을 확인해주세요" }, { shouldFocus: true });
     }
-  }
+  };
 
   useEffect(() => {
-    dispatch(addItem(isOpen))
-    setValue("utm_url", "")
-    setValue("created_at", "")
-    setValue("memo", "")
-    return () => setExcel(false)
-  }, [isOpen])
+    dispatch(addItem(isOpen));
+    setValue("url", "");
+    setValue("createdAt", "");
+    setValue("memo", "");
+    return () => setExcel(false);
+  }, [isOpen]);
 
   return (
     <>
       {excel ? (
-        <ExcelAddModal
-          isOpen={isOpen}
-          onRequestClose={onRequestClose}
-          style={style}
-        />
+        <ExcelAddModal isOpen={isOpen} onRequestClose={onRequestClose} style={style} />
       ) : (
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
           <form onSubmit={handleSubmit(onSubmit)} className={styles.add_modal}>
             <div className={styles.title_box}>
               <h1>기존 UTM 추가</h1>
             </div>
-            <span className={styles.sub_title}>
-              *만드신 UTM을 넣으시면 파라미터 값이 분류되어 데이터에 저장됩니다
-            </span>
+            <span className={styles.sub_title}>*만드신 UTM을 넣으시면 파라미터 값이 분류되어 데이터에 저장됩니다</span>
             <div className={styles.modal_footer_box}>
               <div className={styles.error_box}>
-                {errors?.utm_url && (
-                  <span className={styles.error_utm}>
-                    추가하실 UTM을 확인해주세요!
-                  </span>
-                )}
+                {errors?.utm_url && <span className={styles.error_utm}>추가하실 UTM을 확인해주세요!</span>}
               </div>
               <div className={styles.modal_input_box}>
                 <p>UTM</p>
                 <input
                   className={styles.modal_input}
                   placeholder="(필수 입력) ex) https://www.abcd.com?utm_source=aaa&utm_medium=bbb&utm_campaign=ccc&utm_id=ddd"
-                  {...register("utm_url", {
+                  {...register("url", {
                     required: true,
                   })}
                 ></input>
@@ -98,7 +80,7 @@ export const AddUtmModal: React.FC<ModalType> = ({
                   <input
                     className={styles.modal_input_date}
                     type="date"
-                    {...register("created_at", {
+                    {...register("createdAt", {
                       required: false,
                     })}
                   />
@@ -116,25 +98,12 @@ export const AddUtmModal: React.FC<ModalType> = ({
                 </label>
               </div>
               <div className={styles.error_box_memo}>
-                {errors.created_at && (
-                  <span className={styles.error_utm}>
-                    추가하실 UTM의 날짜를 입력해주세요!
-                  </span>
-                )}
+                {errors.created_at && <span className={styles.error_utm}>추가하실 UTM의 날짜를 입력해주세요!</span>}
               </div>
-              <button
-                type="button"
-                className={styles.add_excel_button}
-                onClick={() => setExcel(true)}
-              >
+              <button type="button" className={styles.add_excel_button} onClick={() => setExcel(true)}>
                 엑셀로 추가하기
               </button>
-              <button
-                id="add_btn"
-                type="submit"
-                disabled={isSubmitting}
-                className={styles.add_button}
-              >
+              <button id="add_btn" type="submit" disabled={isSubmitting} className={styles.add_button}>
                 추가하기
               </button>
             </div>
@@ -142,5 +111,5 @@ export const AddUtmModal: React.FC<ModalType> = ({
         </Modal>
       )}
     </>
-  )
-}
+  );
+};
