@@ -175,7 +175,7 @@ export const confirmEmail = async (data: any) => {
 
 export const verifyEmailNum = async (data: any) => {
   try {
-    const res = await axios.post("users/emailverify", data);
+    const res = await axios.post("users/verify-code", data);
     return res;
   } catch (e) {
     console.log("인증요청 실패");
