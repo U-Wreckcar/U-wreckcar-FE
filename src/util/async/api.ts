@@ -24,9 +24,9 @@ export const myProfile = async (refresh_token: string) => {
 
 /** GET */
 
-export const getUTMs = async (): Promise<AxiosResponse<MainTableType[]>> => {
+export const getUTMs = async () => {
   try {
-    const res: AxiosResponse<MainTableType[]> = await axios.get("utms");
+    const res: any = await axios.get("utms");
     return res;
   } catch (err: any) {
     console.log("err", err);
@@ -47,7 +47,7 @@ export const getUTMExcell = async (data: DataType) => {
 };
 export const testExcell = async (data: DataType) => {
   try {
-    await axios.post("utms/toxlsx", { data });
+    await axios.post("utms/excel", { data });
   } catch (e) {
     console.log(e);
   }
@@ -62,7 +62,7 @@ export const getUTMSheet = async (data: DataType) => {
 };
 export const testUTMSheet = async (data: DataType) => {
   try {
-    await axios.post("utms/tocsv", { data });
+    await axios.post("utms/csv", { data });
   } catch (e) {
     console.log(e);
   }

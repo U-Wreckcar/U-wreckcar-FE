@@ -39,13 +39,13 @@ export const OutputModal: React.FC<OutputModalType> = ({ isOpen, onRequestClose,
       try {
         setLoading(true);
         const response = await Axios.post(
-          "utms/toxlsx",
+          "utms/excel",
           { data: dataList },
           {
             responseType: "blob",
           }
         );
-        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const url = window.URL.createObjectURL(new Blob([response.data.data]));
         const a = document.createElement("a");
         a.href = url;
         const timestamp = new Date(Date.now()).toISOString().slice(0, 10);
@@ -65,11 +65,15 @@ export const OutputModal: React.FC<OutputModalType> = ({ isOpen, onRequestClose,
     if (sheet) {
       try {
         setLoading(true);
-        const response = await Axios.post("utms/export/sheet/csv", dataList, {
-          responseType: "blob",
-        });
+        const response = await Axios.post(
+          "utms/csv",
+          { data: dataList },
+          {
+            responseType: "blob",
+          }
+        );
         // const response = await getData("export/sheet/csv")
-        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const url = window.URL.createObjectURL(new Blob([response.data.data]));
         const a = document.createElement("a");
         a.href = url;
         const timestamp = new Date(Date.now()).toISOString().slice(0, 10);
