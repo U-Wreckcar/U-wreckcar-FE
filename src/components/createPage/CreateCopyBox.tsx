@@ -10,7 +10,6 @@ type PropsType = {
   resUTM: any;
 };
 export const CreateCopyBox: React.FC<PropsType> = ({ resUTM }) => {
-  console.log(resUTM);
   return (
     <div className={styles.container_copy_box}>
       <div className={styles.copy_title}>
@@ -25,6 +24,7 @@ export const CreateCopyBox: React.FC<PropsType> = ({ resUTM }) => {
       </div>
       <div>
         <div className={styles.list_container}>
+          {resUTM?.data.map((i: any, idx: number) => (
           {resUTM?.map((i: any, idx: number) => (
             <div key={i.utm_id}>
               <div className={styles.list_box}>

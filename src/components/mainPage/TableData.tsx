@@ -11,7 +11,7 @@ export type MainTableType = {
   campaignId: string;
   utm_source_name: string;
   // user_utm_medium_id:any;
-  utm_medium_name: string;
+  medium: string;
   campaignName: string;
   term: string;
   content: string;
@@ -87,8 +87,8 @@ export const columns: ColumnDef<MainTableType>[] = [
   },
   {
     header: "미디움",
-    id: "utm_medium_name",
-    accessorKey: "utm_medium_name",
+    id: "medium",
+    accessorKey: "medium",
     cell: (info) => info.getValue(),
     footer: (props) => props.column.id,
     minSize: 110,

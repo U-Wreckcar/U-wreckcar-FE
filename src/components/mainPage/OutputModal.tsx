@@ -45,7 +45,7 @@ export const OutputModal: React.FC<OutputModalType> = ({ isOpen, onRequestClose,
             responseType: "blob",
           }
         );
-        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const url = window.URL.createObjectURL(new Blob([response.data.data]));
         const a = document.createElement("a");
         a.href = url;
         const timestamp = new Date(Date.now()).toISOString().slice(0, 10);

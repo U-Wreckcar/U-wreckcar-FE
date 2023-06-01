@@ -46,12 +46,13 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   return itemRank.passed;
 };
 
-let defaultData: Array<any> = [];
-let dData: Array<any> = [];
+let defaultData: Array<MainTableType> = [];
+let dData: any;
 type MainTableProps = {
-  setTable: Dispatch<SetStateAction<Table<any> | null>>;
-  del: boolean;
-  filter: boolean;
+  setTable: any;
+  del: any;
+  filter: any;
+
 };
 
 const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
@@ -68,7 +69,6 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
 
   /** Get 요청 */
   const getData = async () => {
-    try {
       const res: any = await getUTMs();
       setData(res.data.data);
       dData = res.data.data;
@@ -310,7 +310,7 @@ const Filter = ({ column, table }: any) => {
         curDate.setDate(curDate.getDate() + 1);
       }
 
-      defaultData = dData.filter((date) => result.includes(date.createdAt));
+      defaultData = dData.filter((date: any) => result.includes(date.createdAt));
 
       column.setFilterValue((old: Array<string>) => console.log(old));
     }

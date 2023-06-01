@@ -103,13 +103,13 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
   const addList = () => {
     if (fields.length <= 4) {
       append({
-        url: "",
+        medium: "",
         campaignId: "",
         source: "",
-        medium: "",
         campaignName: "",
-        content: "",
+        url: "",
         term: "",
+        content: "",
         memo: "",
       });
     }
@@ -241,7 +241,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
                           {...register(`data.${index}.content` as const, {
                             maxLength: 20,
                           })}
-                          className={`${errors?.data?.[index]?.content ? "error" : ""}, ${styles.input_style}`}
+                          className={`${errors?.data?.[index]?.campaignId ? "error" : ""}, ${styles.input_style}`}
                         />
                       </Tooltip>
                       <Tooltip title={"(선택) UTM에 대한 메모를 남길 수 있습니다. 자유롭게 활용하세요."}>
