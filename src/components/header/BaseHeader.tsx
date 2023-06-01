@@ -43,7 +43,7 @@ export const BaseHeader = () => {
           height={18}
         />
         <p>
-          <Link
+          {/* <Link
             className={styles.click_text}
             href={
               "https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492?p=466c5b37c40d4e7ba9db48b604905730&pm=s"
@@ -51,8 +51,8 @@ export const BaseHeader = () => {
             target="_blank"
           >
             [클릭]
-          </Link>
-          유렉카 로그인 관련 공지사항
+          </Link> */}
+          유렉카는 Chrome 환경에 최적화되어 있습니다!
         </p>
       </div>
       <div
