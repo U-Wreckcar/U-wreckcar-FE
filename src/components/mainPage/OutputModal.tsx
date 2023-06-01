@@ -45,6 +45,7 @@ export const OutputModal: React.FC<OutputModalType> = ({ isOpen, onRequestClose,
             responseType: "blob",
           }
         );
+        console.log(response.data);
         const url = window.URL.createObjectURL(new Blob([response.data]));
         const a = document.createElement("a");
         a.href = url;

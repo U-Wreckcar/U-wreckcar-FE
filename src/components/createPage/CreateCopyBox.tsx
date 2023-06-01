@@ -10,7 +10,6 @@ type PropsType = {
   resUTM: any;
 };
 export const CreateCopyBox: React.FC<PropsType> = ({ resUTM }) => {
-  console.log(resUTM);
   return (
     <div className={styles.container_copy_box}>
       <div className={styles.copy_title}>

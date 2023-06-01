@@ -67,7 +67,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
     " sms",
   ];
   const res: any = data;
-  console.log(res);
+
   setResUTM(res?.data?.data);
   const {
     handleSubmit,
