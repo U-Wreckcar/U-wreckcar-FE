@@ -17,15 +17,15 @@ import Loading from "@/src/common/modal/Loading";
 import { Tooltip } from "@mui/material";
 import { createUTMs } from "@/src/service/create";
 export type UTMsType = {
-  utms: {
-    utm_url?: string;
-    utm_campaign_id?: string;
-    utm_source?: string;
-    utm_medium?: string;
-    utm_campaign_name?: string | null;
-    utm_content?: string | null;
-    utm_term?: string | null;
-    utm_memo?: string | null;
+  data: {
+    url?: string;
+    campaignId?: string;
+    source?: string;
+    medium?: string;
+    campaignName?: string | null;
+    content?: string | null;
+    term?: string | null;
+    memo?: string | null;
   }[];
 };
 type PropsType = {
@@ -66,8 +66,9 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
     " socialmedia",
     " sms",
   ];
-  const res = data?.data;
-  setResUTM(res);
+  const res: any = data;
+  console.log(res);
+  setResUTM(res?.data?.data);
   const {
     handleSubmit,
     register,
@@ -75,23 +76,23 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
     formState: { errors },
   } = useForm<UTMsType>({
     defaultValues: {
-      utms: [
+      data: [
         {
-          utm_url: "",
-          utm_campaign_id: "",
-          utm_source: "",
-          utm_medium: "",
-          utm_campaign_name: null,
-          utm_term: null,
-          utm_content: null,
-          utm_memo: null,
+          url: "",
+          campaignId: "",
+          source: "",
+          medium: "",
+          campaignName: null,
+          term: null,
+          content: null,
+          memo: null,
         },
       ],
     },
     mode: "onBlur",
   });
   const { fields, append, remove } = useFieldArray({
-    name: "utms",
+    name: "data",
     control,
   });
   // const requeirFn = (e: any) => {
@@ -102,14 +103,14 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
   const addList = () => {
     if (fields.length <= 4) {
       append({
-        utm_url: "",
-        utm_campaign_id: "",
-        utm_source: "",
-        utm_medium: "",
-        utm_campaign_name: "",
-        utm_content: "",
-        utm_term: "",
-        utm_memo: "",
+        url: "",
+        campaignId: "",
+        source: "",
+        medium: "",
+        campaignName: "",
+        content: "",
+        term: "",
+        memo: "",
       });
     }
   };
@@ -131,7 +132,7 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
    * 로그인 하지 않은 유저 로그인 페이지로 보내기
    */
   useEffect(() => {
-    const cookie = getCookie("access_token");
+    const cookie = getCookie("refresh_token");
 
     if (!cookie) {
       redirect("/login");
@@ -154,11 +155,11 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
                         <input
                           placeholder="https://를 붙여서 입력해 주세요."
                           type="url"
-                          {...register(`utms.${index}.utm_url` as const, {
+                          {...register(`data.${index}.url` as const, {
                             required: true,
                             maxLength: 200,
                           })}
-                          className={`${errors?.utms?.[index]?.utm_url ? styles.error : styles.input_style}`}
+                          className={`${errors?.data?.[index]?.url ? styles.error : styles.input_style}`}
                         />
                       </Tooltip>
                       <datalist id="source">
@@ -172,11 +173,11 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
                         <input
                           list="source"
                           placeholder="ex) google, naver, facebook…"
-                          {...register(`utms.${index}.utm_source` as const, {
+                          {...register(`data.${index}.source` as const, {
                             required: true,
                             maxLength: 20,
                           })}
-                          className={`${errors?.utms?.[index]?.utm_source ? styles.error : styles.input_style}`}
+                          className={`${errors?.data?.[index]?.source ? styles.error : styles.input_style}`}
                         />
                       </Tooltip>
                       <datalist id="medium">
@@ -190,43 +191,43 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
                         <input
                           list="medium"
                           placeholder="ex) email, display, cpc…"
-                          {...register(`utms.${index}.utm_medium` as const, {
+                          {...register(`data.${index}.medium` as const, {
                             required: true,
                             maxLength: 20,
                             // pattern: /[a-z]/i,
                           })}
-                          className={`${errors?.utms?.[index]?.utm_medium ? styles.error : styles.input_style}`}
+                          className={`${errors?.data?.[index]?.medium ? styles.error : styles.input_style}`}
                         />
                       </Tooltip>
                       <Tooltip title={"(필수) 어떤 이벤트/캠페인을 진행하고 있는지 홍보 명을 입력해 주세요."}>
                         <input
                           placeholder="ex) close_beta, open_beta, open…"
-                          {...register(`utms.${index}.utm_campaign_name` as const, {
+                          {...register(`data.${index}.campaignName` as const, {
                             maxLength: 20,
                             required: true,
                           })}
-                          className={`${errors?.utms?.[index]?.utm_campaign_name ? styles.error : styles.input_style}`}
+                          className={`${errors?.data?.[index]?.campaignName ? styles.error : styles.input_style}`}
                         />
                       </Tooltip>
                       <Tooltip title={"(선택) UTM에 아이디를 붙여 구분하고 싶을 때, 값을 입력해 주세요."}>
                         <input
                           placeholder="ex) 20230312_UCB, 20230329_abc…"
                           // onInput={requeirFn}
-                          {...register(`utms.${index}.utm_campaign_id` as const, {
+                          {...register(`data.${index}.campaignId` as const, {
                             // pattern: /[a-z]/i,
                             maxLength: 20,
                           })}
-                          className={`${errors?.utms?.[index]?.utm_campaign_id ? "error" : ""}, ${styles.input_style}`}
+                          className={`${errors?.data?.[index]?.campaignId ? "error" : ""}, ${styles.input_style}`}
                         />
                       </Tooltip>
                       <Tooltip title={"(선택) 검색 광고를 통해 홍보한다면 그때 사용되는 검색어를 입력해 주세요."}>
                         <input
                           // onInput={requeirFn}
                           placeholder="ex) GA, UTM.."
-                          {...register(`utms.${index}.utm_term` as const, {
+                          {...register(`data.${index}.term` as const, {
                             maxLength: 20,
                           })}
-                          className={`${errors?.utms?.[index]?.utm_campaign_id ? "error" : ""}, ${styles.input_style}`}
+                          className={`${errors?.data?.[index]?.term ? "error" : ""}, ${styles.input_style}`}
                         />
                       </Tooltip>
                       <Tooltip
@@ -237,17 +238,17 @@ export const CreateUTM: React.FC<PropsType> = ({ setResUTM }) => {
                         <input
                           // onInput={requeirFn}
                           placeholder="ex) 1st, 2nd…"
-                          {...register(`utms.${index}.utm_content` as const, {
+                          {...register(`data.${index}.content` as const, {
                             maxLength: 20,
                           })}
-                          className={`${errors?.utms?.[index]?.utm_campaign_id ? "error" : ""}, ${styles.input_style}`}
+                          className={`${errors?.data?.[index]?.content ? "error" : ""}, ${styles.input_style}`}
                         />
                       </Tooltip>
                       <Tooltip title={"(선택) UTM에 대한 메모를 남길 수 있습니다. 자유롭게 활용하세요."}>
                         <textarea
                           className={`${styles.active}`}
                           placeholder="ex) 캠페인 코멘트, 세션 수 등의 정보"
-                          {...register(`utms.${index}.utm_memo` as const, {
+                          {...register(`data.${index}.memo` as const, {
                             maxLength: 100,
                           })}
                           spellCheck={false}
