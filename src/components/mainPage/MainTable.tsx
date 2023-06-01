@@ -52,7 +52,6 @@ type MainTableProps = {
   setTable: any;
   del: any;
   filter: any;
-
 };
 
 const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
@@ -69,6 +68,7 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
 
   /** Get 요청 */
   const getData = async () => {
+    try {
       const res: any = await getUTMs();
       setData(res.data.data);
       dData = res.data.data;
