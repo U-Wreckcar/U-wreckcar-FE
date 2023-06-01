@@ -49,7 +49,6 @@ export default function SignUp() {
 
     if (emailRegex.test(emailValue)) {
       const res = await confirmEmail({ data: { email: emailValue } });
-      console.log(res);
       if (res?.data.result.success === true) {
         setEmailNum(1);
       } else if (res?.data.result.success === false) {
