@@ -86,10 +86,10 @@ export default function SignUp() {
         const res: any = await signUp({
           data: {
             email,
-            company_name: data.company_name,
-            marketing_accept: data.marketing_accept,
+            company: data.company_name,
+            isMarketing: data.marketing_accept,
             password: data.password,
-            username: data.username,
+            name: data.username,
           },
         });
         if (res) {
