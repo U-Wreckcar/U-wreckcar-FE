@@ -24,7 +24,6 @@ export const CreateCopyBox: React.FC<PropsType> = ({ resUTM }) => {
       </div>
       <div>
         <div className={styles.list_container}>
-          {resUTM?.data.map((i: any, idx: number) => (
           {resUTM?.map((i: any, idx: number) => (
             <div key={i.utm_id}>
               <div className={styles.list_box}>
