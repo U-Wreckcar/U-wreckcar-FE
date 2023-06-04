@@ -32,6 +32,8 @@ import { useRouter } from "next/navigation";
 import { DebouncedInput } from "./MainTableFunction";
 import { selectTable } from "@/src/redux/slice/addslice";
 import { useAppDispatch, useAppSelector } from "@/src/util/reduxType/type";
+import { EditModal } from "./MainMemoModal";
+import { customStyles } from "../loginPage/LoginModal";
 
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   // Rank the item
@@ -82,10 +84,11 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
   }, [show, isOpen]);
 
   useEffect(() => {
-    setTimeout(() => {
+    const time = setTimeout(() => {
       getData();
     }, 500);
-  }, [del]);
+    return () => clearTimeout(time);
+  }, [del, show]);
 
   useEffect(() => {
     if (defaultData.length === 0 || !defaultData) {
@@ -133,6 +136,14 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
 
   return (
     <div className={styles.main_wrap}>
+      <EditModal
+        isOpen={show}
+        onRequestClose={() => setShow(false)}
+        style={customStyles}
+        value={inputValue}
+        table={table}
+        index={target}
+      />
       <div className={styles.table_scroll}>
         <table
           className={styles.table}
@@ -223,7 +234,7 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
                           },
                         }}
                       >
-                        {cell.column.id === "utm_url" && (
+                        {cell.column.id === "url" && (
                           <Tooltip title={`${cell.getValue()}`}>
                             <div
                               className={styles.td_box}
@@ -234,7 +245,7 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
                             >{`${cell.getValue()}`}</div>
                           </Tooltip>
                         )}
-                        {cell.column.id === "utm_memo" && (
+                        {cell.column.id === "memo" && (
                           <Tooltip title={"메모 수정하기"}>
                             <div
                               id={cell.id}
@@ -251,19 +262,19 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
                           </Tooltip>
                         )}
                         {cell.column.id === "select" && flexRender(cell.column.columnDef.cell, cell.getContext())}
-                        {cell.column.id === "full_url" && <CopyButton text={`${cell.getValue()}`}></CopyButton>}
-                        {cell.column.id === "shorten_url" && <CopyButton text={`${cell.getValue()}`}></CopyButton>}
-                        {cell.column.id === "click_count" && (
+                        {cell.column.id === "fullUrl" && <CopyButton text={`${cell.getValue()}`}></CopyButton>}
+                        {cell.column.id === "shortenUrl" && <CopyButton text={`${cell.getValue()}`}></CopyButton>}
+                        {cell.column.id === "clickCount" && (
                           <Tooltip title="shorten URL 클릭 수입니다.">
                             <div className={styles.td_box}>{`${cell.getValue()}`}</div>
                           </Tooltip>
                         )}
-                        {cell.column.id !== "utm_memo" &&
-                          cell.column.id !== "utm_url" &&
+                        {cell.column.id !== "memo" &&
+                          cell.column.id !== "url" &&
                           cell.column.id !== "select" &&
-                          cell.column.id !== "full_url" &&
-                          cell.column.id !== "shorten_url" &&
-                          cell.column.id !== "click_count" && (
+                          cell.column.id !== "fullUrl" &&
+                          cell.column.id !== "shortenUrl" &&
+                          cell.column.id !== "clickCount" && (
                             <Tooltip title={`${cell.getValue()}`}>
                               <div className={styles.td_box}>{`${cell.getValue()}`}</div>
                             </Tooltip>

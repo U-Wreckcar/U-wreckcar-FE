@@ -62,7 +62,7 @@ const LoginBox = ({ router }: any) => {
           confirmButtonName={"확인"}
         />
       )} */}
-      {noti && <LoginModal isOpen={noti} onRequestClose={() => setNoti(false)} />}
+      {/* {noti && <LoginModal isOpen={noti} onRequestClose={() => setNoti(false)} />} */}
 
       <h1 className={styles.title}>Login</h1>
       <p className={styles.content}>U렉카와 함께 쉽고 빠른 업무를 느껴보세요!</p>
