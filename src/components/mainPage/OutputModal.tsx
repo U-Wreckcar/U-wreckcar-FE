@@ -68,15 +68,14 @@ export const OutputModal: React.FC<OutputModalType> = ({ isOpen, onRequestClose,
     if (sheet) {
       try {
         setLoading(true);
-        const refresh_token = getCookie("refresh_token");
-        const headers = {
-          "X-Refresh-Token": `Bearer ${refresh_token}`,
-        };
-        const response = await axios.post(
-          "https://c91d-14-6-160-238.ngrok-free.app/api/utms/csv",
+        // const refresh_token = getCookie("refresh_token");
+        // const headers = {
+        //   "X-Refresh-Token": `Bearer ${refresh_token}`,
+        // };
+        const response = await Axios.post(
+          "utms/csv",
           { data: dataList },
           {
-            headers,
             // responseType: "blob",
           }
         );
