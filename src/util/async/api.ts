@@ -124,7 +124,7 @@ type EditMemoType = {
 
 export const patchUTM = async (data: EditMemoType) => {
   try {
-    await axios.patch("utms/memo", data);
+    await axios.post("utms/memo",{ data});
   } catch (e) {
     console.log(e);
   }
@@ -212,7 +212,7 @@ export const newPW = async (data: any) => {
 
 export const upload = async (data: any) => {
   try {
-    const res = await axios.post("utms/importdata", data);
+    const res = await axios.post("utms/file-import", data);
     return res;
   } catch (e) {
     console.log(e);

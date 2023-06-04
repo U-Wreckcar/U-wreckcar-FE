@@ -163,14 +163,6 @@ export default function MainPageComponent() {
             </button>
             <AddUtmModal isOpen={plus} onRequestClose={() => setPlus(false)} style={customStyles} />
           </div>
-          <EditModal
-            isOpen={show}
-            onRequestClose={() => setShow(false)}
-            style={customStyles}
-            value={inputValue}
-            table={table}
-            index={target}
-          />
         </div>
         <MainTable setTable={setTable} del={del} filter={filter} />
       </div>
