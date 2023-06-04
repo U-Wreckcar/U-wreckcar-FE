@@ -19,6 +19,8 @@ import { BlueButton } from "@/src/common/button/blue_button/BlueButton";
 import { delSelectTable } from "@/src/redux/slice/addslice";
 import { useAppDispatch } from "@/src/util/reduxType/type";
 import { CustomStyles, MainTableType } from "./TableData";
+import axios from "axios";
+import { getCookie } from "@/src/util/async/Cookie";
 
 type OutputModalType = {
   isOpen: boolean;
@@ -66,15 +68,20 @@ export const OutputModal: React.FC<OutputModalType> = ({ isOpen, onRequestClose,
     if (sheet) {
       try {
         setLoading(true);
+        // const refresh_token = getCookie("refresh_token");
+        // const headers = {
+        //   "X-Refresh-Token": `Bearer ${refresh_token}`,
+        // };
         const response = await Axios.post(
           "utms/csv",
           { data: dataList },
           {
-            responseType: "blob",
+            // responseType: "blob",
           }
         );
+        console.log(response);
         // const response = await getData("export/sheet/csv")
-        const url = window.URL.createObjectURL(new Blob([response.data.data]));
+        const url = window.URL.createObjectURL(new Blob([response.data.data], { type: "text/csv" }));
         const a = document.createElement("a");
         a.href = url;
         const timestamp = new Date(Date.now()).toISOString().slice(0, 10);
