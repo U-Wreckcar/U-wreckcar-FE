@@ -60,10 +60,13 @@ export const ExcelAddModal: React.FC<ModalType> = ({ isOpen, onRequestClose, sty
 
   async function asyncfile(data: any) {
     try {
-      console.log(data);
       const res = await Axios.post("utms/file-import", data);
       console.log(res);
-      onRequestClose();
+      if (res.data.result.success) {
+        onRequestClose();
+      } else if (!res.data.result.success) {
+        alert("파일 양식을 다시 확인해주세요!");
+      }
     } catch (err) {
       alert("파일을 다시 올려주세요!");
     }
