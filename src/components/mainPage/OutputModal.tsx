@@ -38,31 +38,32 @@ export const OutputModal: React.FC<OutputModalType> = ({ isOpen, onRequestClose,
 
   async function onClickPopHandler() {
     if (excel) {
-      try {
-        setLoading(true);
-        const response = await Axios.post(
-          "utms/excel",
-          { data: dataList },
-          {
-            responseType: "blob",
-          }
-        );
-        console.log(response.data);
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const a = document.createElement("a");
-        a.href = url;
-        const timestamp = new Date(Date.now()).toISOString().slice(0, 10);
-        a.download = `${timestamp}.xlsx`;
-        a.click();
-        window.URL.revokeObjectURL(url);
-        onRequestClose();
-        setLoading(false);
-        dispatch(delSelectTable());
-      } catch (error) {
-        setLoading(false);
-        setAlert(true);
-        console.error("download error", error);
-      }
+      window.alert("준비중입니다. 스프레드 시트로 추출해주세요.");
+      // try {
+      //   setLoading(true);
+      //   const response = await Axios.post(
+      //     "utms/excel",
+      //     { data: dataList },
+      //     {
+      //       responseType: "blob",
+      //     }
+      //   );
+      //   console.log(response.data);
+      //   const url = window.URL.createObjectURL(new Blob([response.data]));
+      //   const a = document.createElement("a");
+      //   a.href = url;
+      //   const timestamp = new Date(Date.now()).toISOString().slice(0, 10);
+      //   a.download = `${timestamp}.xlsx`;
+      //   a.click();
+      //   window.URL.revokeObjectURL(url);
+      //   onRequestClose();
+      //   setLoading(false);
+      //   dispatch(delSelectTable());
+      // } catch (error) {
+      //   setLoading(false);
+      //   setAlert(true);
+      //   console.error("download error", error);
+      // }
     }
 
     if (sheet) {
@@ -79,7 +80,6 @@ export const OutputModal: React.FC<OutputModalType> = ({ isOpen, onRequestClose,
             // responseType: "blob",
           }
         );
-        console.log(response);
         // const response = await getData("export/sheet/csv")
         const url = window.URL.createObjectURL(new Blob([response.data.data], { type: "text/csv" }));
         const a = document.createElement("a");
