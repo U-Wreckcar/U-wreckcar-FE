@@ -29,7 +29,7 @@ C -- 파라미터 분리 --> D
 | **FE** | 김영건 | [<img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="24" height="17"/> ](https://github.com/Goldenprevue) |
 |   BE   | 김연석 | [<img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="24" height="17"/> ](https://github.com/tastekim)     |
 |   BE   | 김성현 | [<img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="24" height="17"/> ](https://github.com/rtg1014)      |
-|   D    | 이주은 | [링크 ](https://2zooni.tistory.com)                                                                                                          |
+|   D    | 이주은 | [링크 ](https://2zooni.tistory.com) |                                                                                                         
 |   PM   | 강진욱 | [링크](https://disquiet.io/@wlsdnrdl01)                                                                                                      |
 |   PM   | 조혜린 | [링크](https://disquiet.io/@jo2050123)                                                                                                       |
 |   PM   | 양성민 | [링크](https://disquiet.io/@tjdals931)                                                                                                       |
@@ -57,3 +57,40 @@ C -- 파라미터 분리 --> D
 </thead>
 </table>
 # 프론트 주요 작업 -->
+
+
+
+<div align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="40" alt="javascript logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" height="40" alt="typescript logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" height="40" alt="html5 logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" height="40" alt="css3 logo"  />
+</div>
+
+###
+
+<div align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="40" alt="react logo"  />
+  <img width="12" />
+  <img src="https://skillicons.dev/icons?i=nextjs" height="40" alt="nextjs logo"  />
+</div>
+
+###
+
+<div align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" height="40" alt="redux logo"  />
+</div>
+
+###
+
+<div align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" height="40" alt="tailwindcss logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" height="40" alt="git logo"  />
+</div>
+
+###
+
