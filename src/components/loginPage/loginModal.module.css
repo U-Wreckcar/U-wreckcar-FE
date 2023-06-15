@@ -1,11 +1,11 @@
 .modal_container{
-    width: 500px;
-    height: 464px;
+    width: 600px;
+    height: 310px;
     color: #222222;
 }
 
 .underLine{
-    width: 500px;
+    width: 600px;
     height: 64px;
     border-bottom: 1px solid #E1E1E1;
     font-style: 700;
@@ -17,22 +17,29 @@
     margin: 0;
 }
 
+.underLine > svg {
+    transform: translateX(180px);
+}
+
 .modal_wrap > div {
     text-align: left;
-    margin-top: 24px;
-    padding-left: 50px;
+    margin-top: 26px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .modal_wrap > div > h2 {
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 30px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.006em;
 }
 
 .modal_wrap > div >p {
-    line-height: 24px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.006em;
     white-space: pre-wrap;
 }
 
@@ -44,27 +51,29 @@
     color: #F13400;
 }
 .button_box {
-    width: 320px;
+    width: 250px;
     display: flex;
     margin: 25px auto;
 
 }
 .button_box > button {
-    width: 120px;
-    height: 40px;
+    width: 81px;
+    height: 38px;
     padding: 8px 16px;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 24px;
     margin: 8px;
-    color: #fff;
+    
 }
 .noti_button{
-    background-color: #9F9F9F; 
+    background-color: #F5F9FC; 
+    color: #434343;
 }
 .confirm_button{
     background-color: #484BFF;
+    color: #fff;
 }
 .confirm_button:hover{
     background-color: #4C70FF;
