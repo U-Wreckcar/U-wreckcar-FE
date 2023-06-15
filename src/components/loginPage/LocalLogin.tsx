@@ -130,11 +130,11 @@ const LocalLogin: React.FC<LocalLoginProps> = ({ setLocal }) => {
             <label htmlFor="rememberId">아이디 저장</label>
           </div>
           <div className={styles.sign_up_password_forget_box}>
-            <Link href={"/signup"}>
+            <Link prefetch={false} href={"/signup"}>
               <p className={styles.sign_up_text_style}>회원가입</p>
             </Link>
             <pre className={styles.pre_style}> | </pre>
-            <Link href={"/find"}>
+            <Link prefetch={false} href={"/find"}>
               <p className={styles.password_text_style}>비밀번호를 잊으셨나요?</p>
             </Link>
           </div>

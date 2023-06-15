@@ -50,7 +50,7 @@ export default function HomeSix() {
             </p>
           </div>
         </article>
-        <Link href={"/webonly"}>
+        <Link prefetch={false} href={"/webonly"}>
           <button>더 많은 기능 보러가기</button>
         </Link>
       </section>

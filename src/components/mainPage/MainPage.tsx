@@ -90,6 +90,7 @@ export default function MainPageComponent() {
     const id: Array<MainTableType> = [];
     table?.getSelectedRowModel().flatRows.map((row: { original: MainTableType }) => id.push(row?.original));
     if (id.length === 0) {
+      console.log(data);
       setTitle(`${data?.length}개의 UTM이 쌓여 있어요!`);
     } else if (id.length !== 0) {
       setTitle(`${id?.length}개의 UTM이 선택됐어요!`);
@@ -156,10 +157,10 @@ export default function MainPageComponent() {
                 dispatch(delSelectTable());
               }}
             >
-              <Image src={filterImg} alt="filter" width={24} height={24} />
+              <Image src={filterImg} alt="filter" width={24} height={24} priority={true} />
             </button>
             <button title="button" className={styles.plus_button} onClick={() => setPlus(true)}>
-              <Image src={plusImg} alt="plus" width={24} height={24} />
+              <Image src={plusImg} alt="plus" width={24} height={24} priority={true} />
             </button>
             <AddUtmModal isOpen={plus} onRequestClose={() => setPlus(false)} style={customStyles} />
           </div>
