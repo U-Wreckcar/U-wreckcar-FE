@@ -1,14 +1,14 @@
-import React from "react"
-import styles from "./renderModal.module.css"
-import close from "assets/b_close.png"
-import Image from "next/image"
-import Link from "next/link"
-import Modal from "src/common/type/Modal"
+import React from "react";
+import styles from "./renderModal.module.css";
+import close from "assets/b_close.png";
+import Image from "next/image";
+import Link from "next/link";
+import Modal from "src/common/type/Modal";
 
 type RenderModalType = {
-  isOpen: boolean
-  onRequestClose: any
-}
+  isOpen: boolean;
+  onRequestClose: any;
+};
 
 const RenderModal: React.FC<RenderModalType> = ({ isOpen, onRequestClose }) => {
   const style = {
@@ -22,7 +22,7 @@ const RenderModal: React.FC<RenderModalType> = ({ isOpen, onRequestClose }) => {
       padding: 0,
       borderRadius: "8px",
     },
-  }
+  };
   return (
     <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={style}>
       <div className={styles.container}>
@@ -56,16 +56,13 @@ const RenderModal: React.FC<RenderModalType> = ({ isOpen, onRequestClose }) => {
           <p>더욱 더 편리한 유렉카가 되겠습니다. </p>
         </div>
         <Link
-          href={
-            "https://docs.google.com/forms/d/e/1FAIpQLSc9YT3SIVC6ARWONo5DZSd4CN4TD68E-dXCwAJcAitOWWSnuw/viewform"
-          }
+          prefetch={false}
+          href={"https://docs.google.com/forms/d/e/1FAIpQLSc9YT3SIVC6ARWONo5DZSd4CN4TD68E-dXCwAJcAitOWWSnuw/viewform"}
         >
-          <button className={styles.modal_link_button}>
-            설문조사 참여하러 가기
-          </button>
+          <button className={styles.modal_link_button}>설문조사 참여하러 가기</button>
         </Link>
       </div>
     </Modal>
-  )
-}
-export default RenderModal
+  );
+};
+export default RenderModal;

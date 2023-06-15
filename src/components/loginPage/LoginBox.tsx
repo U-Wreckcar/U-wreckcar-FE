@@ -23,28 +23,6 @@ const LoginBox = ({ router }: any) => {
     }
   }, []);
 
-  const kakaoUrl = `${process.env.NEXT_PUBLIC_API}auth/kakao`;
-  const onClickKakaoBtn = () => {
-    window.location.href = kakaoUrl;
-  };
-  const onClickNaverBtn = () => {
-    setAlert(true);
-    // alert("개발중입니다..!")
-  };
-
-  const onClickGoogleBtn = () => {
-    setAlert(true);
-    // alert("개발중입니다...!")
-  };
-
-  useEffect(() => {
-    if (alert) {
-      setTimeout(() => {
-        setAlert(false);
-      }, 2000);
-    }
-  }, [alert]);
-
   return (
     <div className={styles.container}>
       {/* {noti && (
@@ -62,15 +40,10 @@ const LoginBox = ({ router }: any) => {
           confirmButtonName={"확인"}
         />
       )} */}
-      {/* {noti && <LoginModal isOpen={noti} onRequestClose={() => setNoti(false)} />} */}
+      {noti && <LoginModal isOpen={noti} onRequestClose={() => setNoti(false)} />}
 
       <h1 className={styles.title}>Login</h1>
       <p className={styles.content}>U렉카와 함께 쉽고 빠른 업무를 느껴보세요!</p>
-      {alert && (
-        <Alert className={styles.alert} severity="warning">
-          아직 개발 중입니다...! <strong>카카오로 바로 시작해보세요!</strong>
-        </Alert>
-      )}
 
       <LocalLogin setLocal={setLocal} />
       {/* <button className={styles.kakao_btn} onClick={onClickKakaoBtn}>

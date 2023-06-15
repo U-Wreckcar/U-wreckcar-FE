@@ -26,10 +26,10 @@ export default function HomeSeven() {
           <h1>지금 바로 시작해보세요!</h1>
           <Image className={styles.seven_first_img} src={seven_img} alt="Img" />
           <Image className={styles.seven_sub_img} src={seven_sub_img} alt="Img" />
-          <Link className={styles.origin_seven_button} href={"/login"}>
+          <Link prefetch={false} className={styles.origin_seven_button} href={"/login"}>
             <Image id="start_btn" className={styles.seven_button_img} src={seven_button} alt="img" />
           </Link>
-          <Link href={"/webonly"}>
+          <Link prefetch={false} href={"/webonly"}>
             <button className={styles.m_seven_button}>더 많은 기능 보러가기</button>
           </Link>
         </article>

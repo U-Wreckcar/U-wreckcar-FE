@@ -125,7 +125,7 @@ export const OutputModal: React.FC<OutputModalType> = ({ isOpen, onRequestClose,
           </div>
           <div className={styles.cancleBtn_box}>
             <button title="button" className={styles.cancleBtn} onClick={onRequestClose}>
-              <Image src={b_close} alt="close_img" width={24} height={24} />
+              <Image src={b_close} alt="close_img" width={24} height={24} priority={true} />
             </button>
           </div>
         </div>
@@ -145,6 +145,7 @@ export const OutputModal: React.FC<OutputModalType> = ({ isOpen, onRequestClose,
                     alt="outputmodal"
                     src={active_sheet}
                     onClick={() => setSheet(!sheet)}
+                    priority={true}
                   />
                 ) : (
                   <Image width={150} height={100} alt="outputmodal" src={not_sheet} onClick={() => setSheet(!sheet)} />
@@ -153,9 +154,9 @@ export const OutputModal: React.FC<OutputModalType> = ({ isOpen, onRequestClose,
 
               <div onClick={() => setExcel(true)} className={styles.img_box_img}>
                 {excel ? (
-                  <Image width={150} height={100} alt="outputmodal" src={active_excel} />
+                  <Image priority={true} width={150} height={100} alt="outputmodal" src={active_excel} />
                 ) : (
-                  <Image width={150} height={100} alt="outputmodal" src={not_excel} />
+                  <Image priority={true} width={150} height={100} alt="outputmodal" src={not_excel} />
                 )}
               </div>
             </div>

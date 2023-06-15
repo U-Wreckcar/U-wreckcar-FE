@@ -15,7 +15,7 @@ const LoginModal = ({ isOpen, onRequestClose }: any) => {
   const secondContent = `유렉카를 처음 이용하시는 고객께서는\n이메일 회원가입을 이용해주시면 감사하겠습니다\n다만 기존 고객님들은 카카오로 로그인하기로`;
 
   const onClickNoti = () => {
-    window.open(" https://unexpected-ceder-0b7.notion.site/11f8741947a441e5822fd8723ef48492", "_blank");
+    window.open("https://open.kakao.com/o/sbK3Rfaf", "_blank");
   };
 
   return (
@@ -24,17 +24,22 @@ const LoginModal = ({ isOpen, onRequestClose }: any) => {
         <div className={styles.modal_container}>
           <div className={styles.underLine}>
             {/* <h4>안내</h4> */}
-            <h4 style={{ color: "red" }}>긴급 공지</h4>
+            <h4 style={{ color: "red" }}>카카오 로그인 관련 이슈 안내</h4>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </div>
           <div className={styles.modal_wrap}>
-            <div style={{ marginTop: "70px" }}>
-              <p>서버 이슈로 인하여 현재 유렉카 서비스가 정상적으로 운영</p>
+            <div>
+              <p>안녕하세요. TEAM 유렉카입니다</p>
 
-              <p>되지 않고 있습니다. 필요한 UTM목록이 있거나 기타 문의사항은</p>
+              <p>유렉카의 로그인 방식이 로컬 로그인으로 통일되어 현재 카카오 계정 유저분들의 로그인이 불가능한</p>
 
-              <p>오픈채팅으로 연락주시면 빠르게 대처해드리도록 하겠습니다.</p>
-              <p>서비스 이용에 불편함을 드려 죄송합니다.</p>
-              <h3 style={{ textAlign: "center", margin: "40px 40px 70px 0" }}>- TEAM 유렉카 -</h3>
+              <p>이슈가 있습니다. 유렉카 오픈 채팅을 통해 카카오 이메일 보내주시면 최대한 빠른 시일 내에 로컬 로</p>
+              <p>그인이 가능하도록 변환해드리도록 하겠습니다.</p>
+              <p>불편함을 드려 죄송합니다. 감사합니다.</p>
+              {/* <h3 style={{ textAlign: "center", margin: "40px 40px 70px 0" }}>- TEAM 유렉카 -</h3> */}
             </div>
             {/* <div>
             <h2 className={styles.modal_title}>회원가입 방식 변경 안내</h2>
@@ -52,11 +57,11 @@ const LoginModal = ({ isOpen, onRequestClose }: any) => {
           </div> */}
 
             <div className={styles.button_box}>
-              <button className={styles.noti_button} onClick={onClickNoti}>
-                공지사항보기
+              <button className={styles.confirm_button} onClick={onClickNoti}>
+                문의하기
               </button>
-              <button className={styles.confirm_button} onClick={onRequestClose}>
-                확인
+              <button className={styles.noti_button} onClick={onRequestClose}>
+                팝업닫기
               </button>
             </div>
           </div>

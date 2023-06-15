@@ -30,7 +30,7 @@ import {
 } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
 import { DebouncedInput } from "./MainTableFunction";
-import { selectTable } from "@/src/redux/slice/addslice";
+import { dataTable, selectTable } from "@/src/redux/slice/addslice";
 import { useAppDispatch, useAppSelector } from "@/src/util/reduxType/type";
 import { EditModal } from "./MainMemoModal";
 import { customStyles } from "../loginPage/LoginModal";
@@ -73,6 +73,7 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
     try {
       const res: any = await getUTMs();
       setData(res.data.data);
+      dispatch(dataTable(res.data.data));
       dData = res.data.data;
     } catch (err) {
       router.replace("/");
@@ -214,7 +215,7 @@ const MainTable: React.FC<MainTableProps> = ({ setTable, del, filter }) => {
             <div className={styles.no_data}>
               <div className={styles.no_data_item}>
                 <p>등록된 UTM이 없어요.</p>
-                <Link href={"/createutm"}>
+                <Link href={"/createutm"} prefetch={false}>
                   <button>UTM 생성하기</button>
                 </Link>
               </div>
