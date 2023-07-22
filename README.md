@@ -1,5 +1,17 @@
 # FRONT-END
 
+## 실행방법
+
+### 1. 설치 <br/>
+클론을 받고 아래 명령어를 실행
+   ```
+   yarn install
+   ```
+### 2. 실행 <br/>
+포트 3000으로 로컬환경에서 실행
+```
+yarn dev
+```
 # U렉카 - Uwreckcar
 
 ![Group 473](https://user-images.githubusercontent.com/116594422/232433423-a70594cd-b2c9-48ce-bd53-621fa127ab7e.jpg)
