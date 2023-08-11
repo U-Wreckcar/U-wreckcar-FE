@@ -39,22 +39,7 @@ const LoginModal = ({ isOpen, onRequestClose }: any) => {
               <p>이슈가 있습니다. 유렉카 오픈 채팅을 통해 카카오 이메일 보내주시면 최대한 빠른 시일 내에 로컬 로</p>
               <p>그인이 가능하도록 변환해드리도록 하겠습니다.</p>
               <p>불편함을 드려 죄송합니다. 감사합니다.</p>
-              {/* <h3 style={{ textAlign: "center", margin: "40px 40px 70px 0" }}>- TEAM 유렉카 -</h3> */}
             </div>
-            {/* <div>
-            <h2 className={styles.modal_title}>회원가입 방식 변경 안내</h2>
-          </div>
-          <div>
-            <p>유렉카의 회원가입 방식을 이메일 회원가입으로 변경함에 따라</p>
-            <span>현재 카카오톡으로 회원가입은 할 수 없습니다.</span>
-          </div>
-          <div>
-            <p>{secondContent}</p>
-            <span>그대로 로그인하여 서비스를 이용하실 수 있습니다</span>
-          </div>
-          <div>
-            <p>자세한 사항은 공지사항 확인 부탁드립니다.</p>
-          </div> */}
 
             <div className={styles.button_box}>
               <button className={styles.confirm_button} onClick={onClickNoti}>
