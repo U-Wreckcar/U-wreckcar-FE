@@ -1,16 +1,19 @@
 # 🚀 Rebuild
 ``` 확장성과 유지보수를 효율적으로 관리하기 위해서 새로운 저장소에서 새롭게 구축하고있습니다. 아래링크에서 보실 수 있습니다. ``` <br />
-[Rebuild Repo](https://github.com/U-Wreckcar/rn-wreckcar)
+```
+https://github.com/U-Wreckcar/rn-wreckcar 
+```
 
-## 실행방법
-
-### 1. 설치 <br/>
-클론을 받고 아래 명령어를 실행
+## * 실행방법
+### 클론 <br/>
+   ```
+   git clone https://github.com/U-Wreckcar/U-wreckcar-FE.git
+   ```
+### 설치 <br/>
    ```
    yarn install
    ```
-### 2. 실행 <br/>
-포트 3000으로 로컬환경에서 실행
+### 실행 <br/>
 ```
 yarn dev
 ```
